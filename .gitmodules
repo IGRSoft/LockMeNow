@@ -1,0 +1,12 @@
+[submodule "External/LaunchAtLoginController"]
+	path = External/LaunchAtLoginController
+	url = https://github.com/tgunr/LaunchAtLoginController.git
+[submodule "External/peertalk"]
+	path = External/peertalk
+	url = https://github.com/rsms/peertalk.git
+[submodule "External/ShortcutRecorder"]
+	path = External/ShortcutRecorder
+	url = https://github.com/Kentzo/ShortcutRecorder
+[submodule "External/ValidateStoreReceipt"]
+	path = External/ValidateStoreReceipt
+	url = https://github.com/tgunr/ValidateStoreReceipt.git

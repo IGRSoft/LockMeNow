@@ -8,9 +8,9 @@
 
 #import <IOBluetooth/objc/IOBluetoothSDPServiceRecord.h>
 #import <IOBluetooth/objc/IOBluetoothRFCOMMChannel.h>
+#import <ShortcutRecorder/SRRecorderControl.h>
 
 @class PTHotKey;
-@class SRRecorderControl;
 @class IKImageView;
 @class IOBluetoothDevice;
 
@@ -39,7 +39,7 @@ typedef struct {
     uint16_t productID;
 } APPLE_MOBILE_DEVICE;
 
-@interface LockMeNowAppDelegate : NSObject <NSApplicationDelegate, NSControlTextEditingDelegate, NSTabViewDelegate> {
+@interface LockMeNowAppDelegate : NSObject <NSApplicationDelegate, NSControlTextEditingDelegate, NSTabViewDelegate, SRRecorderControlDelegate> {
 	//Interface
     NSStatusItem		*m_statusItem;
 	NSApplicationPresentationOptions appPresentationOptions;
