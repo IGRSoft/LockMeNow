@@ -1,0 +1,24 @@
+//
+// Prefix header for all source files of the 'LockMeNow' target in the 'LockMeNow' project
+//
+
+#ifdef __OBJC__
+    #import <Cocoa/Cocoa.h>
+#endif
+
+#define BETA_APP 0
+#define USE_VALIDATE_RECEIPT 0
+
+#define NUM_APPLE_MOBILE_DEVICES	28
+
+#define NUM_IPHONE_POS	0
+#define NUM_IPOD_POS	9
+#define NUM_IPAD_POS	14
+
+#define VENDOR_APPLE				0x05ac
+
+#ifdef DEBUG
+#define DBNSLog NSLog
+#else
+#define DBNSLog( s, ... )
+#endif
