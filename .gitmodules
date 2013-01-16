@@ -10,3 +10,6 @@
 [submodule "External/ValidateStoreReceipt"]
 	path = External/ValidateStoreReceipt
 	url = https://github.com/tgunr/ValidateStoreReceipt.git
+[submodule "External/shortcutrecorder"]
+	path = External/shortcutrecorder
+	url = https://github.com/iKorich/shortcutrecorder.git
