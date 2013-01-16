@@ -2672,11 +2672,6 @@ IFpodXJhdmxldiAoQGJ5bWFzdGVyKQ</string>
 						<reference key="object" ref="449546282"/>
 						<array key="userDefinedRuntimeAttributes">
 							<object class="IBUserDefinedRuntimeAttribute">
-								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
-								<string key="keyPath">requiredModifierFlags</string>
-								<integer value="1" key="value"/>
-							</object>
-							<object class="IBUserDefinedRuntimeAttribute">
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.boolean</string>
 								<string key="keyPath">allowsEmptyModifierFlags</string>
 								<boolean value="NO" key="value"/>
@@ -2685,6 +2680,11 @@ IFpodXJhdmxldiAoQGJ5bWFzdGVyKQ</string>
 								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.boolean</string>
 								<string key="keyPath">allowsEscapeToCancelRecording</string>
 								<boolean value="YES" key="value"/>
+							</object>
+							<object class="IBUserDefinedRuntimeAttribute">
+								<string key="typeIdentifier">com.apple.InterfaceBuilder.userDefinedRuntimeAttributeType.number</string>
+								<string key="keyPath">allowedModifierFlags</string>
+								<integer value="1966080" key="value"/>
 							</object>
 						</array>
 					</object>

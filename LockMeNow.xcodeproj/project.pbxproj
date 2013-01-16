@@ -476,7 +476,10 @@
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = /Applications;
 				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
-				OTHER_CFLAGS = "-DYES_I_HAVE_READ_THE_WARNING_AND_I_ACCEPT_THE_RISK";
+				OTHER_CFLAGS = (
+					"-DYES_I_HAVE_READ_THE_WARNING_AND_I_ACCEPT_THE_RISK",
+					"-DDEBUG",
+				);
 				OTHER_LDFLAGS = "-lcrypto";
 				PRODUCT_NAME = lockmenow;
 			};

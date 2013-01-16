@@ -25,7 +25,7 @@
 #import <mach/mach_port.h>
 #import "PTUSBHub.h"
 
-NSString *kGlobalHotKey = @"GlobalHotKey";
+NSString *kGlobalHotKey = @"LockMeNowHotKey";
 NSString *kIconOnMainMenu = @"IconOnMainMenu";
 NSString *kLockType = @"LockType";
 NSString *kPauseiTunes = @"PauseiTunes";
@@ -107,13 +107,11 @@ static bool useAditionalLock = true;
 	
 	[[PTHotKeyCenter sharedCenter] unregisterHotKey:self.hotKey];	
 	id keyComboPlist = [[NSUserDefaults standardUserDefaults] objectForKey:kGlobalHotKey];
-	PTKeyCombo *keyCombo = [[PTKeyCombo alloc] initWithPlistRepresentation:keyComboPlist];
 	
-	self.hotKey = [[PTHotKey alloc] initWithIdentifier:kGlobalHotKey
-											   keyCombo:keyCombo];
-	
-	[self.hotKey setTarget: self];
-	[self.hotKey setAction: @selector(hotKeyPressed:)];
+    PTKeyCombo *keyCombo = [[PTKeyCombo alloc] initWithPlistRepresentation:keyComboPlist];
+    self.hotKey = [[PTHotKey alloc] initWithIdentifier:kGlobalHotKey keyCombo:keyCombo];
+    [self.hotKey setTarget:self];
+    [self.hotKey setAction:@selector(hotKeyPressed:)];
 	
 	[[PTHotKeyCenter sharedCenter] registerHotKey:self.hotKey];
 	
@@ -213,18 +211,18 @@ bool doNothingAtStart = false;
 #pragma mark - Shortcut
 - (void)hotKeyPressed:(id)sender 
 {
-	//DBNSLog(@"Pressed");
-	[self makeLock];
+	DBNSLog(@"Pressed");
+	//[self makeLock];
 }
 - (BOOL)shortcutRecorderShouldBeginRecording:(SRRecorderControl *)aRecorder
 {
-	//[[PTHotKeyCenter sharedCenter] pause];
+	[[PTHotKeyCenter sharedCenter] pause];
 	return YES;
 }
 
 - (void)shortcutRecorderDidEndRecording:(SRRecorderControl *)aRecorder
 {
-	//[[PTHotKeyCenter sharedCenter] resume];
+	[[PTHotKeyCenter sharedCenter] resume];
 }
 
 - (BOOL)shortcutRecorder:(SRRecorderControl *)aRecorder canRecordShortcut:(NSDictionary *)aShortcut
