@@ -319,21 +319,22 @@ bool doNothingAtStart = false;
 	if (!m_bEncription) {
 		m_bNeedBlock = ![self askPassword];
 	}
-	if (m_bNeedBlock || m_bEncription)
+	
+	if (m_bNeedBlock)
 	{
-		[[NSDistributedNotificationCenter defaultCenter] addObserver:self
-															selector:@selector(setScreenLockActive:)
-																name:@"com.apple.screenIsLocked"
-															  object:NULL];
-		
-		[[NSDistributedNotificationCenter defaultCenter] addObserver:self
-															selector:@selector(setScreenLockInActive:)
-																name:@"com.apple.screenIsUnlocked"
-															  object:NULL];
-		
 		DBNSLog(@"Set Security Lock");
 		[self setSecuritySetings:YES withSkip:m_bNeedBlock];
 	}
+	
+	[[NSDistributedNotificationCenter defaultCenter] addObserver:self
+														selector:@selector(setScreenLockActive:)
+															name:@"com.apple.screenIsLocked"
+														  object:NULL];
+	
+	[[NSDistributedNotificationCenter defaultCenter] addObserver:self
+														selector:@selector(setScreenLockInActive:)
+															name:@"com.apple.screenIsUnlocked"
+														  object:NULL];
 	
 	io_registry_entry_t r =	IORegistryEntryFromPath(kIOMasterPortDefault, "IOService:/IOResources/IODisplayWrangler");
 	if(!r) return;
@@ -448,31 +449,47 @@ bool doNothingAtStart = false;
 }
 
 - (void)removeSecurityLock
-{
-	DBNSLog(@"Remove Security Lock");
-	
+{	
 	[self pauseResumeMusic];
 	
-	bool m_bNeedBlock = ![self askPassword];
-	[self setSecuritySetings:NO withSkip:m_bNeedBlock];
+	bool m_bNeedBlock = false;
 	
-	[[NSDistributedNotificationCenter defaultCenter] removeObserver:self 
-																  name:@"com.apple.screenIsLocked"
-																object:NULL];
-	[[NSDistributedNotificationCenter defaultCenter] removeObserver:self 
-																  name:@"com.apple.screenIsUnlocked" 
-																object:NULL];
-	for(NSWindow *blocker in _blockObjects) {
-        [blocker orderOut:self];
-        DBNSLog(@"closing blocker");
-    }
-    
-	_blockObjects = nil;
+	if (!m_bEncription) {
+		m_bNeedBlock = ![self askPassword];
+	}
 	
-	if (!m_bShouldTerminate) {
-		NSApplication *currentApp = [NSApplication sharedApplication];
-		[currentApp setPresentationOptions:appPresentationOptions];
-		m_bShouldTerminate = true;
+	if (m_bNeedBlock)
+	{
+		DBNSLog(@"Remove Security Lock");
+		[self setSecuritySetings:NO withSkip:m_bNeedBlock];
+	}
+	
+	switch (m_iLockType) {
+		case LOCK_SCREEN:
+			[[NSDistributedNotificationCenter defaultCenter] removeObserver:self
+																	   name:@"com.apple.screenIsLocked"
+																	 object:NULL];
+			[[NSDistributedNotificationCenter defaultCenter] removeObserver:self
+																	   name:@"com.apple.screenIsUnlocked"
+																	 object:NULL];
+			break;
+		case LOCK_BLOCK:
+			for(NSWindow *blocker in _blockObjects) {
+				[blocker orderOut:self];
+				DBNSLog(@"closing blocker");
+			}
+			
+			_blockObjects = nil;
+			
+			if (!m_bShouldTerminate) {
+				NSApplication *currentApp = [NSApplication sharedApplication];
+				[currentApp setPresentationOptions:appPresentationOptions];
+				m_bShouldTerminate = true;
+			}
+			break;
+		case LOCK_LOGIN_WINDOW:
+		default:
+			break;
 	}
 }
 
