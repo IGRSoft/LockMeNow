@@ -9,6 +9,7 @@
 #import <Quartz/Quartz.h>
 #import "LockMeNowAppDelegate.h"
 
+#import <ShortcutRecorder/SRRecorderControl.h>
 #import <PTHotKey/PTHotKeyCenter.h>
 #import <PTHotKey/PTHotKey.h>
 
@@ -103,23 +104,25 @@ static bool useAditionalLock = true;
 	
 	m_Queue = [[NSOperationQueue alloc] init];
 	
-	//[self.hotKeyControl setCanCaptureGlobalHotKeys:YES];
+	[self.hotKeyControl setCanCaptureGlobalHotKeys:YES];
 	
-	[[PTHotKeyCenter sharedCenter] unregisterHotKey:self.hotKey];	
+	[[PTHotKeyCenter sharedCenter] unregisterHotKey:self.hotKey];
 	id keyComboPlist = [[NSUserDefaults standardUserDefaults] objectForKey:kGlobalHotKey];
+	PTKeyCombo *keyCombo = [[PTKeyCombo alloc] initWithPlistRepresentation:keyComboPlist];
 	
-    PTKeyCombo *keyCombo = [[PTKeyCombo alloc] initWithPlistRepresentation:keyComboPlist];
-    self.hotKey = [[PTHotKey alloc] initWithIdentifier:kGlobalHotKey keyCombo:keyCombo];
-    [self.hotKey setTarget:self];
-    [self.hotKey setAction:@selector(hotKeyPressed:)];
+	self.hotKey = [[PTHotKey alloc] initWithIdentifier:kGlobalHotKey
+											  keyCombo:keyCombo];
+	
+	[self.hotKey setTarget: self];
+	[self.hotKey setAction: @selector(hotKeyPressed:)];
 	
 	[[PTHotKeyCenter sharedCenter] registerHotKey:self.hotKey];
 	
 	NSNumber *kc = @(self.hotKey.keyCombo.keyCode);
-	NSNumber *mf = @(self.hotKey.keyCombo.modifiers);
+	NSNumber *mf = @(self.hotKey.keyCombo.modifierMask);
 	
-	[self.hotKeyControl setObjectValue:@{SRShortcutKeyCode: kc,
-										SRShortcutModifierFlagsKey: mf}];
+	[self.hotKeyControl setObjectValue:@{@"keyCode": kc,
+	 @"modifierFlags": mf}];
 	
 	NSString* path = [[NSBundle mainBundle] pathForResource: @"off"
 													 ofType: @"pdf"];
@@ -209,33 +212,26 @@ bool doNothingAtStart = false;
 }
 
 #pragma mark - Shortcut
-- (void)hotKeyPressed:(id)sender 
+- (void)hotKeyPressed:(id)sender
 {
-	DBNSLog(@"Pressed");
-	//[self makeLock];
-}
-- (BOOL)shortcutRecorderShouldBeginRecording:(SRRecorderControl *)aRecorder
-{
-	[[PTHotKeyCenter sharedCenter] pause];
-	return YES;
+	//DBNSLog(@"Pressed");
+	[self makeLock];
 }
 
-- (void)shortcutRecorderDidEndRecording:(SRRecorderControl *)aRecorder
+- (BOOL)shortcutRecorder:(SRRecorderControl *)aRecorder isKeyCode:(NSInteger)keyCode andFlagsTaken:(NSUInteger)flags reason:(NSString **)aReason
 {
-	[[PTHotKeyCenter sharedCenter] resume];
+	return NO;
 }
 
-- (BOOL)shortcutRecorder:(SRRecorderControl *)aRecorder canRecordShortcut:(NSDictionary *)aShortcut
+- (void)shortcutRecorder:(SRRecorderControl *)aRecorder keyComboDidChange:(KeyCombo)newKeyCombo
 {
 	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
 	
-	PTKeyCombo *keyCombo = [PTKeyCombo keyComboWithKeyCode:[aShortcut[SRShortcutKeyCode] integerValue]
-												 modifiers:[aShortcut[SRShortcutModifierFlagsKey] integerValue]];
-	
-	[[PTHotKeyCenter sharedCenter] unregisterHotKey:self.hotKey];
+	PTKeyCombo *keyCombo = [PTKeyCombo keyComboWithKeyCode:[aRecorder keyCombo].code
+												 modifiers:[aRecorder cocoaToCarbonFlags:[aRecorder keyCombo].flags]];
 	
 	if (aRecorder == self.hotKeyControl) {
-		[self.hotKey setKeyCombo:keyCombo];
+		self.hotKey.keyCombo = keyCombo;
 		
 		// Re-register the new hot key
 		[[PTHotKeyCenter sharedCenter] registerHotKey:self.hotKey];
@@ -243,8 +239,6 @@ bool doNothingAtStart = false;
 	}
 	
 	[defaults synchronize];
-	
-	return YES;
 }
 
 
