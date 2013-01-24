@@ -11,6 +11,11 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		A517CFA4142FD73E00632668 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A517CFA2142FD73E00632668 /* Credits.rtf */; };
+		A52A9F5E16A8310800EA4B17 /* NSTextFieldWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = A52A9F5D16A8310800EA4B17 /* NSTextFieldWithImage.m */; };
+		A52A9F6016A8365300EA4B17 /* TextFieldBG.png in Resources */ = {isa = PBXBuildFile; fileRef = A52A9F5F16A8365200EA4B17 /* TextFieldBG.png */; };
+		A53766DF16AC277400AF78D8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53766DE16AC277400AF78D8 /* StoreKit.framework */; };
+		A53766E616AC2B9B00AF78D8 /* InAppPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A53766E216AC2B9A00AF78D8 /* InAppPurchaseManager.m */; };
+		A53766E816AC2B9B00AF78D8 /* SKProduct+Price.m in Sources */ = {isa = PBXBuildFile; fileRef = A53766E516AC2B9A00AF78D8 /* SKProduct+Price.m */; };
 		A53FE3D3142F4F34003B4D67 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = A53FE3D1142F4F34003B4D67 /* icon.icns */; };
 		A53FE3D4142F4F34003B4D67 /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = A53FE3D2142F4F34003B4D67 /* lock.png */; };
 		A5489BA415D3ED340072E5D2 /* off.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A5489BA215D3ED340072E5D2 /* off.pdf */; };
@@ -23,6 +28,8 @@
 		A589299616A5DE9400063E09 /* PTUSBHub.m in Sources */ = {isa = PBXBuildFile; fileRef = A589299516A5DE9400063E09 /* PTUSBHub.m */; };
 		A58A9E36142F5D3600D99E79 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A58A9E35142F5D3600D99E79 /* Security.framework */; };
 		A5970AD1163A91BC00C674F4 /* filevault_2_encryption_check_extension_attribute.sh in Resources */ = {isa = PBXBuildFile; fileRef = A5970AD0163A91BC00C674F4 /* filevault_2_encryption_check_extension_attribute.sh */; };
+		A5ABE36516B14409009A7151 /* lock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5ABE36416B14409009A7151 /* lock@2x.png */; };
+		A5ABE37216B147CA009A7151 /* russianapple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5ABE37116B147CA009A7151 /* russianapple@2x.png */; };
 		A5C0BBF616A6D08B008072DE /* PTHotKey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5C0BBED16A6D078008072DE /* PTHotKey.framework */; };
 		A5C0BBF716A6D08B008072DE /* ShortcutRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5C0BBEF16A6D078008072DE /* ShortcutRecorder.framework */; };
 		A5C0BBF816A6D08F008072DE /* PTHotKey.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A5C0BBED16A6D078008072DE /* PTHotKey.framework */; };
@@ -97,6 +104,14 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107320486CEB800E47090 /* lockmenow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lockmenow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A517CFA3142FD73E00632668 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
+		A52A9F5C16A8310800EA4B17 /* NSTextFieldWithImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSTextFieldWithImage.h; path = Source/CustomView/NSTextFieldWithImage.h; sourceTree = "<group>"; };
+		A52A9F5D16A8310800EA4B17 /* NSTextFieldWithImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSTextFieldWithImage.m; path = Source/CustomView/NSTextFieldWithImage.m; sourceTree = "<group>"; };
+		A52A9F5F16A8365200EA4B17 /* TextFieldBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TextFieldBG.png; path = Resources/TextFieldBG.png; sourceTree = "<group>"; };
+		A53766DE16AC277400AF78D8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
+		A53766E116AC2B9A00AF78D8 /* InAppPurchaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppPurchaseManager.h; sourceTree = "<group>"; };
+		A53766E216AC2B9A00AF78D8 /* InAppPurchaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppPurchaseManager.m; sourceTree = "<group>"; };
+		A53766E416AC2B9A00AF78D8 /* SKProduct+Price.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKProduct+Price.h"; sourceTree = "<group>"; };
+		A53766E516AC2B9A00AF78D8 /* SKProduct+Price.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKProduct+Price.m"; sourceTree = "<group>"; };
 		A53FE3D1142F4F34003B4D67 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = Resources/icon.icns; sourceTree = "<group>"; };
 		A53FE3D2142F4F34003B4D67 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lock.png; path = Resources/lock.png; sourceTree = "<group>"; };
 		A5489BA215D3ED340072E5D2 /* off.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = off.pdf; sourceTree = "<group>"; };
@@ -111,6 +126,8 @@
 		A589299516A5DE9400063E09 /* PTUSBHub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTUSBHub.m; path = peertalk/peertalk/PTUSBHub.m; sourceTree = "<group>"; };
 		A58A9E35142F5D3600D99E79 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A5970AD0163A91BC00C674F4 /* filevault_2_encryption_check_extension_attribute.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = filevault_2_encryption_check_extension_attribute.sh; path = Resources/filevault_2_encryption_check_extension_attribute.sh; sourceTree = "<group>"; };
+		A5ABE36416B14409009A7151 /* lock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lock@2x.png"; path = "Resources/lock@2x.png"; sourceTree = "<group>"; };
+		A5ABE37116B147CA009A7151 /* russianapple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "russianapple@2x.png"; path = "Resources/russianapple@2x.png"; sourceTree = "<group>"; };
 		A5B0BEBF144CA9E0003C3145 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		A5C0BBE216A6D077008072DE /* ShortcutRecorder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShortcutRecorder.xcodeproj; path = shortcutrecorder/ShortcutRecorder.xcodeproj; sourceTree = "<group>"; };
 		A5CE4D0215062BFB001C22D2 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = /System/Library/Frameworks/ScriptingBridge.framework; sourceTree = "<absolute>"; };
@@ -132,6 +149,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A53766DF16AC277400AF78D8 /* StoreKit.framework in Frameworks */,
 				A5C0BBF616A6D08B008072DE /* PTHotKey.framework in Frameworks */,
 				A5C0BBF716A6D08B008072DE /* ShortcutRecorder.framework in Frameworks */,
 				A58A9E36142F5D3600D99E79 /* Security.framework in Frameworks */,
@@ -154,6 +172,8 @@
 				A53831C216481976002764C1 /* Privat */,
 				D0764510101E79F500DAE20D /* LockMeNowAppDelegate.h */,
 				D0764511101E79F500DAE20D /* LockMeNowAppDelegate.m */,
+				A52A9F5C16A8310800EA4B17 /* NSTextFieldWithImage.h */,
+				A52A9F5D16A8310800EA4B17 /* NSTextFieldWithImage.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -161,6 +181,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A53766DE16AC277400AF78D8 /* StoreKit.framework */,
 				A5489BAC15D401710072E5D2 /* IOBluetooth.framework */,
 				A5489BAD15D401710072E5D2 /* IOBluetoothUI.framework */,
 				A5489BAA15D3F1820072E5D2 /* Quartz.framework */,
@@ -216,6 +237,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A52A9F5F16A8365200EA4B17 /* TextFieldBG.png */,
 				A53831C616481ADE002764C1 /* img */,
 				A53831C516481A34002764C1 /* scripts */,
 				A5489BA115D3ED340072E5D2 /* indicators */,
@@ -236,6 +258,17 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A53766E016AC2B9A00AF78D8 /* InAppPurchaseManager */ = {
+			isa = PBXGroup;
+			children = (
+				A53766E116AC2B9A00AF78D8 /* InAppPurchaseManager.h */,
+				A53766E216AC2B9A00AF78D8 /* InAppPurchaseManager.m */,
+				A53766E416AC2B9A00AF78D8 /* SKProduct+Price.h */,
+				A53766E516AC2B9A00AF78D8 /* SKProduct+Price.m */,
+			);
+			path = InAppPurchaseManager;
 			sourceTree = "<group>";
 		};
 		A53831C216481976002764C1 /* Privat */ = {
@@ -266,6 +299,8 @@
 		A53831C616481ADE002764C1 /* img */ = {
 			isa = PBXGroup;
 			children = (
+				A5ABE37116B147CA009A7151 /* russianapple@2x.png */,
+				A5ABE36416B14409009A7151 /* lock@2x.png */,
 				A5DD8A4D143C47CB00094BEA /* russianapple.png */,
 				A5F9F90215EEA4870091B2F0 /* lock-bg.png */,
 				A53FE3D2142F4F34003B4D67 /* lock.png */,
@@ -276,6 +311,7 @@
 		A5489B8215D3E5A90072E5D2 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				A53766E016AC2B9A00AF78D8 /* InAppPurchaseManager */,
 				A5C0BBE216A6D077008072DE /* ShortcutRecorder.xcodeproj */,
 				A589299716A5DEBB00063E09 /* peertalk */,
 				A53831C41648199C002764C1 /* LaunchAtLogin */,
@@ -416,6 +452,9 @@
 				A5489BA515D3ED340072E5D2 /* on.pdf in Resources */,
 				A5F9F90315EEA4870091B2F0 /* lock-bg.png in Resources */,
 				A5970AD1163A91BC00C674F4 /* filevault_2_encryption_check_extension_attribute.sh in Resources */,
+				A52A9F6016A8365300EA4B17 /* TextFieldBG.png in Resources */,
+				A5ABE36516B14409009A7151 /* lock@2x.png in Resources */,
+				A5ABE37216B147CA009A7151 /* russianapple@2x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -431,6 +470,9 @@
 				A5D1F41C15DA401700211A8F /* validatereceipt.m in Sources */,
 				A589299316A5DDA800063E09 /* LaunchAtLoginController.m in Sources */,
 				A589299616A5DE9400063E09 /* PTUSBHub.m in Sources */,
+				A52A9F5E16A8310800EA4B17 /* NSTextFieldWithImage.m in Sources */,
+				A53766E616AC2B9B00AF78D8 /* InAppPurchaseManager.m in Sources */,
+				A53766E816AC2B9B00AF78D8 /* SKProduct+Price.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -487,7 +529,6 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Source/Prefix.pch;
-				IBC_PLUGIN_SEARCH_PATHS = "\"$(SRCROOT)/Frameworks/ShortcutRecorder.framework/Versions/A/Resources\"";
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = /Applications;
 				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
@@ -508,7 +549,6 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Source/Prefix.pch;
-				IBC_PLUGIN_SEARCH_PATHS = "\"$(SRCROOT)/Frameworks/ShortcutRecorder.framework/Versions/A/Resources\"";
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = /Applications;
 				MACOSX_DEPLOYMENT_TARGET = 10.6.8;

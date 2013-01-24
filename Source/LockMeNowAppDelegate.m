@@ -26,6 +26,9 @@
 #import <mach/mach_port.h>
 #import "PTUSBHub.h"
 
+#import "InAppPurchaseManager.h"
+#import "validatereceipt.h"
+
 NSString *kGlobalHotKey = @"LockMeNowHotKey";
 NSString *kIconOnMainMenu = @"IconOnMainMenu";
 NSString *kLockType = @"LockType";
@@ -40,8 +43,6 @@ NSString *kUSBDeviceType = @"USBDevice";
 
 NSString *global_bundleVersion = @"1.0.0";
 NSString *global_bundleIdentifier = @"com.bymaster.lockmenow";
-
-static bool useAditionalLock = true;
 
 @interface LockMeNowAppDelegate()
 - (void)openImageURLfor:(IKImageView*)_imageView withUrl:(NSURL*)url;
@@ -76,7 +77,8 @@ static bool useAditionalLock = true;
 	}
 #endif
 #if USE_VALIDATE_RECEIPT
-	NSString *receipt = [[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"/Contents/_MASReceipt/receipt"];
+	
+	NSString *receipt = [[[NSBundle mainBundle] appStoreReceiptURL] path];
     
     if ([[NSFileManager defaultManager] fileExistsAtPath:receipt] == NO)
 	{
@@ -93,14 +95,39 @@ static bool useAditionalLock = true;
 		 } else {
 			 DBNSLog(@"Valid app store receipt located. Launching.");
 		 }
-	 }
+	}
+
+	useAditionalLock = false;
+	
+	NSArray *inApps = obtainInAppPurchases(receipt);
+	if (inApps) {
+		for (NSDictionary *purchase in inApps) {
+			if ([purchase[kReceiptInAppProductIdentifier] isEqualToString:INAPP_ID_DEVICES]) {
+				useAditionalLock = true;
+			}
+		}
+	}
+
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(receiveSucceededPurchase:)
+												 name:NOTIFICATION_PURCHASE_SUCCEEDED
+											   object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(receiveFaildPurchase:)
+												 name:NOTIFICATION_PURCHASE_FAILED
+											   object:nil];
+#else
+	useAditionalLock = true;
 #endif
+	
 	m_BluetoothDevicePriorStatus = OutOfRange;
 	m_BluetoothDevice = nil;
 	[self loadUserSettings];
 	if (m_bUseIconOnMainMenu) {
 		[self makeMenu];
 	}
+	
+	[self updateMenu];
 	
 	m_Queue = [[NSOperationQueue alloc] init];
 	
@@ -130,16 +157,6 @@ static bool useAditionalLock = true;
 	NSURL* url = [NSURL fileURLWithPath: path];
 	
 	[self openImageURLfor: self.bluetoothStatus withUrl: url];
-	
-	if (useAditionalLock) {
-		if (m_bMonitoringBluetooth)
-		{
-			[self startMonitoring];
-		}
-		if (m_bMonitoringUSB) {
-			[self startListeningForDevices];
-		}
-	}
 	
 	m_bNeedResumeiTunes = false;
 	m_bShouldTerminate = true;
@@ -197,6 +214,8 @@ bool doNothingAtStart = false;
 			url = [NSURL URLWithString:@"http://igrsoft.com" ];
 		else if ([[sender title] isEqualToString:@"Twitter"])
 			url = [NSURL URLWithString:@"http://twitter.com/#!/iKorich" ];
+		else if ([sender tag] == 1)
+			url = [NSURL URLWithString:@"http://russianapple.ru" ];
 		
 		[[NSWorkspace sharedWorkspace] openURL:url];
 	
@@ -357,7 +376,7 @@ bool doNothingAtStart = false;
     
     for (index = 0; index < screenCount; index++)
     {
-        NSScreen *screen = [screenArray objectAtIndex: index];
+        NSScreen *screen = screenArray[index];
         screenRect = [screen frame];
         
         
@@ -387,7 +406,7 @@ bool doNothingAtStart = false;
         DBNSLog(@"Error.  Make sure you have a valid combination of options.");
     }
 	
-	NSWindow *firstBlocker = (NSWindow*)[_blockObjects objectAtIndex:0];
+	NSWindow *firstBlocker = (NSWindow*)_blockObjects[0];
 	[firstBlocker setContentView:_lockBlockView];
 }
 
@@ -504,7 +523,7 @@ bool doNothingAtStart = false;
 	NSString *pathToMyScript = [[NSBundle mainBundle] pathForResource:@"filevault_2_encryption_check_extension_attribute" ofType:@"sh"];
 	NSTask *server = [NSTask new];
 	[server setLaunchPath:@"/bin/sh"];
-	[server setArguments:[NSArray arrayWithObject:pathToMyScript]];
+	[server setArguments:@[pathToMyScript]];
 	[server setCurrentDirectoryPath:[[NSBundle mainBundle] bundlePath]];
 	
 	NSPipe *outputPipe = [NSPipe pipe];
@@ -533,7 +552,7 @@ bool doNothingAtStart = false;
 	BOOL success = true;
 	
 	if (!skip) {
-		NSNumber *val = [NSNumber numberWithBool:seter];
+		NSNumber *val = @(seter);
 		CFPreferencesSetValue(CFSTR("askForPassword"), (__bridge CFPropertyListRef) val,
 							  CFSTR("com.apple.screensaver"),
 							  kCFPreferencesCurrentUser, kCFPreferencesCurrentHost);
@@ -574,12 +593,10 @@ bool doNothingAtStart = false;
 	defaultValues[kResumeiTunes] = @YES;
 	defaultValues[kAutoScreenSaverPrefs] = @NO;
 
-	if (useAditionalLock) {
-		defaultValues[kBluetoothCheckInterval] = @60;
-		defaultValues[kBluetoothMonitoring] = @NO;
-		defaultValues[kUSBMonitoring] = @NO;
-		defaultValues[kUSBDeviceType] = @(USB_ALL_DEVICES);
-	}
+	defaultValues[kBluetoothCheckInterval] = @60;
+	defaultValues[kBluetoothMonitoring] = @NO;
+	defaultValues[kUSBMonitoring] = @NO;
+	defaultValues[kUSBDeviceType] = @(USB_ALL_DEVICES);
 	
     // Register the dictionary of defaults
     [[NSUserDefaults standardUserDefaults] registerDefaults: defaultValues];
@@ -852,7 +869,7 @@ int ProcessIsRunningWithBundleID(CFStringRef inBundleID, ProcessSerialNumber* ou
 		m_statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
 		[m_statusItem setMenu:self.statusMenu];
 		NSImage *itemImage = [[NSImage alloc]
-							  initWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"lock" ofType:@"png"]];
+							  initWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"lock" ofType:@"tiff"]];
 		
 		[m_statusItem setImage: itemImage];
 		[m_statusItem setHighlightMode:YES];
@@ -862,6 +879,21 @@ int ProcessIsRunningWithBundleID(CFStringRef inBundleID, ProcessSerialNumber* ou
 	{
 		[[NSStatusBar systemStatusBar] removeStatusItem:m_statusItem];
 		m_statusItem = nil;
+	}
+}
+
+- (void) updateMenu
+{
+	NSArray *arr = [self.statusMenu itemArray];
+	for (NSMenuItem *item in arr) {
+		if ([[item title] isEqualToString:@"Purchase"]) {
+			NSArray *submenuItems = [[item submenu] itemArray];
+			for (NSMenuItem *submenuItem in submenuItems) {
+				if ([item tag] == 99) {
+					[item setEnabled:!useAditionalLock];
+				}
+			}
+		}
 	}
 }
 
@@ -1025,17 +1057,160 @@ static APPLE_MOBILE_DEVICE APPLE_MOBILE_DEVICES[NUM_APPLE_MOBILE_DEVICES] = {
 			return YES;
 		else
 		{
-			NSAlert *alert = [NSAlert alertWithMessageText:@"Warning"
-											 defaultButton:@"Buy"
-										   alternateButton:@"Cancel"
-											   otherButton:nil
-								 informativeTextWithFormat:@"Need Byu!"];
-			[alert runModal];
+#if (USE_VALIDATE_RECEIPT)
+			NSAlert *alert = [[NSAlert alloc] init];
+			[alert addButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel")];
+			[alert addButtonWithTitle:NSLocalizedString(@"Buy", @"Buy")];
+			[alert addButtonWithTitle:NSLocalizedString(@"Restore", @"Restore")];
+			[alert setMessageText:NSLocalizedString(@"Warning", @"Warning")];
+			
+			[alert setInformativeText:NSLocalizedString(@"Would you like to buy it?", @"Would you like to buy it")];
+			
+			[self startAlert:alert selector:@selector(closeAlert:returnCode:contextInfo:)];
+#endif
 			return NO;
 		}
 	}
 	
 	return NO;
+}
+
+#pragma mark - Purchase
+- (IBAction) purchaseLockViaDevise:(id)sender
+{
+#if (USE_VALIDATE_RECEIPT)
+	if ([[InAppPurchaseManager sharedManager] canMakePurchases]) {
+		[[InAppPurchaseManager sharedManager] purchase:INAPP_ID_DEVICES];
+	} else {
+		DBNSLog(@"InApp Purchase not supported");
+	}
+#endif
+}
+
+- (IBAction)restoreAllPurchases:(id)sender {
+	[[InAppPurchaseManager sharedManager] restoreCompletedTransactions];
+}
+
+- (void) receiveSucceededPurchase:(NSNotification *) notification
+{
+#if (USE_VALIDATE_RECEIPT)
+	SKPaymentTransaction *transaction = [notification userInfo][KEY_TRANSACTION];
+	NSString *inAppId = [notification userInfo][KEY_PRODUCT_ID];
+	
+	NSString *textAlert = @"";
+	bool useAlert = true;
+	switch (transaction.transactionState) {
+		case SKPaymentTransactionStateRestored:
+			if ([inAppId isEqualToString:INAPP_ID_DEVICES]) {
+				useAditionalLock = true;
+			}
+			textAlert = @"You have successfully restored Lock By Device";
+			useAlert = true;
+			break;
+		case SKPaymentTransactionStatePurchased:
+			if ([inAppId isEqualToString:INAPP_ID_DEVICES]) {
+				useAditionalLock = true;
+			}
+			textAlert = @"You have successfully purchased Lock By Device";
+			useAlert = true;
+			break;
+		default:
+			useAlert = false;
+			break;
+	}
+	
+	if (useAditionalLock) {
+		if (m_bMonitoringBluetooth)
+		{
+			[self startMonitoring];
+		}
+		if (m_bMonitoringUSB) {
+			[self startListeningForDevices];
+		}
+	}
+	
+	if (useAlert) {
+		DBNSLog(@"InApp %@ successfully purchased", inAppId);
+		NSAlert *alert = [[NSAlert alloc] init];
+		[alert addButtonWithTitle:NSLocalizedString(@"OK", @"OK")];
+		[alert setMessageText:NSLocalizedString(@"Congrats!", @"Congrats")];
+		[alert setAlertStyle:NSInformationalAlertStyle];
+		[alert setInformativeText:textAlert];
+		[alert runModal];
+	}
+	else
+	{
+		DBNSLog(@"InApp %@ successfully restored", inAppId);
+	}
+#endif
+	[self updateMenu];
+}
+
+- (void) receiveFaildPurchase:(NSNotification *) notification
+{
+	NSString *inAppId = [notification userInfo][KEY_PRODUCT_ID];
+	
+	if ([inAppId isEqualToString:INAPP_ID_DEVICES]) {
+		useAditionalLock = false;
+	}
+	
+	DBNSLog(@"Can't process purchase %@: %@", inAppId, [notification userInfo][KEY_TRANSACTION_ERROR]);
+	NSAlert *alert = [[NSAlert alloc] init];
+	[alert addButtonWithTitle:NSLocalizedString(@"OK", @"OK")];
+	[alert setMessageText:NSLocalizedString(@"Something wrong!", @"Something wrong!")];
+	[alert setAlertStyle:NSInformationalAlertStyle];
+	[alert setInformativeText:@"Can't process purchase, please, try later."];
+	[alert runModal];
+}
+
+#pragma mark - Alert / Panel
+
+- (void) startAlert:(NSAlert*) alert selector:(SEL)alertSelector
+{
+	alertReturnStatus = -1;
+	
+	[alert setShowsHelp:NO];
+	[alert setShowsSuppressionButton:NO];
+	[alert beginSheetModalForWindow:self.window
+					  modalDelegate:self
+					 didEndSelector:alertSelector
+						contextInfo:nil];
+	
+	NSModalSession session = [NSApp beginModalSessionForWindow:[alert window]];
+	for (;;) {
+		// alertReturnStatus will be set in alertDidEndSheet:returnCode:contextInfo:
+		if(alertReturnStatus != -1)
+			break;
+		
+		// Execute code on DefaultRunLoop
+		[[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+								 beforeDate:[NSDate distantFuture]];
+		
+		// Break the run loop if sheet was closed
+		if ([NSApp runModalSession:session] != NSRunContinuesResponse
+			|| ![[alert window] isVisible])
+			break;
+		
+		// Execute code on DefaultRunLoop
+		[[NSRunLoop currentRunLoop] runMode:NSDefaultRunLoopMode
+								 beforeDate:[NSDate distantFuture]];
+		
+	}
+	[NSApp endModalSession:session];
+	[NSApp endSheet:[alert window]];
+}
+
+- (void)closeAlert:(NSWindow *)sheet returnCode:(int)returnCode contextInfo:(void *)contextInfo
+{
+	DBNSLog(@"clicked %d button\n", returnCode);
+	if (returnCode == NSAlertSecondButtonReturn) {
+		[[InAppPurchaseManager sharedManager] purchase:INAPP_ID_DEVICES];
+	}
+	else if (returnCode == NSAlertThirdButtonReturn) {
+		[[InAppPurchaseManager sharedManager] restoreCompletedTransactions];
+	}
+    // make the returnCode publicly available after closing the sheet
+    alertReturnStatus = returnCode;
 }
 
 @end

@@ -70,11 +70,18 @@ typedef struct {
 	
 	//TEst
 	NSTimer				*m_TestTimer;
+	
+	//InApp Purchase
+	bool				useAditionalLock;
+	
+	//alert
+	NSInteger			alertReturnStatus;
 }
 
 @property (nonatomic, strong) IBOutlet NSWindow				*window;
 @property (nonatomic, strong) IBOutlet SRRecorderControl	*hotKeyControl;
 @property (nonatomic, strong) IBOutlet NSMenu				*statusMenu;
+
 @property (nonatomic, strong) PTHotKey						*hotKey;
 @property (nonatomic, strong) IBOutlet IKImageView			*bluetoothStatus;
 @property (nonatomic, strong) IBOutlet NSTextField			*bluetoothName;
@@ -99,6 +106,8 @@ typedef struct {
 - (IBAction) listenUSBDevice:(id)sender;
 - (IBAction) changeUSBDeviceType:(id)sender;
 - (IBAction) setMonitoring:(id)sender;
+- (IBAction) purchaseLockViaDevise:(id)sender;
+- (IBAction) restoreAllPurchases:(id)sender;
 
 - (void) makeMenu;
 - (void) loadUserSettings;
