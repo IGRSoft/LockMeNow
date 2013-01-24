@@ -11,12 +11,12 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		A517CFA4142FD73E00632668 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A517CFA2142FD73E00632668 /* Credits.rtf */; };
+		A521519916B16CAE00E45B7D /* icon.iconset in Resources */ = {isa = PBXBuildFile; fileRef = A521519816B16CAE00E45B7D /* icon.iconset */; };
 		A52A9F5E16A8310800EA4B17 /* NSTextFieldWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = A52A9F5D16A8310800EA4B17 /* NSTextFieldWithImage.m */; };
 		A52A9F6016A8365300EA4B17 /* TextFieldBG.png in Resources */ = {isa = PBXBuildFile; fileRef = A52A9F5F16A8365200EA4B17 /* TextFieldBG.png */; };
 		A53766DF16AC277400AF78D8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53766DE16AC277400AF78D8 /* StoreKit.framework */; };
 		A53766E616AC2B9B00AF78D8 /* InAppPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A53766E216AC2B9A00AF78D8 /* InAppPurchaseManager.m */; };
 		A53766E816AC2B9B00AF78D8 /* SKProduct+Price.m in Sources */ = {isa = PBXBuildFile; fileRef = A53766E516AC2B9A00AF78D8 /* SKProduct+Price.m */; };
-		A53FE3D3142F4F34003B4D67 /* icon.icns in Resources */ = {isa = PBXBuildFile; fileRef = A53FE3D1142F4F34003B4D67 /* icon.icns */; };
 		A53FE3D4142F4F34003B4D67 /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = A53FE3D2142F4F34003B4D67 /* lock.png */; };
 		A5489BA415D3ED340072E5D2 /* off.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A5489BA215D3ED340072E5D2 /* off.pdf */; };
 		A5489BA515D3ED340072E5D2 /* on.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A5489BA315D3ED340072E5D2 /* on.pdf */; };
@@ -104,6 +104,7 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107320486CEB800E47090 /* lockmenow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lockmenow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A517CFA3142FD73E00632668 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
+		A521519816B16CAE00E45B7D /* icon.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = icon.iconset; path = Resources/icon.iconset; sourceTree = "<group>"; };
 		A52A9F5C16A8310800EA4B17 /* NSTextFieldWithImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSTextFieldWithImage.h; path = Source/CustomView/NSTextFieldWithImage.h; sourceTree = "<group>"; };
 		A52A9F5D16A8310800EA4B17 /* NSTextFieldWithImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSTextFieldWithImage.m; path = Source/CustomView/NSTextFieldWithImage.m; sourceTree = "<group>"; };
 		A52A9F5F16A8365200EA4B17 /* TextFieldBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TextFieldBG.png; path = Resources/TextFieldBG.png; sourceTree = "<group>"; };
@@ -112,7 +113,6 @@
 		A53766E216AC2B9A00AF78D8 /* InAppPurchaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppPurchaseManager.m; sourceTree = "<group>"; };
 		A53766E416AC2B9A00AF78D8 /* SKProduct+Price.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKProduct+Price.h"; sourceTree = "<group>"; };
 		A53766E516AC2B9A00AF78D8 /* SKProduct+Price.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKProduct+Price.m"; sourceTree = "<group>"; };
-		A53FE3D1142F4F34003B4D67 /* icon.icns */ = {isa = PBXFileReference; lastKnownFileType = image.icns; name = icon.icns; path = Resources/icon.icns; sourceTree = "<group>"; };
 		A53FE3D2142F4F34003B4D67 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lock.png; path = Resources/lock.png; sourceTree = "<group>"; };
 		A5489BA215D3ED340072E5D2 /* off.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = off.pdf; sourceTree = "<group>"; };
 		A5489BA315D3ED340072E5D2 /* on.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = on.pdf; sourceTree = "<group>"; };
@@ -237,11 +237,11 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A521519816B16CAE00E45B7D /* icon.iconset */,
 				A52A9F5F16A8365200EA4B17 /* TextFieldBG.png */,
 				A53831C616481ADE002764C1 /* img */,
 				A53831C516481A34002764C1 /* scripts */,
 				A5489BA115D3ED340072E5D2 /* indicators */,
-				A53FE3D1142F4F34003B4D67 /* icon.icns */,
 				A517CFA2142FD73E00632668 /* Credits.rtf */,
 				D0764520101E7A3300DAE20D /* Info.plist */,
 				089C165CFE840E0CC02AAC07 /* InfoPlist.strings */,
@@ -444,7 +444,6 @@
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
-				A53FE3D3142F4F34003B4D67 /* icon.icns in Resources */,
 				A53FE3D4142F4F34003B4D67 /* lock.png in Resources */,
 				A517CFA4142FD73E00632668 /* Credits.rtf in Resources */,
 				A5DD8A4E143C47CC00094BEA /* russianapple.png in Resources */,
@@ -455,6 +454,7 @@
 				A52A9F6016A8365300EA4B17 /* TextFieldBG.png in Resources */,
 				A5ABE36516B14409009A7151 /* lock@2x.png in Resources */,
 				A5ABE37216B147CA009A7151 /* russianapple@2x.png in Resources */,
+				A521519916B16CAE00E45B7D /* icon.iconset in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
