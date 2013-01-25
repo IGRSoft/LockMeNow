@@ -76,6 +76,7 @@ typedef struct {
 	
 	//alert
 	NSInteger			alertReturnStatus;
+	NSString			*m_PriceDeviceLock;
 }
 
 @property (nonatomic, strong) IBOutlet NSWindow				*window;

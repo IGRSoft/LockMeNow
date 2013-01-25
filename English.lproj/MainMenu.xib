@@ -220,7 +220,7 @@
 				<nil key="NSViewClass"/>
 				<nil key="NSUserInterfaceItemIdentifier"/>
 				<object class="NSView" key="NSWindowView" id="439893737">
-					<reference key="NSNextResponder"/>
+					<nil key="NSNextResponder"/>
 					<int key="NSvFlags">256</int>
 					<array class="NSMutableArray" key="NSSubviews">
 						<object class="NSTabView" id="551099319">
@@ -228,7 +228,6 @@
 							<int key="NSvFlags">12</int>
 							<string key="NSFrame">{{13, 26}, {286, 300}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
-							<reference key="NSNextKeyView" ref="771790988"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<array class="NSMutableArray" key="NSTabViewItems">
 								<object class="NSTabViewItem" id="300386042">
@@ -1182,7 +1181,6 @@ IFpodXJhdmxldiAoQGJ5bWFzdGVyKQ</string>
 							<int key="NSvFlags">268</int>
 							<string key="NSFrame">{{109, 9}, {94, 19}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
-							<reference key="NSNextKeyView"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="122583018">
@@ -1207,7 +1205,6 @@ IFpodXJhdmxldiAoQGJ5bWFzdGVyKQ</string>
 						</object>
 					</array>
 					<string key="NSFrameSize">{312, 332}</string>
-					<reference key="NSSuperview"/>
 					<reference key="NSNextKeyView" ref="551099319"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
@@ -1277,7 +1274,6 @@ IFpodXJhdmxldiAoQGJ5bWFzdGVyKQ</string>
 									<int key="NSMnemonicLoc">2147483647</int>
 									<reference key="NSOnImage" ref="35465992"/>
 									<reference key="NSMixedImage" ref="502551668"/>
-									<int key="NSTag">1</int>
 								</object>
 								<object class="NSMenuItem" id="1001305865">
 									<reference key="NSMenu" ref="246176994"/>

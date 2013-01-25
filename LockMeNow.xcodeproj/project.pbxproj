@@ -16,7 +16,6 @@
 		A52A9F6016A8365300EA4B17 /* TextFieldBG.png in Resources */ = {isa = PBXBuildFile; fileRef = A52A9F5F16A8365200EA4B17 /* TextFieldBG.png */; };
 		A53766DF16AC277400AF78D8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53766DE16AC277400AF78D8 /* StoreKit.framework */; };
 		A53766E616AC2B9B00AF78D8 /* InAppPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A53766E216AC2B9A00AF78D8 /* InAppPurchaseManager.m */; };
-		A53766E816AC2B9B00AF78D8 /* SKProduct+Price.m in Sources */ = {isa = PBXBuildFile; fileRef = A53766E516AC2B9A00AF78D8 /* SKProduct+Price.m */; };
 		A53FE3D4142F4F34003B4D67 /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = A53FE3D2142F4F34003B4D67 /* lock.png */; };
 		A5489BA415D3ED340072E5D2 /* off.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A5489BA215D3ED340072E5D2 /* off.pdf */; };
 		A5489BA515D3ED340072E5D2 /* on.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A5489BA315D3ED340072E5D2 /* on.pdf */; };
@@ -34,6 +33,7 @@
 		A5C0BBF716A6D08B008072DE /* ShortcutRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5C0BBEF16A6D078008072DE /* ShortcutRecorder.framework */; };
 		A5C0BBF816A6D08F008072DE /* PTHotKey.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A5C0BBED16A6D078008072DE /* PTHotKey.framework */; };
 		A5C0BBF916A6D08F008072DE /* ShortcutRecorder.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A5C0BBEF16A6D078008072DE /* ShortcutRecorder.framework */; };
+		A5CC0CCD16B282E300FE3D98 /* LockMeNow-Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5CC0CCC16B282E300FE3D98 /* LockMeNow-Entitlements.plist */; };
 		A5CE4D0315062BFB001C22D2 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5CE4D0215062BFB001C22D2 /* ScriptingBridge.framework */; };
 		A5D1F41C15DA401700211A8F /* validatereceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = A5D1F41B15DA401700211A8F /* validatereceipt.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A5DD8A4E143C47CC00094BEA /* russianapple.png in Resources */ = {isa = PBXBuildFile; fileRef = A5DD8A4D143C47CB00094BEA /* russianapple.png */; };
@@ -111,8 +111,6 @@
 		A53766DE16AC277400AF78D8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		A53766E116AC2B9A00AF78D8 /* InAppPurchaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppPurchaseManager.h; sourceTree = "<group>"; };
 		A53766E216AC2B9A00AF78D8 /* InAppPurchaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppPurchaseManager.m; sourceTree = "<group>"; };
-		A53766E416AC2B9A00AF78D8 /* SKProduct+Price.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "SKProduct+Price.h"; sourceTree = "<group>"; };
-		A53766E516AC2B9A00AF78D8 /* SKProduct+Price.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "SKProduct+Price.m"; sourceTree = "<group>"; };
 		A53FE3D2142F4F34003B4D67 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lock.png; path = Resources/lock.png; sourceTree = "<group>"; };
 		A5489BA215D3ED340072E5D2 /* off.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = off.pdf; sourceTree = "<group>"; };
 		A5489BA315D3ED340072E5D2 /* on.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = on.pdf; sourceTree = "<group>"; };
@@ -130,6 +128,7 @@
 		A5ABE37116B147CA009A7151 /* russianapple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "russianapple@2x.png"; path = "Resources/russianapple@2x.png"; sourceTree = "<group>"; };
 		A5B0BEBF144CA9E0003C3145 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		A5C0BBE216A6D077008072DE /* ShortcutRecorder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShortcutRecorder.xcodeproj; path = shortcutrecorder/ShortcutRecorder.xcodeproj; sourceTree = "<group>"; };
+		A5CC0CCC16B282E300FE3D98 /* LockMeNow-Entitlements.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "LockMeNow-Entitlements.plist"; sourceTree = "<group>"; };
 		A5CE4D0215062BFB001C22D2 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = /System/Library/Frameworks/ScriptingBridge.framework; sourceTree = "<absolute>"; };
 		A5CE4D0415062DE4001C22D2 /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iTunes.h; path = Source/iTunes.h; sourceTree = "<group>"; };
 		A5D1F41A15DA401700211A8F /* validatereceipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = validatereceipt.h; sourceTree = "<group>"; };
@@ -237,6 +236,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A5CC0CCC16B282E300FE3D98 /* LockMeNow-Entitlements.plist */,
 				A521519816B16CAE00E45B7D /* icon.iconset */,
 				A52A9F5F16A8365200EA4B17 /* TextFieldBG.png */,
 				A53831C616481ADE002764C1 /* img */,
@@ -265,8 +265,6 @@
 			children = (
 				A53766E116AC2B9A00AF78D8 /* InAppPurchaseManager.h */,
 				A53766E216AC2B9A00AF78D8 /* InAppPurchaseManager.m */,
-				A53766E416AC2B9A00AF78D8 /* SKProduct+Price.h */,
-				A53766E516AC2B9A00AF78D8 /* SKProduct+Price.m */,
 			);
 			path = InAppPurchaseManager;
 			sourceTree = "<group>";
@@ -455,6 +453,7 @@
 				A5ABE36516B14409009A7151 /* lock@2x.png in Resources */,
 				A5ABE37216B147CA009A7151 /* russianapple@2x.png in Resources */,
 				A521519916B16CAE00E45B7D /* icon.iconset in Resources */,
+				A5CC0CCD16B282E300FE3D98 /* LockMeNow-Entitlements.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -472,7 +471,6 @@
 				A589299616A5DE9400063E09 /* PTUSBHub.m in Sources */,
 				A52A9F5E16A8310800EA4B17 /* NSTextFieldWithImage.m in Sources */,
 				A53766E616AC2B9B00AF78D8 /* InAppPurchaseManager.m in Sources */,
-				A53766E816AC2B9B00AF78D8 /* SKProduct+Price.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -524,6 +522,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = "LockMeNow-Entitlements.plist";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -546,6 +545,7 @@
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = "LockMeNow-Entitlements.plist";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Source/Prefix.pch;

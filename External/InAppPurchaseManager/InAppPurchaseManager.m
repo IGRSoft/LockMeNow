@@ -129,5 +129,38 @@ static id sharedInstance = nil;
 		}
 	}
 }
+- (void)requestUpgradeProductData:(NSString*)InAppID
+{
+    NSSet *productIdentifiers = [NSSet setWithObject:InAppID ];
+    productsRequest = [[SKProductsRequest alloc] initWithProductIdentifiers:productIdentifiers];
+    productsRequest.delegate = self;
+    [productsRequest start];
+	
+    // we will release the request object in the delegate callback
+}
+
+- (void)productsRequest:(SKProductsRequest *)request didReceiveResponse:(SKProductsResponse *)response
+{
+    NSArray *products = response.products;
+    SKProduct *proUpgradeProduct = [products count] == 1 ? [products objectAtIndex:0] : nil;
+    if (proUpgradeProduct)
+    {
+        DBNSLog(@"Product title: %@" , proUpgradeProduct.localizedTitle);
+        DBNSLog(@"Product description: %@" , proUpgradeProduct.localizedDescription);
+        DBNSLog(@"Product price: %@" , proUpgradeProduct.price);
+		DBNSLog(@"Product locale: %@" , [proUpgradeProduct.priceLocale objectForKey:NSLocaleCurrencyCode]);
+        DBNSLog(@"Product id: %@" , proUpgradeProduct.productIdentifier);
+		
+		NSDictionary *userInfo = @{KEY_PRODUCT : proUpgradeProduct};
+		[[NSNotificationCenter defaultCenter] postNotificationName:NOTIFICATION_INAPPPURCHASE_UPDATE_DATA object:self userInfo:userInfo];
+    }
+	
+    for (NSString *invalidProductId in response.invalidProductIdentifiers)
+    {
+        NSLog(@"Invalid product id: %@" , invalidProductId);
+    }
+	
+    // finally release the reqest we alloc/init’ed in requestProUpgradeProductData
+}
 
 @end

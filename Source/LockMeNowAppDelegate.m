@@ -116,6 +116,10 @@ NSString *global_bundleIdentifier = @"com.bymaster.lockmenow";
 											 selector:@selector(receiveFaildPurchase:)
 												 name:NOTIFICATION_PURCHASE_FAILED
 											   object:nil];
+	[[NSNotificationCenter defaultCenter] addObserver:self
+											 selector:@selector(updatePriceforInApp:)
+												 name:NOTIFICATION_INAPPPURCHASE_UPDATE_DATA
+											   object:nil];
 #else
 	useAditionalLock = true;
 #endif
@@ -127,8 +131,10 @@ NSString *global_bundleIdentifier = @"com.bymaster.lockmenow";
 		[self makeMenu];
 	}
 	
-	[self updateMenu];
-	
+	[self updateMenu:@"$0.99"];
+#if (USE_VALIDATE_RECEIPT)	
+	[[InAppPurchaseManager sharedManager] requestUpgradeProductData:INAPP_ID_DEVICES];
+#endif
 	m_Queue = [[NSOperationQueue alloc] init];
 	
 	[self.hotKeyControl setCanCaptureGlobalHotKeys:YES];
@@ -882,15 +888,18 @@ int ProcessIsRunningWithBundleID(CFStringRef inBundleID, ProcessSerialNumber* ou
 	}
 }
 
-- (void) updateMenu
+- (void) updateMenu:(NSString*)price
 {
 	NSArray *arr = [self.statusMenu itemArray];
 	for (NSMenuItem *item in arr) {
 		if ([[item title] isEqualToString:@"Purchase"]) {
 			NSArray *submenuItems = [[item submenu] itemArray];
 			for (NSMenuItem *submenuItem in submenuItems) {
-				if ([item tag] == 99) {
-					[item setEnabled:!useAditionalLock];
+				if ([submenuItem.title hasPrefix:@"Add Lock via Device for"]) {
+					//[submenuItem setEnabled:!useAditionalLock];
+					if ([price length] > 0) {
+						[submenuItem setTitle:[NSString stringWithFormat:@"Add Lock via Device for %@", price]];
+					}
 				}
 			}
 		}
@@ -1060,11 +1069,11 @@ static APPLE_MOBILE_DEVICE APPLE_MOBILE_DEVICES[NUM_APPLE_MOBILE_DEVICES] = {
 #if (USE_VALIDATE_RECEIPT)
 			NSAlert *alert = [[NSAlert alloc] init];
 			[alert addButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel")];
-			[alert addButtonWithTitle:NSLocalizedString(@"Buy", @"Buy")];
+			[alert addButtonWithTitle:NSLocalizedString(@"Purchase", @"Purchase")];
 			[alert addButtonWithTitle:NSLocalizedString(@"Restore", @"Restore")];
 			[alert setMessageText:NSLocalizedString(@"Warning", @"Warning")];
 			
-			[alert setInformativeText:NSLocalizedString(@"Would you like to buy it?", @"Would you like to buy it")];
+			[alert setInformativeText:[NSString stringWithFormat:@"Would you like to purchase additional lock by Device for %@?", m_PriceDeviceLock]];
 			
 			[self startAlert:alert selector:@selector(closeAlert:returnCode:contextInfo:)];
 #endif
@@ -1143,11 +1152,12 @@ static APPLE_MOBILE_DEVICE APPLE_MOBILE_DEVICES[NUM_APPLE_MOBILE_DEVICES] = {
 		DBNSLog(@"InApp %@ successfully restored", inAppId);
 	}
 #endif
-	[self updateMenu];
+	[self updateMenu:@""];
 }
 
 - (void) receiveFaildPurchase:(NSNotification *) notification
 {
+#if (USE_VALIDATE_RECEIPT)
 	NSString *inAppId = [notification userInfo][KEY_PRODUCT_ID];
 	
 	if ([inAppId isEqualToString:INAPP_ID_DEVICES]) {
@@ -1161,7 +1171,21 @@ static APPLE_MOBILE_DEVICE APPLE_MOBILE_DEVICES[NUM_APPLE_MOBILE_DEVICES] = {
 	[alert setAlertStyle:NSInformationalAlertStyle];
 	[alert setInformativeText:@"Can't process purchase, please, try later."];
 	[alert runModal];
+#endif
 }
+
+- (void) updatePriceforInApp:(NSNotification *) notification
+{
+#if (USE_VALIDATE_RECEIPT)
+	SKProduct *product = [notification userInfo][KEY_PRODUCT];
+	
+	if ([product.productIdentifier isEqualToString:INAPP_ID_DEVICES]) {
+		m_PriceDeviceLock = [NSString stringWithFormat:@"%@%@", [product.priceLocale objectForKey:NSLocaleCurrencyCode], product.price];
+		[self updateMenu:m_PriceDeviceLock];
+	}
+#endif
+}
+
 
 #pragma mark - Alert / Panel
 
