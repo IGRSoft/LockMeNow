@@ -98,15 +98,6 @@ NSString *global_bundleIdentifier = @"com.bymaster.lockmenow";
 	}
 
 	useAditionalLock = false;
-	
-	NSArray *inApps = obtainInAppPurchases(receipt);
-	if (inApps) {
-		for (NSDictionary *purchase in inApps) {
-			if ([purchase[kReceiptInAppProductIdentifier] isEqualToString:INAPP_ID_DEVICES]) {
-				useAditionalLock = true;
-			}
-		}
-	}
 
 	[[NSNotificationCenter defaultCenter] addObserver:self
 											 selector:@selector(receiveSucceededPurchase:)
@@ -120,6 +111,20 @@ NSString *global_bundleIdentifier = @"com.bymaster.lockmenow";
 											 selector:@selector(updatePriceforInApp:)
 												 name:NOTIFICATION_INAPPPURCHASE_UPDATE_DATA
 											   object:nil];
+	
+	NSArray *inApps = obtainInAppPurchases(receipt);
+	if (inApps) {
+		for (NSDictionary *purchase in inApps) {
+			if ([purchase[kReceiptInAppProductIdentifier] isEqualToString:INAPP_ID_DEVICES]) {
+				useAditionalLock = true;
+				[self updatePrice:@"" andUnlockButton:false isPurchased:true];
+			}
+		}
+	}
+	else
+	{
+		[[InAppPurchaseManager sharedManager] requestUpgradeProductData:INAPP_ID_DEVICES];
+	}
 #else
 	useAditionalLock = true;
 #endif
@@ -131,10 +136,6 @@ NSString *global_bundleIdentifier = @"com.bymaster.lockmenow";
 		[self makeMenu];
 	}
 	
-	[self updateMenu:@"$0.99"];
-#if (USE_VALIDATE_RECEIPT)	
-	[[InAppPurchaseManager sharedManager] requestUpgradeProductData:INAPP_ID_DEVICES];
-#endif
 	m_Queue = [[NSOperationQueue alloc] init];
 	
 	[self.hotKeyControl setCanCaptureGlobalHotKeys:YES];
@@ -542,7 +543,10 @@ bool doNothingAtStart = false;
 	NSData *outputData = [[outputPipe fileHandleForReading] readDataToEndOfFile];
 	NSString *outputString = [[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding]; // Autorelease optional, depending on usage.
 	
-	if ([outputString isEqualToString:@"<result>FileVault 2 Encryption Complete</result>"]) {
+	NSRange textRange;
+	textRange =[outputString rangeOfString:@"FileVault 2 Encryption Complete"];
+	if(textRange.location != NSNotFound)
+	{
 		return true;
 	}
 	
@@ -888,22 +892,24 @@ int ProcessIsRunningWithBundleID(CFStringRef inBundleID, ProcessSerialNumber* ou
 	}
 }
 
-- (void) updateMenu:(NSString*)price
+- (void) updatePrice:(NSString*)price andUnlockButton:(bool)unlockBtn isPurchased:(bool)isPurchased
 {
-	NSArray *arr = [self.statusMenu itemArray];
-	for (NSMenuItem *item in arr) {
-		if ([[item title] isEqualToString:@"Purchase"]) {
-			NSArray *submenuItems = [[item submenu] itemArray];
-			for (NSMenuItem *submenuItem in submenuItems) {
-				if ([submenuItem.title hasPrefix:@"Add Lock via Device for"]) {
-					//[submenuItem setEnabled:!useAditionalLock];
-					if ([price length] > 0) {
-						[submenuItem setTitle:[NSString stringWithFormat:@"Add Lock via Device for %@", price]];
-					}
-				}
-			}
-		}
+	if ([price length]) {
+		[self.btnPurchaseLockByDevice setTitle:[NSString stringWithFormat:@"for %@", price]];
 	}
+	
+	[self.btnPurchaseLockByDevice setEnabled:unlockBtn];
+	
+	if (isPurchased) {
+		[self.btnPurchaseLockByDevice setTitle:@"has been purchased"];
+		[self.btnPurchaseLockByDevice setEnabled:NO];
+	}
+}
+
+- (IBAction) openPurchases:(id)sender
+{
+	[self openPrefs:nil];
+	[self.tabView selectTabViewItemWithIdentifier:@"purchase"];
 }
 
 #pragma mark - USB
@@ -1055,12 +1061,8 @@ static APPLE_MOBILE_DEVICE APPLE_MOBILE_DEVICES[NUM_APPLE_MOBILE_DEVICES] = {
 
 - (BOOL)tabView:(NSTabView *)tabView shouldSelectTabViewItem:(NSTabViewItem *)tabViewItem
 {
-	int tabSelection = [[tabViewItem identifier] intValue];
-	if (tabSelection == 1 || tabSelection == 4)
-	{
-		return YES;
-	}
-	else
+	NSString *tabSelection = [tabViewItem identifier];
+	if ([tabSelection isEqualToString:@"bluetooth"] || [tabSelection isEqualToString:@"usb"])
 	{
 		if (useAditionalLock)
 			return YES;
@@ -1068,17 +1070,21 @@ static APPLE_MOBILE_DEVICE APPLE_MOBILE_DEVICES[NUM_APPLE_MOBILE_DEVICES] = {
 		{
 #if (USE_VALIDATE_RECEIPT)
 			NSAlert *alert = [[NSAlert alloc] init];
+			[alert setAlertStyle:NSInformationalAlertStyle];
 			[alert addButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel")];
-			[alert addButtonWithTitle:NSLocalizedString(@"Purchase", @"Purchase")];
-			[alert addButtonWithTitle:NSLocalizedString(@"Restore", @"Restore")];
-			[alert setMessageText:NSLocalizedString(@"Warning", @"Warning")];
+			[alert addButtonWithTitle:NSLocalizedString(@"Open Purchases", @"Open Purchases")];
+			[alert setMessageText:NSLocalizedString(@"Purchase", @"Purchase")];
 			
-			[alert setInformativeText:[NSString stringWithFormat:@"Would you like to purchase additional lock by Device for %@?", m_PriceDeviceLock]];
+			[alert setInformativeText:@"Would you like to add additional locks?"];
 			
 			[self startAlert:alert selector:@selector(closeAlert:returnCode:contextInfo:)];
 #endif
 			return NO;
 		}
+	}
+	else
+	{
+		return YES;
 	}
 	
 	return NO;
@@ -1152,7 +1158,7 @@ static APPLE_MOBILE_DEVICE APPLE_MOBILE_DEVICES[NUM_APPLE_MOBILE_DEVICES] = {
 		DBNSLog(@"InApp %@ successfully restored", inAppId);
 	}
 #endif
-	[self updateMenu:@""];
+	[self updatePrice:@"" andUnlockButton:false isPurchased:true];
 }
 
 - (void) receiveFaildPurchase:(NSNotification *) notification
@@ -1172,6 +1178,8 @@ static APPLE_MOBILE_DEVICE APPLE_MOBILE_DEVICES[NUM_APPLE_MOBILE_DEVICES] = {
 	[alert setInformativeText:@"Can't process purchase, please, try later."];
 	[alert runModal];
 #endif
+	
+	[self updatePrice:m_PriceDeviceLock andUnlockButton:true isPurchased:false];
 }
 
 - (void) updatePriceforInApp:(NSNotification *) notification
@@ -1181,7 +1189,7 @@ static APPLE_MOBILE_DEVICE APPLE_MOBILE_DEVICES[NUM_APPLE_MOBILE_DEVICES] = {
 	
 	if ([product.productIdentifier isEqualToString:INAPP_ID_DEVICES]) {
 		m_PriceDeviceLock = [NSString stringWithFormat:@"%@%@", [product.priceLocale objectForKey:NSLocaleCurrencyCode], product.price];
-		[self updateMenu:m_PriceDeviceLock];
+		[self updatePrice:m_PriceDeviceLock andUnlockButton:true isPurchased:false];
 	}
 #endif
 }
@@ -1228,10 +1236,7 @@ static APPLE_MOBILE_DEVICE APPLE_MOBILE_DEVICES[NUM_APPLE_MOBILE_DEVICES] = {
 {
 	DBNSLog(@"clicked %d button\n", returnCode);
 	if (returnCode == NSAlertSecondButtonReturn) {
-		[[InAppPurchaseManager sharedManager] purchase:INAPP_ID_DEVICES];
-	}
-	else if (returnCode == NSAlertThirdButtonReturn) {
-		[[InAppPurchaseManager sharedManager] restoreCompletedTransactions];
+		[self.tabView selectTabViewItemWithIdentifier:@"purchase"];
 	}
     // make the returnCode publicly available after closing the sheet
     alertReturnStatus = returnCode;

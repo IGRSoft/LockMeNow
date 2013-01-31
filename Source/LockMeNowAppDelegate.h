@@ -82,6 +82,8 @@ typedef struct {
 @property (nonatomic, strong) IBOutlet NSWindow				*window;
 @property (nonatomic, strong) IBOutlet SRRecorderControl	*hotKeyControl;
 @property (nonatomic, strong) IBOutlet NSMenu				*statusMenu;
+@property (nonatomic, strong) IBOutlet NSButton				*btnPurchaseLockByDevice;
+@property (nonatomic, strong) IBOutlet NSTabView			*tabView;
 
 @property (nonatomic, strong) PTHotKey						*hotKey;
 @property (nonatomic, strong) IBOutlet IKImageView			*bluetoothStatus;
@@ -109,6 +111,7 @@ typedef struct {
 - (IBAction) setMonitoring:(id)sender;
 - (IBAction) purchaseLockViaDevise:(id)sender;
 - (IBAction) restoreAllPurchases:(id)sender;
+- (IBAction) openPurchases:(id)sender;
 
 - (void) makeMenu;
 - (void) loadUserSettings;

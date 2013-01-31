@@ -7,7 +7,7 @@
 #endif
 
 #define BETA_APP 0
-#define USE_VALIDATE_RECEIPT 1
+#define USE_VALIDATE_RECEIPT 0
 /*
  lockmenow.test@gmail.com
  iKorich567
