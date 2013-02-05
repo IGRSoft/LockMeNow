@@ -47,7 +47,6 @@ NSString *global_bundleIdentifier = @"com.bymaster.lockmenow";
 
 @interface LockMeNowAppDelegate()
 - (void)openImageURLfor:(IKImageView*)_imageView withUrl:(NSURL*)url;
-- (CGImageRef)nsImageToCGImageRef:(NSImage *)image;
 - (void)checkConnectivity;
 @end
 
@@ -79,7 +78,7 @@ NSString *global_bundleIdentifier = @"com.bymaster.lockmenow";
 		useAditionalLock = false;
 	}
 #endif
-#if USE_VALIDATE_RECEIPT
+#ifdef USE_VALIDATE_RECEIPT
 	
 	NSString *receipt = [[[NSBundle mainBundle] appStoreReceiptURL] path];
     
@@ -580,6 +579,11 @@ bool doNothingAtStart = false;
 		success = CFPreferencesSynchronize(CFSTR("com.apple.screensaver"),
 										   kCFPreferencesCurrentUser, kCFPreferencesCurrentHost);
 		
+		if (success)
+		{
+			DBNSLog(@"Can't sync Prefs");
+		}
+		
 		CFPreferencesSetValue(CFSTR("askForPasswordDelay"), (__bridge CFPropertyListRef) @0,
 							  CFSTR("com.apple.screensaver"),
 							  kCFPreferencesCurrentUser, kCFPreferencesCurrentHost);
@@ -592,6 +596,10 @@ bool doNothingAtStart = false;
 			CFMessagePortRef port = CFMessagePortCreateRemote(NULL, CFSTR("com.apple.loginwindow.notify"));
 			success = (CFMessagePortSendRequest(port, 500, 0, 0, 0, 0, 0) == kCFMessagePortSuccess);
 			CFRelease(port);
+			if (success)
+			{
+				DBNSLog(@"Can't start screensaver");
+			}
 		}
 	}
 }
@@ -799,25 +807,29 @@ int ProcessIsRunningWithBundleID(CFStringRef inBundleID, ProcessSerialNumber* ou
 
 - (void)handleTimer:(NSTimer *)theTimer
 {
-	if (useAditionalLock) {
-		if( [self isInRange] )
-		{
-			if( m_BluetoothDevicePriorStatus == OutOfRange )
+	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
+	
+	dispatch_async(queue, ^{
+		if (useAditionalLock) {
+			if( [self isInRange] )
 			{
-				m_BluetoothDevicePriorStatus = InRange;
-				[self checkConnectivity];
+				if( m_BluetoothDevicePriorStatus == OutOfRange )
+				{
+					m_BluetoothDevicePriorStatus = InRange;
+					[self checkConnectivity];
+				}
+			}
+			else
+			{
+				if( m_BluetoothDevicePriorStatus == InRange )
+				{
+					m_BluetoothDevicePriorStatus = OutOfRange;
+					[self checkConnectivity];
+					[self makeLock];
+				}
 			}
 		}
-		else
-		{
-			if( m_BluetoothDevicePriorStatus == InRange )
-			{
-				m_BluetoothDevicePriorStatus = OutOfRange;
-				[self checkConnectivity];
-				[self makeLock];
-			}
-		}
-	}
+	});
 }
 
 - (IBAction) setMonitoring:(id)sender
@@ -859,29 +871,23 @@ int ProcessIsRunningWithBundleID(CFStringRef inBundleID, ProcessSerialNumber* ou
     [pdfImage addRepresentation: pdfRep];
 	
     //convert it from NSImage to CGImageRef
-    CGImageRef image = [self nsImageToCGImageRef:pdfImage];
-	
-	if (image)
-    {
-        [_imageView setImage: image
-             imageProperties: nil];
-		
-		CGImageRelease(image);
-    }
-}
-
-- (CGImageRef)nsImageToCGImageRef:(NSImage *)image {
-	
-    NSData *imageData = [image TIFFRepresentation];
+	NSData *imageData = [pdfImage TIFFRepresentation];
 	
     CGImageRef imageRef = nil;
     if(imageData)
     {
         CGImageSourceRef imageSource = CGImageSourceCreateWithData((__bridge CFDataRef)imageData,  NULL);
         imageRef = CGImageSourceCreateImageAtIndex(imageSource, 0, NULL);
+		CFRelease(imageSource);
     }
 	
-	return imageRef;
+	if (imageRef)
+    {
+        [_imageView setImage: imageRef
+             imageProperties: nil];
+		
+		CGImageRelease(imageRef);
+    }
 }
 
 - (void) makeMenu
@@ -1079,7 +1085,7 @@ static APPLE_MOBILE_DEVICE APPLE_MOBILE_DEVICES[NUM_APPLE_MOBILE_DEVICES] = {
 			return YES;
 		else
 		{
-#if (USE_VALIDATE_RECEIPT)
+#ifdef USE_VALIDATE_RECEIPT
 			NSAlert *alert = [[NSAlert alloc] init];
 			[alert setAlertStyle:NSInformationalAlertStyle];
 			[alert addButtonWithTitle:NSLocalizedString(@"Cancel", @"Cancel")];
@@ -1104,7 +1110,7 @@ static APPLE_MOBILE_DEVICE APPLE_MOBILE_DEVICES[NUM_APPLE_MOBILE_DEVICES] = {
 #pragma mark - Purchase
 - (IBAction) purchaseLockViaDevise:(id)sender
 {
-#if (USE_VALIDATE_RECEIPT)
+#ifdef USE_VALIDATE_RECEIPT
 	if ([[InAppPurchaseManager sharedManager] canMakePurchases]) {
 		[[InAppPurchaseManager sharedManager] purchase:INAPP_ID_DEVICES];
 	} else {
@@ -1119,7 +1125,7 @@ static APPLE_MOBILE_DEVICE APPLE_MOBILE_DEVICES[NUM_APPLE_MOBILE_DEVICES] = {
 
 - (void) receiveSucceededPurchase:(NSNotification *) notification
 {
-#if (USE_VALIDATE_RECEIPT)
+#ifdef USE_VALIDATE_RECEIPT
 	SKPaymentTransaction *transaction = [notification userInfo][KEY_TRANSACTION];
 	NSString *inAppId = [notification userInfo][KEY_PRODUCT_ID];
 	
@@ -1174,7 +1180,7 @@ static APPLE_MOBILE_DEVICE APPLE_MOBILE_DEVICES[NUM_APPLE_MOBILE_DEVICES] = {
 
 - (void) receiveFaildPurchase:(NSNotification *) notification
 {
-#if (USE_VALIDATE_RECEIPT)
+#ifdef USE_VALIDATE_RECEIPT
 	NSString *inAppId = [notification userInfo][KEY_PRODUCT_ID];
 	
 	if ([inAppId isEqualToString:INAPP_ID_DEVICES]) {
@@ -1195,7 +1201,7 @@ static APPLE_MOBILE_DEVICE APPLE_MOBILE_DEVICES[NUM_APPLE_MOBILE_DEVICES] = {
 
 - (void) updatePriceforInApp:(NSNotification *) notification
 {
-#if (USE_VALIDATE_RECEIPT)
+#ifdef USE_VALIDATE_RECEIPT
 	SKProduct *product = [notification userInfo][KEY_PRODUCT];
 	
 	if ([product.productIdentifier isEqualToString:INAPP_ID_DEVICES]) {

@@ -1,0 +1,314 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 46;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		B5E8BF8115D11F00004ADD09 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = B592DBF115D0F077000133DA /* Cocoa.framework */; };
+		B5E8BF8715D11F00004ADD09 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = B5E8BF8515D11F00004ADD09 /* InfoPlist.strings */; };
+		B5E8BF8915D11F00004ADD09 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E8BF8815D11F00004ADD09 /* main.m */; };
+		B5E8BF8D15D11F00004ADD09 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = B5E8BF8B15D11F00004ADD09 /* Credits.rtf */; };
+		B5E8BF9015D11F00004ADD09 /* DCLALHAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = B5E8BF8F15D11F00004ADD09 /* DCLALHAppDelegate.m */; };
+		B5E8BF9315D11F01004ADD09 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = B5E8BF9115D11F01004ADD09 /* MainMenu.xib */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		B592DBF115D0F077000133DA /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
+		B592DBF415D0F077000133DA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
+		B592DBF515D0F077000133DA /* CoreData.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreData.framework; path = System/Library/Frameworks/CoreData.framework; sourceTree = SDKROOT; };
+		B592DBF615D0F077000133DA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		B5E8BF7F15D11F00004ADD09 /* LaunchAtLoginHelper.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LaunchAtLoginHelper.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		B5E8BF8415D11F00004ADD09 /* LaunchAtLoginHelper-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "LaunchAtLoginHelper-Info.plist"; sourceTree = "<group>"; };
+		B5E8BF8615D11F00004ADD09 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		B5E8BF8815D11F00004ADD09 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		B5E8BF8A15D11F00004ADD09 /* LaunchAtLoginHelper-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "LaunchAtLoginHelper-Prefix.pch"; sourceTree = "<group>"; };
+		B5E8BF8C15D11F00004ADD09 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
+		B5E8BF8E15D11F00004ADD09 /* DCLALHAppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = DCLALHAppDelegate.h; sourceTree = "<group>"; };
+		B5E8BF8F15D11F00004ADD09 /* DCLALHAppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = DCLALHAppDelegate.m; sourceTree = "<group>"; };
+		B5E8BF9215D11F01004ADD09 /* en */ = {isa = PBXFileReference; lastKnownFileType = file.xib; name = en; path = en.lproj/MainMenu.xib; sourceTree = "<group>"; };
+		B5E8BF9715D11F06004ADD09 /* LaunchAtLoginHelper.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = LaunchAtLoginHelper.entitlements; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		B5E8BF7C15D11F00004ADD09 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5E8BF8115D11F00004ADD09 /* Cocoa.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		B592DBE215D0F077000133DA = {
+			isa = PBXGroup;
+			children = (
+				B5E8BF8215D11F00004ADD09 /* LaunchAtLoginHelper */,
+				B592DBF015D0F077000133DA /* Frameworks */,
+				B592DBEE15D0F077000133DA /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		B592DBEE15D0F077000133DA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				B5E8BF7F15D11F00004ADD09 /* LaunchAtLoginHelper.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		B592DBF015D0F077000133DA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B592DBF115D0F077000133DA /* Cocoa.framework */,
+				B592DBF315D0F077000133DA /* Other Frameworks */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		B592DBF315D0F077000133DA /* Other Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				B592DBF415D0F077000133DA /* AppKit.framework */,
+				B592DBF515D0F077000133DA /* CoreData.framework */,
+				B592DBF615D0F077000133DA /* Foundation.framework */,
+			);
+			name = "Other Frameworks";
+			sourceTree = "<group>";
+		};
+		B5E8BF8215D11F00004ADD09 /* LaunchAtLoginHelper */ = {
+			isa = PBXGroup;
+			children = (
+				B5E8BF9715D11F06004ADD09 /* LaunchAtLoginHelper.entitlements */,
+				B5E8BF8E15D11F00004ADD09 /* DCLALHAppDelegate.h */,
+				B5E8BF8F15D11F00004ADD09 /* DCLALHAppDelegate.m */,
+				B5E8BF9115D11F01004ADD09 /* MainMenu.xib */,
+				B5E8BF8315D11F00004ADD09 /* Supporting Files */,
+			);
+			path = LaunchAtLoginHelper;
+			sourceTree = "<group>";
+		};
+		B5E8BF8315D11F00004ADD09 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				B5E8BF8415D11F00004ADD09 /* LaunchAtLoginHelper-Info.plist */,
+				B5E8BF8515D11F00004ADD09 /* InfoPlist.strings */,
+				B5E8BF8815D11F00004ADD09 /* main.m */,
+				B5E8BF8A15D11F00004ADD09 /* LaunchAtLoginHelper-Prefix.pch */,
+				B5E8BF8B15D11F00004ADD09 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		B5E8BF7E15D11F00004ADD09 /* LaunchAtLoginHelper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = B5E8BF9415D11F01004ADD09 /* Build configuration list for PBXNativeTarget "LaunchAtLoginHelper" */;
+			buildPhases = (
+				B5E8BF7B15D11F00004ADD09 /* Sources */,
+				B5E8BF7C15D11F00004ADD09 /* Frameworks */,
+				B5E8BF7D15D11F00004ADD09 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = LaunchAtLoginHelper;
+			productName = LaunchAtLoginHelper;
+			productReference = B5E8BF7F15D11F00004ADD09 /* LaunchAtLoginHelper.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		B592DBE415D0F077000133DA /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				CLASSPREFIX = AH;
+				LastUpgradeCheck = 0440;
+				ORGANIZATIONNAME = "Danger Cove";
+			};
+			buildConfigurationList = B592DBE715D0F077000133DA /* Build configuration list for PBXProject "LaunchAtLogin" */;
+			compatibilityVersion = "Xcode 3.2";
+			developmentRegion = English;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+			);
+			mainGroup = B592DBE215D0F077000133DA;
+			productRefGroup = B592DBEE15D0F077000133DA /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				B5E8BF7E15D11F00004ADD09 /* LaunchAtLoginHelper */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		B5E8BF7D15D11F00004ADD09 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5E8BF8715D11F00004ADD09 /* InfoPlist.strings in Resources */,
+				B5E8BF8D15D11F00004ADD09 /* Credits.rtf in Resources */,
+				B5E8BF9315D11F01004ADD09 /* MainMenu.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		B5E8BF7B15D11F00004ADD09 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				B5E8BF8915D11F00004ADD09 /* main.m in Sources */,
+				B5E8BF9015D11F00004ADD09 /* DCLALHAppDelegate.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		B5E8BF8515D11F00004ADD09 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B5E8BF8615D11F00004ADD09 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		B5E8BF8B15D11F00004ADD09 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B5E8BF8C15D11F00004ADD09 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
+		B5E8BF9115D11F01004ADD09 /* MainMenu.xib */ = {
+			isa = PBXVariantGroup;
+			children = (
+				B5E8BF9215D11F01004ADD09 /* en */,
+			);
+			name = MainMenu.xib;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		B592DC0915D0F077000133DA /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = macosx;
+			};
+			name = Debug;
+		};
+		B592DC0A15D0F077000133DA /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = YES;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Release;
+		};
+		B5E8BF9515D11F01004ADD09 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = LaunchAtLoginHelper/LaunchAtLoginHelper.entitlements;
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Dmitriy Zhuravlev";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LaunchAtLoginHelper/LaunchAtLoginHelper-Prefix.pch";
+				INFOPLIST_FILE = "LaunchAtLoginHelper/LaunchAtLoginHelper-Info.plist";
+				INSTALL_PATH = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Debug;
+		};
+		B5E8BF9615D11F01004ADD09 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = LaunchAtLoginHelper/LaunchAtLoginHelper.entitlements;
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Dmitriy Zhuravlev";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "LaunchAtLoginHelper/LaunchAtLoginHelper-Prefix.pch";
+				INFOPLIST_FILE = "LaunchAtLoginHelper/LaunchAtLoginHelper-Info.plist";
+				INSTALL_PATH = "";
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
+				WRAPPER_EXTENSION = app;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		B592DBE715D0F077000133DA /* Build configuration list for PBXProject "LaunchAtLogin" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B592DC0915D0F077000133DA /* Debug */,
+				B592DC0A15D0F077000133DA /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		B5E8BF9415D11F01004ADD09 /* Build configuration list for PBXNativeTarget "LaunchAtLoginHelper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				B5E8BF9515D11F01004ADD09 /* Debug */,
+				B5E8BF9615D11F01004ADD09 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = B592DBE415D0F077000133DA /* Project object */;
+}

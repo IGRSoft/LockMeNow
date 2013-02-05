@@ -12,7 +12,6 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		A517CFA4142FD73E00632668 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A517CFA2142FD73E00632668 /* Credits.rtf */; };
 		A521519916B16CAE00E45B7D /* icon.iconset in Resources */ = {isa = PBXBuildFile; fileRef = A521519816B16CAE00E45B7D /* icon.iconset */; };
-		A52A9F5E16A8310800EA4B17 /* NSTextFieldWithImage.m in Sources */ = {isa = PBXBuildFile; fileRef = A52A9F5D16A8310800EA4B17 /* NSTextFieldWithImage.m */; };
 		A52A9F6016A8365300EA4B17 /* TextFieldBG.png in Resources */ = {isa = PBXBuildFile; fileRef = A52A9F5F16A8365200EA4B17 /* TextFieldBG.png */; };
 		A53766DF16AC277400AF78D8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53766DE16AC277400AF78D8 /* StoreKit.framework */; };
 		A53766E616AC2B9B00AF78D8 /* InAppPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A53766E216AC2B9A00AF78D8 /* InAppPurchaseManager.m */; };
@@ -38,7 +37,6 @@
 		A5CE4D0315062BFB001C22D2 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5CE4D0215062BFB001C22D2 /* ScriptingBridge.framework */; };
 		A5D1F41C15DA401700211A8F /* validatereceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = A5D1F41B15DA401700211A8F /* validatereceipt.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A5DD8A4E143C47CC00094BEA /* russianapple.png in Resources */ = {isa = PBXBuildFile; fileRef = A5DD8A4D143C47CB00094BEA /* russianapple.png */; };
-		A5F9F90315EEA4870091B2F0 /* lock-bg.png in Resources */ = {isa = PBXBuildFile; fileRef = A5F9F90215EEA4870091B2F0 /* lock-bg.png */; };
 		D0764512101E79F500DAE20D /* LockMeNowAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D0764511101E79F500DAE20D /* LockMeNowAppDelegate.m */; };
 		D0764532101E7A6100DAE20D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D0764530101E7A6100DAE20D /* main.m */; };
 		D0ABD262101D374900E5F733 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0ABD261101D374900E5F733 /* Carbon.framework */; };
@@ -130,8 +128,6 @@
 		8D1107320486CEB800E47090 /* lockmenow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lockmenow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A517CFA3142FD73E00632668 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
 		A521519816B16CAE00E45B7D /* icon.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = icon.iconset; path = Resources/icon.iconset; sourceTree = "<group>"; };
-		A52A9F5C16A8310800EA4B17 /* NSTextFieldWithImage.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = NSTextFieldWithImage.h; path = Source/CustomView/NSTextFieldWithImage.h; sourceTree = "<group>"; };
-		A52A9F5D16A8310800EA4B17 /* NSTextFieldWithImage.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = NSTextFieldWithImage.m; path = Source/CustomView/NSTextFieldWithImage.m; sourceTree = "<group>"; };
 		A52A9F5F16A8365200EA4B17 /* TextFieldBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TextFieldBG.png; path = Resources/TextFieldBG.png; sourceTree = "<group>"; };
 		A53766DE16AC277400AF78D8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		A53766E116AC2B9A00AF78D8 /* InAppPurchaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppPurchaseManager.h; sourceTree = "<group>"; };
@@ -199,8 +195,6 @@
 				A53831C216481976002764C1 /* Privat */,
 				D0764510101E79F500DAE20D /* LockMeNowAppDelegate.h */,
 				D0764511101E79F500DAE20D /* LockMeNowAppDelegate.m */,
-				A52A9F5C16A8310800EA4B17 /* NSTextFieldWithImage.h */,
-				A52A9F5D16A8310800EA4B17 /* NSTextFieldWithImage.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -514,7 +508,6 @@
 				A5DD8A4E143C47CC00094BEA /* russianapple.png in Resources */,
 				A5489BA415D3ED340072E5D2 /* off.pdf in Resources */,
 				A5489BA515D3ED340072E5D2 /* on.pdf in Resources */,
-				A5F9F90315EEA4870091B2F0 /* lock-bg.png in Resources */,
 				A5970AD1163A91BC00C674F4 /* filevault_2_encryption_check_extension_attribute.sh in Resources */,
 				A52A9F6016A8365300EA4B17 /* TextFieldBG.png in Resources */,
 				A5ABE36516B14409009A7151 /* lock@2x.png in Resources */,
@@ -534,7 +527,6 @@
 				D0764532101E7A6100DAE20D /* main.m in Sources */,
 				A5D1F41C15DA401700211A8F /* validatereceipt.m in Sources */,
 				A589299616A5DE9400063E09 /* PTUSBHub.m in Sources */,
-				A52A9F5E16A8310800EA4B17 /* NSTextFieldWithImage.m in Sources */,
 				A53766E616AC2B9B00AF78D8 /* InAppPurchaseManager.m in Sources */,
 				A59F334416C1238100A43F7C /* StartAtLoginController.m in Sources */,
 			);
@@ -588,6 +580,42 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		A5932EDB16C14801009AA7BF /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				GCC_WARN_ABOUT_RETURN_TYPE = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.6;
+				SDKROOT = macosx;
+			};
+			name = Distribution;
+		};
+		A5932EDC16C14801009AA7BF /* Distribution */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CODE_SIGN_ENTITLEMENTS = lockmenow.entitlements;
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Dmitriy Zhuravlev";
+				COMBINE_HIDPI_IMAGES = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = Source/Prefix.pch;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/External/LaunchAtLogin/Vendor/StartAtLoginController";
+				INFOPLIST_FILE = Resources/Info.plist;
+				INSTALL_PATH = /Applications;
+				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
+				OTHER_CFLAGS = (
+					"-DYES_I_HAVE_READ_THE_WARNING_AND_I_ACCEPT_THE_RISK",
+					"-DUSE_VALIDATE_RECEIPT",
+				);
+				OTHER_LDFLAGS = "-lcrypto";
+				PRODUCT_NAME = lockmenow;
+				PROVISIONING_PROFILE = "";
+			};
+			name = Distribution;
+		};
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -669,6 +697,7 @@
 			buildConfigurations = (
 				C01FCF4B08A954540054247B /* Debug */,
 				C01FCF4C08A954540054247B /* Release */,
+				A5932EDC16C14801009AA7BF /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -678,6 +707,7 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
+				A5932EDB16C14801009AA7BF /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

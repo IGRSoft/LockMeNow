@@ -7,18 +7,11 @@
 #endif
 
 #define BETA_APP 0
-
-#ifdef DEBUG
-#define USE_VALIDATE_RECEIPT 0
-#else
-#define USE_VALIDATE_RECEIPT 1
-#endif
-
-
 /*
  lockmenow.test@gmail.com
  iKorich567
 */
+
 #define NUM_APPLE_MOBILE_DEVICES	28
 
 #define NUM_IPHONE_POS	0
