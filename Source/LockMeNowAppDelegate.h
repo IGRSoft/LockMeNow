@@ -13,6 +13,7 @@
 @class IKImageView;
 @class IOBluetoothDevice;
 @class SRRecorderControl;
+@class StartAtLoginController;
 
 extern NSString *kGlobalHotKey;
 
@@ -51,8 +52,6 @@ typedef struct {
 	bool				m_bAutoPrefs;
 	LockingType			m_iLockType;
 	
-	bool				m_bEncription;
-	
 	NSOperationQueue	*m_Queue;
 	bool				m_bShouldTerminate;
 	
@@ -77,6 +76,8 @@ typedef struct {
 	//alert
 	NSInteger			alertReturnStatus;
 	NSString			*m_PriceDeviceLock;
+	
+	StartAtLoginController *loginController;
 }
 
 @property (nonatomic, strong) IBOutlet NSWindow				*window;
@@ -92,6 +93,7 @@ typedef struct {
 @property (nonatomic) int									p_BluetoothTimerInterval;
 @property (nonatomic, strong) IBOutlet NSProgressIndicator	*spinner;
 @property (nonatomic) bool	bMonitoring;
+@property (nonatomic) bool	bEncription;
 
 @property (nonatomic) NSMutableArray *blockObjects;
 @property (nonatomic, strong) IBOutlet NSView *lockBlockView;

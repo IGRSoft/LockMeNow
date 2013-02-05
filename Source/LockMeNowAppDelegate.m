@@ -28,6 +28,7 @@
 
 #import "InAppPurchaseManager.h"
 #import "validatereceipt.h"
+#import "StartAtLoginController.h"
 
 NSString *kGlobalHotKey = @"LockMeNowHotKey";
 NSString *kIconOnMainMenu = @"IconOnMainMenu";
@@ -48,13 +49,15 @@ NSString *global_bundleIdentifier = @"com.bymaster.lockmenow";
 - (void)openImageURLfor:(IKImageView*)_imageView withUrl:(NSURL*)url;
 - (CGImageRef)nsImageToCGImageRef:(NSImage *)image;
 - (void)checkConnectivity;
-
 @end
 
 @implementation LockMeNowAppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)theNotification 
 {
+	loginController = [[StartAtLoginController alloc] init];
+	[loginController setBundle:[NSBundle bundleWithPath:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Contents/Library/LoginItems/LaunchAtLoginHelper.app"]]];
+	
 #if BETA_APP
 	NSDateComponents *comps = [[NSDateComponents alloc] init];
 	[comps setYear:2012];
@@ -167,11 +170,14 @@ NSString *global_bundleIdentifier = @"com.bymaster.lockmenow";
 	
 	m_bNeedResumeiTunes = false;
 	m_bShouldTerminate = true;
-	m_bEncription = false;
+	self.bEncription = false;
 	
 	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0ul);
 	dispatch_async(queue, ^{
-		m_bEncription = [self checkEncryptionComplete];
+		self.bEncription = [self checkEncryptionComplete];
+		if (self.bEncription) {
+			m_bAutoPrefs = false;
+		}
 	});
 }
 
@@ -235,6 +241,11 @@ bool doNothingAtStart = false;
     [self.window makeKeyAndOrderFront: self];
     [self.window makeMainWindow];
     [self.window center];
+}
+
+- (IBAction)toggleStartup:(id)sender {
+    bool enableStartup = [[NSUserDefaults standardUserDefaults] boolForKey:@"enableStartup"];
+    [loginController setStartAtLogin: enableStartup];
 }
 
 #pragma mark - Shortcut
@@ -342,7 +353,7 @@ bool doNothingAtStart = false;
 {
 	bool m_bNeedBlock = false;
 	
-	if (!m_bEncription) {
+	if (!self.bEncription) {
 		m_bNeedBlock = ![self askPassword];
 	}
 	
@@ -480,7 +491,7 @@ bool doNothingAtStart = false;
 	
 	bool m_bNeedBlock = false;
 	
-	if (!m_bEncription) {
+	if (!self.bEncription) {
 		m_bNeedBlock = ![self askPassword];
 	}
 	

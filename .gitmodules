@@ -13,3 +13,6 @@
 [submodule "External/shortcutrecorder"]
 	path = External/shortcutrecorder
 	url = https://github.com/iKorich/shortcutrecorder.git
+[submodule "External/LaunchAtLogin"]
+	path = External/LaunchAtLogin
+	url = https://github.com/DangerCove/LaunchAtLogin.git

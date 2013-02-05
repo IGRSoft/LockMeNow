@@ -23,10 +23,12 @@
 		A5489BAE15D401710072E5D2 /* IOBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5489BAC15D401710072E5D2 /* IOBluetooth.framework */; };
 		A5489BAF15D401710072E5D2 /* IOBluetoothUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5489BAD15D401710072E5D2 /* IOBluetoothUI.framework */; };
 		A568E700142F5F8B0028D621 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A568E6FF142F5F8B0028D621 /* IOKit.framework */; };
-		A589299316A5DDA800063E09 /* LaunchAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = A589299216A5DDA800063E09 /* LaunchAtLoginController.m */; };
 		A589299616A5DE9400063E09 /* PTUSBHub.m in Sources */ = {isa = PBXBuildFile; fileRef = A589299516A5DE9400063E09 /* PTUSBHub.m */; };
 		A58A9E36142F5D3600D99E79 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A58A9E35142F5D3600D99E79 /* Security.framework */; };
 		A5970AD1163A91BC00C674F4 /* filevault_2_encryption_check_extension_attribute.sh in Resources */ = {isa = PBXBuildFile; fileRef = A5970AD0163A91BC00C674F4 /* filevault_2_encryption_check_extension_attribute.sh */; };
+		A59F334416C1238100A43F7C /* StartAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = A59F333116C1238100A43F7C /* StartAtLoginController.m */; };
+		A59F335316C123F200A43F7C /* LaunchAtLoginHelper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = A59F335016C123B300A43F7C /* LaunchAtLoginHelper.app */; };
+		A59F335516C125E600A43F7C /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A59F335416C125E600A43F7C /* ServiceManagement.framework */; };
 		A5ABE36516B14409009A7151 /* lock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5ABE36416B14409009A7151 /* lock@2x.png */; };
 		A5ABE37216B147CA009A7151 /* russianapple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5ABE37116B147CA009A7151 /* russianapple@2x.png */; };
 		A5C0BBF616A6D08B008072DE /* PTHotKey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5C0BBED16A6D078008072DE /* PTHotKey.framework */; };
@@ -43,6 +45,20 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		A54D12F916C1410900D74D71 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A59F334B16C123B300A43F7C /* LaunchAtLogin.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = B5E8BF7E15D11F00004ADD09;
+			remoteInfo = LaunchAtLoginHelper;
+		};
+		A59F334F16C123B300A43F7C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A59F334B16C123B300A43F7C /* LaunchAtLogin.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = B5E8BF7F15D11F00004ADD09;
+			remoteInfo = LaunchAtLoginHelper;
+		};
 		A5C0BBEC16A6D078008072DE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A5C0BBE216A6D077008072DE /* ShortcutRecorder.xcodeproj */;
@@ -92,6 +108,16 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A59F335216C123E500A43F7C /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 8;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				A59F335316C123F200A43F7C /* LaunchAtLoginHelper.app in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 1;
+		};
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
@@ -118,12 +144,14 @@
 		A5489BAD15D401710072E5D2 /* IOBluetoothUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOBluetoothUI.framework; path = System/Library/Frameworks/IOBluetoothUI.framework; sourceTree = SDKROOT; };
 		A559117516B3D69C008A7BF9 /* lockmenow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = lockmenow.entitlements; sourceTree = "<group>"; };
 		A568E6FF142F5F8B0028D621 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = /System/Library/Frameworks/IOKit.framework; sourceTree = "<absolute>"; };
-		A589299116A5DDA800063E09 /* LaunchAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LaunchAtLoginController.h; path = LaunchAtLoginController/LaunchAtLoginController.h; sourceTree = "<group>"; };
-		A589299216A5DDA800063E09 /* LaunchAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LaunchAtLoginController.m; path = LaunchAtLoginController/LaunchAtLoginController.m; sourceTree = "<group>"; };
 		A589299416A5DE9400063E09 /* PTUSBHub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTUSBHub.h; path = peertalk/peertalk/PTUSBHub.h; sourceTree = "<group>"; };
 		A589299516A5DE9400063E09 /* PTUSBHub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTUSBHub.m; path = peertalk/peertalk/PTUSBHub.m; sourceTree = "<group>"; };
 		A58A9E35142F5D3600D99E79 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A5970AD0163A91BC00C674F4 /* filevault_2_encryption_check_extension_attribute.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = filevault_2_encryption_check_extension_attribute.sh; path = Resources/filevault_2_encryption_check_extension_attribute.sh; sourceTree = "<group>"; };
+		A59F333016C1238100A43F7C /* StartAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartAtLoginController.h; sourceTree = "<group>"; };
+		A59F333116C1238100A43F7C /* StartAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartAtLoginController.m; sourceTree = "<group>"; };
+		A59F334B16C123B300A43F7C /* LaunchAtLogin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LaunchAtLogin.xcodeproj; path = LaunchAtLoginHelper/LaunchAtLogin.xcodeproj; sourceTree = "<group>"; };
+		A59F335416C125E600A43F7C /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		A5ABE36416B14409009A7151 /* lock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lock@2x.png"; path = "Resources/lock@2x.png"; sourceTree = "<group>"; };
 		A5ABE37116B147CA009A7151 /* russianapple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "russianapple@2x.png"; path = "Resources/russianapple@2x.png"; sourceTree = "<group>"; };
 		A5B0BEBF144CA9E0003C3145 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
@@ -147,6 +175,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A59F335516C125E600A43F7C /* ServiceManagement.framework in Frameworks */,
 				A53766DF16AC277400AF78D8 /* StoreKit.framework in Frameworks */,
 				A5C0BBF616A6D08B008072DE /* PTHotKey.framework in Frameworks */,
 				A5C0BBF716A6D08B008072DE /* ShortcutRecorder.framework in Frameworks */,
@@ -179,6 +208,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A59F335416C125E600A43F7C /* ServiceManagement.framework */,
 				A53766DE16AC277400AF78D8 /* StoreKit.framework */,
 				A5489BAC15D401710072E5D2 /* IOBluetooth.framework */,
 				A5489BAD15D401710072E5D2 /* IOBluetoothUI.framework */,
@@ -276,15 +306,6 @@
 			name = Privat;
 			sourceTree = "<group>";
 		};
-		A53831C41648199C002764C1 /* LaunchAtLogin */ = {
-			isa = PBXGroup;
-			children = (
-				A589299116A5DDA800063E09 /* LaunchAtLoginController.h */,
-				A589299216A5DDA800063E09 /* LaunchAtLoginController.m */,
-			);
-			name = LaunchAtLogin;
-			sourceTree = "<group>";
-		};
 		A53831C516481A34002764C1 /* scripts */ = {
 			isa = PBXGroup;
 			children = (
@@ -308,10 +329,10 @@
 		A5489B8215D3E5A90072E5D2 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				A59F330716C1238100A43F7C /* LaunchAtLogin */,
 				A53766E016AC2B9A00AF78D8 /* InAppPurchaseManager */,
 				A5C0BBE216A6D077008072DE /* ShortcutRecorder.xcodeproj */,
 				A589299716A5DEBB00063E09 /* peertalk */,
-				A53831C41648199C002764C1 /* LaunchAtLogin */,
 				A5489B8315D3E5A90072E5D2 /* ValidateStoreReceipt */,
 			);
 			path = External;
@@ -345,6 +366,40 @@
 			name = peertalk;
 			sourceTree = "<group>";
 		};
+		A59F330716C1238100A43F7C /* LaunchAtLogin */ = {
+			isa = PBXGroup;
+			children = (
+				A59F334B16C123B300A43F7C /* LaunchAtLogin.xcodeproj */,
+				A59F332E16C1238100A43F7C /* Vendor */,
+			);
+			path = LaunchAtLogin;
+			sourceTree = "<group>";
+		};
+		A59F332E16C1238100A43F7C /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				A59F332F16C1238100A43F7C /* StartAtLoginController */,
+			);
+			path = Vendor;
+			sourceTree = "<group>";
+		};
+		A59F332F16C1238100A43F7C /* StartAtLoginController */ = {
+			isa = PBXGroup;
+			children = (
+				A59F333016C1238100A43F7C /* StartAtLoginController.h */,
+				A59F333116C1238100A43F7C /* StartAtLoginController.m */,
+			);
+			path = StartAtLoginController;
+			sourceTree = "<group>";
+		};
+		A59F334C16C123B300A43F7C /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A59F335016C123B300A43F7C /* LaunchAtLoginHelper.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
 		A5C0BBE316A6D077008072DE /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -366,10 +421,12 @@
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				A589294B16A5AFC600063E09 /* CopyFiles */,
+				A59F335216C123E500A43F7C /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A54D12FA16C1410900D74D71 /* PBXTargetDependency */,
 				A5C0BBF316A6D083008072DE /* PBXTargetDependency */,
 				A5C0BBF516A6D083008072DE /* PBXTargetDependency */,
 			);
@@ -399,6 +456,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = A59F334C16C123B300A43F7C /* Products */;
+					ProjectRef = A59F334B16C123B300A43F7C /* LaunchAtLogin.xcodeproj */;
+				},
+				{
 					ProductGroup = A5C0BBE316A6D077008072DE /* Products */;
 					ProjectRef = A5C0BBE216A6D077008072DE /* ShortcutRecorder.xcodeproj */;
 				},
@@ -411,6 +472,13 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
+		A59F335016C123B300A43F7C /* LaunchAtLoginHelper.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = LaunchAtLoginHelper.app;
+			remoteRef = A59F334F16C123B300A43F7C /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
 		A5C0BBED16A6D078008072DE /* PTHotKey.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -465,16 +533,21 @@
 				D0764512101E79F500DAE20D /* LockMeNowAppDelegate.m in Sources */,
 				D0764532101E7A6100DAE20D /* main.m in Sources */,
 				A5D1F41C15DA401700211A8F /* validatereceipt.m in Sources */,
-				A589299316A5DDA800063E09 /* LaunchAtLoginController.m in Sources */,
 				A589299616A5DE9400063E09 /* PTUSBHub.m in Sources */,
 				A52A9F5E16A8310800EA4B17 /* NSTextFieldWithImage.m in Sources */,
 				A53766E616AC2B9B00AF78D8 /* InAppPurchaseManager.m in Sources */,
+				A59F334416C1238100A43F7C /* StartAtLoginController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		A54D12FA16C1410900D74D71 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LaunchAtLoginHelper;
+			targetProxy = A54D12F916C1410900D74D71 /* PBXContainerItemProxy */;
+		};
 		A5C0BBF316A6D083008072DE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PTHotKey;
@@ -527,6 +600,7 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Source/Prefix.pch;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/External/LaunchAtLogin/Vendor/StartAtLoginController";
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = /Applications;
 				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
@@ -550,6 +624,7 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Source/Prefix.pch;
+				HEADER_SEARCH_PATHS = "$(SRCROOT)/External/LaunchAtLogin/Vendor/StartAtLoginController";
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = /Applications;
 				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
