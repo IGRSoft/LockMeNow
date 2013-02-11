@@ -56,7 +56,6 @@ typedef struct {
 	bool				m_bShouldTerminate;
 	
 	//Bluetooth
-	IOBluetoothDevice	*m_BluetoothDevice;
 	BluetoothStatus		m_BluetoothDevicePriorStatus;
 	bool				m_bMonitoringBluetooth;
 	NSTimer				*m_BluetoothTimer;
@@ -72,6 +71,7 @@ typedef struct {
 	
 	//InApp Purchase
 	bool				useAditionalLock;
+	bool				isTabsAdded;
 	
 	//alert
 	NSInteger			alertReturnStatus;
@@ -85,6 +85,8 @@ typedef struct {
 @property (nonatomic, strong) IBOutlet NSMenu				*statusMenu;
 @property (nonatomic, strong) IBOutlet NSButton				*btnPurchaseLockByDevice;
 @property (nonatomic, strong) IBOutlet NSTabView			*tabView;
+@property (nonatomic, strong) IBOutlet NSTabViewItem		*bluetoothTabViewItem;
+@property (nonatomic, strong) IBOutlet NSTabViewItem		*usbTabViewItem;
 
 @property (nonatomic, strong) PTHotKey						*hotKey;
 @property (nonatomic, strong) IBOutlet IKImageView			*bluetoothStatus;

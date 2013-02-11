@@ -45,6 +45,8 @@ NSString *kUSBDeviceType = @"USBDevice";
 NSString *global_bundleVersion = @"1.0.0";
 NSString *global_bundleIdentifier = @"com.bymaster.lockmenow";
 
+IOBluetoothDevice	*m_BluetoothDevice = nil;
+
 @interface LockMeNowAppDelegate()
 - (void)openImageURLfor:(IKImageView*)_imageView withUrl:(NSURL*)url;
 - (void)checkConnectivity;
@@ -57,6 +59,9 @@ NSString *global_bundleIdentifier = @"com.bymaster.lockmenow";
 	loginController = [[StartAtLoginController alloc] init];
 	[loginController setBundle:[NSBundle bundleWithPath:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Contents/Library/LoginItems/LaunchAtLoginHelper.app"]]];
 	
+	isTabsAdded = false;
+	m_BluetoothDevicePriorStatus = OutOfRange;
+	m_BluetoothDevice = nil;
 #if BETA_APP
 	NSDateComponents *comps = [[NSDateComponents alloc] init];
 	[comps setYear:2012];
@@ -120,20 +125,35 @@ NSString *global_bundleIdentifier = @"com.bymaster.lockmenow";
 			if ([purchase[kReceiptInAppProductIdentifier] isEqualToString:INAPP_ID_DEVICES]) {
 				useAditionalLock = true;
 				[self updatePrice:@"" andUnlockButton:false isPurchased:true];
+				[self addTabs];
+				[self loadUserSettings];
+				if (m_bMonitoringBluetooth)
+				{
+					[self startMonitoring];
+				}
+				if (m_bMonitoringUSB) {
+					[self startListeningForDevices];
+				}
 			}
 		}
 	}
 	else
 	{
 		[[InAppPurchaseManager sharedManager] requestUpgradeProductData:INAPP_ID_DEVICES];
+		[self loadUserSettings];
 	}
 #else
 	useAditionalLock = true;
-#endif
-	
-	m_BluetoothDevicePriorStatus = OutOfRange;
-	m_BluetoothDevice = nil;
+	[self addTabs];
 	[self loadUserSettings];
+	if (m_bMonitoringBluetooth)
+	{
+		[self startMonitoring];
+	}
+	if (m_bMonitoringUSB) {
+		[self startListeningForDevices];
+	}
+#endif
 	if (m_bUseIconOnMainMenu) {
 		[self makeMenu];
 	}
@@ -183,6 +203,15 @@ NSString *global_bundleIdentifier = @"com.bymaster.lockmenow";
 - (void)awakeFromNib {
 	
 	[super awakeFromNib];
+}
+
+- (void) addTabs
+{
+	if (!isTabsAdded) {
+		isTabsAdded = true;
+		[self.tabView insertTabViewItem:self.usbTabViewItem atIndex:1];
+		[self.tabView insertTabViewItem:self.bluetoothTabViewItem atIndex:1];
+	}
 }
 
 bool doNothingAtStart = false;
@@ -641,7 +670,7 @@ bool doNothingAtStart = false;
 	m_bPauseiTunes = [[defaults objectForKey:kPauseiTunes] boolValue];
 	m_bResumeiTunes = [[defaults objectForKey:kResumeiTunes] boolValue];
 	m_bAutoPrefs = [[defaults objectForKey:kAutoScreenSaverPrefs] boolValue];
-	
+
 	if (useAditionalLock) {
 		NSData *deviceAsData = [defaults objectForKey:kBluetoothDevice];
 		if( [deviceAsData length] > 0 )
@@ -802,16 +831,18 @@ int ProcessIsRunningWithBundleID(CFStringRef inBundleID, ProcessSerialNumber* ou
 {
 	if (useAditionalLock) {
 		[m_BluetoothTimer invalidate];
+		m_BluetoothDevicePriorStatus = OutOfRange;
 	}
 }
 
 - (void)handleTimer:(NSTimer *)theTimer
 {
 	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
-	
 	dispatch_async(queue, ^{
 		if (useAditionalLock) {
-			if( [self isInRange] )
+			BOOL result = [self isInRange];
+			
+			if( result )
 			{
 				if( m_BluetoothDevicePriorStatus == OutOfRange )
 				{
@@ -926,7 +957,7 @@ int ProcessIsRunningWithBundleID(CFStringRef inBundleID, ProcessSerialNumber* ou
 - (IBAction) openPurchases:(id)sender
 {
 	[self openPrefs:nil];
-	[self.tabView selectTabViewItemWithIdentifier:@"purchase"];
+	[self.tabView selectTabViewItemWithIdentifier:@"purchases"];
 }
 
 #pragma mark - USB
@@ -1135,6 +1166,7 @@ static APPLE_MOBILE_DEVICE APPLE_MOBILE_DEVICES[NUM_APPLE_MOBILE_DEVICES] = {
 		case SKPaymentTransactionStateRestored:
 			if ([inAppId isEqualToString:INAPP_ID_DEVICES]) {
 				useAditionalLock = true;
+				[self addTabs];
 			}
 			textAlert = @"You have successfully restored Lock By Device";
 			useAlert = true;
@@ -1142,6 +1174,7 @@ static APPLE_MOBILE_DEVICE APPLE_MOBILE_DEVICES[NUM_APPLE_MOBILE_DEVICES] = {
 		case SKPaymentTransactionStatePurchased:
 			if ([inAppId isEqualToString:INAPP_ID_DEVICES]) {
 				useAditionalLock = true;
+				[self addTabs];
 			}
 			textAlert = @"You have successfully purchased Lock By Device";
 			useAlert = true;
@@ -1253,7 +1286,7 @@ static APPLE_MOBILE_DEVICE APPLE_MOBILE_DEVICES[NUM_APPLE_MOBILE_DEVICES] = {
 {
 	DBNSLog(@"clicked %d button\n", returnCode);
 	if (returnCode == NSAlertSecondButtonReturn) {
-		[self.tabView selectTabViewItemWithIdentifier:@"purchase"];
+		[self.tabView selectTabViewItemWithIdentifier:@"purchases"];
 	}
     // make the returnCode publicly available after closing the sheet
     alertReturnStatus = returnCode;

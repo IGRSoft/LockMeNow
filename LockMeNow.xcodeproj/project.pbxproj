@@ -602,9 +602,13 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Source/Prefix.pch;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/External/LaunchAtLogin/Vendor/StartAtLoginController";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/External/LaunchAtLogin/Vendor/StartAtLoginController",
+				);
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = /Applications;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
 				OTHER_CFLAGS = (
 					"-DYES_I_HAVE_READ_THE_WARNING_AND_I_ACCEPT_THE_RISK",
@@ -628,9 +632,13 @@
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Source/Prefix.pch;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/External/LaunchAtLogin/Vendor/StartAtLoginController";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/External/LaunchAtLogin/Vendor/StartAtLoginController",
+				);
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = /Applications;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
 				OTHER_CFLAGS = (
 					"-DYES_I_HAVE_READ_THE_WARNING_AND_I_ACCEPT_THE_RISK",
@@ -652,11 +660,18 @@
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Source/Prefix.pch;
-				HEADER_SEARCH_PATHS = "$(SRCROOT)/External/LaunchAtLogin/Vendor/StartAtLoginController";
+				HEADER_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(SRCROOT)/External/LaunchAtLogin/Vendor/StartAtLoginController",
+				);
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = /Applications;
+				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
-				OTHER_CFLAGS = "-DYES_I_HAVE_READ_THE_WARNING_AND_I_ACCEPT_THE_RISK";
+				OTHER_CFLAGS = (
+					"-DYES_I_HAVE_READ_THE_WARNING_AND_I_ACCEPT_THE_RISK",
+					"-DUSE_VALIDATE_RECEIPT",
+				);
 				OTHER_LDFLAGS = "-lcrypto";
 				PRODUCT_NAME = lockmenow;
 				PROVISIONING_PROFILE = "";
