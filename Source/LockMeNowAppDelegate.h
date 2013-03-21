@@ -8,6 +8,7 @@
 
 #import <IOBluetooth/objc/IOBluetoothSDPServiceRecord.h>
 #import <IOBluetooth/objc/IOBluetoothRFCOMMChannel.h>
+#import <xpc/xpc.h>
 
 @class PTHotKey;
 @class IKImageView;
@@ -78,6 +79,8 @@ typedef struct {
 	NSString			*m_PriceDeviceLock;
 	
 	StartAtLoginController *loginController;
+	
+	xpc_connection_t scriptServiceConnection;
 }
 
 @property (nonatomic, strong) IBOutlet NSWindow				*window;
@@ -100,6 +103,7 @@ typedef struct {
 @property (nonatomic) NSMutableArray *blockObjects;
 @property (nonatomic, strong) IBOutlet NSView *lockBlockView;
 
+- (IBAction)tttttt:(id)sender;
 - (void) makeLock;
 - (IBAction) doUnLock:(id)sender;
 - (IBAction) doLock:(id)sender;

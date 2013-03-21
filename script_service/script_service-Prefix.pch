@@ -1,0 +1,7 @@
+//
+// Prefix header for all source files of the 'script_service' target in the 'script_service' project
+//
+
+#ifdef __OBJC__
+	#import <Cocoa/Cocoa.h>
+#endif

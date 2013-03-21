@@ -228,13 +228,12 @@
 							<int key="NSvFlags">12</int>
 							<string key="NSFrame">{{13, 26}, {319, 300}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
-							<reference key="NSNextKeyView" ref="770754955"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<array class="NSMutableArray" key="NSTabViewItems">
 								<object class="NSTabViewItem" id="300386042">
 									<string key="NSIdentifier">general</string>
 									<object class="NSView" key="NSView" id="989109797">
-										<nil key="NSNextResponder"/>
+										<reference key="NSNextResponder" ref="551099319"/>
 										<int key="NSvFlags">256</int>
 										<array class="NSMutableArray" key="NSSubviews">
 											<object class="NSBox" id="689678390">
@@ -598,6 +597,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 											</object>
 										</array>
 										<string key="NSFrame">{{10, 25}, {299, 262}}</string>
+										<reference key="NSSuperview" ref="551099319"/>
 										<reference key="NSNextKeyView" ref="449546282"/>
 										<string key="NSReuseIdentifierKey">_NS:11</string>
 									</object>
@@ -608,7 +608,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 								<object class="NSTabViewItem" id="749247042">
 									<string key="NSIdentifier">purchases</string>
 									<object class="NSView" key="NSView" id="770754955">
-										<reference key="NSNextResponder" ref="551099319"/>
+										<nil key="NSNextResponder"/>
 										<int key="NSvFlags">256</int>
 										<array class="NSMutableArray" key="NSSubviews">
 											<object class="NSTextField" id="1029976321">
@@ -713,7 +713,6 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 											</object>
 										</array>
 										<string key="NSFrame">{{10, 25}, {299, 262}}</string>
-										<reference key="NSSuperview" ref="551099319"/>
 										<reference key="NSNextKeyView" ref="1029976321"/>
 									</object>
 									<string key="NSLabel">Purchases</string>
@@ -811,13 +810,13 @@ IFpodXJhdmxldiAoQGJ5bWFzdGVyKQ</string>
 									<reference key="NSTabView" ref="551099319"/>
 								</object>
 							</array>
-							<reference key="NSSelectedTabViewItem" ref="749247042"/>
+							<reference key="NSSelectedTabViewItem" ref="300386042"/>
 							<reference key="NSFont" ref="26"/>
 							<int key="NSTvFlags">134217728</int>
 							<bool key="NSAllowTruncatedLabels">YES</bool>
 							<bool key="NSDrawsBackground">YES</bool>
 							<array class="NSMutableArray" key="NSSubviews">
-								<reference ref="770754955"/>
+								<reference ref="989109797"/>
 							</array>
 						</object>
 						<object class="NSButton" id="770123141">
@@ -3118,7 +3117,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 			<nil key="activeLocalization"/>
 			<dictionary class="NSMutableDictionary" key="localizations"/>
 			<nil key="sourceID"/>
-			<int key="maxID">940</int>
+			<int key="maxID">943</int>
 		</object>
 		<object class="IBClassDescriber" key="IBDocument.Classes"/>
 		<int key="IBDocument.localizationMode">0</int>

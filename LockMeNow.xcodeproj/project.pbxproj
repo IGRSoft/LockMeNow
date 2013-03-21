@@ -13,6 +13,7 @@
 		A517CFA4142FD73E00632668 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A517CFA2142FD73E00632668 /* Credits.rtf */; };
 		A521519916B16CAE00E45B7D /* icon.iconset in Resources */ = {isa = PBXBuildFile; fileRef = A521519816B16CAE00E45B7D /* icon.iconset */; };
 		A52A9F6016A8365300EA4B17 /* TextFieldBG.png in Resources */ = {isa = PBXBuildFile; fileRef = A52A9F5F16A8365200EA4B17 /* TextFieldBG.png */; };
+		A52B872716CCF9DE005D49FA /* StartAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = A52B872616CCF9DE005D49FA /* StartAtLoginController.m */; };
 		A53766DF16AC277400AF78D8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53766DE16AC277400AF78D8 /* StoreKit.framework */; };
 		A53766E616AC2B9B00AF78D8 /* InAppPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A53766E216AC2B9A00AF78D8 /* InAppPurchaseManager.m */; };
 		A53FE3D4142F4F34003B4D67 /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = A53FE3D2142F4F34003B4D67 /* lock.png */; };
@@ -24,9 +25,6 @@
 		A568E700142F5F8B0028D621 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A568E6FF142F5F8B0028D621 /* IOKit.framework */; };
 		A589299616A5DE9400063E09 /* PTUSBHub.m in Sources */ = {isa = PBXBuildFile; fileRef = A589299516A5DE9400063E09 /* PTUSBHub.m */; };
 		A58A9E36142F5D3600D99E79 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A58A9E35142F5D3600D99E79 /* Security.framework */; };
-		A5970AD1163A91BC00C674F4 /* filevault_2_encryption_check_extension_attribute.sh in Resources */ = {isa = PBXBuildFile; fileRef = A5970AD0163A91BC00C674F4 /* filevault_2_encryption_check_extension_attribute.sh */; };
-		A59F334416C1238100A43F7C /* StartAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = A59F333116C1238100A43F7C /* StartAtLoginController.m */; };
-		A59F335316C123F200A43F7C /* LaunchAtLoginHelper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = A59F335016C123B300A43F7C /* LaunchAtLoginHelper.app */; };
 		A59F335516C125E600A43F7C /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A59F335416C125E600A43F7C /* ServiceManagement.framework */; };
 		A5ABE36516B14409009A7151 /* lock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5ABE36416B14409009A7151 /* lock@2x.png */; };
 		A5ABE37216B147CA009A7151 /* russianapple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5ABE37116B147CA009A7151 /* russianapple@2x.png */; };
@@ -36,6 +34,10 @@
 		A5C0BBF916A6D08F008072DE /* ShortcutRecorder.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A5C0BBEF16A6D078008072DE /* ShortcutRecorder.framework */; };
 		A5CE4D0315062BFB001C22D2 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5CE4D0215062BFB001C22D2 /* ScriptingBridge.framework */; };
 		A5D1F41C15DA401700211A8F /* validatereceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = A5D1F41B15DA401700211A8F /* validatereceipt.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
+		A5D2819616E7E394006405E0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B0BEBF144CA9E0003C3145 /* Cocoa.framework */; };
+		A5D2819C16E7E394006405E0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5D2819A16E7E394006405E0 /* InfoPlist.strings */; };
+		A5D2819E16E7E394006405E0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5D2819D16E7E394006405E0 /* main.m */; };
+		A5D281A216E7E394006405E0 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A5D281A016E7E394006405E0 /* Credits.rtf */; };
 		A5DD8A4E143C47CC00094BEA /* russianapple.png in Resources */ = {isa = PBXBuildFile; fileRef = A5DD8A4D143C47CB00094BEA /* russianapple.png */; };
 		D0764512101E79F500DAE20D /* LockMeNowAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D0764511101E79F500DAE20D /* LockMeNowAppDelegate.m */; };
 		D0764532101E7A6100DAE20D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D0764530101E7A6100DAE20D /* main.m */; };
@@ -43,16 +45,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		A54D12F916C1410900D74D71 /* PBXContainerItemProxy */ = {
+		A52B872016CCF9D1005D49FA /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = A59F334B16C123B300A43F7C /* LaunchAtLogin.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = B5E8BF7E15D11F00004ADD09;
-			remoteInfo = LaunchAtLoginHelper;
-		};
-		A59F334F16C123B300A43F7C /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A59F334B16C123B300A43F7C /* LaunchAtLogin.xcodeproj */;
+			containerPortal = A52B871C16CCF9D0005D49FA /* LaunchAtLogin.xcodeproj */;
 			proxyType = 2;
 			remoteGlobalIDString = B5E8BF7F15D11F00004ADD09;
 			remoteInfo = LaunchAtLoginHelper;
@@ -108,13 +103,12 @@
 		};
 		A59F335216C123E500A43F7C /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 8;
-			dstPath = Contents/Library/LoginItems;
+			buildActionMask = 12;
+			dstPath = Contents/XPCServices;
 			dstSubfolderSpec = 1;
 			files = (
-				A59F335316C123F200A43F7C /* LaunchAtLoginHelper.app in CopyFiles */,
 			);
-			runOnlyForDeploymentPostprocessing = 1;
+			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
 
@@ -126,9 +120,14 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107320486CEB800E47090 /* lockmenow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lockmenow.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5046E3F16FAFB6D00323A23 /* script_service.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = script_service.entitlements; sourceTree = "<group>"; };
+		A5094B9816CBF33200A3C877 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A517CFA3142FD73E00632668 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
 		A521519816B16CAE00E45B7D /* icon.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = icon.iconset; path = Resources/icon.iconset; sourceTree = "<group>"; };
 		A52A9F5F16A8365200EA4B17 /* TextFieldBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TextFieldBG.png; path = Resources/TextFieldBG.png; sourceTree = "<group>"; };
+		A52B871C16CCF9D0005D49FA /* LaunchAtLogin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LaunchAtLogin.xcodeproj; path = LaunchAtLogin/LaunchAtLoginHelper/LaunchAtLogin.xcodeproj; sourceTree = "<group>"; };
+		A52B872516CCF9DE005D49FA /* StartAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartAtLoginController.h; sourceTree = "<group>"; };
+		A52B872616CCF9DE005D49FA /* StartAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartAtLoginController.m; sourceTree = "<group>"; };
 		A53766DE16AC277400AF78D8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
 		A53766E116AC2B9A00AF78D8 /* InAppPurchaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppPurchaseManager.h; sourceTree = "<group>"; };
 		A53766E216AC2B9A00AF78D8 /* InAppPurchaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppPurchaseManager.m; sourceTree = "<group>"; };
@@ -143,10 +142,6 @@
 		A589299416A5DE9400063E09 /* PTUSBHub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTUSBHub.h; path = peertalk/peertalk/PTUSBHub.h; sourceTree = "<group>"; };
 		A589299516A5DE9400063E09 /* PTUSBHub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTUSBHub.m; path = peertalk/peertalk/PTUSBHub.m; sourceTree = "<group>"; };
 		A58A9E35142F5D3600D99E79 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
-		A5970AD0163A91BC00C674F4 /* filevault_2_encryption_check_extension_attribute.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = filevault_2_encryption_check_extension_attribute.sh; path = Resources/filevault_2_encryption_check_extension_attribute.sh; sourceTree = "<group>"; };
-		A59F333016C1238100A43F7C /* StartAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartAtLoginController.h; sourceTree = "<group>"; };
-		A59F333116C1238100A43F7C /* StartAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartAtLoginController.m; sourceTree = "<group>"; };
-		A59F334B16C123B300A43F7C /* LaunchAtLogin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LaunchAtLogin.xcodeproj; path = LaunchAtLoginHelper/LaunchAtLogin.xcodeproj; sourceTree = "<group>"; };
 		A59F335416C125E600A43F7C /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		A5ABE36416B14409009A7151 /* lock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lock@2x.png"; path = "Resources/lock@2x.png"; sourceTree = "<group>"; };
 		A5ABE37116B147CA009A7151 /* russianapple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "russianapple@2x.png"; path = "Resources/russianapple@2x.png"; sourceTree = "<group>"; };
@@ -156,6 +151,12 @@
 		A5CE4D0415062DE4001C22D2 /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iTunes.h; path = Source/iTunes.h; sourceTree = "<group>"; };
 		A5D1F41A15DA401700211A8F /* validatereceipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = validatereceipt.h; sourceTree = "<group>"; };
 		A5D1F41B15DA401700211A8F /* validatereceipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = validatereceipt.m; sourceTree = "<group>"; };
+		A5D2819516E7E394006405E0 /* script_service.xpc */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = script_service.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5D2819916E7E394006405E0 /* script_service-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "script_service-Info.plist"; sourceTree = "<group>"; };
+		A5D2819B16E7E394006405E0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
+		A5D2819D16E7E394006405E0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A5D2819F16E7E394006405E0 /* script_service-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "script_service-Prefix.pch"; sourceTree = "<group>"; };
+		A5D281A116E7E394006405E0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		A5DD8A4D143C47CB00094BEA /* russianapple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = russianapple.png; path = Resources/russianapple.png; sourceTree = "<group>"; };
 		A5F9F90215EEA4870091B2F0 /* lock-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lock-bg.png"; path = "Resources/lock-bg.png"; sourceTree = "<group>"; };
 		D0764510101E79F500DAE20D /* LockMeNowAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LockMeNowAppDelegate.h; path = Source/LockMeNowAppDelegate.h; sourceTree = "<group>"; };
@@ -183,6 +184,14 @@
 				8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */,
 				D0ABD262101D374900E5F733 /* Carbon.framework in Frameworks */,
 				A5489BAB15D3F1820072E5D2 /* Quartz.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5D2819216E7E394006405E0 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5D2819616E7E394006405E0 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -230,6 +239,7 @@
 			isa = PBXGroup;
 			children = (
 				8D1107320486CEB800E47090 /* lockmenow.app */,
+				A5D2819516E7E394006405E0 /* script_service.xpc */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -241,6 +251,7 @@
 				080E96DDFE201D6D7F000001 /* Classes */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
+				A5D2819716E7E394006405E0 /* script_service */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -263,7 +274,6 @@
 				A521519816B16CAE00E45B7D /* icon.iconset */,
 				A52A9F5F16A8365200EA4B17 /* TextFieldBG.png */,
 				A53831C616481ADE002764C1 /* img */,
-				A53831C516481A34002764C1 /* scripts */,
 				A5489BA115D3ED340072E5D2 /* indicators */,
 				A517CFA2142FD73E00632668 /* Credits.rtf */,
 				D0764520101E7A3300DAE20D /* Info.plist */,
@@ -278,9 +288,36 @@
 			children = (
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				A5B0BEBF144CA9E0003C3145 /* Cocoa.framework */,
+				A5094B9816CBF33200A3C877 /* Foundation.framework */,
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A52B871D16CCF9D0005D49FA /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A52B872116CCF9D1005D49FA /* LaunchAtLoginHelper.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A52B872316CCF9DE005D49FA /* Vendor */ = {
+			isa = PBXGroup;
+			children = (
+				A52B872416CCF9DE005D49FA /* StartAtLoginController */,
+			);
+			name = Vendor;
+			path = LaunchAtLogin/Vendor;
+			sourceTree = "<group>";
+		};
+		A52B872416CCF9DE005D49FA /* StartAtLoginController */ = {
+			isa = PBXGroup;
+			children = (
+				A52B872516CCF9DE005D49FA /* StartAtLoginController.h */,
+				A52B872616CCF9DE005D49FA /* StartAtLoginController.m */,
+			);
+			path = StartAtLoginController;
 			sourceTree = "<group>";
 		};
 		A53766E016AC2B9A00AF78D8 /* InAppPurchaseManager */ = {
@@ -300,14 +337,6 @@
 			name = Privat;
 			sourceTree = "<group>";
 		};
-		A53831C516481A34002764C1 /* scripts */ = {
-			isa = PBXGroup;
-			children = (
-				A5970AD0163A91BC00C674F4 /* filevault_2_encryption_check_extension_attribute.sh */,
-			);
-			name = scripts;
-			sourceTree = "<group>";
-		};
 		A53831C616481ADE002764C1 /* img */ = {
 			isa = PBXGroup;
 			children = (
@@ -323,7 +352,8 @@
 		A5489B8215D3E5A90072E5D2 /* External */ = {
 			isa = PBXGroup;
 			children = (
-				A59F330716C1238100A43F7C /* LaunchAtLogin */,
+				A52B872316CCF9DE005D49FA /* Vendor */,
+				A52B871C16CCF9D0005D49FA /* LaunchAtLogin.xcodeproj */,
 				A53766E016AC2B9A00AF78D8 /* InAppPurchaseManager */,
 				A5C0BBE216A6D077008072DE /* ShortcutRecorder.xcodeproj */,
 				A589299716A5DEBB00063E09 /* peertalk */,
@@ -360,40 +390,6 @@
 			name = peertalk;
 			sourceTree = "<group>";
 		};
-		A59F330716C1238100A43F7C /* LaunchAtLogin */ = {
-			isa = PBXGroup;
-			children = (
-				A59F334B16C123B300A43F7C /* LaunchAtLogin.xcodeproj */,
-				A59F332E16C1238100A43F7C /* Vendor */,
-			);
-			path = LaunchAtLogin;
-			sourceTree = "<group>";
-		};
-		A59F332E16C1238100A43F7C /* Vendor */ = {
-			isa = PBXGroup;
-			children = (
-				A59F332F16C1238100A43F7C /* StartAtLoginController */,
-			);
-			path = Vendor;
-			sourceTree = "<group>";
-		};
-		A59F332F16C1238100A43F7C /* StartAtLoginController */ = {
-			isa = PBXGroup;
-			children = (
-				A59F333016C1238100A43F7C /* StartAtLoginController.h */,
-				A59F333116C1238100A43F7C /* StartAtLoginController.m */,
-			);
-			path = StartAtLoginController;
-			sourceTree = "<group>";
-		};
-		A59F334C16C123B300A43F7C /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				A59F335016C123B300A43F7C /* LaunchAtLoginHelper.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		A5C0BBE316A6D077008072DE /* Products */ = {
 			isa = PBXGroup;
 			children = (
@@ -402,6 +398,27 @@
 				A5C0BBF116A6D078008072DE /* TestApp.app */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		A5D2819716E7E394006405E0 /* script_service */ = {
+			isa = PBXGroup;
+			children = (
+				A5046E3F16FAFB6D00323A23 /* script_service.entitlements */,
+				A5D2819816E7E394006405E0 /* Supporting Files */,
+			);
+			path = script_service;
+			sourceTree = "<group>";
+		};
+		A5D2819816E7E394006405E0 /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A5D2819916E7E394006405E0 /* script_service-Info.plist */,
+				A5D2819A16E7E394006405E0 /* InfoPlist.strings */,
+				A5D2819D16E7E394006405E0 /* main.m */,
+				A5D2819F16E7E394006405E0 /* script_service-Prefix.pch */,
+				A5D281A016E7E394006405E0 /* Credits.rtf */,
+			);
+			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -420,7 +437,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				A54D12FA16C1410900D74D71 /* PBXTargetDependency */,
 				A5C0BBF316A6D083008072DE /* PBXTargetDependency */,
 				A5C0BBF516A6D083008072DE /* PBXTargetDependency */,
 			);
@@ -428,6 +444,23 @@
 			productInstallPath = "$(HOME)/Applications";
 			productName = SGHotKeyCenter;
 			productReference = 8D1107320486CEB800E47090 /* lockmenow.app */;
+			productType = "com.apple.product-type.application";
+		};
+		A5D2819416E7E394006405E0 /* script_service */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A5D281A916E7E394006405E0 /* Build configuration list for PBXNativeTarget "script_service" */;
+			buildPhases = (
+				A5D2819116E7E394006405E0 /* Sources */,
+				A5D2819216E7E394006405E0 /* Frameworks */,
+				A5D2819316E7E394006405E0 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = script_service;
+			productName = script_service;
+			productReference = A5D2819516E7E394006405E0 /* script_service.xpc */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -450,8 +483,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = A59F334C16C123B300A43F7C /* Products */;
-					ProjectRef = A59F334B16C123B300A43F7C /* LaunchAtLogin.xcodeproj */;
+					ProductGroup = A52B871D16CCF9D0005D49FA /* Products */;
+					ProjectRef = A52B871C16CCF9D0005D49FA /* LaunchAtLogin.xcodeproj */;
 				},
 				{
 					ProductGroup = A5C0BBE316A6D077008072DE /* Products */;
@@ -461,16 +494,17 @@
 			projectRoot = "";
 			targets = (
 				8D1107260486CEB800E47090 /* LockMeNow */,
+				A5D2819416E7E394006405E0 /* script_service */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		A59F335016C123B300A43F7C /* LaunchAtLoginHelper.app */ = {
+		A52B872116CCF9D1005D49FA /* LaunchAtLoginHelper.app */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.application;
 			path = LaunchAtLoginHelper.app;
-			remoteRef = A59F334F16C123B300A43F7C /* PBXContainerItemProxy */;
+			remoteRef = A52B872016CCF9D1005D49FA /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		A5C0BBED16A6D078008072DE /* PTHotKey.framework */ = {
@@ -508,11 +542,19 @@
 				A5DD8A4E143C47CC00094BEA /* russianapple.png in Resources */,
 				A5489BA415D3ED340072E5D2 /* off.pdf in Resources */,
 				A5489BA515D3ED340072E5D2 /* on.pdf in Resources */,
-				A5970AD1163A91BC00C674F4 /* filevault_2_encryption_check_extension_attribute.sh in Resources */,
 				A52A9F6016A8365300EA4B17 /* TextFieldBG.png in Resources */,
 				A5ABE36516B14409009A7151 /* lock@2x.png in Resources */,
 				A5ABE37216B147CA009A7151 /* russianapple@2x.png in Resources */,
 				A521519916B16CAE00E45B7D /* icon.iconset in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5D2819316E7E394006405E0 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5D2819C16E7E394006405E0 /* InfoPlist.strings in Resources */,
+				A5D281A216E7E394006405E0 /* Credits.rtf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -528,18 +570,21 @@
 				A5D1F41C15DA401700211A8F /* validatereceipt.m in Sources */,
 				A589299616A5DE9400063E09 /* PTUSBHub.m in Sources */,
 				A53766E616AC2B9B00AF78D8 /* InAppPurchaseManager.m in Sources */,
-				A59F334416C1238100A43F7C /* StartAtLoginController.m in Sources */,
+				A52B872716CCF9DE005D49FA /* StartAtLoginController.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5D2819116E7E394006405E0 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5D2819E16E7E394006405E0 /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A54D12FA16C1410900D74D71 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = LaunchAtLoginHelper;
-			targetProxy = A54D12F916C1410900D74D71 /* PBXContainerItemProxy */;
-		};
 		A5C0BBF316A6D083008072DE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PTHotKey;
@@ -577,48 +622,86 @@
 			name = Credits.rtf;
 			sourceTree = "<group>";
 		};
+		A5D2819A16E7E394006405E0 /* InfoPlist.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5D2819B16E7E394006405E0 /* en */,
+			);
+			name = InfoPlist.strings;
+			sourceTree = "<group>";
+		};
+		A5D281A016E7E394006405E0 /* Credits.rtf */ = {
+			isa = PBXVariantGroup;
+			children = (
+				A5D281A116E7E394006405E0 /* en */,
+			);
+			name = Credits.rtf;
+			sourceTree = "<group>";
+		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
-		A5932EDB16C14801009AA7BF /* Distribution */ = {
-			isa = XCBuildConfiguration;
-			buildSettings = {
-				ARCHS = "$(ARCHS_STANDARD_64_BIT)";
-				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				GCC_WARN_ABOUT_RETURN_TYPE = YES;
-				GCC_WARN_UNUSED_VARIABLE = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.6;
-				SDKROOT = macosx;
-			};
-			name = Distribution;
-		};
-		A5932EDC16C14801009AA7BF /* Distribution */ = {
+		A5D281AA16E7E394006405E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_OBJC_ARC = YES;
-				CODE_SIGN_ENTITLEMENTS = lockmenow.entitlements;
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Dmitriy Zhuravlev";
-				COMBINE_HIDPI_IMAGES = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = script_service/script_service.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
-				GCC_PREFIX_HEADER = Source/Prefix.pch;
-				HEADER_SEARCH_PATHS = (
+				GCC_PREFIX_HEADER = "script_service/script_service-Prefix.pch";
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
 					"$(inherited)",
-					"$(SRCROOT)/External/LaunchAtLogin/Vendor/StartAtLoginController",
 				);
-				INFOPLIST_FILE = Resources/Info.plist;
-				INSTALL_PATH = /Applications;
-				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
-				OTHER_CFLAGS = (
-					"-DYES_I_HAVE_READ_THE_WARNING_AND_I_ACCEPT_THE_RISK",
-					"-DUSE_VALIDATE_RECEIPT",
-				);
-				OTHER_LDFLAGS = "-lcrypto";
-				PRODUCT_NAME = lockmenow;
-				PROVISIONING_PROFILE = "";
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "script_service/script_service-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xpc;
 			};
-			name = Distribution;
+			name = Debug;
+		};
+		A5D281AB16E7E394006405E0 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = script_service/script_service.entitlements;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COPY_PHASE_STRIP = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
+				GCC_PRECOMPILE_PREFIX_HEADER = YES;
+				GCC_PREFIX_HEADER = "script_service/script_service-Prefix.pch";
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES;
+				INFOPLIST_FILE = "script_service/script_service-Info.plist";
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				WRAPPER_EXTENSION = xpc;
+			};
+			name = Release;
 		};
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
@@ -629,17 +712,20 @@
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Dmitriy Zhuravlev";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Source/Prefix.pch;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/External/LaunchAtLogin/Vendor/StartAtLoginController",
+					"$(SRCROOT)/External/Apple",
 				);
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = /Applications;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CFLAGS = (
 					"-DYES_I_HAVE_READ_THE_WARNING_AND_I_ACCEPT_THE_RISK",
 					"-DDEBUG",
@@ -658,16 +744,19 @@
 				CODE_SIGN_ENTITLEMENTS = lockmenow.entitlements;
 				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Dmitriy Zhuravlev";
 				COMBINE_HIDPI_IMAGES = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = Source/Prefix.pch;
+				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
 					"$(SRCROOT)/External/LaunchAtLogin/Vendor/StartAtLoginController",
+					"$(SRCROOT)/External/Apple",
 				);
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = /Applications;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.6.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.8;
 				OTHER_CFLAGS = (
 					"-DYES_I_HAVE_READ_THE_WARNING_AND_I_ACCEPT_THE_RISK",
 					"-DUSE_VALIDATE_RECEIPT",
@@ -707,12 +796,20 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A5D281A916E7E394006405E0 /* Build configuration list for PBXNativeTarget "script_service" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5D281AA16E7E394006405E0 /* Debug */,
+				A5D281AB16E7E394006405E0 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "LockMeNow" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				C01FCF4B08A954540054247B /* Debug */,
 				C01FCF4C08A954540054247B /* Release */,
-				A5932EDC16C14801009AA7BF /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
@@ -722,7 +819,6 @@
 			buildConfigurations = (
 				C01FCF4F08A954540054247B /* Debug */,
 				C01FCF5008A954540054247B /* Release */,
-				A5932EDB16C14801009AA7BF /* Distribution */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

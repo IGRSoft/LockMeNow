@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>com.apple.security.app-sandbox</key>
+	<true/>
+	<key>com.apple.security.temporary-exception.mach-lookup.global-name</key>
+	<array>
+		<string>com.apple.diskmanagementd</string>
+	</array>
+	<key>com.apple.security.temporary-exception.sbpl</key>
+	<array>
+		<string>(allow iokit-open (iokit-user-client-class &quot;CoreStorageUserClient&quot;))</string>
+		<string>(allow file-write-create (subpath &quot;/private/tmp/corestorage.txt&quot;))</string>
+	</array>
+	<key>com.apple.security.temporary-exception.files.absolute-path.read-write</key>
+	<array>
+		<string>/private/tmp/corestorage.txt</string>
+		<string>/private/tmp/encrypt_status.txt</string>
+		<string>/private/tmp/encrypt_direction.txt</string>
+	</array>
+</dict>
+</plist>

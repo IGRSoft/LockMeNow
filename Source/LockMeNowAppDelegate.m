@@ -30,6 +30,10 @@
 #import "validatereceipt.h"
 #import "StartAtLoginController.h"
 
+#import "ScriptServer.h"
+#import <errno.h>
+#import <fcntl.h>
+
 NSString *kGlobalHotKey = @"LockMeNowHotKey";
 NSString *kIconOnMainMenu = @"IconOnMainMenu";
 NSString *kLockType = @"LockType";
@@ -50,6 +54,7 @@ IOBluetoothDevice	*m_BluetoothDevice = nil;
 @interface LockMeNowAppDelegate()
 - (void)openImageURLfor:(IKImageView*)_imageView withUrl:(NSURL*)url;
 - (void)checkConnectivity;
+int ProcessIsRunningWithBundleID(CFStringRef inBundleID, ProcessSerialNumber* outPSN);
 @end
 
 @implementation LockMeNowAppDelegate
@@ -58,6 +63,34 @@ IOBluetoothDevice	*m_BluetoothDevice = nil;
 {
 	loginController = [[StartAtLoginController alloc] init];
 	[loginController setBundle:[NSBundle bundleWithPath:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Contents/Library/LoginItems/LaunchAtLoginHelper.app"]]];
+	
+	// Setup our connection to the launch item's service.
+	// This will start the launch item if it isn't already running.
+	
+	// Create a connection to the service and send it the message along with our file handles.
+	
+	// Prep XPC services.
+    self->_fetchServiceConnection = [self _connectionForServiceNamed:"com.bymaster.lockmenow.script-service"
+                                            connectionInvalidHandler:^{
+												self->_fetchServiceConnection = NULL;
+											}];
+    assert(self->_fetchServiceConnection != NULL);
+	
+	
+	scriptServiceConnection = [[NSXPCConnection alloc] initWithServiceName:@"com.bymaster.lockmenow.script-service"];
+	scriptServiceConnection.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(ScriptAgent)];
+	[scriptServiceConnection resume];
+	
+	[[scriptServiceConnection remoteObjectProxy] checkEncription:^(bool encription) {
+		[[NSOperationQueue mainQueue] addOperationWithBlock:^{
+			self.bEncription = encription;
+			if (self.bEncription) {
+				m_bAutoPrefs = false;
+			}
+			
+			DBNSLog(@"Encription: %d", encription);
+		}];
+	}];
 	
 	isTabsAdded = false;
 	m_BluetoothDevicePriorStatus = OutOfRange;
@@ -191,13 +224,7 @@ IOBluetoothDevice	*m_BluetoothDevice = nil;
 	m_bShouldTerminate = true;
 	self.bEncription = false;
 	
-	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0ul);
-	dispatch_async(queue, ^{
-		self.bEncription = [self checkEncryptionComplete];
-		if (self.bEncription) {
-			m_bAutoPrefs = false;
-		}
-	});
+	
 }
 
 - (void)awakeFromNib {
@@ -228,6 +255,7 @@ bool doNothingAtStart = false;
 
 - (void)applicationWillTerminate:(NSNotification *)theNotification 
 {
+	[scriptServiceConnection invalidate];
 	[self saveUserSettings];
 	[self stopMonitoring];
 	m_BluetoothDevice = nil;
@@ -342,6 +370,11 @@ bool doNothingAtStart = false;
 	m_bAutoPrefs = [btn state];
 }
 
+- (IBAction)tttttt:(id)sender {
+	
+	
+}
+
 - (void) makeLock
 {
 	m_bNeedResumeiTunes = false;
@@ -352,7 +385,7 @@ bool doNothingAtStart = false;
 			[self makeJustLock];
 			break;
 		case LOCK_BLOCK:
-			[self makeBlockLock];
+			//[self makeBlockLock];
 			break;
 		case LOCK_LOGIN_WINDOW:	
 		default:
@@ -372,9 +405,7 @@ bool doNothingAtStart = false;
 															   name:NSWorkspaceSessionDidResignActiveNotification
 															 object:NULL];
 	
-	[[NSTask launchedTaskWithLaunchPath:@"/bin/bash"
-							  arguments:@[@"-c", @"exec \"/System/Library/CoreServices/Menu Extras/user.menu/Contents/Resources/CGSession\" -suspend"]]
-	 waitUntilExit];
+	[[scriptServiceConnection remoteObjectProxy] makeLoginWindowLock];
 }
 
 - (void) makeJustLock
@@ -539,10 +570,10 @@ bool doNothingAtStart = false;
 																	 object:NULL];
 			break;
 		case LOCK_BLOCK:
-			for(NSWindow *blocker in _blockObjects) {
+			/*for(NSWindow *blocker in _blockObjects) {
 				[blocker orderOut:self];
 				DBNSLog(@"closing blocker");
-			}
+			}*/
 			
 			_blockObjects = nil;
 			
@@ -563,33 +594,6 @@ bool doNothingAtStart = false;
 	bool isPassword = (bool)CFPreferencesGetAppIntegerValue(CFSTR("askForPassword"), CFSTR("com.apple.screensaver"), nil);
 	
 	return isPassword;
-}
-
-- (bool)checkEncryptionComplete {
-	NSString *pathToMyScript = [[NSBundle mainBundle] pathForResource:@"filevault_2_encryption_check_extension_attribute" ofType:@"sh"];
-	NSTask *server = [NSTask new];
-	[server setLaunchPath:@"/bin/sh"];
-	[server setArguments:@[pathToMyScript]];
-	[server setCurrentDirectoryPath:[[NSBundle mainBundle] bundlePath]];
-	
-	NSPipe *outputPipe = [NSPipe pipe];
-	[server setStandardInput:[NSPipe pipe]];
-	[server setStandardOutput:outputPipe];
-	
-	[server launch];
-	[server waitUntilExit]; // Alternatively, make it asynchronous.
-	
-	NSData *outputData = [[outputPipe fileHandleForReading] readDataToEndOfFile];
-	NSString *outputString = [[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding]; // Autorelease optional, depending on usage.
-	
-	NSRange textRange;
-	textRange =[outputString rangeOfString:@"FileVault 2 Encryption Complete"];
-	if(textRange.location != NSNotFound)
-	{
-		return true;
-	}
-	
-	return false;
 }
 
 - (void) setSecuritySetings:(bool)seter withSkip:(bool)skip
@@ -808,8 +812,9 @@ int ProcessIsRunningWithBundleID(CFStringRef inBundleID, ProcessSerialNumber* ou
 - (BOOL)isInRange
 {
 	if (useAditionalLock) {
-		if( m_BluetoothDevice && [m_BluetoothDevice remoteNameRequest:nil] == kIOReturnSuccess )
-			return true;
+		if( m_BluetoothDevice )
+			if ( [m_BluetoothDevice remoteNameRequest:nil] == kIOReturnSuccess )
+				return true;
 	}
 	
 	return false;
