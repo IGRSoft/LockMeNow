@@ -36,9 +36,14 @@
 		A5D1F41C15DA401700211A8F /* validatereceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = A5D1F41B15DA401700211A8F /* validatereceipt.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A5D2819616E7E394006405E0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B0BEBF144CA9E0003C3145 /* Cocoa.framework */; };
 		A5D2819C16E7E394006405E0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5D2819A16E7E394006405E0 /* InfoPlist.strings */; };
-		A5D2819E16E7E394006405E0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5D2819D16E7E394006405E0 /* main.m */; };
-		A5D281A216E7E394006405E0 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A5D281A016E7E394006405E0 /* Credits.rtf */; };
+		A5D2819E16E7E394006405E0 /* script_service.m in Sources */ = {isa = PBXBuildFile; fileRef = A5D2819D16E7E394006405E0 /* script_service.m */; };
+		A5D7DE4F171AC2F6008A8FA4 /* LaunchAtLoginHelper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = A52B872116CCF9D1005D49FA /* LaunchAtLoginHelper.app */; };
+		A5D94E8A16FB1D550054BC6C /* script_service.xpc in Copy XPC Service */ = {isa = PBXBuildFile; fileRef = A5D2819516E7E394006405E0 /* script_service.xpc */; };
+		A5D94E8B16FB1DF50054BC6C /* script_service-Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5046E3F16FAFB6D00323A23 /* script_service-Entitlements.plist */; };
 		A5DD8A4E143C47CC00094BEA /* russianapple.png in Resources */ = {isa = PBXBuildFile; fileRef = A5DD8A4D143C47CB00094BEA /* russianapple.png */; };
+		A5F19B40171A98C900C8EE09 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5094B9816CBF33200A3C877 /* Foundation.framework */; };
+		A5F19B44171AA9F000C8EE09 /* filevault_2_encryption_check_extension_attribute.sh in Resources */ = {isa = PBXBuildFile; fileRef = A5F19B43171AA9F000C8EE09 /* filevault_2_encryption_check_extension_attribute.sh */; };
+		A5F19B46171AABAD00C8EE09 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F19B45171AABAD00C8EE09 /* IOKit.framework */; };
 		D0764512101E79F500DAE20D /* LockMeNowAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = D0764511101E79F500DAE20D /* LockMeNowAppDelegate.m */; };
 		D0764532101E7A6100DAE20D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D0764530101E7A6100DAE20D /* main.m */; };
 		D0ABD262101D374900E5F733 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0ABD261101D374900E5F733 /* Carbon.framework */; };
@@ -87,6 +92,20 @@
 			remoteGlobalIDString = A5B49BB416A6AB07004F9895;
 			remoteInfo = ShortcutRecorder;
 		};
+		A5D7DE49171AC257008A8FA4 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A52B871C16CCF9D0005D49FA /* LaunchAtLogin.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = B5E8BF7E15D11F00004ADD09;
+			remoteInfo = LaunchAtLoginHelper;
+		};
+		A5D94E8716FB1D000054BC6C /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A5D2819416E7E394006405E0;
+			remoteInfo = script_service;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -101,13 +120,25 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A59F335216C123E500A43F7C /* CopyFiles */ = {
+		A5D7DE4D171AC291008A8FA4 /* CopyFiles */ = {
 			isa = PBXCopyFilesBuildPhase;
-			buildActionMask = 12;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LoginItems;
+			dstSubfolderSpec = 1;
+			files = (
+				A5D7DE4F171AC2F6008A8FA4 /* LaunchAtLoginHelper.app in CopyFiles */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A5D94E8916FB1D3F0054BC6C /* Copy XPC Service */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
 			dstPath = Contents/XPCServices;
 			dstSubfolderSpec = 1;
 			files = (
+				A5D94E8A16FB1D550054BC6C /* script_service.xpc in Copy XPC Service */,
 			);
+			name = "Copy XPC Service";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -120,7 +151,7 @@
 		29B97324FDCFA39411CA2CEA /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = /System/Library/Frameworks/AppKit.framework; sourceTree = "<absolute>"; };
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107320486CEB800E47090 /* lockmenow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = lockmenow.app; sourceTree = BUILT_PRODUCTS_DIR; };
-		A5046E3F16FAFB6D00323A23 /* script_service.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = script_service.entitlements; sourceTree = "<group>"; };
+		A5046E3F16FAFB6D00323A23 /* script_service-Entitlements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "script_service-Entitlements.plist"; sourceTree = "<group>"; };
 		A5094B9816CBF33200A3C877 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A517CFA3142FD73E00632668 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
 		A521519816B16CAE00E45B7D /* icon.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = icon.iconset; path = Resources/icon.iconset; sourceTree = "<group>"; };
@@ -154,10 +185,11 @@
 		A5D2819516E7E394006405E0 /* script_service.xpc */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = script_service.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5D2819916E7E394006405E0 /* script_service-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "script_service-Info.plist"; sourceTree = "<group>"; };
 		A5D2819B16E7E394006405E0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
-		A5D2819D16E7E394006405E0 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A5D2819D16E7E394006405E0 /* script_service.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = script_service.m; sourceTree = "<group>"; };
 		A5D2819F16E7E394006405E0 /* script_service-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "script_service-Prefix.pch"; sourceTree = "<group>"; };
-		A5D281A116E7E394006405E0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = en; path = en.lproj/Credits.rtf; sourceTree = "<group>"; };
 		A5DD8A4D143C47CB00094BEA /* russianapple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = russianapple.png; path = Resources/russianapple.png; sourceTree = "<group>"; };
+		A5F19B43171AA9F000C8EE09 /* filevault_2_encryption_check_extension_attribute.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = filevault_2_encryption_check_extension_attribute.sh; path = Resources/filevault_2_encryption_check_extension_attribute.sh; sourceTree = "<group>"; };
+		A5F19B45171AABAD00C8EE09 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		A5F9F90215EEA4870091B2F0 /* lock-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lock-bg.png"; path = "Resources/lock-bg.png"; sourceTree = "<group>"; };
 		D0764510101E79F500DAE20D /* LockMeNowAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LockMeNowAppDelegate.h; path = Source/LockMeNowAppDelegate.h; sourceTree = "<group>"; };
 		D0764511101E79F500DAE20D /* LockMeNowAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LockMeNowAppDelegate.m; path = Source/LockMeNowAppDelegate.m; sourceTree = "<group>"; };
@@ -191,6 +223,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5F19B46171AABAD00C8EE09 /* IOKit.framework in Frameworks */,
+				A5F19B40171A98C900C8EE09 /* Foundation.framework in Frameworks */,
 				A5D2819616E7E394006405E0 /* Cocoa.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -270,6 +304,7 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A5F19B43171AA9F000C8EE09 /* filevault_2_encryption_check_extension_attribute.sh */,
 				A559117516B3D69C008A7BF9 /* lockmenow.entitlements */,
 				A521519816B16CAE00E45B7D /* icon.iconset */,
 				A52A9F5F16A8365200EA4B17 /* TextFieldBG.png */,
@@ -403,7 +438,7 @@
 		A5D2819716E7E394006405E0 /* script_service */ = {
 			isa = PBXGroup;
 			children = (
-				A5046E3F16FAFB6D00323A23 /* script_service.entitlements */,
+				A5D2819D16E7E394006405E0 /* script_service.m */,
 				A5D2819816E7E394006405E0 /* Supporting Files */,
 			);
 			path = script_service;
@@ -412,11 +447,11 @@
 		A5D2819816E7E394006405E0 /* Supporting Files */ = {
 			isa = PBXGroup;
 			children = (
+				A5F19B45171AABAD00C8EE09 /* IOKit.framework */,
+				A5046E3F16FAFB6D00323A23 /* script_service-Entitlements.plist */,
 				A5D2819916E7E394006405E0 /* script_service-Info.plist */,
 				A5D2819A16E7E394006405E0 /* InfoPlist.strings */,
-				A5D2819D16E7E394006405E0 /* main.m */,
 				A5D2819F16E7E394006405E0 /* script_service-Prefix.pch */,
-				A5D281A016E7E394006405E0 /* Credits.rtf */,
 			);
 			name = "Supporting Files";
 			sourceTree = "<group>";
@@ -432,11 +467,14 @@
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
 				A589294B16A5AFC600063E09 /* CopyFiles */,
-				A59F335216C123E500A43F7C /* CopyFiles */,
+				A5D94E8916FB1D3F0054BC6C /* Copy XPC Service */,
+				A5D7DE4D171AC291008A8FA4 /* CopyFiles */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				A5D7DE4A171AC257008A8FA4 /* PBXTargetDependency */,
+				A5D94E8816FB1D000054BC6C /* PBXTargetDependency */,
 				A5C0BBF316A6D083008072DE /* PBXTargetDependency */,
 				A5C0BBF516A6D083008072DE /* PBXTargetDependency */,
 			);
@@ -553,8 +591,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5D94E8B16FB1DF50054BC6C /* script_service-Entitlements.plist in Resources */,
 				A5D2819C16E7E394006405E0 /* InfoPlist.strings in Resources */,
-				A5D281A216E7E394006405E0 /* Credits.rtf in Resources */,
+				A5F19B44171AA9F000C8EE09 /* filevault_2_encryption_check_extension_attribute.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -578,7 +617,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5D2819E16E7E394006405E0 /* main.m in Sources */,
+				A5D2819E16E7E394006405E0 /* script_service.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -594,6 +633,16 @@
 			isa = PBXTargetDependency;
 			name = ShortcutRecorder;
 			targetProxy = A5C0BBF416A6D083008072DE /* PBXContainerItemProxy */;
+		};
+		A5D7DE4A171AC257008A8FA4 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = LaunchAtLoginHelper;
+			targetProxy = A5D7DE49171AC257008A8FA4 /* PBXContainerItemProxy */;
+		};
+		A5D94E8816FB1D000054BC6C /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A5D2819416E7E394006405E0 /* script_service */;
+			targetProxy = A5D94E8716FB1D000054BC6C /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -630,14 +679,6 @@
 			name = InfoPlist.strings;
 			sourceTree = "<group>";
 		};
-		A5D281A016E7E394006405E0 /* Credits.rtf */ = {
-			isa = PBXVariantGroup;
-			children = (
-				A5D281A116E7E394006405E0 /* en */,
-			);
-			name = Credits.rtf;
-			sourceTree = "<group>";
-		};
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
@@ -653,8 +694,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = script_service/script_service.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_ENTITLEMENTS = "script_service/script_service-Entitlements.plist";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Dmitriy Zhuravlev";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -669,8 +710,10 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "script_service/script_service-Info.plist";
+				INSTALL_PATH = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = xpc;
 			};
 			name = Debug;
@@ -687,8 +730,8 @@
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
-				CODE_SIGN_ENTITLEMENTS = script_service/script_service.entitlements;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_ENTITLEMENTS = "script_service/script_service-Entitlements.plist";
+				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Dmitriy Zhuravlev";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -697,8 +740,10 @@
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
 				GCC_WARN_UNINITIALIZED_AUTOS = YES;
 				INFOPLIST_FILE = "script_service/script_service-Info.plist";
+				INSTALL_PATH = "";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE = "";
 				WRAPPER_EXTENSION = xpc;
 			};
 			name = Release;
@@ -725,7 +770,7 @@
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = /Applications;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_CFLAGS = (
 					"-DYES_I_HAVE_READ_THE_WARNING_AND_I_ACCEPT_THE_RISK",
 					"-DDEBUG",
@@ -756,7 +801,7 @@
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = /Applications;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.8;
+				MACOSX_DEPLOYMENT_TARGET = 10.7;
 				OTHER_CFLAGS = (
 					"-DYES_I_HAVE_READ_THE_WARNING_AND_I_ACCEPT_THE_RISK",
 					"-DUSE_VALIDATE_RECEIPT",

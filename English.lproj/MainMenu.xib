@@ -2,10 +2,10 @@
 <archive type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="8.00">
 	<data>
 		<int key="IBDocument.SystemTarget">1060</int>
-		<string key="IBDocument.SystemVersion">12C60</string>
+		<string key="IBDocument.SystemVersion">12D78</string>
 		<string key="IBDocument.InterfaceBuilderVersion">3084</string>
-		<string key="IBDocument.AppKitVersion">1187.34</string>
-		<string key="IBDocument.HIToolboxVersion">625.00</string>
+		<string key="IBDocument.AppKitVersion">1187.37</string>
+		<string key="IBDocument.HIToolboxVersion">626.00</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginVersions">
 			<string key="NS.key.0">com.apple.InterfaceBuilder.CocoaPlugin</string>
 			<string key="NS.object.0">3084</string>
@@ -228,6 +228,7 @@
 							<int key="NSvFlags">12</int>
 							<string key="NSFrame">{{13, 26}, {319, 300}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
+							<reference key="NSWindow"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<array class="NSMutableArray" key="NSTabViewItems">
 								<object class="NSTabViewItem" id="300386042">
@@ -241,6 +242,7 @@
 												<int key="NSvFlags">264</int>
 												<string key="NSFrame">{{17, 117}, {265, 5}}</string>
 												<reference key="NSSuperview" ref="989109797"/>
+												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView" ref="487579205"/>
 												<string key="NSOffsets">{0, 0}</string>
 												<object class="NSTextFieldCell" key="NSTitleCell">
@@ -276,6 +278,7 @@
 												<int key="NSvFlags">266</int>
 												<string key="NSFrame">{{20, 230}, {262, 22}}</string>
 												<reference key="NSSuperview" ref="989109797"/>
+												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView" ref="601277823"/>
 												<string key="NSClassName">SRRecorderControl</string>
 											</object>
@@ -284,6 +287,7 @@
 												<int key="NSvFlags">268</int>
 												<string key="NSFrame">{{18, 95}, {122, 18}}</string>
 												<reference key="NSSuperview" ref="989109797"/>
+												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView" ref="889778585"/>
 												<string key="NSReuseIdentifierKey">_NS:717</string>
 												<bool key="NSEnabled">YES</bool>
@@ -323,6 +327,7 @@
 																<int key="NSvFlags">268</int>
 																<string key="NSFrame">{{18, 34}, {191, 38}}</string>
 																<reference key="NSSuperview" ref="175593591"/>
+																<reference key="NSWindow"/>
 																<reference key="NSNextKeyView" ref="272103439"/>
 																<string key="NSReuseIdentifierKey">_NS:744</string>
 																<bool key="NSEnabled">YES</bool>
@@ -435,6 +440,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 																<int key="NSvFlags">268</int>
 																<string key="NSFrame">{{15, 14}, {142, 17}}</string>
 																<reference key="NSSuperview" ref="175593591"/>
+																<reference key="NSWindow"/>
 																<reference key="NSNextKeyView" ref="689678390"/>
 																<string key="NSReuseIdentifierKey">_NS:1535</string>
 																<bool key="NSEnabled">YES</bool>
@@ -461,12 +467,14 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 														</array>
 														<string key="NSFrame">{{1, 1}, {266, 82}}</string>
 														<reference key="NSSuperview" ref="601277823"/>
+														<reference key="NSWindow"/>
 														<reference key="NSNextKeyView" ref="61656866"/>
 														<string key="NSReuseIdentifierKey">_NS:20</string>
 													</object>
 												</array>
 												<string key="NSFrame">{{17, 124}, {268, 98}}</string>
 												<reference key="NSSuperview" ref="989109797"/>
+												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView" ref="175593591"/>
 												<string key="NSReuseIdentifierKey">_NS:17</string>
 												<string key="NSOffsets">{0, 0}</string>
@@ -496,6 +504,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 												<int key="NSvFlags">268</int>
 												<string key="NSFrame">{{18, 75}, {142, 18}}</string>
 												<reference key="NSSuperview" ref="989109797"/>
+												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView" ref="540822790"/>
 												<string key="NSReuseIdentifierKey">_NS:717</string>
 												<bool key="NSEnabled">YES</bool>
@@ -522,6 +531,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 												<int key="NSvFlags">268</int>
 												<string key="NSFrame">{{18, 55}, {145, 18}}</string>
 												<reference key="NSSuperview" ref="989109797"/>
+												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView" ref="606005593"/>
 												<string key="NSReuseIdentifierKey">_NS:9</string>
 												<bool key="NSEnabled">YES</bool>
@@ -548,6 +558,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 												<int key="NSvFlags">268</int>
 												<string key="NSFrame">{{42, 35}, {158, 18}}</string>
 												<reference key="NSSuperview" ref="989109797"/>
+												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView" ref="1040254828"/>
 												<string key="NSReuseIdentifierKey">_NS:9</string>
 												<bool key="NSEnabled">YES</bool>
@@ -574,6 +585,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 												<int key="NSvFlags">268</int>
 												<string key="NSFrame">{{20, 15}, {222, 18}}</string>
 												<reference key="NSSuperview" ref="989109797"/>
+												<reference key="NSWindow"/>
 												<reference key="NSNextKeyView" ref="551099319"/>
 												<string key="NSReuseIdentifierKey">_NS:9</string>
 												<bool key="NSEnabled">YES</bool>
@@ -598,6 +610,7 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 										</array>
 										<string key="NSFrame">{{10, 25}, {299, 262}}</string>
 										<reference key="NSSuperview" ref="551099319"/>
+										<reference key="NSWindow"/>
 										<reference key="NSNextKeyView" ref="449546282"/>
 										<string key="NSReuseIdentifierKey">_NS:11</string>
 									</object>
@@ -822,8 +835,9 @@ IFpodXJhdmxldiAoQGJ5bWFzdGVyKQ</string>
 						<object class="NSButton" id="770123141">
 							<reference key="NSNextResponder" ref="439893737"/>
 							<int key="NSvFlags">268</int>
-							<string key="NSFrame">{{109, 9}, {94, 19}}</string>
+							<string key="NSFrame">{{125, 9}, {94, 19}}</string>
 							<reference key="NSSuperview" ref="439893737"/>
+							<reference key="NSWindow"/>
 							<string key="NSReuseIdentifierKey">_NS:9</string>
 							<bool key="NSEnabled">YES</bool>
 							<object class="NSButtonCell" key="NSCell" id="122583018">
@@ -849,6 +863,7 @@ IFpodXJhdmxldiAoQGJ5bWFzdGVyKQ</string>
 					</array>
 					<string key="NSFrameSize">{345, 332}</string>
 					<reference key="NSSuperview"/>
+					<reference key="NSWindow"/>
 					<reference key="NSNextKeyView" ref="551099319"/>
 				</object>
 				<string key="NSScreenRect">{{0, 0}, {1920, 1178}}</string>
@@ -3119,7 +3134,208 @@ AAMAAAABAAEAAAFTAAMAAAAEAAAFwgAAAAAACAAIAAgACAABAAEAAQABA</bytes>
 			<nil key="sourceID"/>
 			<int key="maxID">943</int>
 		</object>
-		<object class="IBClassDescriber" key="IBDocument.Classes"/>
+		<object class="IBClassDescriber" key="IBDocument.Classes">
+			<array class="NSMutableArray" key="referencedPartialClassDescriptions">
+				<object class="IBPartialClassDescription">
+					<string key="className">IKImageView</string>
+					<object class="NSMutableDictionary" key="actions">
+						<string key="NS.key.0">crop:</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="actionInfosByName">
+						<string key="NS.key.0">crop:</string>
+						<object class="IBActionInfo" key="NS.object.0">
+							<string key="name">crop:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/IKImageView.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">LockMeNowAppDelegate</string>
+					<string key="superclassName">NSObject</string>
+					<dictionary class="NSMutableDictionary" key="actions">
+						<string key="changeDevice:">id</string>
+						<string key="changeUSBDeviceType:">id</string>
+						<string key="doLock:">id</string>
+						<string key="doUnLock:">id</string>
+						<string key="goToURL:">id</string>
+						<string key="listenUSBDevice:">id</string>
+						<string key="openPrefs:">id</string>
+						<string key="openPurchases:">id</string>
+						<string key="purchaseLockViaDevise:">id</string>
+						<string key="restoreAllPurchases:">id</string>
+						<string key="setAutoPrefs:">id</string>
+						<string key="setLockType:">id</string>
+						<string key="setMenuIcon:">id</string>
+						<string key="setMonitoring:">id</string>
+						<string key="setiTunesPause:">id</string>
+						<string key="setiTunesResume:">id</string>
+						<string key="toggleStartup:">id</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="actionInfosByName">
+						<object class="IBActionInfo" key="changeDevice:">
+							<string key="name">changeDevice:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="changeUSBDeviceType:">
+							<string key="name">changeUSBDeviceType:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="doLock:">
+							<string key="name">doLock:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="doUnLock:">
+							<string key="name">doUnLock:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="goToURL:">
+							<string key="name">goToURL:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="listenUSBDevice:">
+							<string key="name">listenUSBDevice:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="openPrefs:">
+							<string key="name">openPrefs:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="openPurchases:">
+							<string key="name">openPurchases:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="purchaseLockViaDevise:">
+							<string key="name">purchaseLockViaDevise:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="restoreAllPurchases:">
+							<string key="name">restoreAllPurchases:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="setAutoPrefs:">
+							<string key="name">setAutoPrefs:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="setLockType:">
+							<string key="name">setLockType:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="setMenuIcon:">
+							<string key="name">setMenuIcon:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="setMonitoring:">
+							<string key="name">setMonitoring:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="setiTunesPause:">
+							<string key="name">setiTunesPause:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="setiTunesResume:">
+							<string key="name">setiTunesResume:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+						<object class="IBActionInfo" key="toggleStartup:">
+							<string key="name">toggleStartup:</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="outlets">
+						<string key="bluetoothName">NSTextField</string>
+						<string key="bluetoothStatus">IKImageView</string>
+						<string key="bluetoothTabViewItem">NSTabViewItem</string>
+						<string key="btnPurchaseLockByDevice">NSButton</string>
+						<string key="hotKeyControl">SRRecorderControl</string>
+						<string key="lockBlockView">NSView</string>
+						<string key="spinner">NSProgressIndicator</string>
+						<string key="statusMenu">NSMenu</string>
+						<string key="tabView">NSTabView</string>
+						<string key="timerInterval">NSTextField</string>
+						<string key="usbTabViewItem">NSTabViewItem</string>
+						<string key="window">NSWindow</string>
+					</dictionary>
+					<dictionary class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<object class="IBToOneOutletInfo" key="bluetoothName">
+							<string key="name">bluetoothName</string>
+							<string key="candidateClassName">NSTextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="bluetoothStatus">
+							<string key="name">bluetoothStatus</string>
+							<string key="candidateClassName">IKImageView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="bluetoothTabViewItem">
+							<string key="name">bluetoothTabViewItem</string>
+							<string key="candidateClassName">NSTabViewItem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="btnPurchaseLockByDevice">
+							<string key="name">btnPurchaseLockByDevice</string>
+							<string key="candidateClassName">NSButton</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="hotKeyControl">
+							<string key="name">hotKeyControl</string>
+							<string key="candidateClassName">SRRecorderControl</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="lockBlockView">
+							<string key="name">lockBlockView</string>
+							<string key="candidateClassName">NSView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="spinner">
+							<string key="name">spinner</string>
+							<string key="candidateClassName">NSProgressIndicator</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="statusMenu">
+							<string key="name">statusMenu</string>
+							<string key="candidateClassName">NSMenu</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="tabView">
+							<string key="name">tabView</string>
+							<string key="candidateClassName">NSTabView</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="timerInterval">
+							<string key="name">timerInterval</string>
+							<string key="candidateClassName">NSTextField</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="usbTabViewItem">
+							<string key="name">usbTabViewItem</string>
+							<string key="candidateClassName">NSTabViewItem</string>
+						</object>
+						<object class="IBToOneOutletInfo" key="window">
+							<string key="name">window</string>
+							<string key="candidateClassName">NSWindow</string>
+						</object>
+					</dictionary>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/LockMeNowAppDelegate.h</string>
+					</object>
+				</object>
+				<object class="IBPartialClassDescription">
+					<string key="className">SRRecorderControl</string>
+					<string key="superclassName">NSControl</string>
+					<object class="NSMutableDictionary" key="outlets">
+						<string key="NS.key.0">delegate</string>
+						<string key="NS.object.0">id</string>
+					</object>
+					<object class="NSMutableDictionary" key="toOneOutletInfosByName">
+						<string key="NS.key.0">delegate</string>
+						<object class="IBToOneOutletInfo" key="NS.object.0">
+							<string key="name">delegate</string>
+							<string key="candidateClassName">id</string>
+						</object>
+					</object>
+					<object class="IBClassDescriptionSource" key="sourceIdentifier">
+						<string key="majorKey">IBProjectSource</string>
+						<string key="minorKey">./Classes/SRRecorderControl.h</string>
+					</object>
+				</object>
+			</array>
+		</object>
 		<int key="IBDocument.localizationMode">0</int>
 		<string key="IBDocument.TargetRuntimeIdentifier">IBCocoaFramework</string>
 		<object class="NSMutableDictionary" key="IBDocument.PluginDeclaredDependencies">

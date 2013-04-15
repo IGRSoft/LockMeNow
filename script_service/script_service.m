@@ -8,6 +8,101 @@
 
 #import <Cocoa/Cocoa.h>
 #include <xpc/xpc.h>
+#include <asl.h>
+#include "LockMeNowAppDelegate.h"
+
+static NSString* doShell(NSString* file)
+{
+	NSString *scriptPath = [[NSBundle mainBundle] pathForResource:file ofType:@"sh"];
+	
+	NSTask *scriptTask = [NSTask new];
+	NSPipe *outputPipe = [NSPipe pipe];
+	
+	if ([[NSFileManager defaultManager] isExecutableFileAtPath:scriptPath] == NO) {
+		NSArray *chmodArguments = [NSArray arrayWithObjects:@"+x", scriptPath, nil];
+		
+		NSTask *chmod = [NSTask launchedTaskWithLaunchPath:@"/bin/chmod" arguments:chmodArguments];
+		
+		[chmod waitUntilExit];
+	}
+	
+	[scriptTask setStandardOutput:outputPipe];
+	[scriptTask setLaunchPath:scriptPath];
+	
+	NSFileHandle *filehandle = [outputPipe fileHandleForReading];
+	
+	[scriptTask launch];
+	[scriptTask waitUntilExit];
+	
+	NSData *outputData    = [filehandle readDataToEndOfFile];
+	
+	NSString *outputString  = [[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding];
+	
+	return outputString;
+}
+
+static bool checkEncription()
+{
+	bool encription = false;
+	
+	NSString *outputString = doShell(@"filevault_2_encryption_check_extension_attribute");
+	
+	NSRange textRange;
+	textRange =[outputString rangeOfString:@"FileVault 2 Encryption Complete"];
+	if(textRange.location != NSNotFound)
+	{
+		encription = true;
+	}
+	
+	return encription;
+}
+
+static void makeLoginWindowLock()
+{
+	NSTask *task;
+	NSMutableArray *arguments = [NSArray arrayWithObject:@"-suspend"];
+	
+	task = [[NSTask alloc] init];
+	[task setArguments: arguments];
+	[task setLaunchPath: @"/System/Library/CoreServices/Menu Extras/User.menu/Contents/Resources/CGSession"];
+	[task launch];
+}
+
+static void makeJustLock()
+{
+	io_registry_entry_t r =	IORegistryEntryFromPath(kIOMasterPortDefault, "IOService:/IOResources/IODisplayWrangler");
+	if(!r) return;
+	IORegistryEntrySetCFProperty(r, CFSTR("IORequestIdle"), kCFBooleanTrue);
+	IOObjectRelease(r);
+}
+
+static void
+fetch_process_request(xpc_object_t request, xpc_object_t reply)
+{
+    // Get the URL and XPC connection from the XPC request
+	if (xpc_dictionary_get_value(request, "locktype") != NULL)
+    {
+		uint64_t locktype = xpc_dictionary_get_uint64(request, "locktype");
+		
+		switch (locktype) {
+			case LOCK_LOGIN_WINDOW:
+				makeLoginWindowLock();
+				break;
+				
+			case LOCK_SCREEN:
+				makeJustLock();
+				break;
+				
+			default:
+				break;
+		}
+	}
+	else if (xpc_dictionary_get_value(request, "encription") != NULL)
+    {
+		bool encription = checkEncription();
+		xpc_dictionary_set_bool(reply, "encription", encription);
+	}
+}
 
 static void
 fetch_peer_event_handler(xpc_connection_t peer, xpc_object_t event)

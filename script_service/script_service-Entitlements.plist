@@ -12,6 +12,7 @@
 	<array>
 		<string>(allow iokit-open (iokit-user-client-class &quot;CoreStorageUserClient&quot;))</string>
 		<string>(allow file-write-create (subpath &quot;/private/tmp/corestorage.txt&quot;))</string>
+		<string>(allow iokit-set-properties (iokit-property &quot;IORequestIdle&quot;))</string>
 	</array>
 	<key>com.apple.security.temporary-exception.files.absolute-path.read-write</key>
 	<array>
