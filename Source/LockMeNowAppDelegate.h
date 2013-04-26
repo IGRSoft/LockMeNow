@@ -41,7 +41,7 @@ typedef struct {
     uint16_t productID;
 } APPLE_MOBILE_DEVICE;
 
-@interface LockMeNowAppDelegate : NSObject <NSApplicationDelegate, NSControlTextEditingDelegate, NSTabViewDelegate> {
+@interface LockMeNowAppDelegate : NSObject <NSApplicationDelegate, NSTabViewDelegate> {
 	//Interface
     NSStatusItem		*m_statusItem;
 	NSApplicationPresentationOptions appPresentationOptions;
@@ -54,6 +54,7 @@ typedef struct {
 	LockingType			m_iLockType;
 	
 	NSOperationQueue	*m_Queue;
+	NSOperationQueue	*m_GUIQueue;
 	bool				m_bShouldTerminate;
 	
 	//Bluetooth
@@ -64,6 +65,7 @@ typedef struct {
 	//USB
 	int					m_iUSBDeviceID;
 	DeviceType			m_iUSBDeviceType;
+	DeviceType			m_iCurrentUSBDeviceType;
 	NSString			*m_sUSBDeviceName;
 	bool				m_bMonitoringUSB;
 	
@@ -92,7 +94,7 @@ typedef struct {
 @property (nonatomic, strong) PTHotKey						*hotKey;
 @property (nonatomic, strong) IBOutlet IKImageView			*bluetoothStatus;
 @property (nonatomic, strong) IBOutlet NSTextField			*bluetoothName;
-@property (nonatomic, strong) IBOutlet NSTextField			*timerInterval;
+//@property (nonatomic, strong) IBOutlet NSTextField			*bluetoothTimerInterval;
 @property (nonatomic) int									p_BluetoothTimerInterval;
 @property (nonatomic, strong) IBOutlet NSProgressIndicator	*spinner;
 @property (nonatomic) bool	bMonitoring;
@@ -110,6 +112,7 @@ typedef struct {
 - (IBAction) setAutoPrefs:(id)sender;
 - (IBAction) goToURL:(id)sender;
 - (IBAction) openPrefs:(id)sender;
+- (IBAction) toggleStartup:(id)sender;
 - (IBAction) changeDevice:(id)sender;
 - (IBAction) listenUSBDevice:(id)sender;
 - (IBAction) changeUSBDeviceType:(id)sender;

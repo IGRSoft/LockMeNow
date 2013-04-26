@@ -24,10 +24,8 @@
 		<string>(allow mach-lookup (global-name #&quot;com.apple.loginwindow.notify&quot;))</string>
 		<string>(allow mach-lookup (global-name #&quot;com.apple.screenIsUnlocked&quot;))</string>
 		<string>(allow mach-lookup (global-name #&quot;com.apple.screenIsLocked&quot;))</string>
-	</array>
-	<key>com.apple.security.temporary-exception.mach-lookup.global-name</key>
-	<array>
-		<string>com.apple.logind</string>
+		<string>(allow mach-lookup (global-name-regex &quot;com.apple.logind&quot;))</string>
+		<string>(allow network-outbound (literal &quot;/private/var/run/usbmuxd&quot;))</string>
 	</array>
 </dict>
 </plist>

@@ -110,6 +110,14 @@ int ProcessIsRunningWithBundleID(CFStringRef inBundleID, ProcessSerialNumber* ou
 
 - (void)applicationDidFinishLaunching:(NSNotification *)theNotification 
 {
+	m_bNeedResumeiTunes = false;
+	m_bShouldTerminate = true;
+	self.bEncription = false;
+	isTabsAdded = false;
+	m_BluetoothDevicePriorStatus = OutOfRange;
+	m_BluetoothDevice = nil;
+	m_iCurrentUSBDeviceType = -1;
+	
 	loginController = [[StartAtLoginController alloc] init];
 	[loginController setBundle:[NSBundle bundleWithPath:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Contents/Library/LoginItems/LaunchAtLoginHelper.app"]]];
 	
@@ -146,14 +154,11 @@ int ProcessIsRunningWithBundleID(CFStringRef inBundleID, ProcessSerialNumber* ou
 	   }
 	});
 	
-	isTabsAdded = false;
-	m_BluetoothDevicePriorStatus = OutOfRange;
-	m_BluetoothDevice = nil;
 #if BETA_APP
 	NSDateComponents *comps = [[NSDateComponents alloc] init];
-	[comps setYear:2012];
-	[comps setMonth:10];
-	[comps setDay:26];
+	[comps setYear:2013];
+	[comps setMonth:04];
+	[comps setDay:30];
 	[comps setHour:12];
 	[comps setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"] ];
 	
@@ -245,6 +250,7 @@ int ProcessIsRunningWithBundleID(CFStringRef inBundleID, ProcessSerialNumber* ou
 		[self makeMenu];
 	}
 	
+	m_GUIQueue = [[NSOperationQueue alloc] init];
 	m_Queue = [[NSOperationQueue alloc] init];
 	
 	[self.hotKeyControl setCanCaptureGlobalHotKeys:YES];
@@ -273,12 +279,6 @@ int ProcessIsRunningWithBundleID(CFStringRef inBundleID, ProcessSerialNumber* ou
 	NSURL* url = [NSURL fileURLWithPath: path];
 	
 	[self openImageURLfor: self.bluetoothStatus withUrl: url];
-	
-	m_bNeedResumeiTunes = false;
-	m_bShouldTerminate = true;
-	self.bEncription = false;
-	
-	
 }
 
 - (void)awakeFromNib {
@@ -309,6 +309,9 @@ bool doNothingAtStart = false;
 
 - (void)applicationWillTerminate:(NSNotification *)theNotification 
 {
+	[m_Queue cancelAllOperations];
+	[m_GUIQueue cancelAllOperations];
+	[[NSOperationQueue mainQueue] cancelAllOperations];
 	[self saveUserSettings];
 	[self stopMonitoring];
 	m_BluetoothDevice = nil;
@@ -740,26 +743,20 @@ bool doNothingAtStart = false;
 	m_bPauseiTunes = [[defaults objectForKey:kPauseiTunes] boolValue];
 	m_bResumeiTunes = [[defaults objectForKey:kResumeiTunes] boolValue];
 	m_bAutoPrefs = [[defaults objectForKey:kAutoScreenSaverPrefs] boolValue];
-
+	m_bNeedResumeiTunes = [[defaults objectForKey:kResumeiTunes] boolValue];
+	
 	if (useAditionalLock) {
 		NSData *deviceAsData = [defaults objectForKey:kBluetoothDevice];
 		if( [deviceAsData length] > 0 )
 		{
 			m_BluetoothDevice = [NSKeyedUnarchiver unarchiveObjectWithData:deviceAsData];
 			if (m_BluetoothDevice) {
-				if (![m_BluetoothDevice isConnected])
-				{
-					IOReturn rt = [m_BluetoothDevice openConnection:self];
-					if (rt != kIOReturnSuccess) {
-						DBNSLog(@"Can't connect bluetoth device");
-					}
-				}
 				[self.bluetoothName setStringValue:[NSString stringWithFormat:@"%@", [m_BluetoothDevice name]]];
 			}
 		}
 		
 		//Timer interval
-		_p_BluetoothTimerInterval = [[defaults stringForKey:kBluetoothCheckInterval] intValue];
+		self.p_BluetoothTimerInterval = 2; //[[defaults stringForKey:kBluetoothCheckInterval] intValue];
 		
 		// Monitoring enabled
 		m_bMonitoringBluetooth = [defaults boolForKey:kBluetoothMonitoring];
@@ -782,7 +779,7 @@ bool doNothingAtStart = false;
 		[defaults setBool:m_bMonitoringBluetooth forKey:kBluetoothMonitoring];
 		
 		// Timer interval
-		[defaults setInteger:_p_BluetoothTimerInterval forKey:kBluetoothCheckInterval];
+		//[defaults setInteger:_p_BluetoothTimerInterval forKey:kBluetoothCheckInterval];
 		
 		// Device
 		if( m_BluetoothDevice ) {
@@ -853,7 +850,7 @@ int ProcessIsRunningWithBundleID(CFStringRef inBundleID, ProcessSerialNumber* ou
 
 - (void)checkConnectivity
 {
-	[m_Queue addOperationWithBlock:^{
+	[m_GUIQueue addOperationWithBlock:^{
 		[[NSOperationQueue mainQueue] addOperationWithBlock:^{
 			[self.spinner startAnimation:self];
 		}];
@@ -878,8 +875,8 @@ int ProcessIsRunningWithBundleID(CFStringRef inBundleID, ProcessSerialNumber* ou
 - (BOOL)isInRange
 {
 	if (useAditionalLock) {
-		if( m_BluetoothDevice )
-			if ( [m_BluetoothDevice remoteNameRequest:nil] == kIOReturnSuccess )
+		if( m_BluetoothDevice)
+			if ([m_BluetoothDevice remoteNameRequest:nil] == kIOReturnSuccess )
 				return true;
 	}
 	
@@ -889,49 +886,61 @@ int ProcessIsRunningWithBundleID(CFStringRef inBundleID, ProcessSerialNumber* ou
 - (void)startMonitoring
 {
 	if (useAditionalLock) {
-		m_BluetoothTimer = [NSTimer scheduledTimerWithTimeInterval:_p_BluetoothTimerInterval
+		if (![m_BluetoothDevice isConnected])
+		{
+			IOReturn rt = [m_BluetoothDevice openConnection:self];
+			m_BluetoothDevicePriorStatus = OutOfRange;
+			if (rt != kIOReturnSuccess) {
+				DBNSLog(@"Can't connect bluetoth device");
+			}
+		}
+		
+		m_BluetoothTimer = [NSTimer scheduledTimerWithTimeInterval:self.p_BluetoothTimerInterval
 															target:self
 														  selector:@selector(handleTimer:)
 														  userInfo:nil
 														   repeats:YES];
-		[self handleTimer:m_BluetoothTimer];
 	}
 }
 
 - (void)stopMonitoring
 {
 	if (useAditionalLock) {
-		[m_BluetoothTimer invalidate];
 		m_BluetoothDevicePriorStatus = OutOfRange;
+		[self checkConnectivity];
+		[m_BluetoothDevice closeConnection];
+		[m_BluetoothTimer invalidate];
+		[m_Queue cancelAllOperations];
 	}
 }
 
 - (void)handleTimer:(NSTimer *)theTimer
 {
-	dispatch_queue_t queue = dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_LOW, 0);
-	dispatch_async(queue, ^{
-		if (useAditionalLock) {
-			BOOL result = [self isInRange];
-			
-			if( result )
-			{
-				if( m_BluetoothDevicePriorStatus == OutOfRange )
+	if (useAditionalLock) {
+		if (![[m_Queue operations] count]) {
+			[m_Queue addOperationWithBlock:^{
+				BOOL result = [self isInRange];
+				
+				if( result )
 				{
-					m_BluetoothDevicePriorStatus = InRange;
-					[self checkConnectivity];
+					if( m_BluetoothDevicePriorStatus == OutOfRange )
+					{
+						m_BluetoothDevicePriorStatus = InRange;
+						[self checkConnectivity];
+					}
 				}
-			}
-			else
-			{
-				if( m_BluetoothDevicePriorStatus == InRange )
+				else
 				{
-					m_BluetoothDevicePriorStatus = OutOfRange;
-					[self checkConnectivity];
-					[self makeLock];
+					if( m_BluetoothDevicePriorStatus == InRange )
+					{
+						m_BluetoothDevicePriorStatus = OutOfRange;
+						[self checkConnectivity];
+						[self makeLock];
+					}
 				}
-			}
+			}];
 		}
-	});
+	}
 }
 
 - (IBAction) setMonitoring:(id)sender
@@ -947,17 +956,6 @@ int ProcessIsRunningWithBundleID(CFStringRef inBundleID, ProcessSerialNumber* ou
 		{
 			[self stopMonitoring];
 		}
-	}
-}
-
-- (void)controlTextDidEndEditing:(NSNotification *)aNotification
-{
-	if (useAditionalLock) {
-		_p_BluetoothTimerInterval = [[self.timerInterval stringValue] intValue];
-		[self.timerInterval resignFirstResponder];
-		[self saveUserSettings];
-		[self stopMonitoring];
-		[self startMonitoring];
 	}
 }
 
@@ -985,6 +983,7 @@ int ProcessIsRunningWithBundleID(CFStringRef inBundleID, ProcessSerialNumber* ou
 	
 	if (imageRef)
     {
+		[_imageView setAutoresizes:YES];
         [_imageView setImage: imageRef
              imageProperties: nil];
 		
@@ -1085,74 +1084,42 @@ static APPLE_MOBILE_DEVICE APPLE_MOBILE_DEVICES[NUM_APPLE_MOBILE_DEVICES] = {
 	int _deviceID = [(note.userInfo)[@"DeviceID"] intValue];
 	if (m_iUSBDeviceID == _deviceID) {
 		DBNSLog(@"%@ is disconnected by USB", m_sUSBDeviceName);
-		m_iUSBDeviceID = 0;
-		m_sUSBDeviceName = nil;
-		[self makeLock];
+		if (m_iUSBDeviceType == m_iCurrentUSBDeviceType || m_iUSBDeviceType == USB_ALL_DEVICES) {
+			m_iUSBDeviceID = 0;
+			m_sUSBDeviceName = nil;
+			[self makeLock];
+		}
 	}
 }
 
 - (void) ListeningAttachUSBDevice: (NSNotification *)note
 {
+	m_iUSBDeviceID = 0;
+	m_iCurrentUSBDeviceType = -1;
 	uint16_t productID = [(note.userInfo)[@"Properties"][@"ProductID"] unsignedShortValue];
-	switch (m_iUSBDeviceType) {
-		case USB_ALL_DEVICES:
-		{
-			for (int i = NUM_IPHONE_POS; i < NUM_APPLE_MOBILE_DEVICES; ++i) {
-				APPLE_MOBILE_DEVICE iOSDevice = APPLE_MOBILE_DEVICES[i];
-				if (productID == iOSDevice.productID) {
-					DBNSLog(@"%s is connected by USB", iOSDevice.name);
-					m_iUSBDeviceID = [(note.userInfo)[@"DeviceID"] intValue];
-					m_sUSBDeviceName = [[NSString alloc] initWithCString:iOSDevice.name encoding:NSUTF8StringEncoding];
-					[self removeSecurityLock];
-					break;
-				}
+	
+	for (int i = NUM_IPHONE_POS; i < NUM_APPLE_MOBILE_DEVICES; ++i) {
+		APPLE_MOBILE_DEVICE iOSDevice = APPLE_MOBILE_DEVICES[i];
+		if (productID == iOSDevice.productID) {
+			DBNSLog(@"%s is connected by USB", iOSDevice.name);
+			m_iUSBDeviceID = [(note.userInfo)[@"DeviceID"] intValue];
+			m_sUSBDeviceName = [[NSString alloc] initWithCString:iOSDevice.name encoding:NSUTF8StringEncoding];
+			//[self removeSecurityLock];
+		
+			if (i < NUM_IPOD_POS) {
+				m_iCurrentUSBDeviceType = USB_IPHONE;
 			}
-		}
-			break;
-		case USB_IPHONE:
-		{
-			for (int i = NUM_IPHONE_POS; i < NUM_IPOD_POS; ++i) {
-				APPLE_MOBILE_DEVICE iOSDevice = APPLE_MOBILE_DEVICES[i];
-				if (productID == iOSDevice.productID) {
-					DBNSLog(@"%s is connected by USB", iOSDevice.name);
-					m_iUSBDeviceID = [(note.userInfo)[@"DeviceID"] intValue];
-					m_sUSBDeviceName = [[NSString alloc] initWithCString:iOSDevice.name encoding:NSUTF8StringEncoding];
-					[self removeSecurityLock];
-					break;
-				}
+			else if (i < NUM_IPAD_POS)
+			{
+				m_iCurrentUSBDeviceType = USB_IPOD;
 			}
-		}
-			break;
-		case USB_IPOD:
-		{
-			for (int i = NUM_IPOD_POS; i < NUM_IPAD_POS; ++i) {
-				APPLE_MOBILE_DEVICE iOSDevice = APPLE_MOBILE_DEVICES[i];
-				if (productID == iOSDevice.productID) {
-					DBNSLog(@"%s is connected by USB", iOSDevice.name);
-					m_iUSBDeviceID = [(note.userInfo)[@"DeviceID"] intValue];
-					m_sUSBDeviceName = [[NSString alloc] initWithCString:iOSDevice.name encoding:NSUTF8StringEncoding];
-					[self removeSecurityLock];
-					break;
-				}
+			else
+			{
+				m_iCurrentUSBDeviceType = USB_IPAD;
 			}
+			
+			break;
 		}
-			break;
-		case USB_IPAD:
-		{
-			for (int i = NUM_IPAD_POS; i < NUM_APPLE_MOBILE_DEVICES; ++i) {
-				APPLE_MOBILE_DEVICE iOSDevice = APPLE_MOBILE_DEVICES[i];
-				if (productID == iOSDevice.productID) {
-					DBNSLog(@"%s is connected by USB", iOSDevice.name);
-					m_iUSBDeviceID = [(note.userInfo)[@"DeviceID"] intValue];
-					m_sUSBDeviceName = [[NSString alloc] initWithCString:iOSDevice.name encoding:NSUTF8StringEncoding];
-					[self removeSecurityLock];
-					break;
-				}
-			}
-		}
-			break;
-		default:
-			break;
 	}
 }
 
