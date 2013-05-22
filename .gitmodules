@@ -1,9 +1,3 @@
-[submodule "External/ValidateStoreReceipt"]
-	path = External/ValidateStoreReceipt
-	url = https://github.com/tgunr/ValidateStoreReceipt.git
 [submodule "External/shortcutrecorder"]
 	path = External/shortcutrecorder
 	url = https://github.com/iKorich/shortcutrecorder.git
-[submodule "External/peertalk"]
-	path = External/peertalk
-	url = https://github.com/rsms/peertalk.git
