@@ -6,7 +6,7 @@
     #import <Cocoa/Cocoa.h>
 #endif
 
-#define BETA_APP 0
+#define BETA_APP 1
 /*
  lockmenow.test@gmail.com
  iKorich567

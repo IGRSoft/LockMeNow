@@ -158,7 +158,7 @@ int ProcessIsRunningWithBundleID(CFStringRef inBundleID, ProcessSerialNumber* ou
 	NSDateComponents *comps = [[NSDateComponents alloc] init];
 	[comps setYear:2013];
 	[comps setMonth:04];
-	[comps setDay:30];
+	[comps setDay:29];
 	[comps setHour:12];
 	[comps setTimeZone:[NSTimeZone timeZoneWithAbbreviation:@"UTC"] ];
 	
