@@ -48,6 +48,7 @@ typedef struct {
 	//Lock
 	bool				m_bUseIconOnMainMenu;
 	bool				m_bPauseiTunes;
+	bool				m_bUseCurrentScreenSaver;
 	bool				m_bResumeiTunes;
 	bool				m_bNeedResumeiTunes;
 	bool				m_bAutoPrefs;
@@ -86,19 +87,16 @@ typedef struct {
 @property (nonatomic, strong) IBOutlet NSWindow				*window;
 @property (nonatomic, strong) IBOutlet SRRecorderControl	*hotKeyControl;
 @property (nonatomic, strong) IBOutlet NSMenu				*statusMenu;
-@property (nonatomic, strong) IBOutlet NSButton				*btnPurchaseLockByDevice;
 @property (nonatomic, strong) IBOutlet NSTabView			*tabView;
-@property (nonatomic, strong) IBOutlet NSTabViewItem		*bluetoothTabViewItem;
-@property (nonatomic, strong) IBOutlet NSTabViewItem		*usbTabViewItem;
 
 @property (nonatomic, strong) PTHotKey						*hotKey;
 @property (nonatomic, strong) IBOutlet IKImageView			*bluetoothStatus;
 @property (nonatomic, strong) IBOutlet NSTextField			*bluetoothName;
-//@property (nonatomic, strong) IBOutlet NSTextField			*bluetoothTimerInterval;
 @property (nonatomic) int									p_BluetoothTimerInterval;
 @property (nonatomic, strong) IBOutlet NSProgressIndicator	*spinner;
 @property (nonatomic) bool	bMonitoring;
 @property (nonatomic) bool	bEncription;
+@property (nonatomic) bool	isJustLock;
 
 @property (nonatomic) NSMutableArray *blockObjects;
 @property (nonatomic, strong) IBOutlet NSView *lockBlockView;
@@ -117,9 +115,7 @@ typedef struct {
 - (IBAction) listenUSBDevice:(id)sender;
 - (IBAction) changeUSBDeviceType:(id)sender;
 - (IBAction) setMonitoring:(id)sender;
-- (IBAction) purchaseLockViaDevise:(id)sender;
-- (IBAction) restoreAllPurchases:(id)sender;
-- (IBAction) openPurchases:(id)sender;
+- (IBAction) setUseCurrentScreenSaver:(id)sender;
 
 - (void) makeMenu;
 - (void) loadUserSettings;
@@ -127,4 +123,5 @@ typedef struct {
 
 - (void) setSecuritySetings:(bool)seter withSkip:(bool)skip;
 - (IBAction) setMenuIcon:(id)sender;
+
 @end

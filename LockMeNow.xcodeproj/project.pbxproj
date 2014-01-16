@@ -11,11 +11,11 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		A517CFA4142FD73E00632668 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A517CFA2142FD73E00632668 /* Credits.rtf */; };
+		A51948D018887ED6009D6A81 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51948CF18887ED6009D6A81 /* SystemConfiguration.framework */; };
 		A521519916B16CAE00E45B7D /* icon.iconset in Resources */ = {isa = PBXBuildFile; fileRef = A521519816B16CAE00E45B7D /* icon.iconset */; };
 		A52A9F6016A8365300EA4B17 /* TextFieldBG.png in Resources */ = {isa = PBXBuildFile; fileRef = A52A9F5F16A8365200EA4B17 /* TextFieldBG.png */; };
 		A52B872716CCF9DE005D49FA /* StartAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = A52B872616CCF9DE005D49FA /* StartAtLoginController.m */; };
 		A53766DF16AC277400AF78D8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53766DE16AC277400AF78D8 /* StoreKit.framework */; };
-		A53766E616AC2B9B00AF78D8 /* InAppPurchaseManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A53766E216AC2B9A00AF78D8 /* InAppPurchaseManager.m */; };
 		A53FE3D4142F4F34003B4D67 /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = A53FE3D2142F4F34003B4D67 /* lock.png */; };
 		A5489BA415D3ED340072E5D2 /* off.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A5489BA215D3ED340072E5D2 /* off.pdf */; };
 		A5489BA515D3ED340072E5D2 /* on.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A5489BA315D3ED340072E5D2 /* on.pdf */; };
@@ -30,10 +30,9 @@
 		A5ABE37216B147CA009A7151 /* russianapple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5ABE37116B147CA009A7151 /* russianapple@2x.png */; };
 		A5C0BBF616A6D08B008072DE /* PTHotKey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5C0BBED16A6D078008072DE /* PTHotKey.framework */; };
 		A5C0BBF716A6D08B008072DE /* ShortcutRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5C0BBEF16A6D078008072DE /* ShortcutRecorder.framework */; };
-		A5C0BBF816A6D08F008072DE /* PTHotKey.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A5C0BBED16A6D078008072DE /* PTHotKey.framework */; };
-		A5C0BBF916A6D08F008072DE /* ShortcutRecorder.framework in CopyFiles */ = {isa = PBXBuildFile; fileRef = A5C0BBEF16A6D078008072DE /* ShortcutRecorder.framework */; };
+		A5C0BBF816A6D08F008072DE /* PTHotKey.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = A5C0BBED16A6D078008072DE /* PTHotKey.framework */; };
+		A5C0BBF916A6D08F008072DE /* ShortcutRecorder.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = A5C0BBEF16A6D078008072DE /* ShortcutRecorder.framework */; };
 		A5CE4D0315062BFB001C22D2 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5CE4D0215062BFB001C22D2 /* ScriptingBridge.framework */; };
-		A5D1F41C15DA401700211A8F /* validatereceipt.m in Sources */ = {isa = PBXBuildFile; fileRef = A5D1F41B15DA401700211A8F /* validatereceipt.m */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		A5D2819616E7E394006405E0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B0BEBF144CA9E0003C3145 /* Cocoa.framework */; };
 		A5D2819C16E7E394006405E0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5D2819A16E7E394006405E0 /* InfoPlist.strings */; };
 		A5D2819E16E7E394006405E0 /* script_service.m in Sources */ = {isa = PBXBuildFile; fileRef = A5D2819D16E7E394006405E0 /* script_service.m */; };
@@ -109,15 +108,16 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		A589294B16A5AFC600063E09 /* CopyFiles */ = {
+		A589294B16A5AFC600063E09 /* Copy Files */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				A5C0BBF816A6D08F008072DE /* PTHotKey.framework in CopyFiles */,
-				A5C0BBF916A6D08F008072DE /* ShortcutRecorder.framework in CopyFiles */,
+				A5C0BBF816A6D08F008072DE /* PTHotKey.framework in Copy Files */,
+				A5C0BBF916A6D08F008072DE /* ShortcutRecorder.framework in Copy Files */,
 			);
+			name = "Copy Files";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A5D7DE4D171AC291008A8FA4 /* CopyFiles */ = {
@@ -154,14 +154,13 @@
 		A5046E3F16FAFB6D00323A23 /* script_service-Entitlements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "script_service-Entitlements.plist"; sourceTree = "<group>"; };
 		A5094B9816CBF33200A3C877 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A517CFA3142FD73E00632668 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
+		A51948CF18887ED6009D6A81 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A521519816B16CAE00E45B7D /* icon.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = icon.iconset; path = Resources/icon.iconset; sourceTree = "<group>"; };
 		A52A9F5F16A8365200EA4B17 /* TextFieldBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TextFieldBG.png; path = Resources/TextFieldBG.png; sourceTree = "<group>"; };
 		A52B871C16CCF9D0005D49FA /* LaunchAtLogin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LaunchAtLogin.xcodeproj; path = LaunchAtLogin/LaunchAtLoginHelper/LaunchAtLogin.xcodeproj; sourceTree = "<group>"; };
 		A52B872516CCF9DE005D49FA /* StartAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartAtLoginController.h; sourceTree = "<group>"; };
 		A52B872616CCF9DE005D49FA /* StartAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartAtLoginController.m; sourceTree = "<group>"; };
 		A53766DE16AC277400AF78D8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		A53766E116AC2B9A00AF78D8 /* InAppPurchaseManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = InAppPurchaseManager.h; sourceTree = "<group>"; };
-		A53766E216AC2B9A00AF78D8 /* InAppPurchaseManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = InAppPurchaseManager.m; sourceTree = "<group>"; };
 		A53FE3D2142F4F34003B4D67 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lock.png; path = Resources/lock.png; sourceTree = "<group>"; };
 		A5489BA215D3ED340072E5D2 /* off.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = off.pdf; sourceTree = "<group>"; };
 		A5489BA315D3ED340072E5D2 /* on.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = on.pdf; sourceTree = "<group>"; };
@@ -180,8 +179,6 @@
 		A5C0BBE216A6D077008072DE /* ShortcutRecorder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShortcutRecorder.xcodeproj; path = shortcutrecorder/ShortcutRecorder.xcodeproj; sourceTree = "<group>"; };
 		A5CE4D0215062BFB001C22D2 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = /System/Library/Frameworks/ScriptingBridge.framework; sourceTree = "<absolute>"; };
 		A5CE4D0415062DE4001C22D2 /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iTunes.h; path = Source/iTunes.h; sourceTree = "<group>"; };
-		A5D1F41A15DA401700211A8F /* validatereceipt.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = validatereceipt.h; sourceTree = "<group>"; };
-		A5D1F41B15DA401700211A8F /* validatereceipt.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = validatereceipt.m; sourceTree = "<group>"; };
 		A5D2819516E7E394006405E0 /* script_service.xpc */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = script_service.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5D2819916E7E394006405E0 /* script_service-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "script_service-Info.plist"; sourceTree = "<group>"; };
 		A5D2819B16E7E394006405E0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
@@ -223,6 +220,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A51948D018887ED6009D6A81 /* SystemConfiguration.framework in Frameworks */,
 				A5F19B46171AABAD00C8EE09 /* IOKit.framework in Frameworks */,
 				A5F19B40171A98C900C8EE09 /* Foundation.framework in Frameworks */,
 				A5D2819616E7E394006405E0 /* Cocoa.framework in Frameworks */,
@@ -245,6 +243,7 @@
 		1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A51948CF18887ED6009D6A81 /* SystemConfiguration.framework */,
 				A59F335416C125E600A43F7C /* ServiceManagement.framework */,
 				A53766DE16AC277400AF78D8 /* StoreKit.framework */,
 				A5489BAC15D401710072E5D2 /* IOBluetooth.framework */,
@@ -355,15 +354,6 @@
 			path = StartAtLoginController;
 			sourceTree = "<group>";
 		};
-		A53766E016AC2B9A00AF78D8 /* InAppPurchaseManager */ = {
-			isa = PBXGroup;
-			children = (
-				A53766E116AC2B9A00AF78D8 /* InAppPurchaseManager.h */,
-				A53766E216AC2B9A00AF78D8 /* InAppPurchaseManager.m */,
-			);
-			path = InAppPurchaseManager;
-			sourceTree = "<group>";
-		};
 		A53831C216481976002764C1 /* Privat */ = {
 			isa = PBXGroup;
 			children = (
@@ -389,21 +379,10 @@
 			children = (
 				A52B872316CCF9DE005D49FA /* Vendor */,
 				A52B871C16CCF9D0005D49FA /* LaunchAtLogin.xcodeproj */,
-				A53766E016AC2B9A00AF78D8 /* InAppPurchaseManager */,
 				A5C0BBE216A6D077008072DE /* ShortcutRecorder.xcodeproj */,
 				A589299716A5DEBB00063E09 /* peertalk */,
-				A5489B8315D3E5A90072E5D2 /* ValidateStoreReceipt */,
 			);
 			path = External;
-			sourceTree = "<group>";
-		};
-		A5489B8315D3E5A90072E5D2 /* ValidateStoreReceipt */ = {
-			isa = PBXGroup;
-			children = (
-				A5D1F41A15DA401700211A8F /* validatereceipt.h */,
-				A5D1F41B15DA401700211A8F /* validatereceipt.m */,
-			);
-			path = ValidateStoreReceipt;
 			sourceTree = "<group>";
 		};
 		A5489BA115D3ED340072E5D2 /* indicators */ = {
@@ -466,7 +445,7 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
-				A589294B16A5AFC600063E09 /* CopyFiles */,
+				A589294B16A5AFC600063E09 /* Copy Files */,
 				A5D94E8916FB1D3F0054BC6C /* Copy XPC Service */,
 				A5D7DE4D171AC291008A8FA4 /* CopyFiles */,
 			);
@@ -606,9 +585,7 @@
 			files = (
 				D0764512101E79F500DAE20D /* LockMeNowAppDelegate.m in Sources */,
 				D0764532101E7A6100DAE20D /* main.m in Sources */,
-				A5D1F41C15DA401700211A8F /* validatereceipt.m in Sources */,
 				A589299616A5DE9400063E09 /* PTUSBHub.m in Sources */,
-				A53766E616AC2B9B00AF78D8 /* InAppPurchaseManager.m in Sources */,
 				A52B872716CCF9DE005D49FA /* StartAtLoginController.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -695,7 +672,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "script_service/script_service-Entitlements.plist";
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Dmitriy Zhuravlev";
+				CODE_SIGN_IDENTITY = "IGR Software";
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
@@ -731,7 +708,7 @@
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				CODE_SIGN_ENTITLEMENTS = "script_service/script_service-Entitlements.plist";
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Dmitriy Zhuravlev";
+				CODE_SIGN_IDENTITY = "IGR Software";
 				COPY_PHASE_STRIP = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_ENABLE_OBJC_EXCEPTIONS = YES;
@@ -754,7 +731,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = lockmenow.entitlements;
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Dmitriy Zhuravlev";
+				CODE_SIGN_IDENTITY = "IGR Software";
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -771,11 +748,7 @@
 				INSTALL_PATH = /Applications;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				OTHER_CFLAGS = (
-					"-DYES_I_HAVE_READ_THE_WARNING_AND_I_ACCEPT_THE_RISK",
-					"-DDEBUG",
-				);
-				OTHER_LDFLAGS = "-lcrypto";
+				OTHER_CFLAGS = "-DDEBUG";
 				PRODUCT_NAME = lockmenow;
 				PROVISIONING_PROFILE = "";
 			};
@@ -787,7 +760,7 @@
 				ALWAYS_SEARCH_USER_PATHS = NO;
 				CLANG_ENABLE_OBJC_ARC = YES;
 				CODE_SIGN_ENTITLEMENTS = lockmenow.entitlements;
-				CODE_SIGN_IDENTITY = "3rd Party Mac Developer Application: Dmitriy Zhuravlev";
+				CODE_SIGN_IDENTITY = "IGR Software";
 				COMBINE_HIDPI_IMAGES = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -802,11 +775,7 @@
 				INSTALL_PATH = /Applications;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
 				MACOSX_DEPLOYMENT_TARGET = 10.7;
-				OTHER_CFLAGS = (
-					"-DYES_I_HAVE_READ_THE_WARNING_AND_I_ACCEPT_THE_RISK",
-					"-DUSE_VALIDATE_RECEIPT",
-				);
-				OTHER_LDFLAGS = "-lcrypto";
+				OTHER_CFLAGS = "";
 				PRODUCT_NAME = lockmenow;
 				PROVISIONING_PROFILE = "";
 			};

@@ -60,7 +60,7 @@ static bool checkEncription()
 static void makeLoginWindowLock()
 {
 	NSTask *task;
-	NSMutableArray *arguments = [NSArray arrayWithObject:@"-suspend"];
+	NSMutableArray *arguments = [NSMutableArray arrayWithObject:@"-suspend"];
 	
 	task = [[NSTask alloc] init];
 	[task setArguments: arguments];
@@ -154,7 +154,7 @@ static void script_event_handler(xpc_connection_t peer)
     // Generate an unique name for the queue to handle messages from
     // this peer and create a new dispatch queue for it.
     char *queue_name = NULL;
-    asprintf(&queue_name, "%s-peer-%d", "com.bymaster.lockmenow.script",
+    asprintf(&queue_name, "%s-peer-%d", "com.igrsoft.lockmenow.script",
              xpc_connection_get_pid(peer));
     dispatch_queue_t peer_event_queue =
 	dispatch_queue_create(queue_name, DISPATCH_QUEUE_SERIAL);
