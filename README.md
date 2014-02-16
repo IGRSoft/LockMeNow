@@ -30,8 +30,8 @@ ScreenShots
 -------------
 
 <img src="https://github.com/iKorich/LockMeNow/blob/master/img/prefs_main.png?raw=true">
-<img src="https://raw.github.com/iKorich/LockMeNow/master/imgprefs_bluetooth.png">
-<img src="https://raw.github.com/iKorich/LockMeNow/master/img/prefs_usb.png">
+<img src="https://github.com/iKorich/LockMeNow/blob/master/img/prefs_bluetooth.png?raw=true">
+<img src="https://github.com/iKorich/LockMeNow/blob/master/img/prefs_usb.png?raw=true">
 
 Licence
 -------------
