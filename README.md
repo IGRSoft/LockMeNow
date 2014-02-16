@@ -30,12 +30,19 @@ ScreenShots
 -------------
 
 <img src="https://github.com/iKorich/LockMeNow/blob/master/img/prefs_main.png?raw=true">
-<img src="https://github.com/iKorich/LockMeNow/blob/master/img/prefs_bluetooth.png?raw=true"><img src="https://github.com/iKorich/LockMeNow/blob/master/img/prefs_usb.png?raw=true">
+<img src="https://github.com/iKorich/LockMeNow/blob/master/img/prefs_bluetooth.png?raw=true">
+<img src="https://github.com/iKorich/LockMeNow/blob/master/img/prefs_usb.png?raw=true">
 
 Credits
 -------------
 
 Developer: Vitalii (Korich) Parovishnyk 
+
+Known Issues
+-------------
+
+* Not good work with Bluetooth
+* Not all Apple devices add to USB lock;
 
 Licence
 -------------
