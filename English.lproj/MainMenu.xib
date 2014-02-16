@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5037" systemVersion="13C39" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5037.3" systemVersion="13C59" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment version="1070" defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5037"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5037.3"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -383,11 +383,11 @@
                             </tabViewItem>
                             <tabViewItem label="About" identifier="about" id="781">
                                 <view key="view" id="782">
-                                    <rect key="frame" x="10" y="25" width="299" height="238"/>
+                                    <rect key="frame" x="10" y="25" width="299" height="255"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" id="812">
-                                            <rect key="frame" x="42" y="35" width="37" height="17"/>
+                                            <rect key="frame" x="42" y="52" width="37" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="and" id="821">
                                                 <font key="font" metaFont="system"/>
@@ -396,7 +396,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="814">
-                                            <rect key="frame" x="14" y="60" width="271" height="175"/>
+                                            <rect key="frame" x="14" y="77" width="271" height="175"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="mini" allowsUndo="NO" sendsActionOnEndEditing="YES" id="819">
                                                 <font key="font" metaFont="system"/>
@@ -413,10 +413,10 @@ Big Thanks:
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
-                                        <button tag="1" id="815">
-                                            <rect key="frame" x="138" y="21" width="144" height="44"/>
+                                        <button focusRingType="none" tag="1" id="815">
+                                            <rect key="frame" x="138" y="38" width="144" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="russianapple" imagePosition="overlaps" alignment="center" imageScaling="proportionallyDown" inset="2" id="818">
+                                            <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="russianapple" imagePosition="overlaps" alignment="center" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="818">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
