@@ -29,7 +29,7 @@ Developer: Vitalii (Korich) Parovishnyk
 ScreenShots
 -------------
 
-<img src="https://raw.github.com/iKorich/LockMeNow/master/img/prefs_main.png">
+<img src="https://raw.github.com/iKorich/LockMeNow/master/prefs_main.png">
 <img src="https://raw.github.com/iKorich/LockMeNow/master/imgprefs_bluetooth.png">
 <img src="https://raw.github.com/iKorich/LockMeNow/master/img/prefs_usb.png">
 
