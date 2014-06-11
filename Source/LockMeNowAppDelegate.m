@@ -944,10 +944,10 @@ int ProcessIsRunningWithBundleID(CFStringRef inBundleID, ProcessSerialNumber* ou
 	if (m_bUseIconOnMainMenu && m_statusItem == nil) {
 		m_statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
 		[m_statusItem setMenu:self.statusMenu];
-		NSImage *itemImage = [[NSImage alloc]
-							  initWithContentsOfFile: [[NSBundle mainBundle] pathForResource:@"lock" ofType:@"tiff"]];
-		
+        
+		NSImage *itemImage = [NSImage imageNamed:@"lock"];
 		[m_statusItem setImage: itemImage];
+        
 		[m_statusItem setHighlightMode:YES];
 		
 	}

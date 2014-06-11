@@ -12,11 +12,9 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		A517CFA4142FD73E00632668 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A517CFA2142FD73E00632668 /* Credits.rtf */; };
 		A51948D018887ED6009D6A81 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51948CF18887ED6009D6A81 /* SystemConfiguration.framework */; };
-		A521519916B16CAE00E45B7D /* icon.iconset in Resources */ = {isa = PBXBuildFile; fileRef = A521519816B16CAE00E45B7D /* icon.iconset */; };
+		A52843BA1948547B00040243 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A52843B91948547B00040243 /* Images.xcassets */; };
 		A52A9F6016A8365300EA4B17 /* TextFieldBG.png in Resources */ = {isa = PBXBuildFile; fileRef = A52A9F5F16A8365200EA4B17 /* TextFieldBG.png */; };
 		A52B872716CCF9DE005D49FA /* StartAtLoginController.m in Sources */ = {isa = PBXBuildFile; fileRef = A52B872616CCF9DE005D49FA /* StartAtLoginController.m */; };
-		A53766DF16AC277400AF78D8 /* StoreKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A53766DE16AC277400AF78D8 /* StoreKit.framework */; };
-		A53FE3D4142F4F34003B4D67 /* lock.png in Resources */ = {isa = PBXBuildFile; fileRef = A53FE3D2142F4F34003B4D67 /* lock.png */; };
 		A5489BA415D3ED340072E5D2 /* off.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A5489BA215D3ED340072E5D2 /* off.pdf */; };
 		A5489BA515D3ED340072E5D2 /* on.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A5489BA315D3ED340072E5D2 /* on.pdf */; };
 		A5489BAB15D3F1820072E5D2 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5489BAA15D3F1820072E5D2 /* Quartz.framework */; };
@@ -26,20 +24,17 @@
 		A589299616A5DE9400063E09 /* PTUSBHub.m in Sources */ = {isa = PBXBuildFile; fileRef = A589299516A5DE9400063E09 /* PTUSBHub.m */; };
 		A58A9E36142F5D3600D99E79 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A58A9E35142F5D3600D99E79 /* Security.framework */; };
 		A59F335516C125E600A43F7C /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A59F335416C125E600A43F7C /* ServiceManagement.framework */; };
-		A5ABE36516B14409009A7151 /* lock@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5ABE36416B14409009A7151 /* lock@2x.png */; };
-		A5ABE37216B147CA009A7151 /* russianapple@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = A5ABE37116B147CA009A7151 /* russianapple@2x.png */; };
 		A5C0BBF616A6D08B008072DE /* PTHotKey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5C0BBED16A6D078008072DE /* PTHotKey.framework */; };
 		A5C0BBF716A6D08B008072DE /* ShortcutRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5C0BBEF16A6D078008072DE /* ShortcutRecorder.framework */; };
-		A5C0BBF816A6D08F008072DE /* PTHotKey.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = A5C0BBED16A6D078008072DE /* PTHotKey.framework */; };
-		A5C0BBF916A6D08F008072DE /* ShortcutRecorder.framework in Copy Files */ = {isa = PBXBuildFile; fileRef = A5C0BBEF16A6D078008072DE /* ShortcutRecorder.framework */; };
+		A5C0BBF816A6D08F008072DE /* PTHotKey.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = A5C0BBED16A6D078008072DE /* PTHotKey.framework */; };
+		A5C0BBF916A6D08F008072DE /* ShortcutRecorder.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = A5C0BBEF16A6D078008072DE /* ShortcutRecorder.framework */; };
 		A5CE4D0315062BFB001C22D2 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5CE4D0215062BFB001C22D2 /* ScriptingBridge.framework */; };
 		A5D2819616E7E394006405E0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B0BEBF144CA9E0003C3145 /* Cocoa.framework */; };
 		A5D2819C16E7E394006405E0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5D2819A16E7E394006405E0 /* InfoPlist.strings */; };
 		A5D2819E16E7E394006405E0 /* script_service.m in Sources */ = {isa = PBXBuildFile; fileRef = A5D2819D16E7E394006405E0 /* script_service.m */; };
-		A5D7DE4F171AC2F6008A8FA4 /* LaunchAtLoginHelper.app in CopyFiles */ = {isa = PBXBuildFile; fileRef = A52B872116CCF9D1005D49FA /* LaunchAtLoginHelper.app */; };
+		A5D7DE4F171AC2F6008A8FA4 /* LaunchAtLoginHelper.app in Copy LoginItems */ = {isa = PBXBuildFile; fileRef = A52B872116CCF9D1005D49FA /* LaunchAtLoginHelper.app */; };
 		A5D94E8A16FB1D550054BC6C /* script_service.xpc in Copy XPC Service */ = {isa = PBXBuildFile; fileRef = A5D2819516E7E394006405E0 /* script_service.xpc */; };
 		A5D94E8B16FB1DF50054BC6C /* script_service-Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5046E3F16FAFB6D00323A23 /* script_service-Entitlements.plist */; };
-		A5DD8A4E143C47CC00094BEA /* russianapple.png in Resources */ = {isa = PBXBuildFile; fileRef = A5DD8A4D143C47CB00094BEA /* russianapple.png */; };
 		A5F19B40171A98C900C8EE09 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5094B9816CBF33200A3C877 /* Foundation.framework */; };
 		A5F19B44171AA9F000C8EE09 /* filevault_2_encryption_check_extension_attribute.sh in Resources */ = {isa = PBXBuildFile; fileRef = A5F19B43171AA9F000C8EE09 /* filevault_2_encryption_check_extension_attribute.sh */; };
 		A5F19B46171AABAD00C8EE09 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F19B45171AABAD00C8EE09 /* IOKit.framework */; };
@@ -108,26 +103,27 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
-		A589294B16A5AFC600063E09 /* Copy Files */ = {
+		A589294B16A5AFC600063E09 /* Copy Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				A5C0BBF816A6D08F008072DE /* PTHotKey.framework in Copy Files */,
-				A5C0BBF916A6D08F008072DE /* ShortcutRecorder.framework in Copy Files */,
+				A5C0BBF816A6D08F008072DE /* PTHotKey.framework in Copy Frameworks */,
+				A5C0BBF916A6D08F008072DE /* ShortcutRecorder.framework in Copy Frameworks */,
 			);
-			name = "Copy Files";
+			name = "Copy Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
-		A5D7DE4D171AC291008A8FA4 /* CopyFiles */ = {
+		A5D7DE4D171AC291008A8FA4 /* Copy LoginItems */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
 			dstPath = Contents/Library/LoginItems;
 			dstSubfolderSpec = 1;
 			files = (
-				A5D7DE4F171AC2F6008A8FA4 /* LaunchAtLoginHelper.app in CopyFiles */,
+				A5D7DE4F171AC2F6008A8FA4 /* LaunchAtLoginHelper.app in Copy LoginItems */,
 			);
+			name = "Copy LoginItems";
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 		A5D94E8916FB1D3F0054BC6C /* Copy XPC Service */ = {
@@ -155,13 +151,11 @@
 		A5094B9816CBF33200A3C877 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A517CFA3142FD73E00632668 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
 		A51948CF18887ED6009D6A81 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
-		A521519816B16CAE00E45B7D /* icon.iconset */ = {isa = PBXFileReference; lastKnownFileType = folder.iconset; name = icon.iconset; path = Resources/icon.iconset; sourceTree = "<group>"; };
+		A52843B91948547B00040243 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = LockMeNow/Images.xcassets; sourceTree = "<group>"; };
 		A52A9F5F16A8365200EA4B17 /* TextFieldBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TextFieldBG.png; path = Resources/TextFieldBG.png; sourceTree = "<group>"; };
 		A52B871C16CCF9D0005D49FA /* LaunchAtLogin.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LaunchAtLogin.xcodeproj; path = LaunchAtLogin/LaunchAtLoginHelper/LaunchAtLogin.xcodeproj; sourceTree = "<group>"; };
 		A52B872516CCF9DE005D49FA /* StartAtLoginController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = StartAtLoginController.h; sourceTree = "<group>"; };
 		A52B872616CCF9DE005D49FA /* StartAtLoginController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = StartAtLoginController.m; sourceTree = "<group>"; };
-		A53766DE16AC277400AF78D8 /* StoreKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = StoreKit.framework; path = System/Library/Frameworks/StoreKit.framework; sourceTree = SDKROOT; };
-		A53FE3D2142F4F34003B4D67 /* lock.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = lock.png; path = Resources/lock.png; sourceTree = "<group>"; };
 		A5489BA215D3ED340072E5D2 /* off.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = off.pdf; sourceTree = "<group>"; };
 		A5489BA315D3ED340072E5D2 /* on.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = on.pdf; sourceTree = "<group>"; };
 		A5489BAA15D3F1820072E5D2 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
@@ -173,8 +167,6 @@
 		A589299516A5DE9400063E09 /* PTUSBHub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTUSBHub.m; path = peertalk/peertalk/PTUSBHub.m; sourceTree = "<group>"; };
 		A58A9E35142F5D3600D99E79 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
 		A59F335416C125E600A43F7C /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
-		A5ABE36416B14409009A7151 /* lock@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lock@2x.png"; path = "Resources/lock@2x.png"; sourceTree = "<group>"; };
-		A5ABE37116B147CA009A7151 /* russianapple@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "russianapple@2x.png"; path = "Resources/russianapple@2x.png"; sourceTree = "<group>"; };
 		A5B0BEBF144CA9E0003C3145 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		A5BD7F6C18B0F0F30038B280 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		A5C0BBE216A6D077008072DE /* ShortcutRecorder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShortcutRecorder.xcodeproj; path = shortcutrecorder/ShortcutRecorder.xcodeproj; sourceTree = "<group>"; };
@@ -185,7 +177,6 @@
 		A5D2819B16E7E394006405E0 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = en.lproj/InfoPlist.strings; sourceTree = "<group>"; };
 		A5D2819D16E7E394006405E0 /* script_service.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = script_service.m; sourceTree = "<group>"; };
 		A5D2819F16E7E394006405E0 /* script_service-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "script_service-Prefix.pch"; sourceTree = "<group>"; };
-		A5DD8A4D143C47CB00094BEA /* russianapple.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = russianapple.png; path = Resources/russianapple.png; sourceTree = "<group>"; };
 		A5F19B43171AA9F000C8EE09 /* filevault_2_encryption_check_extension_attribute.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = filevault_2_encryption_check_extension_attribute.sh; path = Resources/filevault_2_encryption_check_extension_attribute.sh; sourceTree = "<group>"; };
 		A5F19B45171AABAD00C8EE09 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		A5F9F90215EEA4870091B2F0 /* lock-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lock-bg.png"; path = "Resources/lock-bg.png"; sourceTree = "<group>"; };
@@ -203,7 +194,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				A59F335516C125E600A43F7C /* ServiceManagement.framework in Frameworks */,
-				A53766DF16AC277400AF78D8 /* StoreKit.framework in Frameworks */,
 				A5C0BBF616A6D08B008072DE /* PTHotKey.framework in Frameworks */,
 				A5C0BBF716A6D08B008072DE /* ShortcutRecorder.framework in Frameworks */,
 				A58A9E36142F5D3600D99E79 /* Security.framework in Frameworks */,
@@ -246,7 +236,6 @@
 			children = (
 				A51948CF18887ED6009D6A81 /* SystemConfiguration.framework */,
 				A59F335416C125E600A43F7C /* ServiceManagement.framework */,
-				A53766DE16AC277400AF78D8 /* StoreKit.framework */,
 				A5489BAC15D401710072E5D2 /* IOBluetooth.framework */,
 				A5489BAD15D401710072E5D2 /* IOBluetoothUI.framework */,
 				A5489BAA15D3F1820072E5D2 /* Quartz.framework */,
@@ -305,9 +294,9 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A52843B91948547B00040243 /* Images.xcassets */,
 				A5F19B43171AA9F000C8EE09 /* filevault_2_encryption_check_extension_attribute.sh */,
 				A559117516B3D69C008A7BF9 /* lockmenow.entitlements */,
-				A521519816B16CAE00E45B7D /* icon.iconset */,
 				A52A9F5F16A8365200EA4B17 /* TextFieldBG.png */,
 				A53831C616481ADE002764C1 /* img */,
 				A5489BA115D3ED340072E5D2 /* indicators */,
@@ -367,11 +356,7 @@
 		A53831C616481ADE002764C1 /* img */ = {
 			isa = PBXGroup;
 			children = (
-				A5ABE37116B147CA009A7151 /* russianapple@2x.png */,
-				A5ABE36416B14409009A7151 /* lock@2x.png */,
-				A5DD8A4D143C47CB00094BEA /* russianapple.png */,
 				A5F9F90215EEA4870091B2F0 /* lock-bg.png */,
-				A53FE3D2142F4F34003B4D67 /* lock.png */,
 			);
 			name = img;
 			sourceTree = "<group>";
@@ -447,9 +432,9 @@
 				8D1107290486CEB800E47090 /* Resources */,
 				8D11072C0486CEB800E47090 /* Sources */,
 				8D11072E0486CEB800E47090 /* Frameworks */,
-				A589294B16A5AFC600063E09 /* Copy Files */,
+				A589294B16A5AFC600063E09 /* Copy Frameworks */,
 				A5D94E8916FB1D3F0054BC6C /* Copy XPC Service */,
-				A5D7DE4D171AC291008A8FA4 /* CopyFiles */,
+				A5D7DE4D171AC291008A8FA4 /* Copy LoginItems */,
 			);
 			buildRules = (
 			);
@@ -556,15 +541,11 @@
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
-				A53FE3D4142F4F34003B4D67 /* lock.png in Resources */,
 				A517CFA4142FD73E00632668 /* Credits.rtf in Resources */,
-				A5DD8A4E143C47CC00094BEA /* russianapple.png in Resources */,
 				A5489BA415D3ED340072E5D2 /* off.pdf in Resources */,
 				A5489BA515D3ED340072E5D2 /* on.pdf in Resources */,
 				A52A9F6016A8365300EA4B17 /* TextFieldBG.png in Resources */,
-				A5ABE36516B14409009A7151 /* lock@2x.png in Resources */,
-				A5ABE37216B147CA009A7151 /* russianapple@2x.png in Resources */,
-				A521519916B16CAE00E45B7D /* icon.iconset in Resources */,
+				A52843BA1948547B00040243 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
