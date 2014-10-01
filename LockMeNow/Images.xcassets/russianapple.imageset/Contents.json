@@ -1,12 +1,12 @@
 {
   "images" : [
     {
-      "idiom" : "universal",
+      "idiom" : "mac",
       "scale" : "1x",
       "filename" : "russianapple.png"
     },
     {
-      "idiom" : "universal",
+      "idiom" : "mac",
       "scale" : "2x",
       "filename" : "russianapple@2x.png"
     }
