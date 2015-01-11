@@ -92,36 +92,36 @@ typedef struct {
 @property (nonatomic, strong) PTHotKey						*hotKey;
 @property (nonatomic, strong) IBOutlet IKImageView			*bluetoothStatus;
 @property (nonatomic, strong) IBOutlet NSTextField			*bluetoothName;
-@property (nonatomic) int									p_BluetoothTimerInterval;
+@property (nonatomic) NSInteger								p_BluetoothTimerInterval;
 @property (nonatomic, strong) IBOutlet NSProgressIndicator	*spinner;
-@property (nonatomic) bool	bMonitoring;
-@property (nonatomic) bool	bEncription;
-@property (nonatomic) bool	isJustLock;
+@property (nonatomic) BOOL	bMonitoring;
+@property (nonatomic) BOOL	bEncription;
+@property (nonatomic) BOOL	isJustLock;
 
 @property (nonatomic) NSMutableArray *blockObjects;
 @property (nonatomic, strong) IBOutlet NSView *lockBlockView;
 
-- (void) makeLock;
-- (IBAction) doUnLock:(id)sender;
-- (IBAction) doLock:(id)sender;
-- (IBAction) setLockType:(id)sender;
-- (IBAction) setiTunesPause:(id)sender;
-- (IBAction) setiTunesResume:(id)sender;
-- (IBAction) setAutoPrefs:(id)sender;
-- (IBAction) goToURL:(id)sender;
-- (IBAction) openPrefs:(id)sender;
-- (IBAction) toggleStartup:(id)sender;
-- (IBAction) changeDevice:(id)sender;
-- (IBAction) listenUSBDevice:(id)sender;
-- (IBAction) changeUSBDeviceType:(id)sender;
-- (IBAction) setMonitoring:(id)sender;
-- (IBAction) setUseCurrentScreenSaver:(id)sender;
+- (void)makeLock;
+- (IBAction)doUnLock:(id)sender;
+- (IBAction)doLock:(id)sender;
+- (IBAction)setLockType:(id)sender;
+- (IBAction)setiTunesPause:(id)sender;
+- (IBAction)setiTunesResume:(id)sender;
+- (IBAction)setAutoPrefs:(id)sender;
+- (IBAction)goToURL:(id)sender;
+- (IBAction)openPrefs:(id)sender;
+- (IBAction)toggleStartup:(id)sender;
+- (IBAction)changeDevice:(id)sender;
+- (IBAction)listenUSBDevice:(id)sender;
+- (IBAction)changeUSBDeviceType:(id)sender;
+- (IBAction)setMonitoring:(id)sender;
+- (IBAction)setUseCurrentScreenSaver:(id)sender;
 
-- (void) makeMenu;
-- (void) loadUserSettings;
-- (void) saveUserSettings;
+- (void)makeMenu;
+- (void)loadUserSettings;
+- (void)saveUserSettings;
 
-- (void) setSecuritySetings:(bool)seter withSkip:(bool)skip;
-- (IBAction) setMenuIcon:(id)sender;
+- (void)setSecuritySetings:(BOOL)seter withSkip:(BOOL)skip;
+- (IBAction)setMenuIcon:(id)sender;
 
 @end
