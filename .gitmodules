@@ -4,3 +4,6 @@
 [submodule "External/peertalk"]
 	path = External/peertalk
 	url = https://github.com/rsms/peertalk.git
+[submodule "External/LaunchAtLoginHelper"]
+	path = External/LaunchAtLoginHelper
+	url = https://github.com/kgn/LaunchAtLoginHelper.git
