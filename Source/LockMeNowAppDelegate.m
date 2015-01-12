@@ -25,7 +25,7 @@
 #import <mach/mach_port.h>
 #import "PTUSBHub.h"
 
-#import "StartAtLoginController.h"
+#import "LLManager.h"
 
 #import <errno.h>
 #import <fcntl.h>
@@ -125,9 +125,6 @@ NSInteger ProcessIsRunningWithBundleID(CFStringRef inBundleID, ProcessSerialNumb
 	m_BluetoothDevicePriorStatus = OutOfRange;
 	m_BluetoothDevice = nil;
 	m_iCurrentUSBDeviceType = -1;
-	
-	loginController = [[StartAtLoginController alloc] init];
-	[loginController setBundle:[NSBundle bundleWithPath:[[[NSBundle mainBundle] bundlePath] stringByAppendingPathComponent:@"Contents/Library/LoginItems/LaunchAtLoginHelper.app"]]];
 	
 	// Setup our connection to the launch item's service.
 	// This will start the launch item if it isn't already running.
@@ -280,7 +277,7 @@ BOOL doNothingAtStart = NO;
 - (IBAction)toggleStartup:(id)sender
 {
 	BOOL enableStartup = [[NSUserDefaults standardUserDefaults] boolForKey:@"enableStartup"];
-	[loginController setStartAtLogin: enableStartup];
+	[LLManager setLaunchAtLogin:enableStartup];
 }
 
 #pragma mark - Shortcut
