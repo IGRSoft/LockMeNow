@@ -153,7 +153,6 @@
 		A51856721A631FD70098B7A3 /* LaunchAtLoginHelper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LaunchAtLoginHelper.xcodeproj; path = LaunchAtLoginHelper/LaunchAtLoginHelper.xcodeproj; sourceTree = "<group>"; };
 		A51856751A631FD80098B7A3 /* LLManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LLManager.h; path = LaunchAtLoginHelper/LLManager.h; sourceTree = "<group>"; };
 		A51856761A631FD80098B7A3 /* LLManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LLManager.m; path = LaunchAtLoginHelper/LLManager.m; sourceTree = "<group>"; };
-		A51856771A631FD80098B7A3 /* LLStrings.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LLStrings.h; path = LaunchAtLoginHelper/LLStrings.h; sourceTree = "<group>"; };
 		A51948CF18887ED6009D6A81 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A52843B91948547B00040243 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = LockMeNow/Images.xcassets; sourceTree = "<group>"; };
 		A52A9F5F16A8365200EA4B17 /* TextFieldBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TextFieldBG.png; path = Resources/TextFieldBG.png; sourceTree = "<group>"; };
@@ -326,7 +325,6 @@
 				A51856721A631FD70098B7A3 /* LaunchAtLoginHelper.xcodeproj */,
 				A51856751A631FD80098B7A3 /* LLManager.h */,
 				A51856761A631FD80098B7A3 /* LLManager.m */,
-				A51856771A631FD80098B7A3 /* LLStrings.h */,
 			);
 			name = LaunchAtLoginHelper;
 			sourceTree = "<group>";
