@@ -13,9 +13,7 @@
 #import <PTHotKey/PTHotKeyCenter.h>
 #import <PTHotKey/PTHotKey.h>
 
-#import <ScriptingBridge/ScriptingBridge.h>
-#import <IOKit/IOCFBundle.h>
-#import "iTunes.h"
+#import "iTunesHelper.h"
 
 #import <IOBluetoothUI/objc/IOBluetoothDeviceSelectorController.h>
 
@@ -25,23 +23,10 @@
 #import <mach/mach_port.h>
 #import "PTUSBHub.h"
 
-#import "LLManager.h"
+#import "NSApplication+MXUtilities.h"
 
 #import <errno.h>
 #import <fcntl.h>
-
-NSString *kGlobalHotKey				= @"LockMeNowHotKey";
-NSString *kIconOnMainMenu			= @"IconOnMainMenu";
-NSString *kLockType					= @"LockType";
-NSString *kUseCurrentScreenSaver	= @"UseCurrentScreenSaver";
-NSString *kPauseiTunes				= @"PauseiTunes";
-NSString *kResumeiTunes				= @"ResumeiTunes";
-NSString *kAutoScreenSaverPrefs		= @"AutoScreenSaverPrefs";
-NSString *kBluetoothDevice			= @"BluetoothDevice";
-NSString *kBluetoothCheckInterval	= @"BluetoothCheckInterval";
-NSString *kBluetoothMonitoring		= @"BluetoothMonitoring";
-NSString *kUSBMonitoring			= @"USBMonitoring";
-NSString *kUSBDeviceType			= @"USBDevice";
 
 IOBluetoothDevice	*m_BluetoothDevice = nil;
 
@@ -50,13 +35,22 @@ IOBluetoothDevice	*m_BluetoothDevice = nil;
 - (void)openImageURLfor:(IKImageView*)_imageView withUrl:(NSURL*)url;
 - (void)checkConnectivity;
 
-NSInteger ProcessIsRunningWithBundleID(CFStringRef inBundleID, ProcessSerialNumber* outPSN);
-
 @property (nonatomic) xpc_connection_t scriptServiceConnection;
+@property (nonatomic) IGRUserDefaults *userDefaults;
 
 @end
 
 @implementation LockMeNowAppDelegate
+
+- (id) init
+{
+	if (self= [super init])
+	{
+		self.userDefaults = [[IGRUserDefaults alloc] init];
+	}
+	
+	return self;
+}
 
 - (xpc_connection_t)_connectionForServiceNamed:(const char *)serviceName
 					  connectionInvalidHandler:(dispatch_block_t)handler
@@ -94,7 +88,6 @@ NSInteger ProcessIsRunningWithBundleID(CFStringRef inBundleID, ProcessSerialNumb
 				// canceled the service; we can do any cleanup of appliation
 				// state at this point.
 				NSLog(@"Connection Invalid error for XPC service");
-				xpc_release(serviceConnection);
 				if (handler)
 				{
 					handler();
@@ -118,10 +111,9 @@ NSInteger ProcessIsRunningWithBundleID(CFStringRef inBundleID, ProcessSerialNumb
 
 - (void)applicationDidFinishLaunching:(NSNotification *)theNotification
 {
-	m_bNeedResumeiTunes = NO;
 	m_bShouldTerminate = YES;
 	self.bEncription = NO;
-	isTabsAdded = NO;
+
 	m_BluetoothDevicePriorStatus = OutOfRange;
 	m_BluetoothDevice = nil;
 	m_iCurrentUSBDeviceType = -1;
@@ -144,33 +136,40 @@ NSInteger ProcessIsRunningWithBundleID(CFStringRef inBundleID, ProcessSerialNumb
 	
 	xpc_dictionary_set_uint64(message, "encription", 1);
 	
+	__weak typeof(self) weakSelf = self;
+	
 	xpc_connection_send_message_with_reply(self.scriptServiceConnection, message,
 										   dispatch_get_main_queue(), ^(xpc_object_t event) {
 											   
 											   if (xpc_dictionary_get_value(event, "encription") != NULL)
 											   {
 												   BOOL encription = xpc_dictionary_get_bool(event, "encription");
-												   self.bEncription = encription;
-												   if (self.bEncription)
+												   weakSelf.bEncription = encription;
+												   if (weakSelf.bEncription)
 												   {
-													   m_bAutoPrefs = NO;
+													   weakSelf.userDefaults.bAutoPrefs = NO;
 												   }
 												   
 												   DBNSLog(@"Encription: %d", encription);
 											   }
 										   });
 	
-	useAditionalLock = YES;
-	[self loadUserSettings];
-	if (m_bMonitoringBluetooth)
+	
+	m_BluetoothDevice = [NSKeyedUnarchiver unarchiveObjectWithData:self.userDefaults.bluetoothData];
+	if (m_BluetoothDevice)
+	{
+		//Timer interval
+		self.p_BluetoothTimerInterval = 2;
+		
+		[self.bluetoothName setStringValue:[NSString stringWithFormat:@"%@", [m_BluetoothDevice name]]];
+	}
+	
+	if (self.userDefaults.bMonitoringBluetooth)
 	{
 		[self startMonitoring];
 	}
-	if (m_bMonitoringUSB) {
-		[self startListeningForDevices];
-	}
 	
-	if (m_bUseIconOnMainMenu)
+	if (self.userDefaults.bUseIconOnMainMenu)
 	{
 		[self makeMenu];
 	}
@@ -181,8 +180,7 @@ NSInteger ProcessIsRunningWithBundleID(CFStringRef inBundleID, ProcessSerialNumb
 	[self.hotKeyControl setCanCaptureGlobalHotKeys:YES];
 	
 	[[PTHotKeyCenter sharedCenter] unregisterHotKey:self.hotKey];
-	id keyComboPlist = [[NSUserDefaults standardUserDefaults] objectForKey:kGlobalHotKey];
-	PTKeyCombo *keyCombo = [[PTKeyCombo alloc] initWithPlistRepresentation:keyComboPlist];
+	PTKeyCombo *keyCombo = [[PTKeyCombo alloc] initWithPlistRepresentation:self.userDefaults.keyCombo];
 	
 	self.hotKey = [[PTHotKey alloc] initWithIdentifier:kGlobalHotKey
 											  keyCombo:keyCombo];
@@ -230,11 +228,9 @@ BOOL doNothingAtStart = NO;
 	[m_Queue cancelAllOperations];
 	[m_GUIQueue cancelAllOperations];
 	[[NSOperationQueue mainQueue] cancelAllOperations];
-	[self saveUserSettings];
+	
 	[self stopMonitoring];
 	m_BluetoothDevice = nil;
-	[[NSUserDefaults standardUserDefaults] setObject:[self.hotKey.keyCombo plistRepresentation]
-											  forKey:kGlobalHotKey];
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
@@ -274,13 +270,8 @@ BOOL doNothingAtStart = NO;
 	[self.window center];
 }
 
-- (IBAction)toggleStartup:(id)sender
-{
-	BOOL enableStartup = [[NSUserDefaults standardUserDefaults] boolForKey:@"enableStartup"];
-	[LLManager setLaunchAtLogin:enableStartup];
-}
-
 #pragma mark - Shortcut
+
 - (void)hotKeyPressed:(id)sender
 {
 	//DBNSLog(@"Pressed");
@@ -294,8 +285,6 @@ BOOL doNothingAtStart = NO;
 
 - (void)shortcutRecorder:(SRRecorderControl *)aRecorder keyComboDidChange:(KeyCombo)newKeyCombo
 {
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	
 	PTKeyCombo *keyCombo = [PTKeyCombo keyComboWithKeyCode:[aRecorder keyCombo].code
 												 modifiers:[aRecorder cocoaToCarbonFlags:[aRecorder keyCombo].flags]];
 	
@@ -305,10 +294,9 @@ BOOL doNothingAtStart = NO;
 		
 		// Re-register the new hot key
 		[[PTHotKeyCenter sharedCenter] registerHotKey:self.hotKey];
-		[defaults setObject:[keyCombo plistRepresentation] forKey:kGlobalHotKey];
+		self.userDefaults.keyCombo = [keyCombo plistRepresentation];
+		[self updateUserSettings:aRecorder];
 	}
-	
-	[defaults synchronize];
 }
 
 #pragma mark - Lock
@@ -323,42 +311,12 @@ BOOL doNothingAtStart = NO;
 	[self removeSecurityLock];
 }
 
-- (IBAction)setLockType:(id)sender
-{
-	m_iLockType = [sender selectedRow];
-	self.isJustLock = (m_iLockType & LOCK_SCREEN);
-}
-
-- (IBAction)setiTunesPause:(id)sender
-{
-	NSButton *btn = sender;
-	m_bPauseiTunes = [btn state];
-}
-
-- (IBAction)setiTunesResume:(id)sender
-{
-	NSButton *btn = sender;
-	m_bResumeiTunes = [btn state];
-}
-
-- (IBAction)setAutoPrefs:(id)sender
-{
-	NSButton *btn = sender;
-	m_bAutoPrefs = [btn state];
-}
-
-- (IBAction)setUseCurrentScreenSaver:(id)sender
-{
-	NSButton *btn = sender;
-	m_bUseCurrentScreenSaver = [btn state];
-}
-
 - (void)makeLock
 {
-	m_bNeedResumeiTunes = NO;
+	self.userDefaults.bNeedResumeiTunes = NO;
 	[self pauseResumeMusic];
 	
-	switch (m_iLockType)
+	switch ([self.userDefaults lockingType])
 	{
 		case LOCK_SCREEN:
 			[self makeJustLock];
@@ -375,14 +333,15 @@ BOOL doNothingAtStart = NO;
 
 - (void)makeLoginWindowsLock
 {
-	[[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self
-														   selector:@selector(receiveBecomeActiveNotification:)
-															   name:NSWorkspaceSessionDidBecomeActiveNotification
-															 object:NULL];
-	[[[NSWorkspace sharedWorkspace] notificationCenter] addObserver:self
-														   selector:@selector(receiveResignActiveNotification:)
-															   name:NSWorkspaceSessionDidResignActiveNotification
-															 object:NULL];
+	NSNotificationCenter *notificationCenter = [[NSWorkspace sharedWorkspace] notificationCenter];
+	[notificationCenter addObserver:self
+						   selector:@selector(receiveBecomeActiveNotification:)
+							   name:NSWorkspaceSessionDidBecomeActiveNotification
+							 object:NULL];
+	[notificationCenter addObserver:self
+						   selector:@selector(receiveResignActiveNotification:)
+							   name:NSWorkspaceSessionDidResignActiveNotification
+							 object:NULL];
 	
 	[[NSTask launchedTaskWithLaunchPath:@"/bin/bash"
 							  arguments:@[@"-c", @"exec \"/System/Library/CoreServices/Menu Extras/user.menu/Contents/Resources/CGSession\" -suspend"]]
@@ -425,7 +384,7 @@ BOOL doNothingAtStart = NO;
 															name:@"com.apple.screenIsUnlocked"
 														  object:NULL];
 	
-	if (m_bUseCurrentScreenSaver)
+	if (self.userDefaults.bUseCurrentScreenSaver)
 	{
 		NSTask *task = [[NSTask alloc] init];
 		[task setLaunchPath: @"/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine"];
@@ -493,9 +452,64 @@ BOOL doNothingAtStart = NO;
 		DBNSLog(@"Error.  Make sure you have a valid combination of options.");
 	}
 	
-	NSWindow *firstBlocker = (NSWindow*)_blockObjects[0];
+	NSWindow *firstBlocker = (NSWindow*)[_blockObjects firstObject];
 	[firstBlocker setContentView:_lockBlockView];
 }
+
+#pragma mark - Preferences
+
+- (IBAction)setMenuIcon:(id)sender
+{
+	[self makeMenu];
+	
+	[self updateUserSettings:sender];
+}
+
+- (IBAction)setMonitoringBluetooth:(id)sender
+{
+	if (self.userDefaults.bMonitoringBluetooth)
+	{
+		[self startMonitoring];
+	}
+	else
+	{
+		[self stopMonitoring];
+	}
+	
+	[self updateUserSettings:sender];
+}
+
+- (IBAction)setMonitoringUSBDevice:(id)sender
+{
+	if (self.userDefaults.bMonitoringUSB)
+	{
+		[self startListeningForDevices];
+	}
+	else
+	{
+		[self stopListeningForDevices];
+	}
+	
+	[self updateUserSettings:sender];
+}
+
+- (IBAction)toggleStartup:(id)sender
+{
+	[NSApplication sharedApplication].launchAtLogin = self.userDefaults.bEnableStartup;
+	
+	[self updateUserSettings:sender];
+}
+
+- (IBAction)updateUserSettings:(id)sender
+{
+	__weak typeof(self) weakSelf = self;
+	dispatch_async(dispatch_get_main_queue(), ^{
+		
+		[weakSelf.userDefaults saveUserSettingsWithBluetoothData:nil];
+	});
+}
+
+#pragma mark - NSDistributedNotificationCenter
 
 - (void)setScreenLockActive:(NSNotification *)aNotification
 {
@@ -507,6 +521,8 @@ BOOL doNothingAtStart = NO;
 	DBNSLog(@"Screen Unlock");
 	[self removeSecurityLock];
 }
+
+#pragma mark - NSNotificationCenter
 
 - (void)receiveBecomeActiveNotification:(NSNotification *)aNotification
 {
@@ -527,38 +543,32 @@ BOOL doNothingAtStart = NO;
 	DBNSLog(@"Logo out");
 }
 
+#pragma mark - Actions
+
 - (void)pauseResumeMusic
 {
-	if (m_bPauseiTunes)
+	if (self.userDefaults.bPauseiTunes)
 	{
-		if (!m_bNeedResumeiTunes)
+		if (!self.userDefaults.bNeedResumeiTunes)
 		{
-			if (ProcessIsRunningWithBundleID((CFStringRef)@"com.apple.iTunes", 0))
+			if ([iTunesHelper isItunesRuning] && [iTunesHelper isMusicPlaing])
 			{
-				iTunesApplication *iTunes = [SBApplication applicationWithBundleIdentifier:@"com.apple.iTunes"];
-				
-				if ([iTunes playerState] == iTunesEPlSPlaying)
-				{
-					[iTunes playpause];
-					m_bNeedResumeiTunes = YES;
-				}
+				[iTunesHelper playpause];
+				self.userDefaults.bNeedResumeiTunes = YES;
 			}
 		}
-		else if (m_bNeedResumeiTunes && m_bResumeiTunes)
+		else if (self.userDefaults.bNeedResumeiTunes && self.userDefaults.bResumeiTunes)
 		{
-			if (ProcessIsRunningWithBundleID((CFStringRef)@"com.apple.iTunes", 0))
+			if ([iTunesHelper isItunesRuning] && [iTunesHelper isMusicPaused])
 			{
-				iTunesApplication *iTunes = [SBApplication applicationWithBundleIdentifier:@"com.apple.iTunes"];
-				
-				if ([iTunes playerState] == iTunesEPlSPaused || [iTunes playerState] == iTunesEPlSStopped)
-				{
-					[iTunes playpause];
-					m_bNeedResumeiTunes = NO;
-				}
+				[iTunesHelper playpause];
+				self.userDefaults.bNeedResumeiTunes = NO;
 			}
 		}
 	}
 }
+
+#pragma mark - Security
 
 - (void)removeSecurityLock
 {
@@ -577,7 +587,7 @@ BOOL doNothingAtStart = NO;
 		[self setSecuritySetings:NO withSkip:m_bNeedBlock];
 	}
 	
-	switch (m_iLockType)
+	switch ([self.userDefaults lockingType])
 	{
 		case LOCK_SCREEN:
 			[[NSDistributedNotificationCenter defaultCenter] removeObserver:self
@@ -617,7 +627,7 @@ BOOL doNothingAtStart = NO;
 
 - (void)setSecuritySetings:(BOOL)seter withSkip:(BOOL)skip
 {
-	if (!m_bAutoPrefs)
+	if (!self.userDefaults.bAutoPrefs)
 	{
 		return;
 	}
@@ -659,141 +669,6 @@ BOOL doNothingAtStart = NO;
 	}
 }
 
-- (IBAction)setMenuIcon:(id)sender
-{
-	NSButton *btn = sender;
-	m_bUseIconOnMainMenu = [btn state];
-	[self makeMenu];
-}
-
-#pragma mark - deafuts
-
-+ (void)initialize
-{
-	// Create a dictionary
-	NSMutableDictionary *defaultValues = [NSMutableDictionary dictionary];
-	defaultValues[kIconOnMainMenu] = @YES;
-	defaultValues[kLockType] = @(LOCK_LOGIN_WINDOW);
-	defaultValues[kUseCurrentScreenSaver] = @NO;
-	defaultValues[kPauseiTunes] = @YES;
-	defaultValues[kResumeiTunes] = @YES;
-	defaultValues[kAutoScreenSaverPrefs] = @NO;
-	
-	defaultValues[kBluetoothCheckInterval] = @60;
-	defaultValues[kBluetoothMonitoring] = @NO;
-	defaultValues[kUSBMonitoring] = @NO;
-	defaultValues[kUSBDeviceType] = @(USB_ALL_DEVICES);
-	
-	// Register the dictionary of defaults
-	[[NSUserDefaults standardUserDefaults] registerDefaults: defaultValues];
-	//DBNSLog(@"registered defaults: %@", defaultValues);
-}
-
-- (void)loadUserSettings
-{
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	
-	m_bUseIconOnMainMenu = [[defaults objectForKey:kIconOnMainMenu] boolValue];
-	m_iLockType = [[defaults objectForKey:kLockType] intValue];
-	m_bUseCurrentScreenSaver = [[defaults objectForKey:kUseCurrentScreenSaver] boolValue];
-	m_bPauseiTunes = [[defaults objectForKey:kPauseiTunes] boolValue];
-	m_bResumeiTunes = [[defaults objectForKey:kResumeiTunes] boolValue];
-	m_bAutoPrefs = [[defaults objectForKey:kAutoScreenSaverPrefs] boolValue];
-	m_bNeedResumeiTunes = [[defaults objectForKey:kResumeiTunes] boolValue];
-	
-	if (useAditionalLock)
-	{
-		NSData *deviceAsData = [defaults objectForKey:kBluetoothDevice];
-		if( [deviceAsData length] > 0 )
-		{
-			m_BluetoothDevice = [NSKeyedUnarchiver unarchiveObjectWithData:deviceAsData];
-			if (m_BluetoothDevice)
-			{
-				[self.bluetoothName setStringValue:[NSString stringWithFormat:@"%@", [m_BluetoothDevice name]]];
-			}
-		}
-		
-		//Timer interval
-		self.p_BluetoothTimerInterval = 2; //[[defaults stringForKey:kBluetoothCheckInterval] intValue];
-		
-		// Monitoring enabled
-		m_bMonitoringBluetooth = [defaults boolForKey:kBluetoothMonitoring];
-		m_bMonitoringUSB = [defaults boolForKey:kUSBMonitoring];
-	}
-	
-	self.isJustLock = (m_iLockType & LOCK_SCREEN);
-}
-
-- (void)saveUserSettings
-{
-	NSUserDefaults *defaults = [NSUserDefaults standardUserDefaults];
-	
-	[defaults setBool:m_bUseIconOnMainMenu forKey:kIconOnMainMenu];
-	[defaults setInteger:m_iLockType forKey:kLockType];
-	[defaults setBool:m_bUseCurrentScreenSaver forKey:kUseCurrentScreenSaver];
-	[defaults setBool:m_bPauseiTunes forKey:kPauseiTunes];
-	[defaults setBool:m_bResumeiTunes forKey:kResumeiTunes];
-	[defaults setBool:m_bAutoPrefs forKey:kAutoScreenSaverPrefs];
-	
-	if (useAditionalLock)
-	{
-		// Monitoring enabled
-		[defaults setBool:m_bMonitoringBluetooth forKey:kBluetoothMonitoring];
-		
-		// Timer interval
-		//[defaults setInteger:_p_BluetoothTimerInterval forKey:kBluetoothCheckInterval];
-		
-		// Device
-		if( m_BluetoothDevice )
-		{
-			NSData *deviceAsData = [NSKeyedArchiver archivedDataWithRootObject:m_BluetoothDevice];
-			[defaults setObject:deviceAsData forKey:kBluetoothDevice];
-		}
-		
-		[defaults setBool:m_bMonitoringUSB forKey:kUSBMonitoring];
-		[defaults setInteger:m_iUSBDeviceType forKey:kUSBDeviceType];
-	}
-	
-	[defaults synchronize];
-}
-
-NSInteger ProcessIsRunningWithBundleID(CFStringRef inBundleID, ProcessSerialNumber* outPSN)
-{
-	NSInteger theResult = 0;
-	
-	ProcessSerialNumber thePSN = {0, kNoProcess};
-	OSErr theError = noErr;
-	do
-	{
-		theError = GetNextProcess(&thePSN);
-		if(theError == noErr)
-		{
-			CFDictionaryRef theInfo = NULL;
-			theInfo = ProcessInformationCopyDictionary(&thePSN, kProcessDictionaryIncludeAllInformationMask);
-			if(theInfo)
-			{
-				CFStringRef theBundleID = CFDictionaryGetValue(theInfo, kIOBundleIdentifierKey);
-				if(theBundleID)
-				{
-					if(CFStringCompare(theBundleID, inBundleID, 0) == kCFCompareEqualTo)
-					{
-						theResult = 1;
-					}
-				}
-				CFRelease(theInfo);
-			}
-		}
-	}
-	while((theError != procNotFound) && (theResult == 0));
-	
-	if(theResult && outPSN)
-	{
-		*outPSN = thePSN;
-	}
-	
-	return theResult;
-}
-
 #pragma mark - Bluetooth
 
 - (IBAction)changeDevice:(id)sender
@@ -809,6 +684,9 @@ NSInteger ProcessIsRunningWithBundleID(CFStringRef inBundleID, ProcessSerialNumb
 	}
 	
 	m_BluetoothDevice = results[0];
+	
+	NSData *deviceAsData = [NSKeyedArchiver archivedDataWithRootObject:m_BluetoothDevice];
+	[self.userDefaults saveUserSettingsWithBluetoothData:deviceAsData];
 	
 	[self.bluetoothName setStringValue:[NSString stringWithFormat:@"%@", [m_BluetoothDevice name]]];
 	
@@ -844,7 +722,7 @@ NSInteger ProcessIsRunningWithBundleID(CFStringRef inBundleID, ProcessSerialNumb
 
 - (BOOL)isInRange
 {
-	if (useAditionalLock && m_BluetoothDevice)
+	if (m_BluetoothDevice)
 	{
 		if ([m_BluetoothDevice remoteNameRequest:nil] == kIOReturnSuccess )
 		{
@@ -857,87 +735,59 @@ NSInteger ProcessIsRunningWithBundleID(CFStringRef inBundleID, ProcessSerialNumb
 
 - (void)startMonitoring
 {
-	if (useAditionalLock)
+	if (![m_BluetoothDevice isConnected])
 	{
-		if (![m_BluetoothDevice isConnected])
+		IOReturn rt = [m_BluetoothDevice openConnection:self];
+		m_BluetoothDevicePriorStatus = OutOfRange;
+		if (rt != kIOReturnSuccess)
 		{
-			IOReturn rt = [m_BluetoothDevice openConnection:self];
-			m_BluetoothDevicePriorStatus = OutOfRange;
-			if (rt != kIOReturnSuccess)
-			{
-				DBNSLog(@"Can't connect bluetoth device");
-			}
+			DBNSLog(@"Can't connect bluetoth device");
 		}
-		
-		m_BluetoothTimer = [NSTimer scheduledTimerWithTimeInterval:self.p_BluetoothTimerInterval
-															target:self
-														  selector:@selector(handleTimer:)
-														  userInfo:nil
-														   repeats:YES];
 	}
+	
+	m_BluetoothTimer = [NSTimer scheduledTimerWithTimeInterval:self.p_BluetoothTimerInterval
+														target:self
+													  selector:@selector(handleTimer:)
+													  userInfo:nil
+													   repeats:YES];
 }
 
 - (void)stopMonitoring
 {
-	if (useAditionalLock)
-	{
-		m_BluetoothDevicePriorStatus = OutOfRange;
-		
-		[self checkConnectivity];
-		[m_BluetoothDevice closeConnection];
-		[m_BluetoothTimer invalidate];
-		[m_Queue cancelAllOperations];
-	}
+	m_BluetoothDevicePriorStatus = OutOfRange;
+	
+	[self checkConnectivity];
+	[m_BluetoothDevice closeConnection];
+	[m_BluetoothTimer invalidate];
+	[m_Queue cancelAllOperations];
 }
 
 - (void)handleTimer:(NSTimer *)theTimer
 {
-	if (useAditionalLock)
+	if (![[m_Queue operations] count])
 	{
-		if (![[m_Queue operations] count])
-		{
-			[m_Queue addOperationWithBlock:^ {
-				
-				BOOL result = [self isInRange];
-				
-				if( result )
+		[m_Queue addOperationWithBlock:^ {
+			
+			BOOL result = [self isInRange];
+			
+			if( result )
+			{
+				if( m_BluetoothDevicePriorStatus == OutOfRange )
 				{
-					if( m_BluetoothDevicePriorStatus == OutOfRange )
-					{
-						m_BluetoothDevicePriorStatus = InRange;
-						[self checkConnectivity];
-					}
+					m_BluetoothDevicePriorStatus = InRange;
+					[self checkConnectivity];
 				}
-				else
+			}
+			else
+			{
+				if( m_BluetoothDevicePriorStatus == InRange )
 				{
-					if( m_BluetoothDevicePriorStatus == InRange )
-					{
-						m_BluetoothDevicePriorStatus = OutOfRange;
-						[self checkConnectivity];
-						[self makeLock];
-					}
+					m_BluetoothDevicePriorStatus = OutOfRange;
+					[self checkConnectivity];
+					[self makeLock];
 				}
-			}];
-		}
-	}
-}
-
-- (IBAction)setMonitoring:(id)sender
-{
-	if (useAditionalLock)
-	{
-		NSButton *btn = sender;
-		
-		m_bMonitoringBluetooth = [btn state] == NSOnState ? YES : NO;
-		
-		if (m_bMonitoringBluetooth)
-		{
-			[self startMonitoring];
-		}
-		else
-		{
-			[self stopMonitoring];
-		}
+			}
+		}];
 	}
 }
 
@@ -975,22 +825,33 @@ NSInteger ProcessIsRunningWithBundleID(CFStringRef inBundleID, ProcessSerialNumb
 
 - (void) makeMenu
 {
-	if (m_bUseIconOnMainMenu && m_statusItem == nil)
+	if (self.userDefaults.bUseIconOnMainMenu && self.statusItem == nil)
 	{
-		m_statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
-		[m_statusItem setMenu:self.statusMenu];
+		NSStatusItem *statusItem = [[NSStatusBar systemStatusBar] statusItemWithLength:NSVariableStatusItemLength];
 		
-		NSImage *itemImage = [NSImage imageNamed:@"lock"];
-		[m_statusItem setImage: itemImage];
+		NSStatusBarButton *button = statusItem.button;
 		
-		[m_statusItem setHighlightMode:YES];
+		button.target = self;
+		button.action = @selector(toggleStatus:);
+		[button sendActionOn:NSLeftMouseUpMask|NSRightMouseUpMask];
+		
+		self.statusItem = statusItem;
+		
+		button.image = [NSImage imageNamed:@"lock"];
+		button.appearsDisabled = NO;
+		button.toolTip = NSLocalizedString(@"Click to show menu", nil);
 		
 	}
-	else if (!m_bUseIconOnMainMenu && m_statusItem != nil)
+	else if (!self.userDefaults.bUseIconOnMainMenu && self.statusItem != nil)
 	{
-		[[NSStatusBar systemStatusBar] removeStatusItem:m_statusItem];
-		m_statusItem = nil;
+		[[NSStatusBar systemStatusBar] removeStatusItem:self.statusItem];
+		self.statusItem = nil;
 	}
+}
+
+- (void)toggleStatus:(id)sender
+{
+	[self.statusItem popUpStatusItemMenu:self.statusMenu];
 }
 
 #pragma mark - USB
@@ -1039,21 +900,30 @@ static APPLE_MOBILE_DEVICE APPLE_MOBILE_DEVICES[NUM_APPLE_MOBILE_DEVICES] =
 
 - (void)startListeningForDevices
 {
-	if (useAditionalLock)
-	{
-		NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
-		
-		[nc addObserver:self selector:@selector(listeningAttachUSBDevice:) name:PTUSBDeviceDidAttachNotification object:PTUSBHub.sharedHub];
-		[nc addObserver:self selector:@selector(listeningDetachUSBDevice:) name:PTUSBDeviceDidDetachNotification object:PTUSBHub.sharedHub];
-	}
+	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
+	
+	[nc addObserver:self
+		   selector:@selector(listeningAttachUSBDevice:)
+			   name:PTUSBDeviceDidAttachNotification
+			 object:PTUSBHub.sharedHub];
+	
+	[nc addObserver:self
+		   selector:@selector(listeningDetachUSBDevice:)
+			   name:PTUSBDeviceDidDetachNotification
+			 object:PTUSBHub.sharedHub];
 }
 
 - (void)stopListeningForDevices
 {
 	NSNotificationCenter *nc = [NSNotificationCenter defaultCenter];
 	
-	[nc removeObserver:self name:PTUSBDeviceDidAttachNotification object:PTUSBHub.sharedHub];
-	[nc removeObserver:self name:PTUSBDeviceDidDetachNotification object:PTUSBHub.sharedHub];
+	[nc removeObserver:self
+				  name:PTUSBDeviceDidAttachNotification
+				object:PTUSBHub.sharedHub];
+	
+	[nc removeObserver:self
+				  name:PTUSBDeviceDidDetachNotification
+				object:PTUSBHub.sharedHub];
 }
 
 - (void)listeningDetachUSBDevice:(NSNotification *)note
@@ -1062,7 +932,7 @@ static APPLE_MOBILE_DEVICE APPLE_MOBILE_DEVICES[NUM_APPLE_MOBILE_DEVICES] =
 	if (m_iUSBDeviceID == _deviceID)
 	{
 		DBNSLog(@"%@ is disconnected by USB", m_sUSBDeviceName);
-		if (m_iUSBDeviceType == m_iCurrentUSBDeviceType || m_iUSBDeviceType == USB_ALL_DEVICES)
+		if ([self.userDefaults deviceType] == m_iCurrentUSBDeviceType || [self.userDefaults deviceType] == USB_ALL_DEVICES)
 		{
 			m_iUSBDeviceID = 0;
 			m_sUSBDeviceName = nil;
@@ -1105,40 +975,12 @@ static APPLE_MOBILE_DEVICE APPLE_MOBILE_DEVICES[NUM_APPLE_MOBILE_DEVICES] =
 	}
 }
 
-- (IBAction)listenUSBDevice:(id)sender
-{
-	if (useAditionalLock)
-	{
-		NSButton *btn = sender;
-		m_bMonitoringUSB = [btn state] == NSOnState ? YES : NO;
-		if (m_bMonitoringUSB)
-		{
-			[self startListeningForDevices];
-		}
-		else
-		{
-			[self stopListeningForDevices];
-		}
-	}
-}
-
-- (IBAction)changeUSBDeviceType:(id)sender
-{
-	NSMatrix *matrix = sender;
-	m_iUSBDeviceType = [matrix selectedRow];
-}
-
 - (BOOL)tabView:(NSTabView *)tabView shouldSelectTabViewItem:(NSTabViewItem *)tabViewItem
 {
 	NSString *tabSelection = [tabViewItem identifier];
 	if ([tabSelection isEqualToString:@"bluetooth"] || [tabSelection isEqualToString:@"usb"])
 	{
-		if (useAditionalLock)
-			return YES;
-		else
-		{
-			return NO;
-		}
+		return YES;
 	}
 	else
 	{

@@ -11,8 +11,6 @@
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		A517CFA4142FD73E00632668 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A517CFA2142FD73E00632668 /* Credits.rtf */; };
-		A51856781A631FD80098B7A3 /* LLManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A51856761A631FD80098B7A3 /* LLManager.m */; };
-		A518567F1A6320DB0098B7A3 /* LaunchAtLoginHelper.app in Copy LoginItems */ = {isa = PBXBuildFile; fileRef = A518567B1A631FD80098B7A3 /* LaunchAtLoginHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A51948D018887ED6009D6A81 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51948CF18887ED6009D6A81 /* SystemConfiguration.framework */; };
 		A52843BA1948547B00040243 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A52843B91948547B00040243 /* Images.xcassets */; };
 		A52A9F6016A8365300EA4B17 /* TextFieldBG.png in Resources */ = {isa = PBXBuildFile; fileRef = A52A9F5F16A8365200EA4B17 /* TextFieldBG.png */; };
@@ -24,6 +22,9 @@
 		A568E700142F5F8B0028D621 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A568E6FF142F5F8B0028D621 /* IOKit.framework */; };
 		A589299616A5DE9400063E09 /* PTUSBHub.m in Sources */ = {isa = PBXBuildFile; fileRef = A589299516A5DE9400063E09 /* PTUSBHub.m */; };
 		A58A9E36142F5D3600D99E79 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A58A9E35142F5D3600D99E79 /* Security.framework */; };
+		A59A1AE61A6D9EC100767E31 /* iTunesHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A59A1AE51A6D9EC100767E31 /* iTunesHelper.m */; };
+		A59A1AEA1A6DA40F00767E31 /* NSApplication+MXUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = A59A1AE91A6DA40F00767E31 /* NSApplication+MXUtilities.m */; };
+		A59A1AEE1A6DA9A400767E31 /* IGRUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = A59A1AED1A6DA9A400767E31 /* IGRUserDefaults.m */; };
 		A59F335516C125E600A43F7C /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A59F335416C125E600A43F7C /* ServiceManagement.framework */; };
 		A5C0BBF616A6D08B008072DE /* PTHotKey.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5C0BBED16A6D078008072DE /* PTHotKey.framework */; };
 		A5C0BBF716A6D08B008072DE /* ShortcutRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5C0BBEF16A6D078008072DE /* ShortcutRecorder.framework */; };
@@ -44,20 +45,6 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
-		A518567A1A631FD80098B7A3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A51856721A631FD70098B7A3 /* LaunchAtLoginHelper.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = 734C379415414CE200994189;
-			remoteInfo = LaunchAtLoginHelper;
-		};
-		A518567C1A63202E0098B7A3 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A51856721A631FD70098B7A3 /* LaunchAtLoginHelper.xcodeproj */;
-			proxyType = 1;
-			remoteGlobalIDString = 734C379315414CE200994189;
-			remoteInfo = LaunchAtLoginHelper;
-		};
 		A5C0BBEC16A6D078008072DE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A5C0BBE216A6D077008072DE /* ShortcutRecorder.xcodeproj */;
@@ -121,7 +108,6 @@
 			dstPath = Contents/Library/LoginItems;
 			dstSubfolderSpec = 1;
 			files = (
-				A518567F1A6320DB0098B7A3 /* LaunchAtLoginHelper.app in Copy LoginItems */,
 			);
 			name = "Copy LoginItems";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -150,9 +136,6 @@
 		A5046E3F16FAFB6D00323A23 /* script_service-Entitlements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "script_service-Entitlements.plist"; sourceTree = "<group>"; };
 		A5094B9816CBF33200A3C877 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A517CFA3142FD73E00632668 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
-		A51856721A631FD70098B7A3 /* LaunchAtLoginHelper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = LaunchAtLoginHelper.xcodeproj; path = LaunchAtLoginHelper/LaunchAtLoginHelper.xcodeproj; sourceTree = "<group>"; };
-		A51856751A631FD80098B7A3 /* LLManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = LLManager.h; path = LaunchAtLoginHelper/LLManager.h; sourceTree = "<group>"; };
-		A51856761A631FD80098B7A3 /* LLManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = LLManager.m; path = LaunchAtLoginHelper/LLManager.m; sourceTree = "<group>"; };
 		A51948CF18887ED6009D6A81 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A52843B91948547B00040243 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = LockMeNow/Images.xcassets; sourceTree = "<group>"; };
 		A52A9F5F16A8365200EA4B17 /* TextFieldBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TextFieldBG.png; path = Resources/TextFieldBG.png; sourceTree = "<group>"; };
@@ -166,6 +149,12 @@
 		A589299416A5DE9400063E09 /* PTUSBHub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTUSBHub.h; path = peertalk/peertalk/PTUSBHub.h; sourceTree = "<group>"; };
 		A589299516A5DE9400063E09 /* PTUSBHub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTUSBHub.m; path = peertalk/peertalk/PTUSBHub.m; sourceTree = "<group>"; };
 		A58A9E35142F5D3600D99E79 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		A59A1AE41A6D9EC100767E31 /* iTunesHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iTunesHelper.h; path = Source/iTunesHelper.h; sourceTree = "<group>"; };
+		A59A1AE51A6D9EC100767E31 /* iTunesHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iTunesHelper.m; path = Source/iTunesHelper.m; sourceTree = "<group>"; };
+		A59A1AE81A6DA40F00767E31 /* NSApplication+MXUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSApplication+MXUtilities.h"; sourceTree = "<group>"; };
+		A59A1AE91A6DA40F00767E31 /* NSApplication+MXUtilities.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "NSApplication+MXUtilities.m"; sourceTree = "<group>"; };
+		A59A1AEC1A6DA9A400767E31 /* IGRUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = IGRUserDefaults.h; path = Source/IGRUserDefaults.h; sourceTree = "<group>"; };
+		A59A1AED1A6DA9A400767E31 /* IGRUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = IGRUserDefaults.m; path = Source/IGRUserDefaults.m; sourceTree = "<group>"; };
 		A59F335416C125E600A43F7C /* ServiceManagement.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ServiceManagement.framework; path = System/Library/Frameworks/ServiceManagement.framework; sourceTree = SDKROOT; };
 		A5B0BEBF144CA9E0003C3145 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		A5BD7F6C18B0F0F30038B280 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
@@ -227,6 +216,10 @@
 				A53831C216481976002764C1 /* Privat */,
 				D0764510101E79F500DAE20D /* LockMeNowAppDelegate.h */,
 				D0764511101E79F500DAE20D /* LockMeNowAppDelegate.m */,
+				A59A1AE41A6D9EC100767E31 /* iTunesHelper.h */,
+				A59A1AE51A6D9EC100767E31 /* iTunesHelper.m */,
+				A59A1AEC1A6DA9A400767E31 /* IGRUserDefaults.h */,
+				A59A1AED1A6DA9A400767E31 /* IGRUserDefaults.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -319,24 +312,6 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
-		A51856711A631FC10098B7A3 /* LaunchAtLoginHelper */ = {
-			isa = PBXGroup;
-			children = (
-				A51856721A631FD70098B7A3 /* LaunchAtLoginHelper.xcodeproj */,
-				A51856751A631FD80098B7A3 /* LLManager.h */,
-				A51856761A631FD80098B7A3 /* LLManager.m */,
-			);
-			name = LaunchAtLoginHelper;
-			sourceTree = "<group>";
-		};
-		A51856731A631FD70098B7A3 /* Products */ = {
-			isa = PBXGroup;
-			children = (
-				A518567B1A631FD80098B7A3 /* LaunchAtLoginHelper.app */,
-			);
-			name = Products;
-			sourceTree = "<group>";
-		};
 		A53831C216481976002764C1 /* Privat */ = {
 			isa = PBXGroup;
 			children = (
@@ -356,7 +331,7 @@
 		A5489B8215D3E5A90072E5D2 /* External */ = {
 			isa = PBXGroup;
 			children = (
-				A51856711A631FC10098B7A3 /* LaunchAtLoginHelper */,
+				A59A1AE71A6DA40F00767E31 /* MXUtilities */,
 				A5C0BBE216A6D077008072DE /* ShortcutRecorder.xcodeproj */,
 				A589299716A5DEBB00063E09 /* peertalk */,
 			);
@@ -380,6 +355,15 @@
 				A589299516A5DE9400063E09 /* PTUSBHub.m */,
 			);
 			name = peertalk;
+			sourceTree = "<group>";
+		};
+		A59A1AE71A6DA40F00767E31 /* MXUtilities */ = {
+			isa = PBXGroup;
+			children = (
+				A59A1AE81A6DA40F00767E31 /* NSApplication+MXUtilities.h */,
+				A59A1AE91A6DA40F00767E31 /* NSApplication+MXUtilities.m */,
+			);
+			path = MXUtilities;
 			sourceTree = "<group>";
 		};
 		A5C0BBE316A6D077008072DE /* Products */ = {
@@ -430,7 +414,6 @@
 			buildRules = (
 			);
 			dependencies = (
-				A518567D1A63202E0098B7A3 /* PBXTargetDependency */,
 				A5D94E8816FB1D000054BC6C /* PBXTargetDependency */,
 				A5C0BBF316A6D083008072DE /* PBXTargetDependency */,
 				A5C0BBF516A6D083008072DE /* PBXTargetDependency */,
@@ -468,6 +451,11 @@
 				TargetAttributes = {
 					8D1107260486CEB800E47090 = {
 						DevelopmentTeam = DMP42GVPJ3;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 1;
+							};
+						};
 					};
 				};
 			};
@@ -483,10 +471,6 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = A51856731A631FD70098B7A3 /* Products */;
-					ProjectRef = A51856721A631FD70098B7A3 /* LaunchAtLoginHelper.xcodeproj */;
-				},
-				{
 					ProductGroup = A5C0BBE316A6D077008072DE /* Products */;
 					ProjectRef = A5C0BBE216A6D077008072DE /* ShortcutRecorder.xcodeproj */;
 				},
@@ -500,13 +484,6 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		A518567B1A631FD80098B7A3 /* LaunchAtLoginHelper.app */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.application;
-			path = LaunchAtLoginHelper.app;
-			remoteRef = A518567A1A631FD80098B7A3 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
 		A5C0BBED16A6D078008072DE /* PTHotKey.framework */ = {
 			isa = PBXReferenceProxy;
 			fileType = wrapper.framework;
@@ -562,8 +539,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A59A1AE61A6D9EC100767E31 /* iTunesHelper.m in Sources */,
 				D0764512101E79F500DAE20D /* LockMeNowAppDelegate.m in Sources */,
-				A51856781A631FD80098B7A3 /* LLManager.m in Sources */,
+				A59A1AEA1A6DA40F00767E31 /* NSApplication+MXUtilities.m in Sources */,
+				A59A1AEE1A6DA9A400767E31 /* IGRUserDefaults.m in Sources */,
 				D0764532101E7A6100DAE20D /* main.m in Sources */,
 				A589299616A5DE9400063E09 /* PTUSBHub.m in Sources */,
 			);
@@ -580,11 +559,6 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
-		A518567D1A63202E0098B7A3 /* PBXTargetDependency */ = {
-			isa = PBXTargetDependency;
-			name = LaunchAtLoginHelper;
-			targetProxy = A518567C1A63202E0098B7A3 /* PBXContainerItemProxy */;
-		};
 		A5C0BBF316A6D083008072DE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			name = PTHotKey;
@@ -728,7 +702,7 @@
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = /Applications;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CFLAGS = "-DDEBUG";
 				PRODUCT_NAME = lockmenow;
 				PROVISIONING_PROFILE = "";
@@ -756,7 +730,7 @@
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = /Applications;
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CFLAGS = "";
 				PRODUCT_NAME = lockmenow;
 				PROVISIONING_PROFILE = "";

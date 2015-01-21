@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="5051" systemVersion="13C59" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
-        <deployment version="1070" defaultVersion="1070" identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="5051"/>
+        <deployment identifier="macosx"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -11,7 +11,7 @@
             </connections>
         </customObject>
         <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
-        <customObject id="-3" userLabel="Application"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
         <menu title="AMainMenu" systemMenu="main" id="29">
             <items>
                 <menuItem title="Lock Me Now" id="56">
@@ -92,18 +92,18 @@
                         <tabViewItems>
                             <tabViewItem label="General" identifier="general" id="775">
                                 <view key="view" id="778">
-                                    <rect key="frame" x="10" y="29" width="299" height="251"/>
+                                    <rect key="frame" x="10" y="25" width="299" height="255"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="539">
-                                            <rect key="frame" x="17" y="127" width="265" height="5"/>
+                                            <rect key="frame" x="17" y="131" width="265" height="5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                             <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <font key="titleFont" metaFont="system"/>
                                         </box>
                                         <customView id="557" customClass="SRRecorderControl">
-                                            <rect key="frame" x="20" y="219" width="262" height="22"/>
+                                            <rect key="frame" x="20" y="223" width="262" height="22"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="style">
@@ -118,22 +118,19 @@
                                             </connections>
                                         </customView>
                                         <button id="568">
-                                            <rect key="frame" x="18" y="105" width="122" height="18"/>
+                                            <rect key="frame" x="18" y="109" width="122" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Launch at Login" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="569">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
-                                                <connections>
-                                                    <binding destination="603" name="value" keyPath="values.enableAutostart" id="935"/>
-                                                </connections>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="toggleStartup:" target="494" id="917"/>
-                                                <binding destination="603" name="value" keyPath="values.enableStartup" id="933"/>
+                                                <action selector="toggleStartup:" target="494" id="p8m-KA-i32"/>
+                                                <binding destination="494" name="value" keyPath="self.userDefaults.bEnableStartup" id="Hx0-00-23M"/>
                                             </connections>
                                         </button>
                                         <box autoresizesSubviews="NO" title="Lock Type:" borderType="line" id="581">
-                                            <rect key="frame" x="17" y="133" width="268" height="78"/>
+                                            <rect key="frame" x="17" y="137" width="268" height="78"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <view key="contentView">
                                                 <rect key="frame" x="1" y="1" width="266" height="62"/>
@@ -162,8 +159,8 @@
                                                             </column>
                                                         </cells>
                                                         <connections>
-                                                            <action selector="setLockType:" target="494" id="619"/>
-                                                            <binding destination="603" name="selectedIndex" keyPath="values.LockType" id="618"/>
+                                                            <action selector="updateUserSettings:" target="494" id="LmV-b0-c2k"/>
+                                                            <binding destination="494" name="selectedIndex" keyPath="self.userDefaults.iLockType" id="3gQ-au-rxb"/>
                                                         </connections>
                                                     </matrix>
                                                 </subviews>
@@ -172,74 +169,65 @@
                                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </box>
                                         <button id="582">
-                                            <rect key="frame" x="18" y="85" width="142" height="18"/>
+                                            <rect key="frame" x="18" y="89" width="142" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Icon on Main Menu" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="583">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="setMenuIcon:" target="494" id="626"/>
-                                                <binding destination="603" name="value" keyPath="values.IconOnMainMenu" id="611"/>
+                                                <action selector="setMenuIcon:" target="494" id="KRw-kZ-8Mf"/>
+                                                <binding destination="494" name="value" keyPath="self.userDefaults.bUseIconOnMainMenu" id="fnz-qo-zwe"/>
                                             </connections>
                                         </button>
                                         <button id="8Uo-Yr-gEo">
-                                            <rect key="frame" x="18" y="65" width="180" height="18"/>
+                                            <rect key="frame" x="18" y="69" width="180" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Use Current Screen Saver" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="8fR-RJ-7Xi">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="setUseCurrentScreenSaver:" target="494" id="Srb-FR-feC"/>
-                                                <binding destination="494" name="enabled" keyPath="isJustLock" id="BQW-Gl-efd"/>
-                                                <binding destination="603" name="value" keyPath="values.UseCurrentScreenSaver" id="piq-kt-3gC"/>
+                                                <action selector="updateUserSettings:" target="494" id="AvG-od-p5c"/>
+                                                <binding destination="494" name="enabled" keyPath="self.userDefaults.iLockType" id="VXh-Bw-huL"/>
+                                                <binding destination="494" name="value" keyPath="self.userDefaults.bUseCurrentScreenSaver" id="CU1-dg-w80"/>
                                             </connections>
                                         </button>
                                         <button id="646">
-                                            <rect key="frame" x="18" y="45" width="145" height="18"/>
+                                            <rect key="frame" x="18" y="49" width="145" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Pause iTunes Music" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="647">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="setiTunesPause:" target="494" id="649"/>
-                                                <binding destination="603" name="value" keyPath="values.PauseiTunes" id="652"/>
+                                                <action selector="updateUserSettings:" target="494" id="7Xq-Cd-Ai8"/>
+                                                <binding destination="494" name="value" keyPath="self.userDefaults.bPauseiTunes" id="Mrw-wv-3SP"/>
                                             </connections>
                                         </button>
                                         <button id="828">
-                                            <rect key="frame" x="42" y="25" width="158" height="18"/>
+                                            <rect key="frame" x="42" y="29" width="158" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Resume iTunes Music" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="829">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="setiTunesResume:" target="494" id="836"/>
-                                                <binding destination="603" name="enabled" keyPath="values.PauseiTunes" id="837">
-                                                    <dictionary key="options">
-                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                        <integer key="NSNullPlaceholder" value="-1"/>
-                                                    </dictionary>
-                                                </binding>
-                                                <binding destination="603" name="value" keyPath="values.ResumeiTunes" id="833"/>
+                                                <action selector="updateUserSettings:" target="494" id="CVI-nA-Fun"/>
+                                                <binding destination="494" name="value" keyPath="self.userDefaults.bResumeiTunes" id="n2a-kU-YDW"/>
                                             </connections>
                                         </button>
                                         <button id="663">
-                                            <rect key="frame" x="20" y="5" width="222" height="18"/>
+                                            <rect key="frame" x="20" y="9" width="222" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Auto Controll ScreenSaver prefs" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="664">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="setAutoPrefs:" target="494" id="670"/>
-                                                <binding destination="494" name="hidden" keyPath="bEncription" previousBinding="669" id="938"/>
-                                                <binding destination="603" name="value" keyPath="values.AutoScreenSaverPrefs" id="667"/>
-                                                <binding destination="603" name="enabled" keyPath="values.LockType" id="669"/>
+                                                <action selector="updateUserSettings:" target="494" id="BwG-gS-Faf"/>
+                                                <binding destination="494" name="hidden" keyPath="bEncription" id="hUk-Kq-n6y"/>
+                                                <binding destination="494" name="value" keyPath="self.userDefaults.bAutoPrefs" id="VNg-Kn-BqV"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -247,23 +235,23 @@
                             </tabViewItem>
                             <tabViewItem label="Bluetooth" identifier="bluetooth" id="776">
                                 <view key="view" id="777">
-                                    <rect key="frame" x="10" y="25" width="299" height="238"/>
+                                    <rect key="frame" x="10" y="25" width="299" height="255"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button id="675">
-                                            <rect key="frame" x="15" y="215" width="188" height="18"/>
+                                            <rect key="frame" x="15" y="232" width="188" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Check device by Bluetooth" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="680">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="setMonitoring:" target="494" id="727"/>
-                                                <binding destination="603" name="value" keyPath="values.BluetoothMonitoring" id="735"/>
+                                                <action selector="setMonitoringBluetooth:" target="494" id="wlW-Ox-Lk3"/>
+                                                <binding destination="494" name="value" keyPath="self.userDefaults.bMonitoringBluetooth" id="Zcx-tZ-5oV"/>
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" id="691">
-                                            <rect key="frame" x="17" y="186" width="53" height="19"/>
+                                            <rect key="frame" x="17" y="203" width="53" height="19"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="roundRect" title="Device" bezelStyle="roundedRect" alignment="center" borderStyle="border" inset="2" id="698">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -271,11 +259,10 @@
                                             </buttonCell>
                                             <connections>
                                                 <action selector="changeDevice:" target="494" id="724"/>
-                                                <binding destination="603" name="enabled" keyPath="values.BluetoothMonitoring" id="844"/>
                                             </connections>
                                         </button>
                                         <textField verticalHuggingPriority="750" id="701">
-                                            <rect key="frame" x="93" y="188" width="159" height="17"/>
+                                            <rect key="frame" x="93" y="205" width="159" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="none" id="702">
                                                 <font key="font" metaFont="system"/>
@@ -284,7 +271,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <customView id="703" customClass="IKImageView">
-                                            <rect key="frame" x="73" y="188" width="16" height="16"/>
+                                            <rect key="frame" x="73" y="205" width="16" height="16"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <subviews>
                                                 <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" id="725">
@@ -294,7 +281,7 @@
                                             </subviews>
                                         </customView>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="863">
-                                            <rect key="frame" x="14" y="18" width="271" height="34"/>
+                                            <rect key="frame" x="14" y="35" width="271" height="34"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Automatically locks OS X when you walk away with a paired Bluetooth device." id="864">
                                                 <font key="font" metaFont="system"/>
@@ -307,23 +294,23 @@
                             </tabViewItem>
                             <tabViewItem label="USB" identifier="usb" id="779">
                                 <view key="view" id="780">
-                                    <rect key="frame" x="10" y="25" width="299" height="238"/>
+                                    <rect key="frame" x="10" y="25" width="299" height="255"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button id="783">
-                                            <rect key="frame" x="15" y="215" width="152" height="18"/>
+                                            <rect key="frame" x="15" y="227" width="269" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Check device by USB" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="789">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
-                                                <action selector="listenUSBDevice:" target="494" id="809"/>
-                                                <binding destination="603" name="value" keyPath="values.USBMonitoring" id="811"/>
+                                                <action selector="setMonitoringUSBDevice:" target="494" id="NzU-c9-4tn"/>
+                                                <binding destination="494" name="value" keyPath="self.userDefaults.bMonitoringUSB" id="saU-lh-K41"/>
                                             </connections>
                                         </button>
                                         <box autoresizesSubviews="NO" title="Lock for:" borderType="line" id="795">
-                                            <rect key="frame" x="14" y="91" width="271" height="118"/>
+                                            <rect key="frame" x="14" y="108" width="271" height="118"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <view key="contentView">
                                                 <rect key="frame" x="1" y="1" width="269" height="102"/>
@@ -360,8 +347,9 @@
                                                             </column>
                                                         </cells>
                                                         <connections>
-                                                            <action selector="changeUSBDeviceType:" target="494" id="810"/>
-                                                            <binding destination="603" name="enabled" keyPath="values.USBMonitoring" id="846"/>
+                                                            <action selector="updateUserSettings:" target="494" id="yTI-DM-o2a"/>
+                                                            <binding destination="494" name="enabled" keyPath="self.userDefaults.bMonitoringUSB" id="cv1-HB-1ct"/>
+                                                            <binding destination="494" name="selectedIndex" keyPath="self.userDefaults.iUSBDeviceType" id="L9U-Fd-hhg"/>
                                                         </connections>
                                                     </matrix>
                                                 </subviews>
@@ -370,7 +358,7 @@
                                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </box>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="841">
-                                            <rect key="frame" x="14" y="17" width="271" height="34"/>
+                                            <rect key="frame" x="14" y="34" width="271" height="34"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Automatically locks your OS X when you dictonnect iDevice from USB." id="842">
                                                 <font key="font" metaFont="system"/>
@@ -506,7 +494,6 @@ Big Thanks:
                 <outlet property="delegate" destination="494" id="658"/>
             </connections>
         </menu>
-        <userDefaultsController representsSharedInstance="YES" id="603"/>
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hasShadow="NO" hidesOnDeactivate="YES" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="847" customClass="NSPanel">
             <windowStyleMask key="styleMask" utility="YES"/>
             <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>

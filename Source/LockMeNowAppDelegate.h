@@ -8,6 +8,7 @@
 
 #import <IOBluetooth/objc/IOBluetoothSDPServiceRecord.h>
 #import <IOBluetooth/objc/IOBluetoothRFCOMMChannel.h>
+#import "IGRUserDefaults.h"
 #import <xpc/xpc.h>
 
 @class PTHotKey;
@@ -17,19 +18,6 @@
 @class StartAtLoginController;
 
 extern NSString *kGlobalHotKey;
-
-typedef enum _LockingType {
-	LOCK_LOGIN_WINDOW = 0,
-	LOCK_SCREEN,
-	LOCK_BLOCK,
-	} LockingType;
-
-typedef enum _DeviceType {
-	USB_ALL_DEVICES = 0,
-	USB_IPHONE,
-	USB_IPOD,
-	USB_IPAD
-} DeviceType;
 
 typedef enum _BluetoothStatus {
 	InRange = 0,
@@ -43,16 +31,7 @@ typedef struct {
 
 @interface LockMeNowAppDelegate : NSObject <NSApplicationDelegate, NSTabViewDelegate> {
 	//Interface
-    NSStatusItem		*m_statusItem;
 	NSApplicationPresentationOptions appPresentationOptions;
-	//Lock
-	bool				m_bUseIconOnMainMenu;
-	bool				m_bPauseiTunes;
-	bool				m_bUseCurrentScreenSaver;
-	bool				m_bResumeiTunes;
-	bool				m_bNeedResumeiTunes;
-	bool				m_bAutoPrefs;
-	LockingType			m_iLockType;
 	
 	NSOperationQueue	*m_Queue;
 	NSOperationQueue	*m_GUIQueue;
@@ -60,22 +39,15 @@ typedef struct {
 	
 	//Bluetooth
 	BluetoothStatus		m_BluetoothDevicePriorStatus;
-	bool				m_bMonitoringBluetooth;
 	NSTimer				*m_BluetoothTimer;
 	
 	//USB
 	int					m_iUSBDeviceID;
-	DeviceType			m_iUSBDeviceType;
 	DeviceType			m_iCurrentUSBDeviceType;
 	NSString			*m_sUSBDeviceName;
-	bool				m_bMonitoringUSB;
-	
+
 	//TEst
 	NSTimer				*m_TestTimer;
-	
-	//InApp Purchase
-	bool				useAditionalLock;
-	bool				isTabsAdded;
 	
 	//alert
 	NSInteger			alertReturnStatus;
@@ -101,25 +73,19 @@ typedef struct {
 @property (nonatomic) NSMutableArray *blockObjects;
 @property (nonatomic, strong) IBOutlet NSView *lockBlockView;
 
+// Status Item
+@property (strong, nonatomic) NSStatusItem *statusItem;
+
 - (void)makeLock;
 - (IBAction)doUnLock:(id)sender;
 - (IBAction)doLock:(id)sender;
-- (IBAction)setLockType:(id)sender;
-- (IBAction)setiTunesPause:(id)sender;
-- (IBAction)setiTunesResume:(id)sender;
-- (IBAction)setAutoPrefs:(id)sender;
 - (IBAction)goToURL:(id)sender;
 - (IBAction)openPrefs:(id)sender;
-- (IBAction)toggleStartup:(id)sender;
 - (IBAction)changeDevice:(id)sender;
-- (IBAction)listenUSBDevice:(id)sender;
-- (IBAction)changeUSBDeviceType:(id)sender;
-- (IBAction)setMonitoring:(id)sender;
-- (IBAction)setUseCurrentScreenSaver:(id)sender;
+- (IBAction)setMonitoringUSBDevice:(id)sender;
+- (IBAction)setMonitoringBluetooth:(id)sender;
 
 - (void)makeMenu;
-- (void)loadUserSettings;
-- (void)saveUserSettings;
 
 - (void)setSecuritySetings:(BOOL)seter withSkip:(BOOL)skip;
 - (IBAction)setMenuIcon:(id)sender;
