@@ -52,68 +52,11 @@ IOBluetoothDevice	*m_BluetoothDevice = nil;
 	return self;
 }
 
-- (xpc_connection_t)_connectionForServiceNamed:(const char *)serviceName
-					  connectionInvalidHandler:(dispatch_block_t)handler
-{
-	__block xpc_connection_t serviceConnection =
-	xpc_connection_create(serviceName, dispatch_get_main_queue());
-	
-	if (!serviceConnection)
-	{
-		NSLog(@"Can't connect to XPC service");
-		return (NULL);
-	}
-	
-	NSLog(@"Created connection to XPC service");
-	
-	xpc_connection_set_event_handler(serviceConnection, ^(xpc_object_t event)
-									 {
-										 xpc_type_t type = xpc_get_type(event);
-										 
-										 if (type == XPC_TYPE_ERROR)
-										 {
-            if (event == XPC_ERROR_CONNECTION_INTERRUPTED)
-			{
-				// The service has either cancaled itself, crashed, or been
-				// terminated.  The XPC connection is still valid and sending a
-				// message to it will re-launch the service.  If the service is
-				// state-full, this is the time to initialize the new service.
-				
-				NSLog(@"Interrupted connection to XPC service");
-			}
-			else if (event == XPC_ERROR_CONNECTION_INVALID)
-			{
-				// The service is invalid. Either the service name supplied to
-				// xpc_connection_create() is incorrect or we (this process) have
-				// canceled the service; we can do any cleanup of appliation
-				// state at this point.
-				NSLog(@"Connection Invalid error for XPC service");
-				if (handler)
-				{
-					handler();
-				}
-			}
-			else
-			{
-				NSLog(@"Unexpected error for XPC service");
-			}
-										 }
-										 else
-										 {
-            NSLog(@"Received unexpected event for XPC service");
-										 }
-									 });
-	
-	// Need to resume the service in order for it to process messages.
-	xpc_connection_resume(serviceConnection);
-	return (serviceConnection);
-}
-
 - (void)applicationDidFinishLaunching:(NSNotification *)theNotification
 {
 	m_bShouldTerminate = YES;
 	self.bEncription = NO;
-
+	
 	m_BluetoothDevicePriorStatus = OutOfRange;
 	m_BluetoothDevice = nil;
 	m_iCurrentUSBDeviceType = -1;
@@ -343,20 +286,22 @@ BOOL doNothingAtStart = NO;
 							   name:NSWorkspaceSessionDidResignActiveNotification
 							 object:NULL];
 	
+#if (1)
 	[[NSTask launchedTaskWithLaunchPath:@"/bin/bash"
 							  arguments:@[@"-c", @"exec \"/System/Library/CoreServices/Menu Extras/user.menu/Contents/Resources/CGSession\" -suspend"]]
 	 waitUntilExit];
+#else
+	xpc_object_t message = xpc_dictionary_create(NULL, NULL, 0);
+	assert(message != NULL);
 	
-	/*xpc_object_t message = xpc_dictionary_create(NULL, NULL, 0);
-	 assert(message != NULL);
-	 
-	 xpc_dictionary_set_uint64(message, "locktype", LOCK_LOGIN_WINDOW);
-	 
-	 xpc_connection_send_message_with_reply(self.scriptServiceConnection, message,
-	 dispatch_get_main_queue(), ^(xpc_object_t event) {
-	 
-	 });*/
+	xpc_dictionary_set_uint64(message, "locktype", LOCK_LOGIN_WINDOW);
 	
+	xpc_connection_send_message_with_reply(self.scriptServiceConnection, message,
+										   dispatch_get_main_queue(), ^(xpc_object_t event) {
+											   
+											   DBNSLog(@"LOCK_LOGIN_WINDOW");
+										   });
+#endif
 }
 
 - (void)makeJustLock
@@ -975,19 +920,64 @@ static APPLE_MOBILE_DEVICE APPLE_MOBILE_DEVICES[NUM_APPLE_MOBILE_DEVICES] =
 	}
 }
 
-- (BOOL)tabView:(NSTabView *)tabView shouldSelectTabViewItem:(NSTabViewItem *)tabViewItem
+#pragma mark - XPC
+
+- (xpc_connection_t)_connectionForServiceNamed:(const char *)serviceName
+					  connectionInvalidHandler:(dispatch_block_t)handler
 {
-	NSString *tabSelection = [tabViewItem identifier];
-	if ([tabSelection isEqualToString:@"bluetooth"] || [tabSelection isEqualToString:@"usb"])
+	__block xpc_connection_t serviceConnection =
+	xpc_connection_create(serviceName, dispatch_get_main_queue());
+	
+	if (!serviceConnection)
 	{
-		return YES;
-	}
-	else
-	{
-		return YES;
+		NSLog(@"Can't connect to XPC service");
+		return (NULL);
 	}
 	
-	return NO;
+	NSLog(@"Created connection to XPC service");
+	
+	xpc_connection_set_event_handler(serviceConnection, ^(xpc_object_t event)
+									 {
+										 xpc_type_t type = xpc_get_type(event);
+										 
+										 if (type == XPC_TYPE_ERROR)
+										 {
+            if (event == XPC_ERROR_CONNECTION_INTERRUPTED)
+			{
+				// The service has either cancaled itself, crashed, or been
+				// terminated.  The XPC connection is still valid and sending a
+				// message to it will re-launch the service.  If the service is
+				// state-full, this is the time to initialize the new service.
+				
+				NSLog(@"Interrupted connection to XPC service");
+			}
+			else if (event == XPC_ERROR_CONNECTION_INVALID)
+			{
+				// The service is invalid. Either the service name supplied to
+				// xpc_connection_create() is incorrect or we (this process) have
+				// canceled the service; we can do any cleanup of appliation
+				// state at this point.
+				NSLog(@"Connection Invalid error for XPC service");
+				if (handler)
+				{
+					handler();
+				}
+			}
+			else
+			{
+				NSLog(@"Unexpected error for XPC service");
+			}
+										 }
+										 else
+										 {
+            NSLog(@"Received unexpected event for XPC service");
+										 }
+									 });
+	
+	// Need to resume the service in order for it to process messages.
+	xpc_connection_resume(serviceConnection);
+	return (serviceConnection);
 }
+
 
 @end

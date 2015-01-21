@@ -29,7 +29,7 @@ typedef struct {
     uint16_t productID;
 } APPLE_MOBILE_DEVICE;
 
-@interface LockMeNowAppDelegate : NSObject <NSApplicationDelegate, NSTabViewDelegate> {
+@interface LockMeNowAppDelegate : NSObject <NSApplicationDelegate> {
 	//Interface
 	NSApplicationPresentationOptions appPresentationOptions;
 	
