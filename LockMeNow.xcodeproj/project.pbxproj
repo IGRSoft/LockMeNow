@@ -14,6 +14,9 @@
 		A51948D018887ED6009D6A81 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51948CF18887ED6009D6A81 /* SystemConfiguration.framework */; };
 		A52843BA1948547B00040243 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A52843B91948547B00040243 /* Images.xcassets */; };
 		A52A9F6016A8365300EA4B17 /* TextFieldBG.png in Resources */ = {isa = PBXBuildFile; fileRef = A52A9F5F16A8365200EA4B17 /* TextFieldBG.png */; };
+		A53E26FF1A710987001ACB0A /* LockManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A53E26FE1A710987001ACB0A /* LockManager.m */; };
+		A53E27021A710AAF001ACB0A /* JustLock.m in Sources */ = {isa = PBXBuildFile; fileRef = A53E27011A710AAF001ACB0A /* JustLock.m */; };
+		A53E27051A710B6E001ACB0A /* LoginWindowsLock.m in Sources */ = {isa = PBXBuildFile; fileRef = A53E27041A710B6E001ACB0A /* LoginWindowsLock.m */; };
 		A5489BA415D3ED340072E5D2 /* off.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A5489BA215D3ED340072E5D2 /* off.pdf */; };
 		A5489BA515D3ED340072E5D2 /* on.pdf in Resources */ = {isa = PBXBuildFile; fileRef = A5489BA315D3ED340072E5D2 /* on.pdf */; };
 		A5489BAB15D3F1820072E5D2 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5489BAA15D3F1820072E5D2 /* Quartz.framework */; };
@@ -139,6 +142,12 @@
 		A51948CF18887ED6009D6A81 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A52843B91948547B00040243 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = LockMeNow/Images.xcassets; sourceTree = "<group>"; };
 		A52A9F5F16A8365200EA4B17 /* TextFieldBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TextFieldBG.png; path = Resources/TextFieldBG.png; sourceTree = "<group>"; };
+		A53E26FD1A710987001ACB0A /* LockManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LockManager.h; sourceTree = "<group>"; };
+		A53E26FE1A710987001ACB0A /* LockManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LockManager.m; sourceTree = "<group>"; };
+		A53E27001A710AAF001ACB0A /* JustLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JustLock.h; sourceTree = "<group>"; };
+		A53E27011A710AAF001ACB0A /* JustLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JustLock.m; sourceTree = "<group>"; };
+		A53E27031A710B6E001ACB0A /* LoginWindowsLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginWindowsLock.h; sourceTree = "<group>"; };
+		A53E27041A710B6E001ACB0A /* LoginWindowsLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginWindowsLock.m; sourceTree = "<group>"; };
 		A5489BA215D3ED340072E5D2 /* off.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = off.pdf; sourceTree = "<group>"; };
 		A5489BA315D3ED340072E5D2 /* on.pdf */ = {isa = PBXFileReference; lastKnownFileType = image.pdf; path = on.pdf; sourceTree = "<group>"; };
 		A5489BAA15D3F1820072E5D2 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
@@ -213,6 +222,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A53E26FB1A71096F001ACB0A /* LockManager */,
 				A53831C216481976002764C1 /* Privat */,
 				D0764510101E79F500DAE20D /* LockMeNowAppDelegate.h */,
 				D0764511101E79F500DAE20D /* LockMeNowAppDelegate.m */,
@@ -326,6 +336,20 @@
 				A5F9F90215EEA4870091B2F0 /* lock-bg.png */,
 			);
 			name = img;
+			sourceTree = "<group>";
+		};
+		A53E26FB1A71096F001ACB0A /* LockManager */ = {
+			isa = PBXGroup;
+			children = (
+				A53E26FD1A710987001ACB0A /* LockManager.h */,
+				A53E26FE1A710987001ACB0A /* LockManager.m */,
+				A53E27001A710AAF001ACB0A /* JustLock.h */,
+				A53E27011A710AAF001ACB0A /* JustLock.m */,
+				A53E27031A710B6E001ACB0A /* LoginWindowsLock.h */,
+				A53E27041A710B6E001ACB0A /* LoginWindowsLock.m */,
+			);
+			name = LockManager;
+			path = Source/LockManager;
 			sourceTree = "<group>";
 		};
 		A5489B8215D3E5A90072E5D2 /* External */ = {
@@ -539,9 +563,12 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A53E26FF1A710987001ACB0A /* LockManager.m in Sources */,
 				A59A1AE61A6D9EC100767E31 /* iTunesHelper.m in Sources */,
+				A53E27051A710B6E001ACB0A /* LoginWindowsLock.m in Sources */,
 				D0764512101E79F500DAE20D /* LockMeNowAppDelegate.m in Sources */,
 				A59A1AEA1A6DA40F00767E31 /* NSApplication+MXUtilities.m in Sources */,
+				A53E27021A710AAF001ACB0A /* JustLock.m in Sources */,
 				A59A1AEE1A6DA9A400767E31 /* IGRUserDefaults.m in Sources */,
 				D0764532101E7A6100DAE20D /* main.m in Sources */,
 				A589299616A5DE9400063E09 /* PTUSBHub.m in Sources */,
