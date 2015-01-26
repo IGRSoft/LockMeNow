@@ -9,6 +9,10 @@
 #import <Quartz/Quartz.h>
 #import "LockMeNowAppDelegate.h"
 
+#import "LockManager.h"
+#import "JustLock.h"
+#import "LoginWindowsLock.h"
+
 #import <ShortcutRecorder/SRRecorderControl.h>
 #import <PTHotKey/PTHotKeyCenter.h>
 #import <PTHotKey/PTHotKey.h>
@@ -30,13 +34,15 @@
 
 IOBluetoothDevice	*m_BluetoothDevice = nil;
 
-@interface LockMeNowAppDelegate()
+@interface LockMeNowAppDelegate() <LockManagerDelegate>
 
 - (void)openImageURLfor:(IKImageView*)_imageView withUrl:(NSURL*)url;
 - (void)checkConnectivity;
 
 @property (nonatomic) xpc_connection_t scriptServiceConnection;
 @property (nonatomic) IGRUserDefaults *userDefaults;
+
+@property (nonatomic) LockManager *lockManager;
 
 @end
 
@@ -53,10 +59,7 @@ IOBluetoothDevice	*m_BluetoothDevice = nil;
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)theNotification
-{
-	m_bShouldTerminate = YES;
-	self.bEncription = NO;
-	
+{	
 	m_BluetoothDevicePriorStatus = OutOfRange;
 	m_BluetoothDevice = nil;
 	m_iCurrentUSBDeviceType = -1;
@@ -87,8 +90,8 @@ IOBluetoothDevice	*m_BluetoothDevice = nil;
 											   if (xpc_dictionary_get_value(event, "encription") != NULL)
 											   {
 												   BOOL encription = xpc_dictionary_get_bool(event, "encription");
-												   weakSelf.bEncription = encription;
-												   if (weakSelf.bEncription)
+												   weakSelf.userDefaults.bEncription = encription;
+												   if (weakSelf.userDefaults.bEncription)
 												   {
 													   weakSelf.userDefaults.bAutoPrefs = NO;
 												   }
@@ -144,6 +147,29 @@ IOBluetoothDevice	*m_BluetoothDevice = nil;
 	NSURL* url = [NSURL fileURLWithPath: path];
 	
 	[self openImageURLfor: self.bluetoothStatus withUrl: url];
+	
+	[self setupLock];
+}
+
+- (void)setupLock
+{
+	Class lockClass = NULL;
+	switch ([self.userDefaults lockingType])
+	{
+		case LOCK_SCREEN:
+			lockClass = [JustLock class];
+			break;
+		case LOCK_BLOCK:
+			//[self makeBlockLock];
+			break;
+		case LOCK_LOGIN_WINDOW:
+		default:
+			lockClass = [LoginWindowsLock class];
+			break;
+	}
+	
+	self.lockManager = [[lockClass alloc] initWithConnection:self.scriptServiceConnection settings:self.userDefaults];
+	self.lockManager.delegate = self;
 }
 
 - (void)awakeFromNib
@@ -178,7 +204,7 @@ BOOL doNothingAtStart = NO;
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
 {
-	if (m_bShouldTerminate)
+	if (_lockManager.allowTerminate)
 	{
 		return NSTerminateNow;
 	}
@@ -190,19 +216,16 @@ BOOL doNothingAtStart = NO;
 
 - (IBAction)goToURL:(id)sender
 {
-	@autoreleasepool {
-		
-		NSURL *url = [NSURL URLWithString:@"http://igrsoft.com"];
-		
-		if ([[sender title] isEqualToString:@"Site"])
-			url = [NSURL URLWithString:@"http://igrsoft.com" ];
-		else if ([[sender title] isEqualToString:@"Twitter"])
-			url = [NSURL URLWithString:@"http://twitter.com/#!/iKorich" ];
-		else if ([sender tag] == 1)
-			url = [NSURL URLWithString:@"http://russianapple.ru" ];
-		
-		[[NSWorkspace sharedWorkspace] openURL:url];
-	}
+	NSURL *url = [NSURL URLWithString:@"http://igrsoft.com"];
+	
+	if ([[sender title] isEqualToString:@"Site"])
+		url = [NSURL URLWithString:@"http://igrsoft.com" ];
+	else if ([[sender title] isEqualToString:@"Twitter"])
+		url = [NSURL URLWithString:@"http://twitter.com/#!/iKorich" ];
+	else if ([sender tag] == 1)
+		url = [NSURL URLWithString:@"http://russianapple.ru" ];
+	
+	[[NSWorkspace sharedWorkspace] openURL:url];
 }
 
 - (IBAction)openPrefs:(id)sender
@@ -251,7 +274,7 @@ BOOL doNothingAtStart = NO;
 
 - (IBAction)doUnLock:(id)sender
 {
-	[self removeSecurityLock];
+	//[self removeSecurityLock];
 }
 
 - (void)makeLock
@@ -259,146 +282,7 @@ BOOL doNothingAtStart = NO;
 	self.userDefaults.bNeedResumeiTunes = NO;
 	[self pauseResumeMusic];
 	
-	switch ([self.userDefaults lockingType])
-	{
-		case LOCK_SCREEN:
-			[self makeJustLock];
-			break;
-		case LOCK_BLOCK:
-			//[self makeBlockLock];
-			break;
-		case LOCK_LOGIN_WINDOW:
-		default:
-			[self makeLoginWindowsLock];
-			break;
-	}
-}
-
-- (void)makeLoginWindowsLock
-{
-	NSNotificationCenter *notificationCenter = [[NSWorkspace sharedWorkspace] notificationCenter];
-	[notificationCenter addObserver:self
-						   selector:@selector(receiveBecomeActiveNotification:)
-							   name:NSWorkspaceSessionDidBecomeActiveNotification
-							 object:NULL];
-	[notificationCenter addObserver:self
-						   selector:@selector(receiveResignActiveNotification:)
-							   name:NSWorkspaceSessionDidResignActiveNotification
-							 object:NULL];
-	
-#if (1)
-	[[NSTask launchedTaskWithLaunchPath:@"/bin/bash"
-							  arguments:@[@"-c", @"exec \"/System/Library/CoreServices/Menu Extras/user.menu/Contents/Resources/CGSession\" -suspend"]]
-	 waitUntilExit];
-#else
-	xpc_object_t message = xpc_dictionary_create(NULL, NULL, 0);
-	assert(message != NULL);
-	
-	xpc_dictionary_set_uint64(message, "locktype", LOCK_LOGIN_WINDOW);
-	
-	xpc_connection_send_message_with_reply(self.scriptServiceConnection, message,
-										   dispatch_get_main_queue(), ^(xpc_object_t event) {
-											   
-											   DBNSLog(@"LOCK_LOGIN_WINDOW");
-										   });
-#endif
-}
-
-- (void)makeJustLock
-{
-	BOOL m_bNeedBlock = NO;
-	
-	if (!self.bEncription)
-	{
-		m_bNeedBlock = ![self askPassword];
-	}
-	
-	if (m_bNeedBlock)
-	{
-		DBNSLog(@"Set Security Lock");
-		[self setSecuritySetings:YES withSkip:m_bNeedBlock];
-	}
-	
-	[[NSDistributedNotificationCenter defaultCenter] addObserver:self
-														selector:@selector(setScreenLockActive:)
-															name:@"com.apple.screenIsLocked"
-														  object:NULL];
-	
-	[[NSDistributedNotificationCenter defaultCenter] addObserver:self
-														selector:@selector(setScreenLockInActive:)
-															name:@"com.apple.screenIsUnlocked"
-														  object:NULL];
-	
-	if (self.userDefaults.bUseCurrentScreenSaver)
-	{
-		NSTask *task = [[NSTask alloc] init];
-		[task setLaunchPath: @"/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine"];
-		[task launch];
-	}
-	else
-	{
-		xpc_object_t message = xpc_dictionary_create(NULL, NULL, 0);
-		assert(message != NULL);
-		
-		xpc_dictionary_set_uint64(message, "locktype", LOCK_SCREEN);
-		
-		xpc_connection_send_message_with_reply(self.scriptServiceConnection, message,
-											   dispatch_get_main_queue(), ^(xpc_object_t event) {
-												   
-											   });
-	}
-}
-
-- (void)makeBlockLock
-{
-	if (_blockObjects != nil)
-	{
-		return;
-	}
-	
-	m_bShouldTerminate = NO;
-	_blockObjects = [[NSMutableArray alloc] init];
-	
-	NSRect screenRect = NSZeroRect;
-	NSArray *screenArray = [NSScreen screens];
-	NSUInteger screenCount = [screenArray count];
-	NSUInteger index = 0;
-	
-	for (index = 0; index < screenCount; ++index)
-	{
-		NSScreen *screen = screenArray[index];
-		screenRect = [screen frame];
-		
-		NSWindow *blocker = [[NSWindow alloc] initWithContentRect:screenRect
-														styleMask:0
-														  backing:NSBackingStoreBuffered
-															defer:NO
-														   screen:[NSScreen mainScreen]];
-		[blocker setBackgroundColor:[NSColor colorWithPatternImage:[NSImage imageNamed:@"lock-bg"]]];
-		[blocker setIsVisible:YES];
-		[blocker setLevel:NSScreenSaverWindowLevel];
-		[blocker makeKeyAndOrderFront:nil];
-		[_blockObjects insertObject:blocker
-							atIndex:index];
-	}
-	
-	@try {
-		
-		NSApplication *currentApp = [NSApplication sharedApplication];
-		appPresentationOptions = [currentApp presentationOptions];
-		NSApplicationPresentationOptions options = NSApplicationPresentationHideDock
-		+ NSApplicationPresentationHideMenuBar
-		+ NSApplicationPresentationDisableForceQuit
-		+ NSApplicationPresentationDisableProcessSwitching;
-		[currentApp setPresentationOptions:options];
-	}
-	@catch(NSException * exception) {
-		
-		DBNSLog(@"Error.  Make sure you have a valid combination of options.");
-	}
-	
-	NSWindow *firstBlocker = (NSWindow*)[_blockObjects firstObject];
-	[firstBlocker setContentView:_lockBlockView];
+	[self.lockManager lock];
 }
 
 #pragma mark - Preferences
@@ -445,6 +329,13 @@ BOOL doNothingAtStart = NO;
 	[self updateUserSettings:sender];
 }
 
+- (IBAction)setLockType:(id)sender
+{
+	[self setupLock];
+	
+	[self updateUserSettings:sender];
+}
+
 - (IBAction)updateUserSettings:(id)sender
 {
 	__weak typeof(self) weakSelf = self;
@@ -452,40 +343,6 @@ BOOL doNothingAtStart = NO;
 		
 		[weakSelf.userDefaults saveUserSettingsWithBluetoothData:nil];
 	});
-}
-
-#pragma mark - NSDistributedNotificationCenter
-
-- (void)setScreenLockActive:(NSNotification *)aNotification
-{
-	DBNSLog(@"Screen Lock");
-}
-
-- (void)setScreenLockInActive:(NSNotification *)aNotification
-{
-	DBNSLog(@"Screen Unlock");
-	[self removeSecurityLock];
-}
-
-#pragma mark - NSNotificationCenter
-
-- (void)receiveBecomeActiveNotification:(NSNotification *)aNotification
-{
-	DBNSLog(@"Logo in");
-	
-	[[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver:self
-																  name:NSWorkspaceSessionDidBecomeActiveNotification
-																object:NULL];
-	[[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver:self
-																  name:NSWorkspaceSessionDidResignActiveNotification
-																object:NULL];
-	
-	[self pauseResumeMusic];
-}
-
-- (void)receiveResignActiveNotification:(NSNotification *)aNotification
-{
-	DBNSLog(@"Logo out");
 }
 
 #pragma mark - Actions
@@ -508,107 +365,6 @@ BOOL doNothingAtStart = NO;
 			{
 				[iTunesHelper playpause];
 				self.userDefaults.bNeedResumeiTunes = NO;
-			}
-		}
-	}
-}
-
-#pragma mark - Security
-
-- (void)removeSecurityLock
-{
-	[self pauseResumeMusic];
-	
-	BOOL m_bNeedBlock = NO;
-	
-	if (!self.bEncription)
-	{
-		m_bNeedBlock = ![self askPassword];
-	}
-	
-	if (m_bNeedBlock)
-	{
-		DBNSLog(@"Remove Security Lock");
-		[self setSecuritySetings:NO withSkip:m_bNeedBlock];
-	}
-	
-	switch ([self.userDefaults lockingType])
-	{
-		case LOCK_SCREEN:
-			[[NSDistributedNotificationCenter defaultCenter] removeObserver:self
-																	   name:@"com.apple.screenIsLocked"
-																	 object:NULL];
-			[[NSDistributedNotificationCenter defaultCenter] removeObserver:self
-																	   name:@"com.apple.screenIsUnlocked"
-																	 object:NULL];
-			break;
-		case LOCK_BLOCK:
-			/*for(NSWindow *blocker in _blockObjects) {
-				[blocker orderOut:self];
-				DBNSLog(@"closing blocker");
-			 }*/
-			
-			_blockObjects = nil;
-			
-			if (!m_bShouldTerminate)
-			{
-				NSApplication *currentApp = [NSApplication sharedApplication];
-				[currentApp setPresentationOptions:appPresentationOptions];
-				m_bShouldTerminate = YES;
-			}
-			break;
-		case LOCK_LOGIN_WINDOW:
-		default:
-			break;
-	}
-}
-
-- (BOOL)askPassword
-{
-	BOOL isPassword = (BOOL)CFPreferencesGetAppBooleanValue(CFSTR("askForPassword"), CFSTR("com.apple.screensaver"), nil);
-	
-	return isPassword;
-}
-
-- (void)setSecuritySetings:(BOOL)seter withSkip:(BOOL)skip
-{
-	if (!self.userDefaults.bAutoPrefs)
-	{
-		return;
-	}
-	
-	BOOL success = YES;
-	
-	if (!skip)
-	{
-		NSNumber *val = @(seter);
-		CFPreferencesSetValue(CFSTR("askForPassword"), (__bridge CFPropertyListRef) val,
-							  CFSTR("com.apple.screensaver"),
-							  kCFPreferencesCurrentUser, kCFPreferencesCurrentHost);
-		success = CFPreferencesSynchronize(CFSTR("com.apple.screensaver"),
-										   kCFPreferencesCurrentUser, kCFPreferencesCurrentHost);
-		
-		if (success)
-		{
-			DBNSLog(@"Can't sync Prefs");
-		}
-		
-		CFPreferencesSetValue(CFSTR("askForPasswordDelay"), (__bridge CFPropertyListRef) @0,
-							  CFSTR("com.apple.screensaver"),
-							  kCFPreferencesCurrentUser, kCFPreferencesCurrentHost);
-		success = CFPreferencesSynchronize(CFSTR("com.apple.screensaver"),
-										   kCFPreferencesCurrentUser, kCFPreferencesCurrentHost);
-		
-		// Notify login process
-		// not sure this does or why it must be called...anyone? (DBR)
-		if (success)
-		{
-			CFMessagePortRef port = CFMessagePortCreateRemote(NULL, CFSTR("com.apple.loginwindow.notify"));
-			success = (CFMessagePortSendRequest(port, 500, 0, 0, 0, 0, 0) == kCFMessagePortSuccess);
-			CFRelease(port);
-			if (success)
-			{
-				DBNSLog(@"Can't start screensaver");
 			}
 		}
 	}
@@ -901,7 +657,6 @@ static APPLE_MOBILE_DEVICE APPLE_MOBILE_DEVICES[NUM_APPLE_MOBILE_DEVICES] =
 			DBNSLog(@"%s is connected by USB", iOSDevice.name);
 			m_iUSBDeviceID = [(note.userInfo)[@"DeviceID"] intValue];
 			m_sUSBDeviceName = [[NSString alloc] initWithCString:iOSDevice.name encoding:NSUTF8StringEncoding];
-			//[self removeSecurityLock];
 			
 			if (i < NUM_IPOD_POS) {
 				m_iCurrentUSBDeviceType = USB_IPHONE;
@@ -979,5 +734,11 @@ static APPLE_MOBILE_DEVICE APPLE_MOBILE_DEVICES[NUM_APPLE_MOBILE_DEVICES] =
 	return (serviceConnection);
 }
 
+#pragma mark - LockManagerDelegate
+
+- (void)unLockSuccess
+{
+	[self pauseResumeMusic];
+}
 
 @end

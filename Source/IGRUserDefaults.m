@@ -88,7 +88,8 @@ NSString *kUSBDeviceType			= @"USBDevice";
 	// Monitoring enabled
 	_bMonitoringBluetooth = [self.defaults boolForKey:kBluetoothMonitoring];
 	_bMonitoringUSB = [self.defaults boolForKey:kUSBMonitoring];
-	_iUSBDeviceType = [self.defaults objectForKey:kUSBDeviceType];	
+	_iUSBDeviceType = [self.defaults objectForKey:kUSBDeviceType];
+	_bEncription = NO;
 }
 
 - (void)saveUserSettingsWithBluetoothData:(NSData *)bluetoothData

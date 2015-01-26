@@ -68,12 +68,21 @@ static void makeLoginWindowLock()
 	[task launch];
 }
 
-static void makeJustLock()
+static void makeJustLock(bool useCurrentScrrenSaver)
 {
-	io_registry_entry_t r =	IORegistryEntryFromPath(kIOMasterPortDefault, "IOService:/IOResources/IODisplayWrangler");
-	if(!r) return;
-	IORegistryEntrySetCFProperty(r, CFSTR("IORequestIdle"), kCFBooleanTrue);
-	IOObjectRelease(r);
+	if (useCurrentScrrenSaver)
+	{
+		NSTask *task = [[NSTask alloc] init];
+		[task setLaunchPath: @"/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine"];
+		[task launch];
+	}
+	else
+	{
+		io_registry_entry_t r =	IORegistryEntryFromPath(kIOMasterPortDefault, "IOService:/IOResources/IODisplayWrangler");
+		if(!r) return;
+		IORegistryEntrySetCFProperty(r, CFSTR("IORequestIdle"), kCFBooleanTrue);
+		IOObjectRelease(r);
+	}
 }
 
 static void
@@ -90,7 +99,10 @@ fetch_process_request(xpc_object_t request, xpc_object_t reply)
 				break;
 				
 			case LOCK_SCREEN:
-				makeJustLock();
+			{
+				bool useCurrentScreenSaver = xpc_dictionary_get_bool(request, "usecurrentscreensaver");
+				makeJustLock(useCurrentScreenSaver);
+			}
 				break;
 				
 			default:

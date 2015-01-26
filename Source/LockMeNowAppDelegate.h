@@ -29,13 +29,11 @@ typedef struct {
     uint16_t productID;
 } APPLE_MOBILE_DEVICE;
 
-@interface LockMeNowAppDelegate : NSObject <NSApplicationDelegate> {
-	//Interface
-	NSApplicationPresentationOptions appPresentationOptions;
-	
+@interface LockMeNowAppDelegate : NSObject <NSApplicationDelegate>
+{
+	//Interface	
 	NSOperationQueue	*m_Queue;
 	NSOperationQueue	*m_GUIQueue;
-	bool				m_bShouldTerminate;
 	
 	//Bluetooth
 	BluetoothStatus		m_BluetoothDevicePriorStatus;
@@ -67,10 +65,7 @@ typedef struct {
 @property (nonatomic) NSInteger								p_BluetoothTimerInterval;
 @property (nonatomic, strong) IBOutlet NSProgressIndicator	*spinner;
 @property (nonatomic) BOOL	bMonitoring;
-@property (nonatomic) BOOL	bEncription;
-@property (nonatomic) BOOL	isJustLock;
 
-@property (nonatomic) NSMutableArray *blockObjects;
 @property (nonatomic, strong) IBOutlet NSView *lockBlockView;
 
 // Status Item
@@ -87,7 +82,6 @@ typedef struct {
 
 - (void)makeMenu;
 
-- (void)setSecuritySetings:(BOOL)seter withSkip:(BOOL)skip;
 - (IBAction)setMenuIcon:(id)sender;
 
 @end

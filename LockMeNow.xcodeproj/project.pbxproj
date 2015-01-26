@@ -22,6 +22,7 @@
 		A5489BAB15D3F1820072E5D2 /* Quartz.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5489BAA15D3F1820072E5D2 /* Quartz.framework */; };
 		A5489BAE15D401710072E5D2 /* IOBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5489BAC15D401710072E5D2 /* IOBluetooth.framework */; };
 		A5489BAF15D401710072E5D2 /* IOBluetoothUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5489BAD15D401710072E5D2 /* IOBluetoothUI.framework */; };
+		A55F89521A76D53E00C3F837 /* BlockViewLock.m in Sources */ = {isa = PBXBuildFile; fileRef = A55F89511A76D53E00C3F837 /* BlockViewLock.m */; };
 		A568E700142F5F8B0028D621 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A568E6FF142F5F8B0028D621 /* IOKit.framework */; };
 		A589299616A5DE9400063E09 /* PTUSBHub.m in Sources */ = {isa = PBXBuildFile; fileRef = A589299516A5DE9400063E09 /* PTUSBHub.m */; };
 		A58A9E36142F5D3600D99E79 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A58A9E35142F5D3600D99E79 /* Security.framework */; };
@@ -154,6 +155,8 @@
 		A5489BAC15D401710072E5D2 /* IOBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOBluetooth.framework; path = System/Library/Frameworks/IOBluetooth.framework; sourceTree = SDKROOT; };
 		A5489BAD15D401710072E5D2 /* IOBluetoothUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOBluetoothUI.framework; path = System/Library/Frameworks/IOBluetoothUI.framework; sourceTree = SDKROOT; };
 		A559117516B3D69C008A7BF9 /* lockmenow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = lockmenow.entitlements; sourceTree = "<group>"; };
+		A55F89501A76D53E00C3F837 /* BlockViewLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockViewLock.h; sourceTree = "<group>"; };
+		A55F89511A76D53E00C3F837 /* BlockViewLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockViewLock.m; sourceTree = "<group>"; };
 		A568E6FF142F5F8B0028D621 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = /System/Library/Frameworks/IOKit.framework; sourceTree = "<absolute>"; };
 		A589299416A5DE9400063E09 /* PTUSBHub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTUSBHub.h; path = peertalk/peertalk/PTUSBHub.h; sourceTree = "<group>"; };
 		A589299516A5DE9400063E09 /* PTUSBHub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTUSBHub.m; path = peertalk/peertalk/PTUSBHub.m; sourceTree = "<group>"; };
@@ -347,6 +350,8 @@
 				A53E27011A710AAF001ACB0A /* JustLock.m */,
 				A53E27031A710B6E001ACB0A /* LoginWindowsLock.h */,
 				A53E27041A710B6E001ACB0A /* LoginWindowsLock.m */,
+				A55F89501A76D53E00C3F837 /* BlockViewLock.h */,
+				A55F89511A76D53E00C3F837 /* BlockViewLock.m */,
 			);
 			name = LockManager;
 			path = Source/LockManager;
@@ -564,6 +569,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A53E26FF1A710987001ACB0A /* LockManager.m in Sources */,
+				A55F89521A76D53E00C3F837 /* BlockViewLock.m in Sources */,
 				A59A1AE61A6D9EC100767E31 /* iTunesHelper.m in Sources */,
 				A53E27051A710B6E001ACB0A /* LoginWindowsLock.m in Sources */,
 				D0764512101E79F500DAE20D /* LockMeNowAppDelegate.m in Sources */,

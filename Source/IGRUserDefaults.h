@@ -40,6 +40,7 @@ typedef void (^IGRUserDefaultsBluetoothData)(NSData *bluetoothData);
 @property (nonatomic, assign) BOOL bMonitoringBluetooth;
 @property (nonatomic, strong) id keyCombo;
 @property (nonatomic, strong) NSData *bluetoothData;
+@property (nonatomic, assign) BOOL bEncription;
 
 - (void)loadUserSettings;
 - (void)saveUserSettingsWithBluetoothData:(NSData *)bluetoothData;

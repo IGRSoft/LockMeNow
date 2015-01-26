@@ -159,7 +159,7 @@
                                                             </column>
                                                         </cells>
                                                         <connections>
-                                                            <action selector="updateUserSettings:" target="494" id="LmV-b0-c2k"/>
+                                                            <action selector="setLockType:" target="494" id="mwp-8A-L6n"/>
                                                             <binding destination="494" name="selectedIndex" keyPath="self.userDefaults.iLockType" id="3gQ-au-rxb"/>
                                                         </connections>
                                                     </matrix>
@@ -189,8 +189,8 @@
                                             </buttonCell>
                                             <connections>
                                                 <action selector="updateUserSettings:" target="494" id="AvG-od-p5c"/>
-                                                <binding destination="494" name="enabled" keyPath="self.userDefaults.iLockType" id="VXh-Bw-huL"/>
                                                 <binding destination="494" name="value" keyPath="self.userDefaults.bUseCurrentScreenSaver" id="CU1-dg-w80"/>
+                                                <binding destination="494" name="enabled" keyPath="self.userDefaults.iLockType" id="VXh-Bw-huL"/>
                                             </connections>
                                         </button>
                                         <button id="646">
@@ -226,7 +226,7 @@
                                             </buttonCell>
                                             <connections>
                                                 <action selector="updateUserSettings:" target="494" id="BwG-gS-Faf"/>
-                                                <binding destination="494" name="hidden" keyPath="bEncription" id="hUk-Kq-n6y"/>
+                                                <binding destination="494" name="hidden" keyPath="self.userDefaults.bEncription" id="RnL-NV-Bjv"/>
                                                 <binding destination="494" name="value" keyPath="self.userDefaults.bAutoPrefs" id="VNg-Kn-BqV"/>
                                             </connections>
                                         </button>
