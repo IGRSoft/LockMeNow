@@ -25,15 +25,26 @@
 {
 	[super lock];
 	
-	[[NSDistributedNotificationCenter defaultCenter] addObserver:self
-														selector:@selector(setScreenLockActive:)
-															name:@"com.apple.screenIsLocked"
-														  object:NULL];
+	NSDistributedNotificationCenter* distCenter = [NSDistributedNotificationCenter defaultCenter];
+	[distCenter addObserver:self
+				   selector:@selector(setScreenLockActive:)
+					   name:@"com.apple.screenIsLocked"
+					 object:NULL];
 	
-	[[NSDistributedNotificationCenter defaultCenter] addObserver:self
-														selector:@selector(setScreenLockInActive:)
-															name:@"com.apple.screenIsUnlocked"
-														  object:NULL];
+	[distCenter addObserver:self
+				   selector:@selector(setScreenLockInActive:)
+					   name:@"com.apple.screenIsUnlocked"
+					 object:NULL];
+	
+	[distCenter addObserver:self
+				   selector:@selector(screensaverStartStop:)
+					   name:@"com.apple.screensaver.didstart"
+					 object:NULL];
+	
+	[distCenter addObserver:self
+				   selector:@selector(screensaverStartStop:)
+					   name:@"com.apple.screensaver.didstop"
+					 object:NULL];
 	
 	xpc_object_t message = xpc_dictionary_create(NULL, NULL, 0);
 	assert(message != NULL);
@@ -51,12 +62,7 @@
 {
 	[super unlock];
 	
-	[[NSDistributedNotificationCenter defaultCenter] removeObserver:self
-															   name:@"com.apple.screenIsLocked"
-															 object:NULL];
-	[[NSDistributedNotificationCenter defaultCenter] removeObserver:self
-															   name:@"com.apple.screenIsUnlocked"
-															 object:NULL];
+	[[NSDistributedNotificationCenter defaultCenter] removeObserver:self];
 }
 
 #pragma mark - NSDistributedNotificationCenter
@@ -70,6 +76,11 @@
 {
 	DBNSLog(@"Screen Unlock");
 	[self unlock];
+}
+
+- (void)screensaverStartStop:(NSNotification *)aNotification
+{
+
 }
 
 @end

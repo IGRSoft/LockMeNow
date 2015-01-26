@@ -23,6 +23,8 @@
 		A5489BAE15D401710072E5D2 /* IOBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5489BAC15D401710072E5D2 /* IOBluetooth.framework */; };
 		A5489BAF15D401710072E5D2 /* IOBluetoothUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5489BAD15D401710072E5D2 /* IOBluetoothUI.framework */; };
 		A55F89521A76D53E00C3F837 /* BlockViewLock.m in Sources */ = {isa = PBXBuildFile; fileRef = A55F89511A76D53E00C3F837 /* BlockViewLock.m */; };
+		A55F89561A76DB4D00C3F837 /* ScreenSaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A55F89551A76DB4D00C3F837 /* ScreenSaver.framework */; };
+		A55F89581A76DB5A00C3F837 /* ScreenSaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A55F89551A76DB4D00C3F837 /* ScreenSaver.framework */; };
 		A568E700142F5F8B0028D621 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A568E6FF142F5F8B0028D621 /* IOKit.framework */; };
 		A589299616A5DE9400063E09 /* PTUSBHub.m in Sources */ = {isa = PBXBuildFile; fileRef = A589299516A5DE9400063E09 /* PTUSBHub.m */; };
 		A58A9E36142F5D3600D99E79 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A58A9E35142F5D3600D99E79 /* Security.framework */; };
@@ -157,6 +159,7 @@
 		A559117516B3D69C008A7BF9 /* lockmenow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = lockmenow.entitlements; sourceTree = "<group>"; };
 		A55F89501A76D53E00C3F837 /* BlockViewLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockViewLock.h; sourceTree = "<group>"; };
 		A55F89511A76D53E00C3F837 /* BlockViewLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockViewLock.m; sourceTree = "<group>"; };
+		A55F89551A76DB4D00C3F837 /* ScreenSaver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScreenSaver.framework; path = System/Library/Frameworks/ScreenSaver.framework; sourceTree = SDKROOT; };
 		A568E6FF142F5F8B0028D621 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = /System/Library/Frameworks/IOKit.framework; sourceTree = "<absolute>"; };
 		A589299416A5DE9400063E09 /* PTUSBHub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTUSBHub.h; path = peertalk/peertalk/PTUSBHub.h; sourceTree = "<group>"; };
 		A589299516A5DE9400063E09 /* PTUSBHub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTUSBHub.m; path = peertalk/peertalk/PTUSBHub.m; sourceTree = "<group>"; };
@@ -194,6 +197,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A55F89561A76DB4D00C3F837 /* ScreenSaver.framework in Frameworks */,
 				A59F335516C125E600A43F7C /* ServiceManagement.framework in Frameworks */,
 				A5C0BBF616A6D08B008072DE /* PTHotKey.framework in Frameworks */,
 				A5C0BBF716A6D08B008072DE /* ShortcutRecorder.framework in Frameworks */,
@@ -212,6 +216,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A55F89581A76DB5A00C3F837 /* ScreenSaver.framework in Frameworks */,
 				A51948D018887ED6009D6A81 /* SystemConfiguration.framework in Frameworks */,
 				A5F19B46171AABAD00C8EE09 /* IOKit.framework in Frameworks */,
 				A5F19B40171A98C900C8EE09 /* Foundation.framework in Frameworks */,
@@ -317,6 +322,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A55F89551A76DB4D00C3F837 /* ScreenSaver.framework */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
 				A5B0BEBF144CA9E0003C3145 /* Cocoa.framework */,
 				A5094B9816CBF33200A3C877 /* Foundation.framework */,

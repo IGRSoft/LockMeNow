@@ -62,12 +62,7 @@
 {
 	DBNSLog(@"Logo in");
 	
-	[[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver:self
-																  name:NSWorkspaceSessionDidBecomeActiveNotification
-																object:NULL];
-	[[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver:self
-																  name:NSWorkspaceSessionDidResignActiveNotification
-																object:NULL];
+	[[[NSWorkspace sharedWorkspace] notificationCenter] removeObserver:self];
 	
 	[self unlock];
 }
