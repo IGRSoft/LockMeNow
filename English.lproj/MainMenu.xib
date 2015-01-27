@@ -126,7 +126,7 @@
                                             </buttonCell>
                                             <connections>
                                                 <action selector="toggleStartup:" target="494" id="p8m-KA-i32"/>
-                                                <binding destination="494" name="value" keyPath="self.userDefaults.bEnableStartup" id="Hx0-00-23M"/>
+                                                <binding destination="494" name="value" keyPath="self.userSettings.bEnableStartup" id="Jjn-T3-y5n"/>
                                             </connections>
                                         </button>
                                         <box autoresizesSubviews="NO" title="Lock Type:" borderType="line" id="581">
@@ -160,7 +160,7 @@
                                                         </cells>
                                                         <connections>
                                                             <action selector="setLockType:" target="494" id="mwp-8A-L6n"/>
-                                                            <binding destination="494" name="selectedIndex" keyPath="self.userDefaults.iLockType" id="3gQ-au-rxb"/>
+                                                            <binding destination="494" name="selectedIndex" keyPath="self.userSettings.iLockType" id="boD-aG-Jc7"/>
                                                         </connections>
                                                     </matrix>
                                                 </subviews>
@@ -177,7 +177,7 @@
                                             </buttonCell>
                                             <connections>
                                                 <action selector="setMenuIcon:" target="494" id="KRw-kZ-8Mf"/>
-                                                <binding destination="494" name="value" keyPath="self.userDefaults.bUseIconOnMainMenu" id="fnz-qo-zwe"/>
+                                                <binding destination="494" name="value" keyPath="self.userSettings.bUseIconOnMainMenu" id="8pr-Eh-Pna"/>
                                             </connections>
                                         </button>
                                         <button id="8Uo-Yr-gEo">
@@ -189,8 +189,8 @@
                                             </buttonCell>
                                             <connections>
                                                 <action selector="updateUserSettings:" target="494" id="AvG-od-p5c"/>
-                                                <binding destination="494" name="value" keyPath="self.userDefaults.bUseCurrentScreenSaver" id="CU1-dg-w80"/>
-                                                <binding destination="494" name="enabled" keyPath="self.userDefaults.iLockType" id="VXh-Bw-huL"/>
+                                                <binding destination="494" name="enabled" keyPath="self.userSettings.iLockType" id="utA-kA-9OD"/>
+                                                <binding destination="494" name="value" keyPath="self.userSettings.bUseCurrentScreenSaver" id="pN6-US-FYI"/>
                                             </connections>
                                         </button>
                                         <button id="646">
@@ -202,7 +202,7 @@
                                             </buttonCell>
                                             <connections>
                                                 <action selector="updateUserSettings:" target="494" id="7Xq-Cd-Ai8"/>
-                                                <binding destination="494" name="value" keyPath="self.userDefaults.bPauseiTunes" id="Mrw-wv-3SP"/>
+                                                <binding destination="494" name="value" keyPath="self.userSettings.bPauseiTunes" id="Mqc-Fe-jUx"/>
                                             </connections>
                                         </button>
                                         <button id="828">
@@ -214,7 +214,7 @@
                                             </buttonCell>
                                             <connections>
                                                 <action selector="updateUserSettings:" target="494" id="CVI-nA-Fun"/>
-                                                <binding destination="494" name="value" keyPath="self.userDefaults.bResumeiTunes" id="n2a-kU-YDW"/>
+                                                <binding destination="494" name="value" keyPath="self.userSettings.bResumeiTunes" id="sGy-NL-FpS"/>
                                             </connections>
                                         </button>
                                         <button id="663">
@@ -226,8 +226,8 @@
                                             </buttonCell>
                                             <connections>
                                                 <action selector="updateUserSettings:" target="494" id="BwG-gS-Faf"/>
-                                                <binding destination="494" name="value" keyPath="self.userDefaults.bAutoPrefs" id="VNg-Kn-BqV"/>
-                                                <binding destination="494" name="hidden" keyPath="self.userDefaults.bEncription" id="RnL-NV-Bjv"/>
+                                                <binding destination="494" name="hidden" keyPath="self.userSettings.bEncription" id="z9g-u2-GEF"/>
+                                                <binding destination="494" name="value" keyPath="self.userSettings.bAutoPrefs" id="oLk-8q-0Qe"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -247,7 +247,7 @@
                                             </buttonCell>
                                             <connections>
                                                 <action selector="setMonitoringBluetooth:" target="494" id="wlW-Ox-Lk3"/>
-                                                <binding destination="494" name="value" keyPath="self.userDefaults.bMonitoringBluetooth" id="Zcx-tZ-5oV"/>
+                                                <binding destination="494" name="value" keyPath="self.userSettings.bMonitoringBluetooth" id="LdQ-bk-aQO"/>
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" id="691">
@@ -303,7 +303,7 @@
                                             </buttonCell>
                                             <connections>
                                                 <action selector="setMonitoringUSBDevice:" target="494" id="NzU-c9-4tn"/>
-                                                <binding destination="494" name="value" keyPath="self.userDefaults.bMonitoringUSB" id="saU-lh-K41"/>
+                                                <binding destination="494" name="value" keyPath="self.userSettings.bMonitoringUSB" id="L4T-5u-PtZ"/>
                                             </connections>
                                         </button>
                                         <box autoresizesSubviews="NO" title="Lock for:" borderType="line" id="795">
@@ -345,8 +345,8 @@
                                                         </cells>
                                                         <connections>
                                                             <action selector="updateUserSettings:" target="494" id="yTI-DM-o2a"/>
-                                                            <binding destination="494" name="enabled" keyPath="self.userDefaults.bMonitoringUSB" id="cv1-HB-1ct"/>
-                                                            <binding destination="494" name="selectedIndex" keyPath="self.userDefaults.iUSBDeviceType" id="L9U-Fd-hhg"/>
+                                                            <binding destination="494" name="enabled" keyPath="self.userSettings.bMonitoringUSB" id="MG2-ir-D36"/>
+                                                            <binding destination="494" name="selectedIndex" keyPath="self.userSettings.iUSBDeviceType" id="1DA-U6-H41"/>
                                                         </connections>
                                                     </matrix>
                                                 </subviews>
