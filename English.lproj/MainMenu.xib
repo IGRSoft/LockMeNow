@@ -114,7 +114,7 @@
                                                 <userDefinedRuntimeAttribute type="boolean" keyPath="escapeKeysRecord" value="YES"/>
                                             </userDefinedRuntimeAttributes>
                                             <connections>
-                                                <outlet property="delegate" destination="494" id="657"/>
+                                                <outlet property="delegate" destination="420" id="PRI-Aw-1E2"/>
                                             </connections>
                                         </customView>
                                         <button id="568">
@@ -226,8 +226,8 @@
                                             </buttonCell>
                                             <connections>
                                                 <action selector="updateUserSettings:" target="494" id="BwG-gS-Faf"/>
-                                                <binding destination="494" name="hidden" keyPath="self.userDefaults.bEncription" id="RnL-NV-Bjv"/>
                                                 <binding destination="494" name="value" keyPath="self.userDefaults.bAutoPrefs" id="VNg-Kn-BqV"/>
+                                                <binding destination="494" name="hidden" keyPath="self.userDefaults.bEncription" id="RnL-NV-Bjv"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -269,19 +269,16 @@
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
+                                            <connections>
+                                                <binding destination="494" name="value" keyPath="self.bluetoothListener.bluetoothName" id="dAC-qL-0lE"/>
+                                            </connections>
                                         </textField>
                                         <customView id="703" customClass="IKImageView">
                                             <rect key="frame" x="73" y="205" width="16" height="16"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <subviews>
-                                                <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" id="725">
-                                                    <rect key="frame" x="0.0" y="0.0" width="16" height="16"/>
-                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                                </progressIndicator>
-                                            </subviews>
                                         </customView>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="863">
-                                            <rect key="frame" x="14" y="35" width="271" height="34"/>
+                                            <rect key="frame" x="14" y="7" width="270" height="34"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Automatically locks OS X when you walk away with a paired Bluetooth device." id="864">
                                                 <font key="font" metaFont="system"/>
@@ -358,7 +355,7 @@
                                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </box>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="841">
-                                            <rect key="frame" x="14" y="34" width="271" height="34"/>
+                                            <rect key="frame" x="14" y="7" width="271" height="34"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Automatically locks your OS X when you dictonnect iDevice from USB." id="842">
                                                 <font key="font" metaFont="system"/>
@@ -433,20 +430,23 @@ Big Thanks:
                     </button>
                 </subviews>
             </view>
+            <point key="canvasLocation" x="289.5" y="482.5"/>
         </window>
         <customObject id="494" customClass="LockMeNowAppDelegate">
             <connections>
-                <outlet property="bluetoothName" destination="701" id="827"/>
                 <outlet property="bluetoothStatus" destination="703" id="720"/>
-                <outlet property="hotKeyControl" destination="557" id="558"/>
+                <outlet property="keyListener" destination="420" id="nlr-Fe-E7k"/>
                 <outlet property="lockBlockView" destination="848" id="858"/>
-                <outlet property="spinner" destination="725" id="726"/>
                 <outlet property="statusMenu" destination="560" id="571"/>
                 <outlet property="tabView" destination="774" id="913"/>
                 <outlet property="window" destination="371" id="532"/>
             </connections>
         </customObject>
-        <customObject id="420" customClass="NSFontManager"/>
+        <customObject id="420" customClass="KeyListener">
+            <connections>
+                <outlet property="hotKeyControl" destination="557" id="wn0-Ea-k1a"/>
+            </connections>
+        </customObject>
         <menu id="560">
             <items>
                 <menuItem title="Lock" id="566">

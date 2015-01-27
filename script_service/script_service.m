@@ -19,7 +19,7 @@ static NSString* doShell(NSString* file)
 	NSPipe *outputPipe = [NSPipe pipe];
 	
 	if ([[NSFileManager defaultManager] isExecutableFileAtPath:scriptPath] == NO) {
-		NSArray *chmodArguments = [NSArray arrayWithObjects:@"+x", scriptPath, nil];
+		NSArray *chmodArguments = @[@"+x", scriptPath];
 		
 		NSTask *chmod = [NSTask launchedTaskWithLaunchPath:@"/bin/chmod" arguments:chmodArguments];
 		

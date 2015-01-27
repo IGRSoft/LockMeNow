@@ -28,6 +28,10 @@
 		A568E700142F5F8B0028D621 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A568E6FF142F5F8B0028D621 /* IOKit.framework */; };
 		A589299616A5DE9400063E09 /* PTUSBHub.m in Sources */ = {isa = PBXBuildFile; fileRef = A589299516A5DE9400063E09 /* PTUSBHub.m */; };
 		A58A9E36142F5D3600D99E79 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A58A9E35142F5D3600D99E79 /* Security.framework */; };
+		A598EAC41A779E5600607C57 /* ListenerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A598EAC31A779E5600607C57 /* ListenerManager.m */; };
+		A598EAC71A779EE100607C57 /* KeyListener.m in Sources */ = {isa = PBXBuildFile; fileRef = A598EAC61A779EE100607C57 /* KeyListener.m */; };
+		A598EAD41A77C85A00607C57 /* BluetoothListener.m in Sources */ = {isa = PBXBuildFile; fileRef = A598EAD31A77C85A00607C57 /* BluetoothListener.m */; };
+		A598EAD81A77C86F00607C57 /* USBListener.m in Sources */ = {isa = PBXBuildFile; fileRef = A598EAD71A77C86F00607C57 /* USBListener.m */; };
 		A59A1AE61A6D9EC100767E31 /* iTunesHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A59A1AE51A6D9EC100767E31 /* iTunesHelper.m */; };
 		A59A1AEA1A6DA40F00767E31 /* NSApplication+MXUtilities.m in Sources */ = {isa = PBXBuildFile; fileRef = A59A1AE91A6DA40F00767E31 /* NSApplication+MXUtilities.m */; };
 		A59A1AEE1A6DA9A400767E31 /* IGRUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = A59A1AED1A6DA9A400767E31 /* IGRUserDefaults.m */; };
@@ -164,6 +168,14 @@
 		A589299416A5DE9400063E09 /* PTUSBHub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTUSBHub.h; path = peertalk/peertalk/PTUSBHub.h; sourceTree = "<group>"; };
 		A589299516A5DE9400063E09 /* PTUSBHub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTUSBHub.m; path = peertalk/peertalk/PTUSBHub.m; sourceTree = "<group>"; };
 		A58A9E35142F5D3600D99E79 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
+		A598EAC21A779E5600607C57 /* ListenerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListenerManager.h; sourceTree = "<group>"; };
+		A598EAC31A779E5600607C57 /* ListenerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListenerManager.m; sourceTree = "<group>"; };
+		A598EAC51A779EE100607C57 /* KeyListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyListener.h; sourceTree = "<group>"; };
+		A598EAC61A779EE100607C57 /* KeyListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyListener.m; sourceTree = "<group>"; };
+		A598EAD21A77C85A00607C57 /* BluetoothListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothListener.h; sourceTree = "<group>"; };
+		A598EAD31A77C85A00607C57 /* BluetoothListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothListener.m; sourceTree = "<group>"; };
+		A598EAD61A77C86F00607C57 /* USBListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USBListener.h; sourceTree = "<group>"; };
+		A598EAD71A77C86F00607C57 /* USBListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USBListener.m; sourceTree = "<group>"; };
 		A59A1AE41A6D9EC100767E31 /* iTunesHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iTunesHelper.h; path = Source/iTunesHelper.h; sourceTree = "<group>"; };
 		A59A1AE51A6D9EC100767E31 /* iTunesHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = iTunesHelper.m; path = Source/iTunesHelper.m; sourceTree = "<group>"; };
 		A59A1AE81A6DA40F00767E31 /* NSApplication+MXUtilities.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "NSApplication+MXUtilities.h"; sourceTree = "<group>"; };
@@ -230,6 +242,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A598EAC01A779E1F00607C57 /* Listeners */,
 				A53E26FB1A71096F001ACB0A /* LockManager */,
 				A53831C216481976002764C1 /* Privat */,
 				D0764510101E79F500DAE20D /* LockMeNowAppDelegate.h */,
@@ -390,6 +403,22 @@
 				A589299516A5DE9400063E09 /* PTUSBHub.m */,
 			);
 			name = peertalk;
+			sourceTree = "<group>";
+		};
+		A598EAC01A779E1F00607C57 /* Listeners */ = {
+			isa = PBXGroup;
+			children = (
+				A598EAC21A779E5600607C57 /* ListenerManager.h */,
+				A598EAC31A779E5600607C57 /* ListenerManager.m */,
+				A598EAC51A779EE100607C57 /* KeyListener.h */,
+				A598EAC61A779EE100607C57 /* KeyListener.m */,
+				A598EAD21A77C85A00607C57 /* BluetoothListener.h */,
+				A598EAD31A77C85A00607C57 /* BluetoothListener.m */,
+				A598EAD61A77C86F00607C57 /* USBListener.h */,
+				A598EAD71A77C86F00607C57 /* USBListener.m */,
+			);
+			name = Listeners;
+			path = Source/Listeners;
 			sourceTree = "<group>";
 		};
 		A59A1AE71A6DA40F00767E31 /* MXUtilities */ = {
@@ -574,13 +603,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A598EAD81A77C86F00607C57 /* USBListener.m in Sources */,
 				A53E26FF1A710987001ACB0A /* LockManager.m in Sources */,
 				A55F89521A76D53E00C3F837 /* BlockViewLock.m in Sources */,
 				A59A1AE61A6D9EC100767E31 /* iTunesHelper.m in Sources */,
+				A598EAC71A779EE100607C57 /* KeyListener.m in Sources */,
 				A53E27051A710B6E001ACB0A /* LoginWindowsLock.m in Sources */,
 				D0764512101E79F500DAE20D /* LockMeNowAppDelegate.m in Sources */,
+				A598EAD41A77C85A00607C57 /* BluetoothListener.m in Sources */,
 				A59A1AEA1A6DA40F00767E31 /* NSApplication+MXUtilities.m in Sources */,
 				A53E27021A710AAF001ACB0A /* JustLock.m in Sources */,
+				A598EAC41A779E5600607C57 /* ListenerManager.m in Sources */,
 				A59A1AEE1A6DA9A400767E31 /* IGRUserDefaults.m in Sources */,
 				D0764532101E7A6100DAE20D /* main.m in Sources */,
 				A589299616A5DE9400063E09 /* PTUSBHub.m in Sources */,

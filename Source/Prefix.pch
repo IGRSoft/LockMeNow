@@ -6,14 +6,6 @@
     #import <Cocoa/Cocoa.h>
 #endif
 
-#define NUM_APPLE_MOBILE_DEVICES	36
-
-#define NUM_IPHONE_POS	0
-#define NUM_IPOD_POS	13
-#define NUM_IPAD_POS	18
-
-#define VENDOR_APPLE				0x05ac
-
 #ifdef DEBUG
 #define DBNSLog NSLog
 #else

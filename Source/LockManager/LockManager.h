@@ -18,7 +18,7 @@
 
 @interface LockManager : NSObject
 
-- (id)initWithConnection:(xpc_connection_t)aConnection settings:(IGRUserDefaults *)aSettings;
+- (instancetype)initWithConnection:(xpc_connection_t)aConnection settings:(IGRUserDefaults *)aSettings NS_DESIGNATED_INITIALIZER;
 
 - (void)lock;
 - (void)unlock;

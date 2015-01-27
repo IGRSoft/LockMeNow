@@ -56,7 +56,7 @@ NSString *kUSBDeviceType			= @"USBDevice";
 {
 	if (self = [super init])
 	{
-		NSString *bundleIdentifier = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"CFBundleIdentifier"];
+		NSString *bundleIdentifier = [[NSBundle mainBundle] infoDictionary][@"CFBundleIdentifier"];
 		bundleIdentifier = [@"sandbox." stringByAppendingString:bundleIdentifier];
 		
 		self.defaults = [[NSUserDefaults alloc] initWithSuiteName:bundleIdentifier];

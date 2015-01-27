@@ -11,7 +11,7 @@
 
 @implementation LockManager
 
-- (id)initWithConnection:(xpc_connection_t)aConnection settings:(IGRUserDefaults *)aSettings
+- (instancetype)initWithConnection:(xpc_connection_t)aConnection settings:(IGRUserDefaults *)aSettings
 {
 	if (self = [super init])
 	{
@@ -44,7 +44,7 @@
 
 - (void)unlock
 {
-	DBNSLog(@"%s Lock", __func__);
+	DBNSLog(@"%s UnLock", __func__);
 	
 	if ([self.delegate respondsToSelector:@selector(unLockSuccess)])
 	{

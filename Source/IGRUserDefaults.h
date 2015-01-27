@@ -17,6 +17,7 @@ typedef NS_ENUM(NSUInteger, LockingType)
 
 typedef NS_ENUM(NSUInteger, DeviceType)
 {
+    USB_NONE = -1,
 	USB_ALL_DEVICES = 0,
 	USB_IPHONE,
 	USB_IPOD,
@@ -45,8 +46,8 @@ typedef void (^IGRUserDefaultsBluetoothData)(NSData *bluetoothData);
 - (void)loadUserSettings;
 - (void)saveUserSettingsWithBluetoothData:(NSData *)bluetoothData;
 
-- (LockingType)lockingType;
-- (DeviceType)deviceType;
+@property (nonatomic, readonly) LockingType lockingType;
+@property (nonatomic, readonly) DeviceType deviceType;
 
 
 @end
