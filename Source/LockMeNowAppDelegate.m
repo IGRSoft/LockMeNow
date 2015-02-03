@@ -18,7 +18,7 @@
 #import "BluetoothListener.h"
 
 #import "iTunesHelper.h"
-#import "NSApplication+MXUtilities.h"
+#import "UKLoginItemRegistry.h"
 
 #import <Quartz/Quartz.h>
 
@@ -51,6 +51,9 @@
 {
     // Prep XPC services.
     [self registeryXPC];
+    
+    //Get Start at Login
+    self.userSettings.bEnableStartup = [UKLoginItemRegistry indexForLoginItemWithPath:[[NSBundle mainBundle] bundlePath]] > 0;
     
     //Registery Listeners
     self.keyListener.userSettings = self.userSettings;
@@ -217,7 +220,14 @@ BOOL doNothingAtStart = NO;
 
 - (IBAction)toggleStartup:(id)sender
 {
-    [NSApplication sharedApplication].launchAtLogin = self.userSettings.bEnableStartup;
+    if ( self.userSettings.bEnableStartup )
+    {
+        [UKLoginItemRegistry addLoginItemWithPath:[[NSBundle mainBundle] bundlePath] hideIt:NO];
+    }
+    else
+    {
+        [UKLoginItemRegistry removeLoginItemWithPath:[[NSBundle mainBundle] bundlePath]];
+    }
     
     [self updateUserSettings:sender];
 }

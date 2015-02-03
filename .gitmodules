@@ -4,6 +4,3 @@
 [submodule "External/peertalk"]
 	path = External/peertalk
 	url = https://github.com/rsms/peertalk.git
-[submodule "External/MXUtilities"]
-	path = External/MXUtilities
-	url = https://gist.github.com/73670eba228c177bceb3.git
