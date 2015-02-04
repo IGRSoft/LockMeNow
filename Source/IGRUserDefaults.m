@@ -100,6 +100,7 @@ NSString *kUSBDeviceType			= @"USBDevice";
 	[self.defaults setBool:_bPauseiTunes forKey:kPauseiTunes];
 	[self.defaults setBool:_bResumeiTunes forKey:kResumeiTunes];
 	[self.defaults setBool:_bAutoPrefs forKey:kAutoScreenSaverPrefs];
+	[self.defaults setBool:_bEnableStartup forKey:kEnableStartup];
 	
 	// Monitoring enabled
 	[self.defaults setBool:_bMonitoringBluetooth forKey:kBluetoothMonitoring];

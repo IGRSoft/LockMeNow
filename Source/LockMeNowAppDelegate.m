@@ -18,10 +18,9 @@
 #import "BluetoothListener.h"
 
 #import "iTunesHelper.h"
-#import "UKLoginItemRegistry.h"
 
 #import <Quartz/Quartz.h>
-
+#import <ServiceManagement/ServiceManagement.h>
 #import <xpc/xpc.h>
 
 @interface LockMeNowAppDelegate() <LockManagerDelegate, ListenerManagerDelegate>
@@ -51,10 +50,7 @@
 {
     // Prep XPC services.
     [self registeryXPC];
-    
-    //Get Start at Login
-    self.userSettings.bEnableStartup = [UKLoginItemRegistry indexForLoginItemWithPath:[[NSBundle mainBundle] bundlePath]] > 0;
-    
+	
     //Registery Listeners
     self.keyListener.userSettings = self.userSettings;
     self.keyListener.delegate = self;
@@ -220,13 +216,11 @@ BOOL doNothingAtStart = NO;
 
 - (IBAction)toggleStartup:(id)sender
 {
-    if ( self.userSettings.bEnableStartup )
+	;
+	
+    if ( !SMLoginItemSetEnabled((__bridge CFStringRef)@"com.igrsoft.LaunchHelper", self.userSettings.bEnableStartup) )
     {
-        [UKLoginItemRegistry addLoginItemWithPath:[[NSBundle mainBundle] bundlePath] hideIt:NO];
-    }
-    else
-    {
-        [UKLoginItemRegistry removeLoginItemWithPath:[[NSBundle mainBundle] bundlePath]];
+		DBNSLog(@"Can't start com.igrsoft.LaunchHelper");
     }
     
     [self updateUserSettings:sender];
