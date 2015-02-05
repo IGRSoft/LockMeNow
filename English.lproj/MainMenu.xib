@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14B25" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6254" systemVersion="14C109" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6254"/>
@@ -189,8 +189,8 @@
                                             </buttonCell>
                                             <connections>
                                                 <action selector="updateUserSettings:" target="494" id="AvG-od-p5c"/>
-                                                <binding destination="494" name="enabled" keyPath="self.userSettings.iLockType" id="utA-kA-9OD"/>
                                                 <binding destination="494" name="value" keyPath="self.userSettings.bUseCurrentScreenSaver" id="pN6-US-FYI"/>
+                                                <binding destination="494" name="enabled" keyPath="self.userSettings.iLockType" id="utA-kA-9OD"/>
                                             </connections>
                                         </button>
                                         <button id="646">
@@ -226,8 +226,8 @@
                                             </buttonCell>
                                             <connections>
                                                 <action selector="updateUserSettings:" target="494" id="BwG-gS-Faf"/>
-                                                <binding destination="494" name="hidden" keyPath="self.userSettings.bEncription" id="z9g-u2-GEF"/>
                                                 <binding destination="494" name="value" keyPath="self.userSettings.bAutoPrefs" id="oLk-8q-0Qe"/>
+                                                <binding destination="494" name="hidden" keyPath="self.userSettings.bEncription" id="z9g-u2-GEF"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -412,6 +412,44 @@ Big Thanks:
                                     </subviews>
                                 </view>
                             </tabViewItem>
+                            <tabViewItem label="Security" identifier="" id="sLb-jR-0ch">
+                                <view key="view" id="cEe-ip-oQ9">
+                                    <rect key="frame" x="10" y="25" width="299" height="255"/>
+                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                                    <subviews>
+                                        <button id="EvU-07-j1X">
+                                            <rect key="frame" x="15" y="233" width="269" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Make photo on wrong password" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="BGq-Ae-OL1">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                        </button>
+                                        <button id="aj1-9s-ApJ">
+                                            <rect key="frame" x="15" y="213" width="269" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Send photo via email" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="DI6-LO-guB">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                        </button>
+                                        <textField verticalHuggingPriority="750" id="E9x-dm-9td">
+                                            <rect key="frame" x="17" y="185" width="265" height="22"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Hlw-jG-k8A">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="6SI-xT-byH">
+                                            <rect key="frame" x="17" y="3" width="265" height="174"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="comingsoon" id="0hx-b7-3aV"/>
+                                        </imageView>
+                                    </subviews>
+                                </view>
+                            </tabViewItem>
                         </tabViewItems>
                         <connections>
                             <outlet property="delegate" destination="494" id="825"/>
@@ -530,6 +568,7 @@ Big Thanks:
         </window>
     </objects>
     <resources>
+        <image name="comingsoon" width="265" height="134"/>
         <image name="russianapple" width="140" height="40"/>
     </resources>
 </document>
