@@ -18,6 +18,7 @@
 #import "BluetoothListener.h"
 
 #import "iTunesHelper.h"
+//#import "ImageSnap.h"
 
 #import <Quartz/Quartz.h>
 #import <ServiceManagement/ServiceManagement.h>
@@ -430,6 +431,28 @@ BOOL doNothingAtStart = NO;
 - (void)makeAction:(id)sender
 {
     [self doLock:sender];
+	
+	[self takePhoto];
+}
+
+#pragma mark - Script Action
+
+- (void)takePhoto
+{
+	/*NSDateFormatter *formatter;
+	NSString        *dateString;
+	
+	formatter = [[NSDateFormatter alloc] init];
+	[formatter setDateFormat:@"dd-MM-yyyy HH:mm"];
+	
+	dateString = [formatter stringFromDate:[NSDate date]];
+	dateString = [dateString stringByAppendingPathExtension:@"jpg"];
+	
+	NSString *picturePath = NSSearchPathForDirectoriesInDomains(NSDesktopDirectory, NSUserDomainMask, YES)[0];
+	
+	picturePath = [picturePath stringByAppendingPathComponent:dateString];
+	
+	[ImageSnap saveSnapshotFrom:[ImageSnap defaultVideoDevice] toFile:picturePath];*
 }
 
 @end

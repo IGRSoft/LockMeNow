@@ -405,6 +405,7 @@
 		A5489B8215D3E5A90072E5D2 /* External */ = {
 			isa = PBXGroup;
 			children = (
+				A54A9CA31A83EBA8004D82DB /* ImageSnap */,
 				A5C0BBE216A6D077008072DE /* ShortcutRecorder.xcodeproj */,
 				A589299716A5DEBB00063E09 /* peertalk */,
 			);
@@ -419,6 +420,13 @@
 			);
 			name = indicators;
 			path = Resources/indicators;
+			sourceTree = "<group>";
+		};
+		A54A9CA31A83EBA8004D82DB /* ImageSnap */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = ImageSnap;
 			sourceTree = "<group>";
 		};
 		A56235041A817F6E002B86A5 /* LaunchHelper */ = {
