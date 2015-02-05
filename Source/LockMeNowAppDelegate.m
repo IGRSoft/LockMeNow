@@ -18,7 +18,7 @@
 #import "BluetoothListener.h"
 
 #import "iTunesHelper.h"
-//#import "ImageSnap.h"
+#import "ImageSnap.h"
 
 #import <Quartz/Quartz.h>
 #import <ServiceManagement/ServiceManagement.h>
@@ -432,27 +432,39 @@ BOOL doNothingAtStart = NO;
 {
     [self doLock:sender];
 	
-	[self takePhoto];
+	//[self takePhoto];
 }
 
 #pragma mark - Script Action
 
 - (void)takePhoto
 {
-	/*NSDateFormatter *formatter;
+	NSDateFormatter *formatter;
 	NSString        *dateString;
 	
 	formatter = [[NSDateFormatter alloc] init];
-	[formatter setDateFormat:@"dd-MM-yyyy HH:mm"];
+	[formatter setDateFormat:@"dd-MM-yyyy_HH-mm"];
 	
 	dateString = [formatter stringFromDate:[NSDate date]];
-	dateString = [dateString stringByAppendingPathExtension:@"jpg"];
+	dateString = [dateString stringByAppendingPathExtension:@"png"];
 	
-	NSString *picturePath = NSSearchPathForDirectoriesInDomains(NSDesktopDirectory, NSUserDomainMask, YES)[0];
+	NSString *picturePath = [NSSearchPathForDirectoriesInDomains(NSPicturesDirectory, NSUserDomainMask, YES) firstObject];
+	picturePath = [picturePath stringByAppendingPathComponent:@"LockMeNow"];
+	
+	NSFileManager *fm = [NSFileManager defaultManager];
+	BOOL isDir = NO;
+	
+	if ([fm fileExistsAtPath:picturePath isDirectory:&isDir] && isDir)
+	{
+	}
+	else
+	{
+		[fm createDirectoryAtPath:picturePath withIntermediateDirectories:YES attributes:nil error:nil];
+	}
 	
 	picturePath = [picturePath stringByAppendingPathComponent:dateString];
 	
-	[ImageSnap saveSnapshotFrom:[ImageSnap defaultVideoDevice] toFile:picturePath];*
+	[ImageSnap saveSnapshotFrom:[ImageSnap defaultVideoDevice] toFile:picturePath];
 }
 
 @end

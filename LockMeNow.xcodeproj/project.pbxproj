@@ -40,6 +40,9 @@
 		A5C0BBF716A6D08B008072DE /* ShortcutRecorder.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5C0BBEF16A6D078008072DE /* ShortcutRecorder.framework */; };
 		A5C0BBF816A6D08F008072DE /* PTHotKey.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = A5C0BBED16A6D078008072DE /* PTHotKey.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		A5C0BBF916A6D08F008072DE /* ShortcutRecorder.framework in Copy Frameworks */ = {isa = PBXBuildFile; fileRef = A5C0BBEF16A6D078008072DE /* ShortcutRecorder.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
+		A5CB1AEE1A840654005AAB21 /* libImageSnap.a in Frameworks */ = {isa = PBXBuildFile; fileRef = A5CB1AE71A84062B005AAB21 /* libImageSnap.a */; };
+		A5CB1AF01A840849005AAB21 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5CB1AEF1A840849005AAB21 /* AVFoundation.framework */; };
+		A5CB1AF21A840878005AAB21 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5CB1AF11A840878005AAB21 /* CoreMedia.framework */; };
 		A5CE4D0315062BFB001C22D2 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5CE4D0215062BFB001C22D2 /* ScriptingBridge.framework */; };
 		A5D2819616E7E394006405E0 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5B0BEBF144CA9E0003C3145 /* Cocoa.framework */; };
 		A5D2819C16E7E394006405E0 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = A5D2819A16E7E394006405E0 /* InfoPlist.strings */; };
@@ -111,6 +114,27 @@
 			proxyType = 1;
 			remoteGlobalIDString = A5B49BB416A6AB07004F9895;
 			remoteInfo = ShortcutRecorder;
+		};
+		A5CB1AE61A84062B005AAB21 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5CB1AE01A84062B005AAB21 /* ImageSnap.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A54A9CBE1A83F4B5004D82DB;
+			remoteInfo = ImageSnap;
+		};
+		A5CB1AE81A84062B005AAB21 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5CB1AE01A84062B005AAB21 /* ImageSnap.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A54A9CC81A83F4B6004D82DB;
+			remoteInfo = ImageSnapTests;
+		};
+		A5CB1AEA1A84062B005AAB21 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A5CB1AE01A84062B005AAB21 /* ImageSnap.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = A54A9CDB1A83F8F2004D82DB;
+			remoteInfo = Example;
 		};
 		A5D94E8716FB1D000054BC6C /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -208,6 +232,9 @@
 		A5B0BEBF144CA9E0003C3145 /* Cocoa.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Cocoa.framework; path = System/Library/Frameworks/Cocoa.framework; sourceTree = SDKROOT; };
 		A5BD7F6C18B0F0F30038B280 /* README.md */ = {isa = PBXFileReference; lastKnownFileType = text; path = README.md; sourceTree = "<group>"; };
 		A5C0BBE216A6D077008072DE /* ShortcutRecorder.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = ShortcutRecorder.xcodeproj; path = shortcutrecorder/ShortcutRecorder.xcodeproj; sourceTree = "<group>"; };
+		A5CB1AE01A84062B005AAB21 /* ImageSnap.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = ImageSnap.xcodeproj; sourceTree = "<group>"; };
+		A5CB1AEF1A840849005AAB21 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
+		A5CB1AF11A840878005AAB21 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		A5CE4D0215062BFB001C22D2 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = /System/Library/Frameworks/ScriptingBridge.framework; sourceTree = "<absolute>"; };
 		A5CE4D0415062DE4001C22D2 /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = iTunes.h; path = Source/iTunes.h; sourceTree = "<group>"; };
 		A5D2819516E7E394006405E0 /* script_service.xpc */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = script_service.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -232,6 +259,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5CB1AF21A840878005AAB21 /* CoreMedia.framework in Frameworks */,
+				A5CB1AF01A840849005AAB21 /* AVFoundation.framework in Frameworks */,
+				A5CB1AEE1A840654005AAB21 /* libImageSnap.a in Frameworks */,
 				A5F066F11A8142DE005A571D /* AppKit.framework in Frameworks */,
 				A55F89561A76DB4D00C3F837 /* ScreenSaver.framework in Frameworks */,
 				A59F335516C125E600A43F7C /* ServiceManagement.framework in Frameworks */,
@@ -360,6 +390,8 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A5CB1AF11A840878005AAB21 /* CoreMedia.framework */,
+				A5CB1AEF1A840849005AAB21 /* AVFoundation.framework */,
 				A5F066F01A8142DE005A571D /* AppKit.framework */,
 				A55F89551A76DB4D00C3F837 /* ScreenSaver.framework */,
 				1058C7A0FEA54F0111CA2CBB /* Linked Frameworks */,
@@ -425,6 +457,7 @@
 		A54A9CA31A83EBA8004D82DB /* ImageSnap */ = {
 			isa = PBXGroup;
 			children = (
+				A5CB1AE01A84062B005AAB21 /* ImageSnap.xcodeproj */,
 			);
 			path = ImageSnap;
 			sourceTree = "<group>";
@@ -477,6 +510,16 @@
 				A5C0BBED16A6D078008072DE /* PTHotKey.framework */,
 				A5C0BBEF16A6D078008072DE /* ShortcutRecorder.framework */,
 				A5C0BBF116A6D078008072DE /* TestApp.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		A5CB1AE11A84062B005AAB21 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				A5CB1AE71A84062B005AAB21 /* libImageSnap.a */,
+				A5CB1AE91A84062B005AAB21 /* ImageSnapTests.xctest */,
+				A5CB1AEB1A84062B005AAB21 /* Example.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -578,6 +621,10 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
+					ProductGroup = A5CB1AE11A84062B005AAB21 /* Products */;
+					ProjectRef = A5CB1AE01A84062B005AAB21 /* ImageSnap.xcodeproj */;
+				},
+				{
 					ProductGroup = A562350F1A817F6E002B86A5 /* Products */;
 					ProjectRef = A562350E1A817F6E002B86A5 /* LaunchHelper.xcodeproj */;
 				},
@@ -628,6 +675,27 @@
 			fileType = wrapper.application;
 			path = TestApp.app;
 			remoteRef = A5C0BBF016A6D078008072DE /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A5CB1AE71A84062B005AAB21 /* libImageSnap.a */ = {
+			isa = PBXReferenceProxy;
+			fileType = archive.ar;
+			path = libImageSnap.a;
+			remoteRef = A5CB1AE61A84062B005AAB21 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A5CB1AE91A84062B005AAB21 /* ImageSnapTests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = ImageSnapTests.xctest;
+			remoteRef = A5CB1AE81A84062B005AAB21 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A5CB1AEB1A84062B005AAB21 /* Example.app */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.application;
+			path = Example.app;
+			remoteRef = A5CB1AEA1A84062B005AAB21 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -831,8 +899,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/External/LaunchAtLogin/Vendor/StartAtLoginController",
-					"$(SRCROOT)/External/Apple",
+					"\"$(CONFIGURATION_BUILD_DIR)/include\"",
 				);
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = /Applications;
@@ -858,8 +925,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"$(SRCROOT)/External/LaunchAtLogin/Vendor/StartAtLoginController",
-					"$(SRCROOT)/External/Apple",
+					"\"$(CONFIGURATION_BUILD_DIR)/include\"",
 				);
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = /Applications;

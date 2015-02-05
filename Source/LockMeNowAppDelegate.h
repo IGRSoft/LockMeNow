@@ -42,4 +42,6 @@
 
 - (IBAction)setMenuIcon:(id)sender;
 
+- (void)takePhoto;
+
 @end
