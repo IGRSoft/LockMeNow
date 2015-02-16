@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE dictionary SYSTEM "file://localhost/System/Library/DTDs/sdef.dtd">
+
+<!--
+
+    File: LockMeNow.sdef
+    Abstract: Starting sdef for a scriptable application.
+    Version: 1.0
+ 
+    Copyright (C) 2015 IGR Software. All Rights Reserved.
+ 
+
+-->
+
+
+	<!-- declare the namespace for using XInclude so we can include the standard suite -->
+<dictionary xmlns:xi="http://www.w3.org/2003/XInclude">
+
+
+		<!-- use XInclude to include the standard suite -->
+	<xi:include href="file:///System/Library/ScriptingDefinitions/CocoaStandard.sdef" xpointer="xpointer(/dictionary/suite)"/>
+
+
+		<!-- our special scripting suite for this example -->
+	<suite name="Lock Me Now Suite" code="SScr"
+		description="LockMeNow application specific scripting facilities.">
+		
+		
+			<!-- any additions to the application class are done here.  note that
+			we have specified that we inherit all of the properties from the standard
+			application class definition, and we use the same four character code from
+			that definition (see the application class definition above).  -->
+		<class name="application" code="capp" 
+					description="Our simple application class." inherits="application">
+			
+				<!-- the name of the Cocoa class where we have provided the
+				various accessor methods for our application class.  -->
+			<cocoa class="NSApplication"/>
+
+				<!-- a single read-only property -->
+			<property name="takePhoto" code="Srdy" type="boolean" access="r" description="we're always ready"/>
+				
+		</class>
+
+	</suite>
+	
+	
+</dictionary>
