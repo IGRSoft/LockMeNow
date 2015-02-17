@@ -17,14 +17,14 @@
 	StartAtLoginController *loginController;
 }
 
-@property (nonatomic) IBOutlet NSWindow				*window;
-@property (nonatomic) IBOutlet NSMenu				*statusMenu;
-@property (nonatomic) IBOutlet NSTabView			*tabView;
-@property (nonatomic) IBOutlet KeyListener          *keyListener;
+@property (nonatomic) IBOutlet NSWindow		*window;
+@property (nonatomic) IBOutlet NSMenu		*statusMenu;
+@property (nonatomic) IBOutlet NSTabView	*tabView;
+@property (nonatomic) IBOutlet KeyListener  *keyListener;
 
-@property (nonatomic) IBOutlet IKImageView			*bluetoothStatus;
+@property (nonatomic) IBOutlet IKImageView	*bluetoothStatus;
 
-@property (nonatomic) IBOutlet NSView *lockBlockView;
+@property (nonatomic) IBOutlet NSView       *lockBlockView;
 
 // Status Item
 @property (strong, nonatomic) NSStatusItem *statusItem;

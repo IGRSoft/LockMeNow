@@ -13,6 +13,7 @@
 @protocol LockManagerDelegate <NSObject>
 
 - (void)unLockSuccess;
+- (void)detectedWrongPassword;
 
 @end
 

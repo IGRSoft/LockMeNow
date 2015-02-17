@@ -20,6 +20,8 @@
 #import "iTunesHelper.h"
 #import "ImageSnap.h"
 
+#import "aslHelper.h"
+
 #import <Quartz/Quartz.h>
 #import <ServiceManagement/ServiceManagement.h>
 #import <xpc/xpc.h>
@@ -32,6 +34,8 @@
 @property (nonatomic) LockManager *lockManager;
 @property (nonatomic) USBListener *usbListener;
 @property (nonatomic) BluetoothListener *bluetoothListener;
+
+@property (nonatomic) BOOL isASLPatched;
 
 @end
 
@@ -83,6 +87,8 @@
     {
         [self makeMenu];
     }
+    
+    self.isASLPatched = [aslHelper isASLPatched];
     
     //Setup lock Type
     [self setupLock];
@@ -431,6 +437,11 @@ BOOL doNothingAtStart = NO;
 - (void)unLockSuccess
 {
     [self pauseResumeMusic];
+}
+
+- (void)detectedWrongPassword
+{
+    [self takePhoto];
 }
 
 #pragma mark - ListenerManagerDelegate

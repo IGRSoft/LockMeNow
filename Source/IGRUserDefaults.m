@@ -8,19 +8,22 @@
 
 #import "IGRUserDefaults.h"
 
-NSString *kEnableStartup			= @"enableStartup";
-NSString *kGlobalHotKey				= @"LockMeNowHotKey";
-NSString *kIconOnMainMenu			= @"IconOnMainMenu";
-NSString *kLockType					= @"LockType";
-NSString *kUseCurrentScreenSaver	= @"UseCurrentScreenSaver";
-NSString *kPauseiTunes				= @"PauseiTunes";
-NSString *kResumeiTunes				= @"ResumeiTunes";
-NSString *kAutoScreenSaverPrefs		= @"AutoScreenSaverPrefs";
-NSString *kBluetoothDevice			= @"BluetoothDevice";
-NSString *kBluetoothCheckInterval	= @"BluetoothCheckInterval";
-NSString *kBluetoothMonitoring		= @"BluetoothMonitoring";
-NSString *kUSBMonitoring			= @"USBMonitoring";
-NSString *kUSBDeviceType			= @"USBDevice";
+NSString *kEnableStartup                = @"enableStartup";
+NSString *kGlobalHotKey                 = @"LockMeNowHotKey";
+NSString *kIconOnMainMenu               = @"IconOnMainMenu";
+NSString *kLockType                     = @"LockType";
+NSString *kUseCurrentScreenSaver        = @"UseCurrentScreenSaver";
+NSString *kPauseiTunes                  = @"PauseiTunes";
+NSString *kResumeiTunes                 = @"ResumeiTunes";
+NSString *kAutoScreenSaverPrefs         = @"AutoScreenSaverPrefs";
+NSString *kBluetoothDevice              = @"BluetoothDevice";
+NSString *kBluetoothCheckInterval       = @"BluetoothCheckInterval";
+NSString *kBluetoothMonitoring          = @"BluetoothMonitoring";
+NSString *kUSBMonitoring                = @"USBMonitoring";
+NSString *kUSBDeviceType                = @"USBDevice";
+NSString *kMakePhotoOnIncorrectPasword	= @"MakePhotoOnIncorrectPasword";
+NSString *kSendPhotoOnIncorrectPasword	= @"SendPhotoOnIncorrectPasword";
+NSString *kIncorrectPaswordMail         = @"IncorrectPaswordMail";
 
 @interface IGRUserDefaults ()
 
@@ -46,6 +49,10 @@ NSString *kUSBDeviceType			= @"USBDevice";
 	defaultValues[kBluetoothMonitoring] = @NO;
 	defaultValues[kUSBMonitoring] = @NO;
 	defaultValues[kUSBDeviceType] = @(USB_ALL_DEVICES);
+    
+    defaultValues[kMakePhotoOnIncorrectPasword] = @NO;
+    defaultValues[kSendPhotoOnIncorrectPasword] = @NO;
+    defaultValues[kIncorrectPaswordMail] = @"";
 	
 	// Register the dictionary of defaults
 	[self.defaults registerDefaults: defaultValues];
@@ -69,15 +76,18 @@ NSString *kUSBDeviceType			= @"USBDevice";
 
 - (void)loadUserSettings
 {
-	_bEnableStartup			= [self.defaults boolForKey:kEnableStartup];
-	_bUseIconOnMainMenu		= [self.defaults boolForKey:kIconOnMainMenu];
-	_iLockType				= [self.defaults objectForKey:kLockType];
-	_bUseCurrentScreenSaver = [self.defaults boolForKey:kUseCurrentScreenSaver];
-	_bPauseiTunes			= [self.defaults boolForKey:kPauseiTunes];
-	_bResumeiTunes			= [self.defaults boolForKey:kResumeiTunes];
-	_bAutoPrefs				= [self.defaults boolForKey:kAutoScreenSaverPrefs];
-	_bNeedResumeiTunes		= [self.defaults boolForKey:kResumeiTunes];
-	_keyCombo				= [self.defaults objectForKey:kGlobalHotKey];
+	_bEnableStartup                 = [self.defaults boolForKey:kEnableStartup];
+	_bUseIconOnMainMenu             = [self.defaults boolForKey:kIconOnMainMenu];
+	_iLockType                      = [self.defaults objectForKey:kLockType];
+	_bUseCurrentScreenSaver         = [self.defaults boolForKey:kUseCurrentScreenSaver];
+	_bPauseiTunes                   = [self.defaults boolForKey:kPauseiTunes];
+	_bResumeiTunes                  = [self.defaults boolForKey:kResumeiTunes];
+	_bAutoPrefs                     = [self.defaults boolForKey:kAutoScreenSaverPrefs];
+	_bNeedResumeiTunes              = [self.defaults boolForKey:kResumeiTunes];
+	_keyCombo                       = [self.defaults objectForKey:kGlobalHotKey];
+    _bMakePhotoOnIncorrectPasword	= [self.defaults boolForKey:kMakePhotoOnIncorrectPasword];
+    _bSendPhotoOnIncorrectPasword	= [self.defaults boolForKey:kSendPhotoOnIncorrectPasword];
+    _sIncorrectPaswordMail			= [self.defaults objectForKey:kIncorrectPaswordMail];
 	
 	NSData *deviceAsData = [self.defaults objectForKey:kBluetoothDevice];
 	if( [deviceAsData length] > 0 )
@@ -101,7 +111,10 @@ NSString *kUSBDeviceType			= @"USBDevice";
 	[self.defaults setBool:_bResumeiTunes forKey:kResumeiTunes];
 	[self.defaults setBool:_bAutoPrefs forKey:kAutoScreenSaverPrefs];
 	[self.defaults setBool:_bEnableStartup forKey:kEnableStartup];
-	
+    [self.defaults setBool:_bMakePhotoOnIncorrectPasword forKey:kMakePhotoOnIncorrectPasword];
+    [self.defaults setBool:_bSendPhotoOnIncorrectPasword forKey:kSendPhotoOnIncorrectPasword];
+    [self.defaults setObject:_sIncorrectPaswordMail forKey:kIncorrectPaswordMail];
+
 	// Monitoring enabled
 	[self.defaults setBool:_bMonitoringBluetooth forKey:kBluetoothMonitoring];
 	

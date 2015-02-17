@@ -9,6 +9,12 @@
 #import "LockManager.h"
 #import "IGRUserDefaults.h"
 
+@interface LockManager ()
+
+@property (nonatomic, strong) NSFileHandle *fileHandle;
+@property (nonatomic, strong) NSString *lastLine;
+@end
+
 @implementation LockManager
 
 - (instancetype)initWithConnection:(xpc_connection_t)aConnection settings:(IGRUserDefaults *)aSettings
@@ -40,6 +46,8 @@
 		DBNSLog(@"Set Security Lock");
 		[self setSecuritySetings:YES withSkip:m_bNeedBlock];
 	}
+    
+    [self startCheckIncorrectPassword];
 }
 
 - (void)unlock
@@ -58,6 +66,8 @@
 		DBNSLog(@"Remove Security Lock");
 		[self setSecuritySetings:NO withSkip:m_bNeedBlock];
 	}
+    
+    [self stopCheckIncorrectPassword];
 }
 
 - (BOOL)askPassword
@@ -115,6 +125,84 @@
 			}
 		}
 	}
+}
+
+- (void)startCheckIncorrectPassword
+{
+    self.lastLine = nil;
+    
+    NSURL *filePath = [NSURL URLWithString:@"/private/var/log/lockmenow.log"];
+    NSError *error = nil;
+    
+    self.fileHandle = [NSFileHandle fileHandleForReadingFromURL:filePath error:&error];
+    
+    if (!error)
+    {
+        [[NSNotificationCenter defaultCenter] addObserver:self
+                                                 selector:@selector(handleChannelDataAvailable:)
+                                                     name:NSFileHandleDataAvailableNotification
+                                                   object:self.fileHandle];
+        
+        [self.fileHandle waitForDataInBackgroundAndNotify];
+    }
+}
+
+- (void)stopCheckIncorrectPassword
+{
+    [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                     name:NSFileHandleDataAvailableNotification
+                                                   object:self.fileHandle];
+    
+    self.fileHandle = nil;
+    self.lastLine = nil;
+}
+
+- (void)handleChannelDataAvailable:(NSNotification*)notification
+{
+    NSFileHandle *fileHandle = notification.object;
+    
+    NSString *str = [[NSString alloc] initWithData:fileHandle.availableData
+                                          encoding:NSUTF8StringEncoding];
+    
+    NSString *contentForSearch = @"";
+    NSRange newChunkRange = NSMakeRange(0, 0);
+    
+    BOOL skipCheck = NO;
+    if (!self.lastLine)
+    {
+        self.lastLine = [str copy];
+        skipCheck = YES;
+    }
+    
+    newChunkRange = [str rangeOfString:self.lastLine];
+    
+    if (newChunkRange.location != NSNotFound)
+    {
+        contentForSearch = [str substringFromIndex:newChunkRange.location + newChunkRange.length - 1];
+    }
+    contentForSearch = [str copy];
+    
+    if (!skipCheck)
+    {
+        NSRange range = [contentForSearch rangeOfString:@"OpenDirectory - The authtok is incorrect."];
+        if (range.location != NSNotFound)
+        {
+            if ([self.delegate respondsToSelector:@selector(detectedWrongPassword)])
+            {
+                [self.delegate detectedWrongPassword];
+                NSLog(@"test");
+            }
+        }
+    }
+    
+    NSArray *components = [str componentsSeparatedByString: @"\n"];
+    
+    if (components.count)
+    {
+        self.lastLine = components[components.count - 2];
+    }
+    
+    [fileHandle waitForDataInBackgroundAndNotify];
 }
 
 @end

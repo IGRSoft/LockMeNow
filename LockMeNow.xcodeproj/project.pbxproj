@@ -10,6 +10,7 @@
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
+		A5086B301A93EB2100787358 /* aslHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A5086B2F1A93EB2100787358 /* aslHelper.m */; };
 		A517CFA4142FD73E00632668 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A517CFA2142FD73E00632668 /* Credits.rtf */; };
 		A51948D018887ED6009D6A81 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51948CF18887ED6009D6A81 /* SystemConfiguration.framework */; };
 		A52843BA1948547B00040243 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A52843B91948547B00040243 /* Images.xcassets */; };
@@ -54,8 +55,6 @@
 		A5F451D31A9288C7009FD03E /* LockManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451C11A9288C7009FD03E /* LockManager.m */; };
 		A5F451D41A9288C7009FD03E /* LoginWindowsLock.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451C31A9288C7009FD03E /* LoginWindowsLock.m */; };
 		A5F451D51A9288C7009FD03E /* LockMeNowAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451C51A9288C7009FD03E /* LockMeNowAppDelegate.m */; };
-		A5F451DB1A928973009FD03E /* LockMeNowCommands.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451DA1A928973009FD03E /* LockMeNowCommands.m */; };
-		A5F451DD1A928B35009FD03E /* LockMeNow.sdef in Resources */ = {isa = PBXBuildFile; fileRef = A5F451DC1A928B35009FD03E /* LockMeNow.sdef */; };
 		D0764532101E7A6100DAE20D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D0764530101E7A6100DAE20D /* main.m */; };
 		D0ABD262101D374900E5F733 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0ABD261101D374900E5F733 /* Carbon.framework */; };
 /* End PBXBuildFile section */
@@ -193,6 +192,8 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107320486CEB800E47090 /* LockMeNow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LockMeNow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5046E3F16FAFB6D00323A23 /* script_service-Entitlements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "script_service-Entitlements.plist"; sourceTree = "<group>"; };
+		A5086B2E1A93EB2100787358 /* aslHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aslHelper.h; sourceTree = "<group>"; };
+		A5086B2F1A93EB2100787358 /* aslHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = aslHelper.m; sourceTree = "<group>"; };
 		A5094B9816CBF33200A3C877 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A517CFA3142FD73E00632668 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
 		A51948CF18887ED6009D6A81 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -249,9 +250,6 @@
 		A5F451C31A9288C7009FD03E /* LoginWindowsLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginWindowsLock.m; sourceTree = "<group>"; };
 		A5F451C41A9288C7009FD03E /* LockMeNowAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LockMeNowAppDelegate.h; sourceTree = "<group>"; };
 		A5F451C51A9288C7009FD03E /* LockMeNowAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LockMeNowAppDelegate.m; sourceTree = "<group>"; };
-		A5F451D91A928973009FD03E /* LockMeNowCommands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LockMeNowCommands.h; sourceTree = "<group>"; };
-		A5F451DA1A928973009FD03E /* LockMeNowCommands.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LockMeNowCommands.m; sourceTree = "<group>"; };
-		A5F451DC1A928B35009FD03E /* LockMeNow.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = LockMeNow.sdef; path = Resources/LockMeNow.sdef; sourceTree = "<group>"; };
 		A5F9F90215EEA4870091B2F0 /* lock-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lock-bg.png"; path = "Resources/lock-bg.png"; sourceTree = "<group>"; };
 		D0764520101E7A3300DAE20D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		D0764530101E7A6100DAE20D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Source/main.m; sourceTree = "<group>"; };
@@ -301,6 +299,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A5086B281A93EA2700787358 /* asl */,
 				A5F451AD1A9288C7009FD03E /* IGRUserDefaults.h */,
 				A5F451AE1A9288C7009FD03E /* IGRUserDefaults.m */,
 				A5F451D81A9288DC009FD03E /* iTunes */,
@@ -308,7 +307,6 @@
 				A5F451BB1A9288C7009FD03E /* LockManager */,
 				A5F451C41A9288C7009FD03E /* LockMeNowAppDelegate.h */,
 				A5F451C51A9288C7009FD03E /* LockMeNowAppDelegate.m */,
-				A5F451CA1A9288C7009FD03E /* Scripting */,
 			);
 			name = Classes;
 			path = Source;
@@ -378,7 +376,6 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
-				A5F451DC1A928B35009FD03E /* LockMeNow.sdef */,
 				A52843B91948547B00040243 /* Images.xcassets */,
 				A5F19B43171AA9F000C8EE09 /* filevault_2_encryption_check_extension_attribute.sh */,
 				A559117516B3D69C008A7BF9 /* lockmenow.entitlements */,
@@ -406,6 +403,15 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		A5086B281A93EA2700787358 /* asl */ = {
+			isa = PBXGroup;
+			children = (
+				A5086B2E1A93EB2100787358 /* aslHelper.h */,
+				A5086B2F1A93EB2100787358 /* aslHelper.m */,
+			);
+			path = asl;
 			sourceTree = "<group>";
 		};
 		A53831C616481ADE002764C1 /* img */ = {
@@ -539,15 +545,6 @@
 				A5F451C31A9288C7009FD03E /* LoginWindowsLock.m */,
 			);
 			path = LockManager;
-			sourceTree = "<group>";
-		};
-		A5F451CA1A9288C7009FD03E /* Scripting */ = {
-			isa = PBXGroup;
-			children = (
-				A5F451D91A928973009FD03E /* LockMeNowCommands.h */,
-				A5F451DA1A928973009FD03E /* LockMeNowCommands.m */,
-			);
-			path = Scripting;
 			sourceTree = "<group>";
 		};
 		A5F451D81A9288DC009FD03E /* iTunes */ = {
@@ -724,7 +721,6 @@
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				A517CFA4142FD73E00632668 /* Credits.rtf in Resources */,
 				A5489BA415D3ED340072E5D2 /* off.pdf in Resources */,
-				A5F451DD1A928B35009FD03E /* LockMeNow.sdef in Resources */,
 				A5489BA515D3ED340072E5D2 /* on.pdf in Resources */,
 				A52A9F6016A8365300EA4B17 /* TextFieldBG.png in Resources */,
 				A52843BA1948547B00040243 /* Images.xcassets in Resources */,
@@ -756,9 +752,9 @@
 				A5F451CF1A9288C7009FD03E /* ListenerManager.m in Sources */,
 				A5F451CC1A9288C7009FD03E /* iTunesHelper.m in Sources */,
 				A5F451CE1A9288C7009FD03E /* KeyListener.m in Sources */,
-				A5F451DB1A928973009FD03E /* LockMeNowCommands.m in Sources */,
 				D0764532101E7A6100DAE20D /* main.m in Sources */,
 				A5F451D11A9288C7009FD03E /* BlockViewLock.m in Sources */,
+				A5086B301A93EB2100787358 /* aslHelper.m in Sources */,
 				A5F451D31A9288C7009FD03E /* LockManager.m in Sources */,
 				A5F451D21A9288C7009FD03E /* JustLock.m in Sources */,
 				A589299616A5DE9400063E09 /* PTUSBHub.m in Sources */,

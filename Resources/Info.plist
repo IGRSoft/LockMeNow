@@ -28,10 +28,6 @@
 	<string>${MACOSX_DEPLOYMENT_TARGET}</string>
 	<key>LSUIElement</key>
 	<true/>
-	<key>NSAppleScriptEnabled</key>
-	<string>YES</string>
-	<key>OSAScriptingDefinition</key>
-	<string>LockMeNow.sdef</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>

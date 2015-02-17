@@ -420,33 +420,62 @@ Big Thanks:
                                         <button id="EvU-07-j1X">
                                             <rect key="frame" x="15" y="233" width="269" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="check" title="Make photo on wrong password" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="BGq-Ae-OL1">
+                                            <buttonCell key="cell" type="check" title="Make photo on incorrect password" bezelStyle="regularSquare" imagePosition="left" inset="2" id="BGq-Ae-OL1">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="updateUserSettings:" target="494" id="rEY-B4-yLg"/>
+                                                <binding destination="494" name="enabled" keyPath="self.isASLPatched" id="fX6-dl-qoc"/>
+                                                <binding destination="494" name="value" keyPath="self.userSettings.bMakePhotoOnIncorrectPasword" id="rMB-ym-NJA"/>
+                                            </connections>
                                         </button>
                                         <button id="aj1-9s-ApJ">
                                             <rect key="frame" x="15" y="213" width="269" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="check" title="Send photo via email" bezelStyle="regularSquare" imagePosition="left" enabled="NO" inset="2" id="DI6-LO-guB">
+                                            <buttonCell key="cell" type="check" title="Send photo via email" bezelStyle="regularSquare" imagePosition="left" inset="2" id="DI6-LO-guB">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
+                                            <connections>
+                                                <action selector="updateUserSettings:" target="494" id="uWX-4a-YCl"/>
+                                                <binding destination="494" name="enabled" keyPath="self.isASLPatched" id="lPz-19-JVc"/>
+                                                <binding destination="494" name="value" keyPath="self.userSettings.bSendPhotoOnIncorrectPasword" id="thf-RG-d3D"/>
+                                            </connections>
                                         </button>
-                                        <textField verticalHuggingPriority="750" id="E9x-dm-9td">
+                                        <textField focusRingType="none" verticalHuggingPriority="750" id="E9x-dm-9td">
                                             <rect key="frame" x="17" y="185" width="265" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" enabled="NO" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Hlw-jG-k8A">
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" focusRingType="none" drawsBackground="YES" id="Hlw-jG-k8A">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="textColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
+                                            <connections>
+                                                <action selector="updateUserSettings:" target="494" id="R2a-RU-fvi"/>
+                                                <binding destination="494" name="enabled2" keyPath="self.userSettings.bSendPhotoOnIncorrectPasword" previousBinding="64W-zx-W07" id="3mz-qJ-nYR">
+                                                    <dictionary key="options">
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                                    </dictionary>
+                                                </binding>
+                                                <binding destination="494" name="enabled" keyPath="self.isASLPatched" id="64W-zx-W07"/>
+                                                <binding destination="494" name="value" keyPath="self.userSettings.sIncorrectPaswordMail" id="jjN-ai-13b"/>
+                                            </connections>
                                         </textField>
-                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="6SI-xT-byH">
-                                            <rect key="frame" x="17" y="3" width="265" height="174"/>
+                                        <button verticalHuggingPriority="750" id="uLe-bQ-mqG">
+                                            <rect key="frame" x="70" y="10" width="158" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="comingsoon" id="0hx-b7-3aV"/>
-                                        </imageView>
+                                            <buttonCell key="cell" type="push" title="Apply Path for ASL" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="He9-WF-yFx">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <binding destination="494" name="hidden" keyPath="self.isASLPatched" id="z86-41-XGW"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </view>
                             </tabViewItem>
@@ -568,7 +597,6 @@ Big Thanks:
         </window>
     </objects>
     <resources>
-        <image name="comingsoon" width="265" height="134"/>
         <image name="russianapple" width="140" height="40"/>
     </resources>
 </document>
