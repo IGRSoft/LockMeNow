@@ -24,7 +24,7 @@
 #import <ServiceManagement/ServiceManagement.h>
 #import <xpc/xpc.h>
 
-@interface LockMeNowAppDelegate() <LockManagerDelegate, ListenerManagerDelegate>
+@interface LockMeNowAppDelegate() <LockManagerDelegate, ListenerManagerDelegate, NSUserNotificationCenterDelegate>
 
 @property (nonatomic) xpc_connection_t scriptServiceConnection;
 @property (nonatomic) IGRUserDefaults *userSettings;
@@ -49,6 +49,13 @@
 
 - (void)applicationDidFinishLaunching:(NSNotification *)theNotification
 {
+    NSString *filePath = [theNotification userInfo][@"filePath"];
+    if (filePath)
+    {
+        DBNSLog(@"%@", theNotification);
+        [[NSWorkspace sharedWorkspace] selectFile: filePath inFileViewerRootedAtPath: nil];
+    }
+    
     // Prep XPC services.
     [self registeryXPC];
 	
@@ -437,13 +444,13 @@ BOOL doNothingAtStart = NO;
 
 #pragma mark - Script Action
 
-- (void)takePhoto
+- (NSString *)takePhoto
 {
 	NSDateFormatter *formatter;
 	NSString        *dateString;
 	
 	formatter = [[NSDateFormatter alloc] init];
-	[formatter setDateFormat:@"dd-MM-yyyy_HH-mm"];
+	[formatter setDateFormat:@"dd-MM-yyyy_HH-mm-ss"];
 	
 	dateString = [formatter stringFromDate:[NSDate date]];
 	dateString = [dateString stringByAppendingPathExtension:@"png"];
@@ -464,7 +471,38 @@ BOOL doNothingAtStart = NO;
 	
 	picturePath = [picturePath stringByAppendingPathComponent:dateString];
 	
-	[ImageSnap saveSnapshotFrom:[ImageSnap defaultVideoDevice] toFile:picturePath];
+	BOOL result = [ImageSnap saveSnapshotFrom:[ImageSnap defaultVideoDevice] toFile:picturePath];
+    
+    if (picturePath && NSClassFromString(@"NSUserNotificationCenter"))
+    {
+        NSUserNotification *notification = [[NSUserNotification alloc] init];
+        [notification setTitle:@"Security Warning!"];
+        [notification setSubtitle:@"Someone has entered an incorrect password!"];
+        [notification setInformativeText:@"You can check his/her photo"];
+        [notification setUserInfo:@{@"filePath": picturePath}];
+        NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
+        [center setDelegate:self];
+        [center scheduleNotification:notification];
+    }
+    
+    return result ? picturePath : nil;
+}
+
+#pragma mark -UserNotificationCenter
+
+- (void)userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification
+{
+    NSString *filePath = [notification userInfo][@"filePath"];
+    if (filePath)
+    {
+        [[NSWorkspace sharedWorkspace] selectFile: filePath inFileViewerRootedAtPath: nil];
+    }
+    [center removeDeliveredNotification:notification];
+}
+
+- (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)userNotification;
+{
+    return YES;
 }
 
 @end

@@ -42,6 +42,6 @@
 
 - (IBAction)setMenuIcon:(id)sender;
 
-- (void)takePhoto;
+- (NSString *)takePhoto;
 
 @end

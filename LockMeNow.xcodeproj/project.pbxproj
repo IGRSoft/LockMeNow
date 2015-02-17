@@ -54,9 +54,7 @@
 		A5F451D31A9288C7009FD03E /* LockManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451C11A9288C7009FD03E /* LockManager.m */; };
 		A5F451D41A9288C7009FD03E /* LoginWindowsLock.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451C31A9288C7009FD03E /* LoginWindowsLock.m */; };
 		A5F451D51A9288C7009FD03E /* LockMeNowAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451C51A9288C7009FD03E /* LockMeNowAppDelegate.m */; };
-		A5F451D61A9288C7009FD03E /* DrawPatternLockView.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451C81A9288C7009FD03E /* DrawPatternLockView.m */; };
-		A5F451D71A9288C7009FD03E /* DrawPatternLockViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = A5F451C91A9288C7009FD03E /* DrawPatternLockViewController.xib */; };
-		A5F451DB1A928973009FD03E /* LockMeNow.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451DA1A928973009FD03E /* LockMeNow.m */; };
+		A5F451DB1A928973009FD03E /* LockMeNowCommands.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451DA1A928973009FD03E /* LockMeNowCommands.m */; };
 		A5F451DD1A928B35009FD03E /* LockMeNow.sdef in Resources */ = {isa = PBXBuildFile; fileRef = A5F451DC1A928B35009FD03E /* LockMeNow.sdef */; };
 		D0764532101E7A6100DAE20D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D0764530101E7A6100DAE20D /* main.m */; };
 		D0ABD262101D374900E5F733 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0ABD261101D374900E5F733 /* Carbon.framework */; };
@@ -251,11 +249,8 @@
 		A5F451C31A9288C7009FD03E /* LoginWindowsLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginWindowsLock.m; sourceTree = "<group>"; };
 		A5F451C41A9288C7009FD03E /* LockMeNowAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LockMeNowAppDelegate.h; sourceTree = "<group>"; };
 		A5F451C51A9288C7009FD03E /* LockMeNowAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LockMeNowAppDelegate.m; sourceTree = "<group>"; };
-		A5F451C71A9288C7009FD03E /* DrawPatternLockView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DrawPatternLockView.h; sourceTree = "<group>"; };
-		A5F451C81A9288C7009FD03E /* DrawPatternLockView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DrawPatternLockView.m; sourceTree = "<group>"; };
-		A5F451C91A9288C7009FD03E /* DrawPatternLockViewController.xib */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.xib; path = DrawPatternLockViewController.xib; sourceTree = "<group>"; };
-		A5F451D91A928973009FD03E /* LockMeNow.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LockMeNow.h; sourceTree = "<group>"; };
-		A5F451DA1A928973009FD03E /* LockMeNow.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LockMeNow.m; sourceTree = "<group>"; };
+		A5F451D91A928973009FD03E /* LockMeNowCommands.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LockMeNowCommands.h; sourceTree = "<group>"; };
+		A5F451DA1A928973009FD03E /* LockMeNowCommands.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LockMeNowCommands.m; sourceTree = "<group>"; };
 		A5F451DC1A928B35009FD03E /* LockMeNow.sdef */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.xml; name = LockMeNow.sdef; path = Resources/LockMeNow.sdef; sourceTree = "<group>"; };
 		A5F9F90215EEA4870091B2F0 /* lock-bg.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = "lock-bg.png"; path = "Resources/lock-bg.png"; sourceTree = "<group>"; };
 		D0764520101E7A3300DAE20D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
@@ -313,7 +308,6 @@
 				A5F451BB1A9288C7009FD03E /* LockManager */,
 				A5F451C41A9288C7009FD03E /* LockMeNowAppDelegate.h */,
 				A5F451C51A9288C7009FD03E /* LockMeNowAppDelegate.m */,
-				A5F451C61A9288C7009FD03E /* Pattern */,
 				A5F451CA1A9288C7009FD03E /* Scripting */,
 			);
 			name = Classes;
@@ -547,21 +541,11 @@
 			path = LockManager;
 			sourceTree = "<group>";
 		};
-		A5F451C61A9288C7009FD03E /* Pattern */ = {
-			isa = PBXGroup;
-			children = (
-				A5F451C71A9288C7009FD03E /* DrawPatternLockView.h */,
-				A5F451C81A9288C7009FD03E /* DrawPatternLockView.m */,
-				A5F451C91A9288C7009FD03E /* DrawPatternLockViewController.xib */,
-			);
-			path = Pattern;
-			sourceTree = "<group>";
-		};
 		A5F451CA1A9288C7009FD03E /* Scripting */ = {
 			isa = PBXGroup;
 			children = (
-				A5F451D91A928973009FD03E /* LockMeNow.h */,
-				A5F451DA1A928973009FD03E /* LockMeNow.m */,
+				A5F451D91A928973009FD03E /* LockMeNowCommands.h */,
+				A5F451DA1A928973009FD03E /* LockMeNowCommands.m */,
 			);
 			path = Scripting;
 			sourceTree = "<group>";
@@ -738,7 +722,6 @@
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
-				A5F451D71A9288C7009FD03E /* DrawPatternLockViewController.xib in Resources */,
 				A517CFA4142FD73E00632668 /* Credits.rtf in Resources */,
 				A5489BA415D3ED340072E5D2 /* off.pdf in Resources */,
 				A5F451DD1A928B35009FD03E /* LockMeNow.sdef in Resources */,
@@ -773,8 +756,7 @@
 				A5F451CF1A9288C7009FD03E /* ListenerManager.m in Sources */,
 				A5F451CC1A9288C7009FD03E /* iTunesHelper.m in Sources */,
 				A5F451CE1A9288C7009FD03E /* KeyListener.m in Sources */,
-				A5F451DB1A928973009FD03E /* LockMeNow.m in Sources */,
-				A5F451D61A9288C7009FD03E /* DrawPatternLockView.m in Sources */,
+				A5F451DB1A928973009FD03E /* LockMeNowCommands.m in Sources */,
 				D0764532101E7A6100DAE20D /* main.m in Sources */,
 				A5F451D11A9288C7009FD03E /* BlockViewLock.m in Sources */,
 				A5F451D31A9288C7009FD03E /* LockManager.m in Sources */,

@@ -8,8 +8,8 @@
 
 #import <Foundation/Foundation.h>
 
-@interface NSApplication (LockMeNow)
+@interface LockMeNowCommands : NSScriptCommand
 
-- (NSNumber*)takePhoto;
+- (id)performDefaultImplementation;
 
 @end
