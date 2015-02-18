@@ -12,6 +12,9 @@
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
 		A5086B301A93EB2100787358 /* ASLHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A5086B2F1A93EB2100787358 /* ASLHelper.m */; };
 		A5086B351A948A1A00787358 /* SecurityInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5086B341A948A1A00787358 /* SecurityInterface.framework */; };
+		A5086B511A94A02900787358 /* iTunes.app in Resources */ = {isa = PBXBuildFile; fileRef = A5086B4F1A94A02900787358 /* iTunes.app */; };
+		A5086B521A94A02900787358 /* Mail.app in Resources */ = {isa = PBXBuildFile; fileRef = A5086B501A94A02900787358 /* Mail.app */; };
+		A5086B5B1A94A5F600787358 /* MailHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A5086B5A1A94A5F600787358 /* MailHelper.m */; };
 		A517CFA4142FD73E00632668 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A517CFA2142FD73E00632668 /* Credits.rtf */; };
 		A51948D018887ED6009D6A81 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51948CF18887ED6009D6A81 /* SystemConfiguration.framework */; };
 		A52843BA1948547B00040243 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A52843B91948547B00040243 /* Images.xcassets */; };
@@ -59,6 +62,20 @@
 		D0764532101E7A6100DAE20D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D0764530101E7A6100DAE20D /* main.m */; };
 		D0ABD262101D374900E5F733 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0ABD261101D374900E5F733 /* Carbon.framework */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXBuildRule section */
+		A5086B571A94A37500787358 /* PBXBuildRule */ = {
+			isa = PBXBuildRule;
+			compilerSpec = com.apple.compilers.proxy.script;
+			filePatterns = "*.app";
+			fileType = pattern.proxy;
+			isEditable = 1;
+			outputFiles = (
+				"$(DERIVED_FILES_DIR)/$(INPUT_FILE_BASE).h",
+			);
+			script = "sdef \"$INPUT_FILE_PATH\" | sdp -fh -o \"$DERIVED_FILES_DIR\" --basename \"$INPUT_FILE_BASE\" --bundleid `defaults read \"$INPUT_FILE_PATH/Contents/Info\" CFBundleIdentifier`";
+		};
+/* End PBXBuildRule section */
 
 /* Begin PBXContainerItemProxy section */
 		A562351E1A817F6E002B86A5 /* PBXContainerItemProxy */ = {
@@ -196,6 +213,10 @@
 		A5086B2E1A93EB2100787358 /* ASLHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASLHelper.h; sourceTree = "<group>"; };
 		A5086B2F1A93EB2100787358 /* ASLHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASLHelper.m; sourceTree = "<group>"; };
 		A5086B341A948A1A00787358 /* SecurityInterface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityInterface.framework; path = System/Library/Frameworks/SecurityInterface.framework; sourceTree = SDKROOT; };
+		A5086B4F1A94A02900787358 /* iTunes.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = iTunes.app; path = ../../../../../Applications/iTunes.app; sourceTree = "<group>"; };
+		A5086B501A94A02900787358 /* Mail.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = Mail.app; path = ../../../../../Applications/Mail.app; sourceTree = "<group>"; };
+		A5086B591A94A5F600787358 /* MailHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MailHelper.h; sourceTree = "<group>"; };
+		A5086B5A1A94A5F600787358 /* MailHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MailHelper.m; sourceTree = "<group>"; };
 		A5094B9816CBF33200A3C877 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A517CFA3142FD73E00632668 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
 		A51948CF18887ED6009D6A81 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -231,7 +252,6 @@
 		A5F19B45171AABAD00C8EE09 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		A5F451AD1A9288C7009FD03E /* IGRUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGRUserDefaults.h; sourceTree = "<group>"; };
 		A5F451AE1A9288C7009FD03E /* IGRUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IGRUserDefaults.m; sourceTree = "<group>"; };
-		A5F451AF1A9288C7009FD03E /* iTunes.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunes.h; sourceTree = "<group>"; };
 		A5F451B01A9288C7009FD03E /* iTunesHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = iTunesHelper.h; sourceTree = "<group>"; };
 		A5F451B11A9288C7009FD03E /* iTunesHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = iTunesHelper.m; sourceTree = "<group>"; };
 		A5F451B31A9288C7009FD03E /* BluetoothListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothListener.h; sourceTree = "<group>"; };
@@ -302,6 +322,7 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				A5086B581A94A3CA00787358 /* Mail */,
 				A5086B281A93EA2700787358 /* asl */,
 				A5F451AD1A9288C7009FD03E /* IGRUserDefaults.h */,
 				A5F451AE1A9288C7009FD03E /* IGRUserDefaults.m */,
@@ -361,6 +382,7 @@
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				A5D2819716E7E394006405E0 /* script_service */,
+				A5086B4E1A94A01600787358 /* Applications */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -416,6 +438,24 @@
 				A5086B2F1A93EB2100787358 /* ASLHelper.m */,
 			);
 			path = asl;
+			sourceTree = "<group>";
+		};
+		A5086B4E1A94A01600787358 /* Applications */ = {
+			isa = PBXGroup;
+			children = (
+				A5086B4F1A94A02900787358 /* iTunes.app */,
+				A5086B501A94A02900787358 /* Mail.app */,
+			);
+			name = Applications;
+			sourceTree = "<group>";
+		};
+		A5086B581A94A3CA00787358 /* Mail */ = {
+			isa = PBXGroup;
+			children = (
+				A5086B591A94A5F600787358 /* MailHelper.h */,
+				A5086B5A1A94A5F600787358 /* MailHelper.m */,
+			);
+			path = Mail;
 			sourceTree = "<group>";
 		};
 		A53831C616481ADE002764C1 /* img */ = {
@@ -554,7 +594,6 @@
 		A5F451D81A9288DC009FD03E /* iTunes */ = {
 			isa = PBXGroup;
 			children = (
-				A5F451AF1A9288C7009FD03E /* iTunes.h */,
 				A5F451B01A9288C7009FD03E /* iTunesHelper.h */,
 				A5F451B11A9288C7009FD03E /* iTunesHelper.m */,
 			);
@@ -576,6 +615,7 @@
 				A5D7DE4D171AC291008A8FA4 /* Copy LoginItems */,
 			);
 			buildRules = (
+				A5086B571A94A37500787358 /* PBXBuildRule */,
 			);
 			dependencies = (
 				A56235251A817FCE002B86A5 /* PBXTargetDependency */,
@@ -722,6 +762,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
+				A5086B511A94A02900787358 /* iTunes.app in Resources */,
+				A5086B521A94A02900787358 /* Mail.app in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				A517CFA4142FD73E00632668 /* Credits.rtf in Resources */,
 				A5489BA415D3ED340072E5D2 /* off.pdf in Resources */,
@@ -751,6 +793,7 @@
 				A5F451D51A9288C7009FD03E /* LockMeNowAppDelegate.m in Sources */,
 				A5F451D01A9288C7009FD03E /* USBListener.m in Sources */,
 				A5F451CB1A9288C7009FD03E /* IGRUserDefaults.m in Sources */,
+				A5086B5B1A94A5F600787358 /* MailHelper.m in Sources */,
 				A5F451D41A9288C7009FD03E /* LoginWindowsLock.m in Sources */,
 				A5F451CD1A9288C7009FD03E /* BluetoothListener.m in Sources */,
 				A5F451CF1A9288C7009FD03E /* ListenerManager.m in Sources */,
@@ -905,7 +948,6 @@
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = lockmenow.entitlements;
 				CODE_SIGN_IDENTITY = "IGR Software";
@@ -931,7 +973,6 @@
 		C01FCF4C08A954540054247B /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_SEARCH_USER_PATHS = NO;
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_ENTITLEMENTS = lockmenow.entitlements;
 				CODE_SIGN_IDENTITY = "IGR Software";

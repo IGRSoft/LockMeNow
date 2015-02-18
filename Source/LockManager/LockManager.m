@@ -129,6 +129,11 @@
 
 - (void)startCheckIncorrectPassword
 {
+    if (!_userSettings.bMakePhotoOnIncorrectPasword)
+    {
+        return;
+    }
+    
     self.lastLine = nil;
     
     NSURL *filePath = [NSURL URLWithString:@"/private/var/log/lockmenow.log"];
@@ -149,6 +154,11 @@
 
 - (void)stopCheckIncorrectPassword
 {
+    if (!_userSettings.bMakePhotoOnIncorrectPasword)
+    {
+        return;
+    }
+    
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                      name:NSFileHandleDataAvailableNotification
                                                    object:self.fileHandle];
@@ -165,7 +175,6 @@
                                           encoding:NSUTF8StringEncoding];
     
     NSString *contentForSearch = @"";
-    NSRange newChunkRange = NSMakeRange(0, 0);
     
     BOOL skipCheck = NO;
     if (!self.lastLine)
@@ -174,13 +183,16 @@
         skipCheck = YES;
     }
     
-    newChunkRange = [str rangeOfString:self.lastLine];
+    NSRange newChunkRange = [str rangeOfString:self.lastLine];
     
     if (newChunkRange.location != NSNotFound)
     {
         contentForSearch = [str substringFromIndex:newChunkRange.location + newChunkRange.length - 1];
     }
-    contentForSearch = [str copy];
+    else
+    {
+        contentForSearch = [str copy];
+    }
     
     if (!skipCheck)
     {
@@ -190,7 +202,6 @@
             if ([self.delegate respondsToSelector:@selector(detectedWrongPassword)])
             {
                 [self.delegate detectedWrongPassword];
-                NSLog(@"test");
             }
         }
     }

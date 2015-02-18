@@ -18,6 +18,7 @@
 #import "BluetoothListener.h"
 
 #import "iTunesHelper.h"
+#import "MailHelper.h"
 #import "ImageSnap.h"
 
 #import "ASLHelper.h"
@@ -446,7 +447,12 @@ BOOL doNothingAtStart = NO;
 
 - (void)detectedWrongPassword
 {
-    [self takePhoto];
+    NSString *photoPath = [self takePhoto];
+    
+    if (self.userSettings.bSendPhotoOnIncorrectPasword && self.userSettings.sIncorrectPaswordMail.length)
+    {
+        [MailHelper sendUserPhoto:photoPath to:self.userSettings.sIncorrectPaswordMail];
+    }
 }
 
 #pragma mark - ListenerManagerDelegate

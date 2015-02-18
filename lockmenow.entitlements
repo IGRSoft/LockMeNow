@@ -2,22 +2,13 @@
 <!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
 <plist version="1.0">
 <dict>
-	<key>com.apple.security.app-sandbox</key>
-	<true/>
-	<key>com.apple.security.assets.pictures.read-write</key>
-	<true/>
 	<key>com.apple.security.device.bluetooth</key>
-	<true/>
-	<key>com.apple.security.device.camera</key>
-	<true/>
-	<key>com.apple.security.device.usb</key>
-	<true/>
-	<key>com.apple.security.files.user-selected.read-write</key>
 	<true/>
 	<key>com.apple.security.temporary-exception.apple-events</key>
 	<array>
 		<string>com.apple.itunes</string>
 		<string>com.apple.systemevents</string>
+		<string>com.apple.Mail</string>
 	</array>
 	<key>com.apple.security.temporary-exception.files.absolute-path.read-only</key>
 	<array>
@@ -26,14 +17,14 @@
 	</array>
 	<key>com.apple.security.temporary-exception.sbpl</key>
 	<array>
-		<string>(allow mach-lookup (global-name #&quot;com.apple.coresymbolicationd&quot;))</string>
-		<string>(allow mach-lookup (global-name #&quot;com.apple.loginwindow.notify&quot;))</string>
-		<string>(allow mach-lookup (global-name #&quot;com.apple.screenIsUnlocked&quot;))</string>
-		<string>(allow mach-lookup (global-name #&quot;com.apple.screenIsLocked&quot;))</string>
-		<string>(allow mach-lookup (global-name #&quot;com.apple.screensaver.didstart&quot;))</string>
-		<string>(allow mach-lookup (global-name #&quot;com.apple.screensaver.didstop&quot;))</string>
-		<string>(allow mach-lookup (global-name-regex &quot;com.apple.logind&quot;))</string>
-		<string>(allow network-outbound (literal &quot;/private/var/run/usbmuxd&quot;))</string>
+		<string>(allow mach-lookup (global-name #"com.apple.coresymbolicationd"))</string>
+		<string>(allow mach-lookup (global-name #"com.apple.loginwindow.notify"))</string>
+		<string>(allow mach-lookup (global-name #"com.apple.screenIsUnlocked"))</string>
+		<string>(allow mach-lookup (global-name #"com.apple.screenIsLocked"))</string>
+		<string>(allow mach-lookup (global-name #"com.apple.screensaver.didstart"))</string>
+		<string>(allow mach-lookup (global-name #"com.apple.screensaver.didstop"))</string>
+		<string>(allow mach-lookup (global-name-regex "com.apple.logind"))</string>
+		<string>(allow network-outbound (literal "/private/var/run/usbmuxd"))</string>
 	</array>
 	<key>com.apple.security.temporary-exception.shared-preference.read-write</key>
 	<array>

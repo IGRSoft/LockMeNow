@@ -143,24 +143,28 @@ NSData *            authorization;
 
 + (void)relaunchDeamons
 {
-    NSTask *task;
+    NSString *exec = @"/bin/launchctl";
+    NSArray *commands = @[@"unload", @"load"];
+    NSString *deamon = @"/System/Library/LaunchDaemons/com.apple.syslogd.plist";
     
-    NSMutableArray *unloadArguments = [NSMutableArray arrayWithObjects:@"unload",
-                                     @"/System/Library/LaunchDaemons/com.apple.syslogd.plist",
-                                     nil];
-    
-    NSMutableArray *loadArguments = [NSMutableArray arrayWithObjects:@"load",
-                                 @"/System/Library/LaunchDaemons/com.apple.syslogd.plist",
-                                 nil];
-    
-    task = [[NSTask alloc] init];
-    [task setArguments: unloadArguments];
-    [task setLaunchPath: @"/bin/launchctl"];
-    [task launch];
-    
-    [task setArguments: loadArguments];
-    [task setLaunchPath: @"/bin/launchctl"];
-    [task launch];
+    for (NSString *command in commands)
+    {
+        NSTask *task = [[NSTask alloc] init];
+        
+        NSArray *arguments = @[command, deamon];
+        [task setArguments:arguments];
+        [task setLaunchPath:exec];
+        
+        @try {
+            [task launch];
+        }
+        @catch (NSException *exception) {
+            DBNSLog(@"exception = %@", exception);
+        }
+        @finally {
+            
+        }
+    }
 }
 
 @end
