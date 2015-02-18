@@ -1,4 +1,4 @@
-LockMeNow
+Lock Me Now
 =========
 [![Platform](https://img.shields.io/badge/platform-OS%20X-lightgrey.svg?style=flat)](http://www.apple.com/osx/)
 [![License](https://img.shields.io/badge/license-LGPL%202.1-brightgreen.svg?style=flat)](https://www.gnu.org/licenses/lgpl-2.1.html)
