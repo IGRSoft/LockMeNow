@@ -8,7 +8,6 @@
 
 #import "IGRUserDefaults.h"
 
-@class IKImageView;
 @class StartAtLoginController;
 @class KeyListener;
 
@@ -22,7 +21,7 @@
 @property (nonatomic) IBOutlet NSTabView	*tabView;
 @property (nonatomic) IBOutlet KeyListener  *keyListener;
 
-@property (nonatomic) IBOutlet IKImageView	*bluetoothStatus;
+@property (nonatomic) IBOutlet NSImageView	*bluetoothStatus;
 
 @property (nonatomic) IBOutlet NSView       *lockBlockView;
 

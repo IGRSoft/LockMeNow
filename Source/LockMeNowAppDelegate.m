@@ -23,7 +23,6 @@
 
 #import "ASLHelper.h"
 
-#import <Quartz/Quartz.h>
 #import <ServiceManagement/ServiceManagement.h>
 #import <xpc/xpc.h>
 
@@ -66,7 +65,7 @@
     
     // Prep XPC services.
     [self registeryXPC];
-	
+    
     //Registery Listeners
     self.keyListener.userSettings = self.userSettings;
     self.keyListener.delegate = self;
@@ -84,7 +83,6 @@
     };
     
     //GUI
-    [self.bluetoothStatus setBackgroundColor:[NSColor clearColor]];
     [self updateBluetoothStatus:OutOfRange];
     
     if (self.userSettings.bUseIconOnMainMenu)
@@ -239,11 +237,9 @@ BOOL doNothingAtStart = NO;
 
 - (IBAction)toggleStartup:(id)sender
 {
-	;
-	
     if ( !SMLoginItemSetEnabled((__bridge CFStringRef)@"com.igrsoft.LaunchHelper", self.userSettings.bEnableStartup) )
     {
-		DBNSLog(@"Can't start com.igrsoft.LaunchHelper");
+        DBNSLog(@"Can't start com.igrsoft.LaunchHelper");
     }
     
     [self updateUserSettings:sender];
@@ -301,20 +297,13 @@ BOOL doNothingAtStart = NO;
 
 - (void)updateBluetoothStatus:(BluetoothStatus)bluetoothStatus
 {
-    NSString* path = [[NSBundle mainBundle] pathForResource: @"off"
-                                                     ofType: @"pdf"];
-    if(bluetoothStatus == InRange)
-    {
-        path = [[NSBundle mainBundle] pathForResource: @"on"
-                                               ofType: @"pdf"];
-    }
-    
-    NSURL* url = [NSURL fileURLWithPath: path];
+    NSImage *img = [NSImage imageNamed:(bluetoothStatus == InRange) ? @"on" : @"off"];
     
     __weak typeof(self) weakSelf = self;
     dispatch_async(dispatch_get_main_queue(), ^{
         
-        [weakSelf.bluetoothStatus setImageWithURL:url];
+        [weakSelf.bluetoothStatus setImage:img];
+        [weakSelf.bluetoothStatus setNeedsDisplay:YES];
     });
 }
 
@@ -328,7 +317,8 @@ BOOL doNothingAtStart = NO;
         
         button.target = self;
         button.action = @selector(toggleDropDownMenu:);
-        [button sendActionOn:NSLeftMouseUpMask|NSRightMouseUpMask];
+        
+        [button sendActionOn:(NSLeftMouseUpMask | NSRightMouseUpMask)];
         
         self.statusItem = statusItem;
         
@@ -455,7 +445,7 @@ BOOL doNothingAtStart = NO;
     if (self.userSettings.bSendPhotoOnIncorrectPasword && self.userSettings.sIncorrectPaswordMail.length)
     {
         self->mailHelper = [[MailHelper alloc] initWithMailAddres:self.userSettings.sIncorrectPaswordMail
-                                                              userPhoto:photoPath];
+                                                        userPhoto:photoPath];
         
         [self->mailHelper sendDefaultMessageAddLocation:self.userSettings.bSendLocationOnIncorrectPasword];
     }
@@ -466,40 +456,38 @@ BOOL doNothingAtStart = NO;
 - (void)makeAction:(id)sender
 {
     [self doLock:sender];
-	
-	//[self takePhoto];
 }
 
 #pragma mark - Script Action
 
 - (NSString *)takePhoto
 {
-	NSDateFormatter *formatter;
-	NSString        *dateString;
-	
-	formatter = [[NSDateFormatter alloc] init];
-	[formatter setDateFormat:@"dd-MM-yyyy_HH-mm-ss"];
-	
-	dateString = [formatter stringFromDate:[NSDate date]];
-	dateString = [dateString stringByAppendingPathExtension:@"png"];
-	
-	NSString *picturePath = [NSSearchPathForDirectoriesInDomains(NSPicturesDirectory, NSUserDomainMask, YES) firstObject];
-	picturePath = [picturePath stringByAppendingPathComponent:@"LockMeNow"];
-	
-	NSFileManager *fm = [NSFileManager defaultManager];
-	BOOL isDir = NO;
-	
-	if ([fm fileExistsAtPath:picturePath isDirectory:&isDir] && isDir)
-	{
-	}
-	else
-	{
-		[fm createDirectoryAtPath:picturePath withIntermediateDirectories:YES attributes:nil error:nil];
-	}
-	
-	picturePath = [picturePath stringByAppendingPathComponent:dateString];
-	
-	BOOL result = [ImageSnap saveSnapshotFrom:[ImageSnap defaultVideoDevice] toFile:picturePath];
+    NSDateFormatter *formatter;
+    NSString        *dateString;
+    
+    formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd-MM-yyyy_HH-mm-ss"];
+    
+    dateString = [formatter stringFromDate:[NSDate date]];
+    dateString = [dateString stringByAppendingPathExtension:@"png"];
+    
+    NSString *picturePath = [NSSearchPathForDirectoriesInDomains(NSPicturesDirectory, NSUserDomainMask, YES) firstObject];
+    picturePath = [picturePath stringByAppendingPathComponent:@"LockMeNow"];
+    
+    NSFileManager *fm = [NSFileManager defaultManager];
+    BOOL isDir = NO;
+    
+    if ([fm fileExistsAtPath:picturePath isDirectory:&isDir] && isDir)
+    {
+    }
+    else
+    {
+        [fm createDirectoryAtPath:picturePath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    
+    picturePath = [picturePath stringByAppendingPathComponent:dateString];
+    
+    BOOL result = [ImageSnap saveSnapshotFrom:[ImageSnap defaultVideoDevice] toFile:picturePath];
     
     if (picturePath && NSClassFromString(@"NSUserNotificationCenter"))
     {

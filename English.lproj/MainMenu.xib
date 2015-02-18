@@ -250,7 +250,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button id="675">
-                                            <rect key="frame" x="15" y="232" width="188" height="18"/>
+                                            <rect key="frame" x="15" y="230" width="188" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Check device by Bluetooth" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="680">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -262,7 +262,7 @@
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" id="691">
-                                            <rect key="frame" x="17" y="203" width="53" height="19"/>
+                                            <rect key="frame" x="17" y="205" width="53" height="19"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="roundRect" title="Device" bezelStyle="roundedRect" alignment="center" borderStyle="border" inset="2" id="698">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -270,10 +270,11 @@
                                             </buttonCell>
                                             <connections>
                                                 <action selector="changeDevice:" target="494" id="724"/>
+                                                <binding destination="494" name="enabled" keyPath="self.userSettings.bMonitoringBluetooth" id="guw-2c-7Ue"/>
                                             </connections>
                                         </button>
                                         <textField verticalHuggingPriority="750" id="701">
-                                            <rect key="frame" x="93" y="205" width="159" height="17"/>
+                                            <rect key="frame" x="98" y="206" width="159" height="19"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="none" id="702">
                                                 <font key="font" metaFont="system"/>
@@ -284,10 +285,6 @@
                                                 <binding destination="494" name="value" keyPath="self.bluetoothListener.bluetoothName" id="dAC-qL-0lE"/>
                                             </connections>
                                         </textField>
-                                        <customView id="703" customClass="IKImageView">
-                                            <rect key="frame" x="73" y="205" width="16" height="16"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                        </customView>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="863">
                                             <rect key="frame" x="14" y="7" width="270" height="34"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -297,6 +294,11 @@
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
+                                        <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="ttB-wd-UIc">
+                                            <rect key="frame" x="74" y="205" width="19" height="19"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="off" id="EIh-Vc-xMz"/>
+                                        </imageView>
                                     </subviews>
                                 </view>
                             </tabViewItem>
@@ -522,6 +524,14 @@ Big Thanks:
                                             </buttonCell>
                                             <connections>
                                                 <action selector="updateUserSettings:" target="494" id="a0G-jb-btD"/>
+                                                <binding destination="494" name="enabled2" keyPath="self.userSettings.bSendPhotoOnIncorrectPasword" previousBinding="Azb-UE-3cB" id="SVb-zc-k2u">
+                                                    <dictionary key="options">
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                                    </dictionary>
+                                                </binding>
                                                 <binding destination="494" name="enabled" keyPath="self.isASLPatched" id="Azb-UE-3cB"/>
                                                 <binding destination="494" name="value" keyPath="self.userSettings.bSendLocationOnIncorrectPasword" id="sAG-87-6cm"/>
                                             </connections>
@@ -540,7 +550,7 @@ Big Thanks:
         </window>
         <customObject id="494" customClass="LockMeNowAppDelegate">
             <connections>
-                <outlet property="bluetoothStatus" destination="703" id="720"/>
+                <outlet property="bluetoothStatus" destination="ttB-wd-UIc" id="xnf-E0-PKh"/>
                 <outlet property="keyListener" destination="420" id="nlr-Fe-E7k"/>
                 <outlet property="lockBlockView" destination="848" id="858"/>
                 <outlet property="statusMenu" destination="560" id="571"/>
@@ -636,6 +646,7 @@ Big Thanks:
         </window>
     </objects>
     <resources>
+        <image name="off" width="16" height="16"/>
         <image name="russianapple" width="140" height="40"/>
     </resources>
 </document>
