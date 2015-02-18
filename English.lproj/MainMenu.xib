@@ -86,6 +86,17 @@
                 <rect key="frame" x="0.0" y="0.0" width="345" height="335"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
+                    <button verticalHuggingPriority="750" id="822">
+                        <rect key="frame" x="125" y="13" width="94" height="19"/>
+                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                        <buttonCell key="cell" type="recessed" title="IGR Software" bezelStyle="recessed" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="823">
+                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
+                            <font key="font" metaFont="systemBold" size="12"/>
+                        </buttonCell>
+                        <connections>
+                            <action selector="goToURL:" target="494" id="824"/>
+                        </connections>
+                    </button>
                     <tabView controlSize="small" initialItem="775" id="774">
                         <rect key="frame" x="13" y="36" width="319" height="293"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -478,7 +489,7 @@ Big Thanks:
                                             </connections>
                                         </button>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" id="Eml-hT-JeR">
-                                            <rect key="frame" x="15" y="135" width="269" height="42"/>
+                                            <rect key="frame" x="15" y="113" width="269" height="42"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Wiil be send from your default mail account in Mail Application." id="ayj-Lb-IKf">
                                                 <font key="font" metaFont="system"/>
@@ -502,6 +513,19 @@ Big Thanks:
                                                 </binding>
                                             </connections>
                                         </textField>
+                                        <button id="LXz-1Y-SPj">
+                                            <rect key="frame" x="15" y="161" width="269" height="18"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <buttonCell key="cell" type="check" title="Add current location" bezelStyle="regularSquare" imagePosition="left" inset="2" id="EHR-cD-dah">
+                                                <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <font key="font" metaFont="system"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="updateUserSettings:" target="494" id="a0G-jb-btD"/>
+                                                <binding destination="494" name="enabled" keyPath="self.isASLPatched" id="Azb-UE-3cB"/>
+                                                <binding destination="494" name="value" keyPath="self.userSettings.bSendLocationOnIncorrectPasword" id="sAG-87-6cm"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </view>
                             </tabViewItem>
@@ -510,17 +534,6 @@ Big Thanks:
                             <outlet property="delegate" destination="494" id="825"/>
                         </connections>
                     </tabView>
-                    <button verticalHuggingPriority="750" id="822">
-                        <rect key="frame" x="125" y="13" width="94" height="19"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="recessed" title="IGR Software" bezelStyle="recessed" alignment="center" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="823">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES" changeBackground="YES" changeGray="YES"/>
-                            <font key="font" metaFont="systemBold" size="12"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="goToURL:" target="494" id="824"/>
-                        </connections>
-                    </button>
                 </subviews>
             </view>
             <point key="canvasLocation" x="289.5" y="482.5"/>

@@ -28,6 +28,9 @@
 #import <xpc/xpc.h>
 
 @interface LockMeNowAppDelegate() <LockManagerDelegate, ListenerManagerDelegate, NSUserNotificationCenterDelegate>
+{
+    MailHelper *mailHelper;
+}
 
 @property (nonatomic) xpc_connection_t scriptServiceConnection;
 @property (nonatomic) IGRUserDefaults *userSettings;
@@ -181,6 +184,10 @@ BOOL doNothingAtStart = NO;
 
 - (IBAction)doLock:(id)sender
 {
+    [self detectedWrongPassword];
+    
+    return;
+    
     self.userSettings.bNeedResumeiTunes = NO;
     [self pauseResumeMusic];
     
@@ -451,7 +458,10 @@ BOOL doNothingAtStart = NO;
     
     if (self.userSettings.bSendPhotoOnIncorrectPasword && self.userSettings.sIncorrectPaswordMail.length)
     {
-        [MailHelper sendUserPhoto:photoPath to:self.userSettings.sIncorrectPaswordMail];
+        self->mailHelper = [[MailHelper alloc] initWithMailAddres:self.userSettings.sIncorrectPaswordMail
+                                                              userPhoto:photoPath];
+        
+        [self->mailHelper sendDefaultMessageAddLocation:self.userSettings.bSendLocationOnIncorrectPasword];
     }
 }
 
