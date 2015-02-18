@@ -1,5 +1,7 @@
 LockMeNow
 =========
+[![Platform](https://img.shields.io/badge/platform-os%20x-lightgrey.svg?style=flat)](http://www.apple.com/osx/)
+[![License](https://img.shields.io/badge/license-LGPL%202.1-brightgreen.svg?style=flat)](https://www.gnu.org/licenses/lgpl-2.1.html)
 
 With this app you can lock your Mac OS in short time and protect your personal data!
  
