@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface aslHelper : NSObject
+@interface ASLHelper : NSObject
 
 + (BOOL)isASLPatched;
 + (BOOL)patchASL;

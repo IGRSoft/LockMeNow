@@ -453,6 +453,7 @@ Big Thanks:
                                             </textFieldCell>
                                             <connections>
                                                 <action selector="updateUserSettings:" target="494" id="R2a-RU-fvi"/>
+                                                <binding destination="494" name="enabled" keyPath="self.isASLPatched" id="64W-zx-W07"/>
                                                 <binding destination="494" name="enabled2" keyPath="self.userSettings.bSendPhotoOnIncorrectPasword" previousBinding="64W-zx-W07" id="3mz-qJ-nYR">
                                                     <dictionary key="options">
                                                         <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -461,7 +462,6 @@ Big Thanks:
                                                         <integer key="NSNullPlaceholder" value="-1"/>
                                                     </dictionary>
                                                 </binding>
-                                                <binding destination="494" name="enabled" keyPath="self.isASLPatched" id="64W-zx-W07"/>
                                                 <binding destination="494" name="value" keyPath="self.userSettings.sIncorrectPaswordMail" id="jjN-ai-13b"/>
                                             </connections>
                                         </textField>
@@ -473,6 +473,7 @@ Big Thanks:
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
+                                                <action selector="applyASLPatch:" target="494" id="6Pe-ek-2Hg"/>
                                                 <binding destination="494" name="hidden" keyPath="self.isASLPatched" id="z86-41-XGW"/>
                                             </connections>
                                         </button>

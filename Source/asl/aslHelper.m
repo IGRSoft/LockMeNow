@@ -6,14 +6,18 @@
 //
 //
 
-#import "aslHelper.h"
+#import "ASLHelper.h"
 
 #define ASL_PATH @"/private/etc/asl.conf"
-#define ASL_PATCH @"# Facility loginwindow gets saved in lockmenow.log\n\
+#define ASL_PATCH @"\n\
+# Facility loginwindow gets saved in lockmenow.log\n\
 > lockmenow.log mode=0777 format=bsd rotate=seq compress file_max=1M all_max=5M\n\
 ? [= Sender loginwindow] file lockmenow.log\n"
 
-@implementation aslHelper
+AuthorizationRef    _authRef;
+NSData *            authorization;
+
+@implementation ASLHelper
 
 + (BOOL)isASLPatched
 {
@@ -43,28 +47,120 @@
 
 + (BOOL)patchASL
 {
+    if ([ASLHelper isASLPatched])
+    {
+        return YES;
+    }
+    
     BOOL result = NO;
     
-    NSURL *filePath = [NSURL URLWithString:ASL_PATH];
-    NSError *error = nil;
-    
-    NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingToURL:filePath error:&error];
-    
-    if (!error)
+    if ([ASLHelper authorizate])
     {
-        [fileHandle seekToEndOfFile];
+        NSURL *filePath = [NSURL URLWithString:ASL_PATH];
+        NSError *error = nil;
         
-        [fileHandle readDataToEndOfFile];
+        NSFileHandle *fileHandle = [NSFileHandle fileHandleForWritingToURL:filePath error:&error];
         
-        NSString *str = [ASL_PATCH copy];
-        NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
-        
-        [fileHandle writeData:data];
-        
-        [fileHandle closeFile];
+        if (!error)
+        {
+            [fileHandle seekToEndOfFile];
+            
+            [fileHandle readDataToEndOfFile];
+            
+            NSString *str = [ASL_PATCH copy];
+            NSData *data = [str dataUsingEncoding:NSUTF8StringEncoding];
+            
+            [fileHandle writeData:data];
+            
+            [fileHandle closeFile];
+            
+            [ASLHelper relaunchDeamons];
+            
+            result = YES;
+        }
     }
     
     return result;
+}
+
++ (AuthorizationRef)authorizationForExecutable:(NSString*)executablePath
+{
+    NSParameterAssert(executablePath);
+    
+    // Get authorization using advice in Apple's Technical Q&A1172
+    
+    // ...create authorization without specific rights
+    AuthorizationRef auth = NULL;
+    OSStatus validAuth = AuthorizationCreate(NULL,
+                                             kAuthorizationEmptyEnvironment,
+                                             kAuthorizationFlagDefaults,
+                                             &auth);
+    // ...then extend authorization with desired rights
+    if ((validAuth == errAuthorizationSuccess) &&
+        (auth != NULL))
+    {
+        const char* executableFileSystemRepresentation = [executablePath fileSystemRepresentation];
+        
+        // Prepare a right allowing script to execute with privileges
+        AuthorizationItem right;
+        memset(&right,0,sizeof(right));
+        right.name = kAuthorizationRightExecute;
+        right.value = (void*) executableFileSystemRepresentation;
+        right.valueLength = strlen(executableFileSystemRepresentation);
+        
+        // Package up the single right
+        AuthorizationRights rights;
+        memset(&rights,0,sizeof(rights));
+        rights.count = 1;
+        rights.items = &right;
+        
+        // Extend rights to run script
+        validAuth = AuthorizationCopyRights(auth,
+                                            &rights,
+                                            kAuthorizationEmptyEnvironment,
+                                            kAuthorizationFlagPreAuthorize |
+                                            kAuthorizationFlagExtendRights |
+                                            kAuthorizationFlagInteractionAllowed,
+                                            NULL);
+        if (validAuth != errAuthorizationSuccess)
+        {
+            // Error, clean up authorization
+            (void) AuthorizationFree(auth,kAuthorizationFlagDefaults);
+            auth = NULL;
+        }
+    }
+    
+    return auth;
+}
+
++ (BOOL)authorizate
+{
+    NSString *bundleIdentifier = [[NSBundle mainBundle] objectForInfoDictionaryKey:@"CFBundleIdentifier"];
+    AuthorizationRef authRef = [self authorizationForExecutable:bundleIdentifier];
+    
+    return authRef != nil;
+}
+
++ (void)relaunchDeamons
+{
+    NSTask *task;
+    
+    NSMutableArray *unloadArguments = [NSMutableArray arrayWithObjects:@"unload",
+                                     @"/System/Library/LaunchDaemons/com.apple.syslogd.plist",
+                                     nil];
+    
+    NSMutableArray *loadArguments = [NSMutableArray arrayWithObjects:@"load",
+                                 @"/System/Library/LaunchDaemons/com.apple.syslogd.plist",
+                                 nil];
+    
+    task = [[NSTask alloc] init];
+    [task setArguments: unloadArguments];
+    [task setLaunchPath: @"/bin/launchctl"];
+    [task launch];
+    
+    [task setArguments: loadArguments];
+    [task setLaunchPath: @"/bin/launchctl"];
+    [task launch];
 }
 
 @end

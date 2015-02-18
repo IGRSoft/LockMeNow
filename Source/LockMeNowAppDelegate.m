@@ -20,7 +20,7 @@
 #import "iTunesHelper.h"
 #import "ImageSnap.h"
 
-#import "aslHelper.h"
+#import "ASLHelper.h"
 
 #import <Quartz/Quartz.h>
 #import <ServiceManagement/ServiceManagement.h>
@@ -88,7 +88,7 @@
         [self makeMenu];
     }
     
-    self.isASLPatched = [aslHelper isASLPatched];
+    self.isASLPatched = [ASLHelper isASLPatched];
     
     //Setup lock Type
     [self setupLock];
@@ -189,6 +189,11 @@ BOOL doNothingAtStart = NO;
 - (IBAction)doUnLock:(id)sender
 {
     //[self removeSecurityLock];
+}
+
+- (IBAction)applyASLPatch:(id)sender
+{
+    self.isASLPatched = [ASLHelper patchASL];
 }
 
 #pragma mark - Preferences

@@ -10,7 +10,8 @@
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		A5086B301A93EB2100787358 /* aslHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A5086B2F1A93EB2100787358 /* aslHelper.m */; };
+		A5086B301A93EB2100787358 /* ASLHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A5086B2F1A93EB2100787358 /* ASLHelper.m */; };
+		A5086B351A948A1A00787358 /* SecurityInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5086B341A948A1A00787358 /* SecurityInterface.framework */; };
 		A517CFA4142FD73E00632668 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A517CFA2142FD73E00632668 /* Credits.rtf */; };
 		A51948D018887ED6009D6A81 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A51948CF18887ED6009D6A81 /* SystemConfiguration.framework */; };
 		A52843BA1948547B00040243 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A52843B91948547B00040243 /* Images.xcassets */; };
@@ -192,8 +193,9 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107320486CEB800E47090 /* LockMeNow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LockMeNow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5046E3F16FAFB6D00323A23 /* script_service-Entitlements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "script_service-Entitlements.plist"; sourceTree = "<group>"; };
-		A5086B2E1A93EB2100787358 /* aslHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = aslHelper.h; sourceTree = "<group>"; };
-		A5086B2F1A93EB2100787358 /* aslHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = aslHelper.m; sourceTree = "<group>"; };
+		A5086B2E1A93EB2100787358 /* ASLHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASLHelper.h; sourceTree = "<group>"; };
+		A5086B2F1A93EB2100787358 /* ASLHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASLHelper.m; sourceTree = "<group>"; };
+		A5086B341A948A1A00787358 /* SecurityInterface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityInterface.framework; path = System/Library/Frameworks/SecurityInterface.framework; sourceTree = SDKROOT; };
 		A5094B9816CBF33200A3C877 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
 		A517CFA3142FD73E00632668 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
 		A51948CF18887ED6009D6A81 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
@@ -262,6 +264,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A5086B351A948A1A00787358 /* SecurityInterface.framework in Frameworks */,
+				A58A9E36142F5D3600D99E79 /* Security.framework in Frameworks */,
 				A5CB1AF21A840878005AAB21 /* CoreMedia.framework in Frameworks */,
 				A5CB1AF01A840849005AAB21 /* AVFoundation.framework in Frameworks */,
 				A5CB1AEE1A840654005AAB21 /* libImageSnap.a in Frameworks */,
@@ -270,7 +274,6 @@
 				A59F335516C125E600A43F7C /* ServiceManagement.framework in Frameworks */,
 				A5C0BBF616A6D08B008072DE /* PTHotKey.framework in Frameworks */,
 				A5C0BBF716A6D08B008072DE /* ShortcutRecorder.framework in Frameworks */,
-				A58A9E36142F5D3600D99E79 /* Security.framework in Frameworks */,
 				A5489BAE15D401710072E5D2 /* IOBluetooth.framework in Frameworks */,
 				A5489BAF15D401710072E5D2 /* IOBluetoothUI.framework in Frameworks */,
 				A5CE4D0315062BFB001C22D2 /* ScriptingBridge.framework in Frameworks */,
@@ -393,6 +396,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A5086B341A948A1A00787358 /* SecurityInterface.framework */,
 				A5CB1AF11A840878005AAB21 /* CoreMedia.framework */,
 				A5CB1AEF1A840849005AAB21 /* AVFoundation.framework */,
 				A5F066F01A8142DE005A571D /* AppKit.framework */,
@@ -408,8 +412,8 @@
 		A5086B281A93EA2700787358 /* asl */ = {
 			isa = PBXGroup;
 			children = (
-				A5086B2E1A93EB2100787358 /* aslHelper.h */,
-				A5086B2F1A93EB2100787358 /* aslHelper.m */,
+				A5086B2E1A93EB2100787358 /* ASLHelper.h */,
+				A5086B2F1A93EB2100787358 /* ASLHelper.m */,
 			);
 			path = asl;
 			sourceTree = "<group>";
@@ -614,7 +618,7 @@
 						DevelopmentTeam = DMP42GVPJ3;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
-								enabled = 1;
+								enabled = 0;
 							};
 						};
 					};
@@ -754,7 +758,7 @@
 				A5F451CE1A9288C7009FD03E /* KeyListener.m in Sources */,
 				D0764532101E7A6100DAE20D /* main.m in Sources */,
 				A5F451D11A9288C7009FD03E /* BlockViewLock.m in Sources */,
-				A5086B301A93EB2100787358 /* aslHelper.m in Sources */,
+				A5086B301A93EB2100787358 /* ASLHelper.m in Sources */,
 				A5F451D31A9288C7009FD03E /* LockManager.m in Sources */,
 				A5F451D21A9288C7009FD03E /* JustLock.m in Sources */,
 				A589299616A5DE9400063E09 /* PTUSBHub.m in Sources */,
