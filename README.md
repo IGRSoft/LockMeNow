@@ -14,6 +14,10 @@ With this app you can lock your Mac OS in short time and protect your personal d
 * Just lock your screen;
 * New method with nice widgets coming soon!
 
+**Security options:**
+* Make user photo on wrong password;
+* Send photo via Mail.
+
 **Some features:**
 * You can choose any method you like;
 * You don't need to resume iTunes music player any more;
