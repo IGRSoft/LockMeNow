@@ -10,7 +10,7 @@
 #import "Mail.h"
 #import <CoreLocation/CoreLocation.h>
 
-#define DEFAULT_TEXT @"Someone has entered an incorrect password!"
+#define DEFAULT_TEXT @"Someone has entered an incorrect password!\n\n"
 
 @interface MailHelper () <CLLocationManagerDelegate>
 
@@ -56,6 +56,21 @@
 {
     /* create a Scripting Bridge object for talking to the Mail application */
     MailApplication *mail = [SBApplication applicationWithBundleIdentifier:@"com.apple.Mail"];
+    
+    /* update message */
+    NSDateFormatter *formatter;
+    NSString        *dateString;
+    
+    formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd/MM/yyyy HH:mm:ss"];
+    
+    dateString = [formatter stringFromDate:[NSDate date]];
+    
+    _messageContent = [_messageContent stringByAppendingFormat:@"Time: %@\n\n", dateString];
+    
+    _messageContent = [_messageContent stringByAppendingString:@"--\n"];
+    _messageContent = [_messageContent stringByAppendingString:@"Lock Me Now\n"];
+    _messageContent = [_messageContent stringByAppendingFormat:@"%@\n\n", APP_SITE];
     
     /* create a new outgoing message object */
     MailOutgoingMessage *emailMessage = [[[mail classForScriptingClass:@"outgoing message"] alloc] initWithProperties:
@@ -115,9 +130,7 @@
                              location.coordinate.latitude,
                              location.coordinate.longitude];
     
-    self.messageContent = [self.messageContent stringByAppendingString:@"\n"];
-    self.messageContent = [self.messageContent stringByAppendingFormat:@"Location: %@", theLocation];
-    self.messageContent = [self.messageContent stringByAppendingString:@"\n\n"];
+    self.messageContent = [self.messageContent stringByAppendingFormat:@"Location: %@\n\n", theLocation];
     
     [self sendMail];
 }

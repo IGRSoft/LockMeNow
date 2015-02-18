@@ -72,7 +72,6 @@
 
 - (BOOL)askPassword
 {
-	
 	BOOL isPassword = NO;
 	
 	if (!_userSettings.bEncription)
@@ -136,7 +135,7 @@
     
     self.lastLine = nil;
     
-    NSURL *filePath = [NSURL URLWithString:@"/private/var/log/lockmenow.log"];
+    NSURL *filePath = [NSURL URLWithString:LOG_PATH];
     NSError *error = nil;
     
     self.fileHandle = [NSFileHandle fileHandleForReadingFromURL:filePath error:&error];

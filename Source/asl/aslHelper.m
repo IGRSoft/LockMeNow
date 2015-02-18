@@ -8,10 +8,9 @@
 
 #import "ASLHelper.h"
 
-#define ASL_PATH @"/private/etc/asl.conf"
 #define ASL_PATCH @"\n\
 # Facility loginwindow gets saved in lockmenow.log\n\
-> lockmenow.log mode=0777 format=bsd rotate=seq compress file_max=1M all_max=5M\n\
+> lockmenow.log mode=0755 format=bsd rotate=seq compress file_max=1M all_max=5M\n\
 ? [= Sender loginwindow] file lockmenow.log\n"
 
 AuthorizationRef    _authRef;
@@ -75,6 +74,14 @@ NSData *            authorization;
             [fileHandle closeFile];
             
             [ASLHelper relaunchDeamons];
+            
+            NSAlert *alert = [NSAlert alertWithMessageText:@"Need make LogOut"
+                                             defaultButton:nil
+                                           alternateButton:nil
+                                               otherButton:nil
+                                 informativeTextWithFormat:@""];
+            
+            [alert runModal];
             
             result = YES;
         }

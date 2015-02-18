@@ -11,3 +11,8 @@
 #else
 #define DBNSLog( s, ... )
 #endif
+
+#define LOG_PATH @"/private/var/log/lockmenow.log"
+#define ASL_PATH @"/private/etc/asl.conf"
+
+#define APP_SITE @"http://www.IGRSoft.com"

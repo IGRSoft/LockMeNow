@@ -160,10 +160,10 @@ BOOL doNothingAtStart = NO;
 
 - (IBAction)goToURL:(id)sender
 {
-    NSURL *url = [NSURL URLWithString:@"http://igrsoft.com"];
+    NSURL *url = [NSURL URLWithString:APP_SITE];
     
     if ([[sender title] isEqualToString:@"Site"])
-        url = [NSURL URLWithString:@"http://igrsoft.com" ];
+        url = [NSURL URLWithString:APP_SITE ];
     else if ([[sender title] isEqualToString:@"Twitter"])
         url = [NSURL URLWithString:@"http://twitter.com/#!/iKorich" ];
     else if ([sender tag] == 1)
@@ -184,10 +184,6 @@ BOOL doNothingAtStart = NO;
 
 - (IBAction)doLock:(id)sender
 {
-    [self detectedWrongPassword];
-    
-    return;
-    
     self.userSettings.bNeedResumeiTunes = NO;
     [self pauseResumeMusic];
     
