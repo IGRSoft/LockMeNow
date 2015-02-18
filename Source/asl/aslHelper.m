@@ -75,7 +75,7 @@ NSData *            authorization;
             
             [ASLHelper relaunchDeamons];
             
-            NSAlert *alert = [NSAlert alertWithMessageText:@"Need make LogOut"
+            NSAlert *alert = [NSAlert alertWithMessageText:@"You chould Reboot your Mac"
                                              defaultButton:nil
                                            alternateButton:nil
                                                otherButton:nil
