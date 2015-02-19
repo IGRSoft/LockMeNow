@@ -422,6 +422,17 @@ Big Thanks:
                                                 <action selector="goToURL:" target="494" id="884"/>
                                             </connections>
                                         </button>
+                                        <button id="xpe-32-alY">
+                                            <rect key="frame" x="14" y="1" width="271" height="29"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                            <buttonCell key="cell" type="bevel" title="Donate" bezelStyle="regularSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Agt-9j-udW">
+                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                                <font key="font" size="13" name="HelveticaNeue-BoldItalic"/>
+                                            </buttonCell>
+                                            <connections>
+                                                <action selector="goToURL:" target="494" id="TBs-1q-kqD"/>
+                                            </connections>
+                                        </button>
                                     </subviews>
                                 </view>
                             </tabViewItem>
@@ -524,6 +535,8 @@ Big Thanks:
                                             </buttonCell>
                                             <connections>
                                                 <action selector="updateUserSettings:" target="494" id="a0G-jb-btD"/>
+                                                <binding destination="494" name="enabled" keyPath="self.isASLPatched" id="Azb-UE-3cB"/>
+                                                <binding destination="494" name="value" keyPath="self.userSettings.bSendLocationOnIncorrectPasword" id="sAG-87-6cm"/>
                                                 <binding destination="494" name="enabled2" keyPath="self.userSettings.bSendPhotoOnIncorrectPasword" previousBinding="Azb-UE-3cB" id="SVb-zc-k2u">
                                                     <dictionary key="options">
                                                         <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -532,8 +545,6 @@ Big Thanks:
                                                         <integer key="NSNullPlaceholder" value="-1"/>
                                                     </dictionary>
                                                 </binding>
-                                                <binding destination="494" name="enabled" keyPath="self.isASLPatched" id="Azb-UE-3cB"/>
-                                                <binding destination="494" name="value" keyPath="self.userSettings.bSendLocationOnIncorrectPasword" id="sAG-87-6cm"/>
                                             </connections>
                                         </button>
                                     </subviews>
@@ -551,6 +562,7 @@ Big Thanks:
         <customObject id="494" customClass="LockMeNowAppDelegate">
             <connections>
                 <outlet property="bluetoothStatus" destination="ttB-wd-UIc" id="xnf-E0-PKh"/>
+                <outlet property="donateButton" destination="xpe-32-alY" id="E3m-Ua-AZk"/>
                 <outlet property="keyListener" destination="420" id="nlr-Fe-E7k"/>
                 <outlet property="lockBlockView" destination="848" id="858"/>
                 <outlet property="statusMenu" destination="560" id="571"/>

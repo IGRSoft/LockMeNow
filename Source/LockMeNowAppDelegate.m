@@ -120,6 +120,21 @@
 - (void)awakeFromNib
 {
     [super awakeFromNib];
+    
+    NSMutableAttributedString *attrTitle = [[NSMutableAttributedString alloc] initWithString:self.donateButton.title];
+    NSUInteger len = [attrTitle length];
+    NSRange range = NSMakeRange(0, len);
+    
+    [attrTitle addAttribute:NSForegroundColorAttributeName value:[NSColor orangeColor] range:range];
+    [attrTitle addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"Helvetica Bold Oblique" size:12] range:range];
+    
+    NSMutableParagraphStyle *paragrahStyle = [[NSMutableParagraphStyle alloc] init];
+    [paragrahStyle setAlignment:kCTTextAlignmentCenter];
+    
+    [attrTitle addAttribute:NSParagraphStyleAttributeName value:paragrahStyle range:range];
+    
+    [attrTitle fixAttributesInRange:range];
+    [self.donateButton setAttributedTitle:attrTitle];
 }
 
 BOOL doNothingAtStart = NO;
@@ -161,11 +176,21 @@ BOOL doNothingAtStart = NO;
     NSURL *url = [NSURL URLWithString:APP_SITE];
     
     if ([[sender title] isEqualToString:@"Site"])
+    {
         url = [NSURL URLWithString:APP_SITE ];
+    }
     else if ([[sender title] isEqualToString:@"Twitter"])
+    {
         url = [NSURL URLWithString:@"http://twitter.com/#!/iKorich" ];
+    }
+    else if ([[sender title] isEqualToString:@"Donate"])
+    {
+        url = [NSURL URLWithString:@"https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&hosted_button_id=ENPVXEYJUQU9G" ];
+    }
     else if ([sender tag] == 1)
+    {
         url = [NSURL URLWithString:@"http://russianapple.ru" ];
+    }
     
     [[NSWorkspace sharedWorkspace] openURL:url];
 }

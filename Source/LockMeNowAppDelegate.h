@@ -24,6 +24,7 @@
 @property (nonatomic) IBOutlet NSImageView	*bluetoothStatus;
 
 @property (nonatomic) IBOutlet NSView       *lockBlockView;
+@property (nonatomic) IBOutlet NSButton     *donateButton;
 
 // Status Item
 @property (strong, nonatomic) NSStatusItem *statusItem;
