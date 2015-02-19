@@ -22,11 +22,12 @@
 #import "ImageSnap.h"
 
 #import "ASLHelper.h"
+#import <CoreLocation/CoreLocation.h>
 
 #import <ServiceManagement/ServiceManagement.h>
 #import <xpc/xpc.h>
 
-@interface LockMeNowAppDelegate() <LockManagerDelegate, ListenerManagerDelegate, NSUserNotificationCenterDelegate>
+@interface LockMeNowAppDelegate() <LockManagerDelegate, ListenerManagerDelegate, NSUserNotificationCenterDelegate, CLLocationManagerDelegate>
 {
     MailHelper *mailHelper;
 }
@@ -39,6 +40,9 @@
 @property (nonatomic) BluetoothListener *bluetoothListener;
 
 @property (nonatomic) BOOL isASLPatched;
+
+@property (nonatomic) CLLocationManager *locationManager;
+
 
 @end
 
@@ -91,6 +95,14 @@
     }
     
     self.isASLPatched = [ASLHelper isASLPatched];
+    [self setTakePhotoOnIncorrectPassword:nil];
+    
+    //need check acces to Location Service
+    if (self.isASLPatched && self.userSettings.bSendLocationOnIncorrectPasword)
+    {
+        self.locationManager = [[CLLocationManager alloc] init];
+        _locationManager.delegate = self;
+    }
     
     //Setup lock Type
     [self setupLock];
@@ -220,7 +232,11 @@ BOOL doNothingAtStart = NO;
 
 - (IBAction)applyASLPatch:(id)sender
 {
+    [self.patchASLProgress startAnimation:self];
+    
     self.isASLPatched = [ASLHelper patchASL];
+    
+    [self.patchASLProgress stopAnimation:self];
 }
 
 #pragma mark - Preferences
@@ -277,6 +293,31 @@ BOOL doNothingAtStart = NO;
     [self updateUserSettings:sender];
 }
 
+- (IBAction)setTakePhotoOnIncorrectPassword:(id)sender
+{
+    self.sendMailCheckbox.title = self.userSettings.bMakePhotoOnIncorrectPasword ?
+    @"Send photo and warning on email:" :
+    @"Send warning on email:";
+    
+    if (sender)
+    {
+        [self updateUserSettings:sender];
+    }
+}
+
+- (IBAction)setSendLocation:(id)sender
+{
+    self.locationManager = [[CLLocationManager alloc] init];
+    
+    if (self.userSettings.bSendLocationOnIncorrectPasword)
+    {
+        //need check acces to Location Service
+        _locationManager.delegate = self;
+    }
+    
+    [self updateUserSettings:sender];
+}
+
 - (IBAction)updateUserSettings:(id)sender
 {
     __weak typeof(self) weakSelf = self;
@@ -309,6 +350,38 @@ BOOL doNothingAtStart = NO;
             }
         }
     }
+}
+
+- (NSString *)takePhoto
+{
+    NSDateFormatter *formatter;
+    NSString        *dateString;
+    
+    formatter = [[NSDateFormatter alloc] init];
+    [formatter setDateFormat:@"dd-MM-yyyy_HH-mm-ss"];
+    
+    dateString = [formatter stringFromDate:[NSDate date]];
+    dateString = [dateString stringByAppendingPathExtension:@"png"];
+    
+    NSString *picturePath = [NSSearchPathForDirectoriesInDomains(NSPicturesDirectory, NSUserDomainMask, YES) firstObject];
+    picturePath = [picturePath stringByAppendingPathComponent:@"LockMeNow"];
+    
+    NSFileManager *fm = [NSFileManager defaultManager];
+    BOOL isDir = NO;
+    
+    if ([fm fileExistsAtPath:picturePath isDirectory:&isDir] && isDir)
+    {
+    }
+    else
+    {
+        [fm createDirectoryAtPath:picturePath withIntermediateDirectories:YES attributes:nil error:nil];
+    }
+    
+    picturePath = [picturePath stringByAppendingPathComponent:dateString];
+    
+    BOOL result = [ImageSnap saveSnapshotFrom:[ImageSnap defaultVideoDevice] toFile:picturePath];
+    
+    return result ? picturePath : nil;
 }
 
 #pragma mark - Bluetooth
@@ -465,14 +538,36 @@ BOOL doNothingAtStart = NO;
 
 - (void)detectedWrongPassword
 {
-    NSString *photoPath = [self takePhoto];
+    NSString *photoPath = nil;
     
-    if (self.userSettings.bSendPhotoOnIncorrectPasword && self.userSettings.sIncorrectPaswordMail.length)
+    if (self.userSettings.bMakePhotoOnIncorrectPasword)
+    {
+        photoPath = [self takePhoto];
+    }
+    
+    if (self.userSettings.bSendMailOnIncorrectPasword && self.userSettings.sIncorrectPaswordMail.length)
     {
         self->mailHelper = [[MailHelper alloc] initWithMailAddres:self.userSettings.sIncorrectPaswordMail
                                                         userPhoto:photoPath];
         
         [self->mailHelper sendDefaultMessageAddLocation:self.userSettings.bSendLocationOnIncorrectPasword];
+    }
+    
+    if (NSClassFromString(@"NSUserNotificationCenter"))
+    {
+        NSUserNotification *notification = [[NSUserNotification alloc] init];
+        [notification setTitle:@"Security Warning!"];
+        [notification setSubtitle:@"Someone has entered an incorrect password!"];
+        [notification setInformativeText:@"You can check his/her photo"];
+        
+        if (photoPath)
+        {
+            [notification setUserInfo:@{@"filePath": photoPath}];
+        }
+        
+        NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
+        [center setDelegate:self];
+        [center scheduleNotification:notification];
     }
 }
 
@@ -483,53 +578,7 @@ BOOL doNothingAtStart = NO;
     [self doLock:sender];
 }
 
-#pragma mark - Script Action
-
-- (NSString *)takePhoto
-{
-    NSDateFormatter *formatter;
-    NSString        *dateString;
-    
-    formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"dd-MM-yyyy_HH-mm-ss"];
-    
-    dateString = [formatter stringFromDate:[NSDate date]];
-    dateString = [dateString stringByAppendingPathExtension:@"png"];
-    
-    NSString *picturePath = [NSSearchPathForDirectoriesInDomains(NSPicturesDirectory, NSUserDomainMask, YES) firstObject];
-    picturePath = [picturePath stringByAppendingPathComponent:@"LockMeNow"];
-    
-    NSFileManager *fm = [NSFileManager defaultManager];
-    BOOL isDir = NO;
-    
-    if ([fm fileExistsAtPath:picturePath isDirectory:&isDir] && isDir)
-    {
-    }
-    else
-    {
-        [fm createDirectoryAtPath:picturePath withIntermediateDirectories:YES attributes:nil error:nil];
-    }
-    
-    picturePath = [picturePath stringByAppendingPathComponent:dateString];
-    
-    BOOL result = [ImageSnap saveSnapshotFrom:[ImageSnap defaultVideoDevice] toFile:picturePath];
-    
-    if (picturePath && NSClassFromString(@"NSUserNotificationCenter"))
-    {
-        NSUserNotification *notification = [[NSUserNotification alloc] init];
-        [notification setTitle:@"Security Warning!"];
-        [notification setSubtitle:@"Someone has entered an incorrect password!"];
-        [notification setInformativeText:@"You can check his/her photo"];
-        [notification setUserInfo:@{@"filePath": picturePath}];
-        NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
-        [center setDelegate:self];
-        [center scheduleNotification:notification];
-    }
-    
-    return result ? picturePath : nil;
-}
-
-#pragma mark -UserNotificationCenter
+#pragma mark - UserNotificationCenter
 
 - (void)userNotificationCenter:(NSUserNotificationCenter *)center didActivateNotification:(NSUserNotification *)notification
 {
@@ -544,6 +593,38 @@ BOOL doNothingAtStart = NO;
 - (BOOL)userNotificationCenter:(NSUserNotificationCenter *)center shouldPresentNotification:(NSUserNotification *)userNotification;
 {
     return YES;
+}
+#pragma mark - CLLocationManagerDelegate
+
+- (void)locationManager:(CLLocationManager *)manager didChangeAuthorizationStatus:(CLAuthorizationStatus)status
+{
+    switch (status) {
+        case kCLAuthorizationStatusNotDetermined:
+            [_locationManager startUpdatingLocation];
+        case kCLAuthorizationStatusAuthorized:
+            [_locationManager stopUpdatingLocation];
+            
+            break;
+        case kCLAuthorizationStatusDenied:
+        case kCLAuthorizationStatusRestricted:
+        {
+            NSAlert *alert = [NSAlert alertWithMessageText:@"You chould enable Location Service"
+                                             defaultButton:nil
+                                           alternateButton:nil
+                                               otherButton:nil
+                                 informativeTextWithFormat:@"Please, open Privacy tab and enable Location Service for Lock Me Naw application in System Preferences -> Security & Privacy."];
+            
+            [alert runModal];
+            
+            [[NSWorkspace sharedWorkspace] openFile:@"/System/Library/PreferencePanes/Security.prefPane"];
+        }
+            break;
+            
+        default:
+            break;
+    }
+    
+    self.userSettings.bSendLocationOnIncorrectPasword = (status == kCLAuthorizationStatusAuthorized);
 }
 
 @end

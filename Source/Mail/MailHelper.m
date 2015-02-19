@@ -29,7 +29,7 @@
     if (self = [super init])
     {
         _mailAddres = aMail;
-        _photoPaths = [NSMutableArray arrayWithObject:photoPath];
+        _photoPaths = photoPath ? [NSMutableArray arrayWithObject:photoPath] : nil;
         _messageContent = DEFAULT_TEXT;
     }
     
@@ -123,7 +123,9 @@
 - (void)locationManager:(CLLocationManager *)manager
      didUpdateLocations:(NSArray *)locations
 {
+    [_locationManager stopUpdatingLocation];
     _locationManager.delegate = nil;
+    
     CLLocation *location = [locations lastObject];
     
     NSString *theLocation = [NSString stringWithFormat:@"https://maps.google.com/maps?q=%f,%f&num=1&vpsrc=0&ie=UTF8&t=m",

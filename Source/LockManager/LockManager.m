@@ -128,42 +128,38 @@
 
 - (void)startCheckIncorrectPassword
 {
-    if (!_userSettings.bMakePhotoOnIncorrectPasword)
+    if (_userSettings.bMakePhotoOnIncorrectPasword || _userSettings.bSendMailOnIncorrectPasword)
     {
-        return;
-    }
-    
-    self.lastLine = nil;
-    
-    NSURL *filePath = [NSURL URLWithString:LOG_PATH];
-    NSError *error = nil;
-    
-    self.fileHandle = [NSFileHandle fileHandleForReadingFromURL:filePath error:&error];
-    
-    if (!error)
-    {
-        [[NSNotificationCenter defaultCenter] addObserver:self
-                                                 selector:@selector(handleChannelDataAvailable:)
-                                                     name:NSFileHandleDataAvailableNotification
-                                                   object:self.fileHandle];
+        self.lastLine = nil;
         
-        [self.fileHandle waitForDataInBackgroundAndNotify];
+        NSURL *filePath = [NSURL URLWithString:LOG_PATH];
+        NSError *error = nil;
+        
+        self.fileHandle = [NSFileHandle fileHandleForReadingFromURL:filePath error:&error];
+        
+        if (!error)
+        {
+            [[NSNotificationCenter defaultCenter] addObserver:self
+                                                     selector:@selector(handleChannelDataAvailable:)
+                                                         name:NSFileHandleDataAvailableNotification
+                                                       object:self.fileHandle];
+            
+            [self.fileHandle waitForDataInBackgroundAndNotify];
+        }
     }
 }
 
 - (void)stopCheckIncorrectPassword
 {
-    if (!_userSettings.bMakePhotoOnIncorrectPasword)
+    if (_userSettings.bMakePhotoOnIncorrectPasword || _userSettings.bSendMailOnIncorrectPasword)
     {
-        return;
+        [[NSNotificationCenter defaultCenter] removeObserver:self
+                                                        name:NSFileHandleDataAvailableNotification
+                                                      object:self.fileHandle];
+        
+        self.fileHandle = nil;
+        self.lastLine = nil;
     }
-    
-    [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                     name:NSFileHandleDataAvailableNotification
-                                                   object:self.fileHandle];
-    
-    self.fileHandle = nil;
-    self.lastLine = nil;
 }
 
 - (void)handleChannelDataAvailable:(NSNotification*)notification

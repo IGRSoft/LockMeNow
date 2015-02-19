@@ -87,7 +87,7 @@ NSString *kSendLocationOnIncorrectPasword   = @"SendLocationOnIncorrectPasword";
 	_bNeedResumeiTunes                  = [self.defaults boolForKey:kResumeiTunes];
 	_keyCombo                           = [self.defaults objectForKey:kGlobalHotKey];
     _bMakePhotoOnIncorrectPasword       = [self.defaults boolForKey:kMakePhotoOnIncorrectPasword];
-    _bSendPhotoOnIncorrectPasword       = [self.defaults boolForKey:kSendPhotoOnIncorrectPasword];
+    _bSendMailOnIncorrectPasword       = [self.defaults boolForKey:kSendPhotoOnIncorrectPasword];
     _sIncorrectPaswordMail              = [self.defaults objectForKey:kIncorrectPaswordMail];
     _bSendLocationOnIncorrectPasword    = [self.defaults boolForKey:kSendLocationOnIncorrectPasword];
     
@@ -114,7 +114,7 @@ NSString *kSendLocationOnIncorrectPasword   = @"SendLocationOnIncorrectPasword";
 	[self.defaults setBool:_bAutoPrefs forKey:kAutoScreenSaverPrefs];
 	[self.defaults setBool:_bEnableStartup forKey:kEnableStartup];
     [self.defaults setBool:_bMakePhotoOnIncorrectPasword forKey:kMakePhotoOnIncorrectPasword];
-    [self.defaults setBool:_bSendPhotoOnIncorrectPasword forKey:kSendPhotoOnIncorrectPasword];
+    [self.defaults setBool:_bSendMailOnIncorrectPasword forKey:kSendPhotoOnIncorrectPasword];
     [self.defaults setObject:_sIncorrectPaswordMail forKey:kIncorrectPaswordMail];
     [self.defaults setBool:_bSendLocationOnIncorrectPasword forKey:kSendLocationOnIncorrectPasword];
     

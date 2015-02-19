@@ -44,7 +44,7 @@ typedef void (^IGRUserDefaultsBluetoothData)(NSData *bluetoothData);
 @property (nonatomic, assign) BOOL bEncription;
 
 @property (nonatomic, assign) BOOL bMakePhotoOnIncorrectPasword;
-@property (nonatomic, assign) BOOL bSendPhotoOnIncorrectPasword;
+@property (nonatomic, assign) BOOL bSendMailOnIncorrectPasword;
 @property (nonatomic, strong) NSString *sIncorrectPaswordMail;
 @property (nonatomic, assign) BOOL bSendLocationOnIncorrectPasword;
 
