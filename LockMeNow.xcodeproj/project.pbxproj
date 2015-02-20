@@ -940,7 +940,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(CONFIGURATION_BUILD_DIR)/include\"",
+					"\"$(SRCROOT)/External/ImageSnap/ImageSnap\"",
 				);
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = /Applications;
@@ -965,7 +965,7 @@
 				GCC_WARN_ABOUT_MISSING_PROTOTYPES = YES;
 				HEADER_SEARCH_PATHS = (
 					"$(inherited)",
-					"\"$(CONFIGURATION_BUILD_DIR)/include\"",
+					"\"$(SRCROOT)/External/ImageSnap/ImageSnap\"",
 				);
 				INFOPLIST_FILE = Resources/Info.plist;
 				INSTALL_PATH = /Applications;
