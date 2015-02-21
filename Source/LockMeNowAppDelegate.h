@@ -29,6 +29,8 @@
 @property (weak) IBOutlet NSButton              *sendMailCheckbox;
 @property (weak) IBOutlet NSProgressIndicator   *patchASLProgress;
 
+@property (weak) IBOutlet NSTextField   *aboutText;
+
 // Status Item
 @property (strong, nonatomic) NSStatusItem *statusItem;
 

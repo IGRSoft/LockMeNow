@@ -250,7 +250,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button id="EvU-07-j1X">
-                                            <rect key="frame" x="15" y="233" width="269" height="18"/>
+                                            <rect key="frame" x="15" y="208" width="269" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Make photo on incorrect password" bezelStyle="regularSquare" imagePosition="left" inset="2" id="BGq-Ae-OL1">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -258,12 +258,20 @@
                                             </buttonCell>
                                             <connections>
                                                 <action selector="setTakePhotoOnIncorrectPassword:" target="494" id="yWr-0U-ABR"/>
+                                                <binding destination="494" name="enabled2" keyPath="self.userSettings.iLockType" previousBinding="fX6-dl-qoc" id="U8Y-M8-kej">
+                                                    <dictionary key="options">
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                                    </dictionary>
+                                                </binding>
                                                 <binding destination="494" name="enabled" keyPath="self.isASLPatched" id="fX6-dl-qoc"/>
                                                 <binding destination="494" name="value" keyPath="self.userSettings.bMakePhotoOnIncorrectPasword" id="rMB-ym-NJA"/>
                                             </connections>
                                         </button>
                                         <button id="aj1-9s-ApJ">
-                                            <rect key="frame" x="15" y="213" width="269" height="18"/>
+                                            <rect key="frame" x="15" y="188" width="269" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Send warning on email:" bezelStyle="regularSquare" imagePosition="left" inset="2" id="DI6-LO-guB">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -271,12 +279,20 @@
                                             </buttonCell>
                                             <connections>
                                                 <action selector="updateUserSettings:" target="494" id="uWX-4a-YCl"/>
+                                                <binding destination="494" name="enabled2" keyPath="self.userSettings.iLockType" previousBinding="lPz-19-JVc" id="Nm8-Rm-q6C">
+                                                    <dictionary key="options">
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                                    </dictionary>
+                                                </binding>
                                                 <binding destination="494" name="enabled" keyPath="self.isASLPatched" id="lPz-19-JVc"/>
                                                 <binding destination="494" name="value" keyPath="self.userSettings.bSendMailOnIncorrectPasword" id="hhC-cK-GOY"/>
                                             </connections>
                                         </button>
                                         <textField focusRingType="none" verticalHuggingPriority="750" id="E9x-dm-9td">
-                                            <rect key="frame" x="17" y="185" width="265" height="22"/>
+                                            <rect key="frame" x="17" y="160" width="265" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" focusRingType="none" drawsBackground="YES" id="Hlw-jG-k8A">
                                                 <font key="font" metaFont="system"/>
@@ -285,7 +301,7 @@
                                             </textFieldCell>
                                             <connections>
                                                 <action selector="updateUserSettings:" target="494" id="R2a-RU-fvi"/>
-                                                <binding destination="494" name="enabled2" keyPath="self.userSettings.bSendMailOnIncorrectPasword" previousBinding="64W-zx-W07" id="6yb-j5-SP5">
+                                                <binding destination="494" name="enabled3" keyPath="self.userSettings.iLockType" previousBinding="6yb-j5-SP5" id="Onc-91-0ar">
                                                     <dictionary key="options">
                                                         <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="-1"/>
@@ -294,6 +310,14 @@
                                                     </dictionary>
                                                 </binding>
                                                 <binding destination="494" name="enabled" keyPath="self.isASLPatched" id="64W-zx-W07"/>
+                                                <binding destination="494" name="enabled2" keyPath="self.userSettings.bSendMailOnIncorrectPasword" previousBinding="64W-zx-W07" id="6yb-j5-SP5">
+                                                    <dictionary key="options">
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                                    </dictionary>
+                                                </binding>
                                                 <binding destination="494" name="value" keyPath="self.userSettings.sIncorrectPaswordMail" id="jjN-ai-13b"/>
                                             </connections>
                                         </textField>
@@ -310,9 +334,9 @@
                                             </connections>
                                         </button>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" id="Eml-hT-JeR">
-                                            <rect key="frame" x="15" y="121" width="269" height="34"/>
+                                            <rect key="frame" x="15" y="96" width="269" height="34"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Wiil be send from your default mail account in Mail Application." id="ayj-Lb-IKf">
+                                            <textFieldCell key="cell" enabled="NO" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="Wiil be send from your default mail account in Mail Application." id="ayj-Lb-IKf">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -321,14 +345,14 @@
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" id="ixo-MD-sRO">
                                             <rect key="frame" x="15" y="46" width="269" height="34"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="left" title="Application doesn't send your data to 3rd party servers!" id="fND-Yw-FUL">
+                                            <textFieldCell key="cell" enabled="NO" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="Application doesn't send your data to 3rd party servers!" id="fND-Yw-FUL">
                                                 <font key="font" metaFont="systemBold"/>
                                                 <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
                                         <button id="LXz-1Y-SPj">
-                                            <rect key="frame" x="15" y="161" width="269" height="18"/>
+                                            <rect key="frame" x="15" y="136" width="269" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Add current location" bezelStyle="regularSquare" imagePosition="left" inset="2" id="EHR-cD-dah">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -336,7 +360,7 @@
                                             </buttonCell>
                                             <connections>
                                                 <action selector="setSendLocation:" target="494" id="4PV-kf-98i"/>
-                                                <binding destination="494" name="enabled2" keyPath="self.userSettings.bSendMailOnIncorrectPasword" previousBinding="Azb-UE-3cB" id="1a4-3z-oPb">
+                                                <binding destination="494" name="enabled3" keyPath="self.userSettings.iLockType" previousBinding="1a4-3z-oPb" id="jM3-5c-2sg">
                                                     <dictionary key="options">
                                                         <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="-1"/>
@@ -346,12 +370,29 @@
                                                 </binding>
                                                 <binding destination="494" name="enabled" keyPath="self.isASLPatched" id="Azb-UE-3cB"/>
                                                 <binding destination="494" name="value" keyPath="self.userSettings.bSendLocationOnIncorrectPasword" id="sAG-87-6cm"/>
+                                                <binding destination="494" name="enabled2" keyPath="self.userSettings.bSendMailOnIncorrectPasword" previousBinding="Azb-UE-3cB" id="1a4-3z-oPb">
+                                                    <dictionary key="options">
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                                    </dictionary>
+                                                </binding>
                                             </connections>
                                         </button>
                                         <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" id="b6C-7z-1x4">
                                             <rect key="frame" x="230" y="19" width="16" height="16"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         </progressIndicator>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="cbP-rv-bkE">
+                                            <rect key="frame" x="15" y="232" width="269" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Settings for Just Lock type only" id="lUT-Gk-u7i">
+                                                <font key="font" metaFont="systemBold"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
                                     </subviews>
                                 </view>
                             </tabViewItem>
@@ -496,7 +537,7 @@
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" id="812">
-                                            <rect key="frame" x="42" y="52" width="37" height="17"/>
+                                            <rect key="frame" x="42" y="66" width="37" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="and" id="821">
                                                 <font key="font" metaFont="system"/>
@@ -505,16 +546,16 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="814">
-                                            <rect key="frame" x="14" y="77" width="271" height="175"/>
+                                            <rect key="frame" x="14" y="99" width="271" height="153"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="mini" allowsUndo="NO" sendsActionOnEndEditing="YES" id="819">
                                                 <font key="font" metaFont="system"/>
-                                                <string key="title">Lock your screen from the menu bar or by shortcut
+                                                <string key="title">Lock your Mac OS with different options.
 
 Developer:
 	Vitalii Parovishnyk (@iKorich)
 Additional Frameworks:
-	LaunchAtLoginController
+	ImageSnap
 	ShortcutRecorder
 Big Thanks:
 	Dmitriy Zhuravlev (@bymaster)</string>
@@ -523,7 +564,7 @@ Big Thanks:
                                             </textFieldCell>
                                         </textField>
                                         <button focusRingType="none" tag="1" id="815">
-                                            <rect key="frame" x="138" y="38" width="144" height="44"/>
+                                            <rect key="frame" x="138" y="52" width="144" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="russianapple" imagePosition="overlaps" alignment="center" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="818">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -534,7 +575,7 @@ Big Thanks:
                                             </connections>
                                         </button>
                                         <button id="xpe-32-alY">
-                                            <rect key="frame" x="14" y="1" width="271" height="29"/>
+                                            <rect key="frame" x="14" y="9" width="271" height="29"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <buttonCell key="cell" type="bevel" title="Donate" bezelStyle="regularSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Agt-9j-udW">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -554,10 +595,11 @@ Big Thanks:
                     </tabView>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="452.5" y="236.5"/>
+            <point key="canvasLocation" x="330.5" y="264.5"/>
         </window>
         <customObject id="494" customClass="LockMeNowAppDelegate">
             <connections>
+                <outlet property="aboutText" destination="814" id="jQU-Fc-J2r"/>
                 <outlet property="bluetoothStatus" destination="ttB-wd-UIc" id="xnf-E0-PKh"/>
                 <outlet property="donateButton" destination="xpe-32-alY" id="E3m-Ua-AZk"/>
                 <outlet property="keyListener" destination="420" id="nlr-Fe-E7k"/>

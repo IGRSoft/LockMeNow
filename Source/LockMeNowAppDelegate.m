@@ -21,13 +21,13 @@
 #import "MailHelper.h"
 #import "ImageSnap.h"
 
-#import "ASLHelper.h"
 #import <CoreLocation/CoreLocation.h>
 
 #import <ServiceManagement/ServiceManagement.h>
 #import <xpc/xpc.h>
 
-@interface LockMeNowAppDelegate() <LockManagerDelegate, ListenerManagerDelegate, NSUserNotificationCenterDelegate, CLLocationManagerDelegate>
+@interface LockMeNowAppDelegate() <LockManagerDelegate, ListenerManagerDelegate,
+                                    NSUserNotificationCenterDelegate, CLLocationManagerDelegate>
 {
     MailHelper *mailHelper;
 }
@@ -42,7 +42,6 @@
 @property (nonatomic) BOOL isASLPatched;
 
 @property (nonatomic) CLLocationManager *locationManager;
-
 
 @end
 
@@ -94,15 +93,42 @@
         [self makeMenu];
     }
     
-    self.isASLPatched = [ASLHelper isASLPatched];
-    [self setTakePhotoOnIncorrectPassword:nil];
+    self.isASLPatched = NO;
+    xpc_connection_t connection = xpc_connection_create_mach_service(HELPER_ID, NULL, XPC_CONNECTION_MACH_SERVICE_PRIVILEGED);
     
-    //need check acces to Location Service
-    if (self.isASLPatched && self.userSettings.bSendLocationOnIncorrectPasword)
+    if (connection)
     {
-        self.locationManager = [[CLLocationManager alloc] init];
-        _locationManager.delegate = self;
+        __weak typeof(self) weakSelf = self;
+        
+        xpc_connection_set_event_handler(connection, ^(xpc_object_t event) {
+            xpc_type_t type = xpc_get_type(event);
+            
+            if (type == XPC_TYPE_ERROR)
+            {
+            }
+        });
+        
+        xpc_connection_resume(connection);
+        
+        xpc_object_t message = xpc_dictionary_create(NULL, NULL, 0);
+        xpc_dictionary_set_uint64(message, "check_asl_patch", 1);
+        
+        xpc_connection_send_message_with_reply(connection, message, dispatch_get_main_queue(), ^(xpc_object_t event) {
+            
+            if (xpc_dictionary_get_value(event, "check_asl_patch") != NULL)
+            {
+                weakSelf.isASLPatched = xpc_dictionary_get_bool(event, "check_asl_patch");
+            }
+            
+            if (weakSelf.isASLPatched && weakSelf.userSettings.bSendLocationOnIncorrectPasword)
+            {
+                weakSelf.locationManager = [[CLLocationManager alloc] init];
+                weakSelf.locationManager.delegate = weakSelf;
+            }
+        });
     }
+
+    [self setTakePhotoOnIncorrectPassword:nil];
     
     //Setup lock Type
     [self setupLock];
@@ -133,20 +159,72 @@
 {
     [super awakeFromNib];
     
+    // Donate button
     NSMutableAttributedString *attrTitle = [[NSMutableAttributedString alloc] initWithString:self.donateButton.title];
     NSUInteger len = [attrTitle length];
     NSRange range = NSMakeRange(0, len);
     
-    [attrTitle addAttribute:NSForegroundColorAttributeName value:[NSColor orangeColor] range:range];
-    [attrTitle addAttribute:NSFontAttributeName value:[NSFont fontWithName:@"Helvetica Bold Oblique" size:12] range:range];
+    [attrTitle addAttribute:NSForegroundColorAttributeName
+                      value:[NSColor orangeColor]
+                      range:range];
+    [attrTitle addAttribute:NSFontAttributeName
+                      value:[NSFont fontWithName:@"Helvetica Bold Oblique" size:12.0]
+                      range:range];
     
     NSMutableParagraphStyle *paragrahStyle = [[NSMutableParagraphStyle alloc] init];
     [paragrahStyle setAlignment:kCTTextAlignmentCenter];
     
-    [attrTitle addAttribute:NSParagraphStyleAttributeName value:paragrahStyle range:range];
+    [attrTitle addAttribute:NSParagraphStyleAttributeName
+                      value:paragrahStyle
+                      range:range];
     
     [attrTitle fixAttributesInRange:range];
     [self.donateButton setAttributedTitle:attrTitle];
+    
+    //About
+    NSString *text = [self.aboutText stringValue];
+    
+    [self.aboutText setAllowsEditingTextAttributes: YES];
+    [self.aboutText setSelectable: YES];
+    
+    NSMutableAttributedString *attrString = [[NSMutableAttributedString alloc] initWithString:text];
+    [attrString addAttribute:NSFontAttributeName value:[NSFont systemFontOfSize:13] range:[text rangeOfString:text]];
+    
+    NSMutableParagraphStyle *truncateStyle = [[NSMutableParagraphStyle alloc] init];
+    [truncateStyle setLineBreakMode:NSLineBreakByTruncatingTail];
+    
+    [attrString beginEditing];
+    
+    NSColor *color = [NSColor colorWithCalibratedRed:0.058 green:0.385 blue:0.784 alpha:1.000];
+    range = [text rangeOfString:@"Vitalii Parovishnyk"];
+    NSURL *url = [NSURL URLWithString:@"https://github.com/IGRSoft/LockMeNow"];
+    
+    if (range.location != NSNotFound)
+    {
+        NSDictionary *dict = @{	NSLinkAttributeName: url,
+                                NSForegroundColorAttributeName:color,
+                                NSCursorAttributeName:[NSCursor pointingHandCursor],
+                                NSParagraphStyleAttributeName:truncateStyle
+                                };
+        [attrString addAttributes:dict range:range];
+    }
+    
+    range = [text rangeOfString:@"@iKorich"];
+    url = [NSURL URLWithString:TWITTER_SITE];
+    
+    if (range.location != NSNotFound)
+    {
+        NSDictionary *dict = @{	NSLinkAttributeName: url,
+                                NSForegroundColorAttributeName:color,
+                                NSCursorAttributeName:[NSCursor pointingHandCursor],
+                                NSParagraphStyleAttributeName:truncateStyle
+                                };
+        [attrString addAttributes:dict range:range];
+    }
+    
+    [attrString endEditing];
+    
+    [self.aboutText setAttributedStringValue:attrString];
 }
 
 BOOL doNothingAtStart = NO;
@@ -193,7 +271,7 @@ BOOL doNothingAtStart = NO;
     }
     else if ([[sender title] isEqualToString:@"Twitter"])
     {
-        url = [NSURL URLWithString:@"http://twitter.com/#!/iKorich" ];
+        url = [NSURL URLWithString:TWITTER_SITE ];
     }
     else if ([[sender title] isEqualToString:@"Donate"])
     {
@@ -232,11 +310,66 @@ BOOL doNothingAtStart = NO;
 
 - (IBAction)applyASLPatch:(id)sender
 {
+    __weak NSButton *weakButton = sender;
+    weakButton.enabled = NO;
     [self.patchASLProgress startAnimation:self];
     
-    self.isASLPatched = [ASLHelper patchASL];
+    __weak typeof(self) weakSelf = self;
+    void(^doneProcess)(void) = ^(void)
+    {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            
+            [weakSelf.patchASLProgress stopAnimation:self];
+            weakButton.enabled = YES;
+        });
+    };
     
-    [self.patchASLProgress stopAnimation:self];
+    NSError *error;
+    
+    NSString *helperId = @HELPER_ID;
+    if ([self autorizateForService:helperId
+                             error:&error])
+    {
+        xpc_connection_t connection = xpc_connection_create_mach_service([helperId UTF8String], NULL, XPC_CONNECTION_MACH_SERVICE_PRIVILEGED);
+        
+        if (connection)
+        {
+            __weak typeof(self) weakSelf = self;
+            
+            xpc_connection_set_event_handler(connection, ^(xpc_object_t event) {
+                xpc_type_t type = xpc_get_type(event);
+                
+                if (type == XPC_TYPE_ERROR)
+                {
+                    doneProcess();
+                }
+            });
+            
+            xpc_connection_resume(connection);
+            
+            xpc_object_t message = xpc_dictionary_create(NULL, NULL, 0);
+            xpc_dictionary_set_uint64(message, "patch_asl", 1);
+            
+            NSString *scriptPath = [[NSBundle mainBundle] pathForResource:@"reactivate_asl_service" ofType:@"sh"];
+            xpc_dictionary_set_string(message, "script_path", [scriptPath UTF8String]);
+            
+            xpc_connection_send_message_with_reply(connection, message, dispatch_get_main_queue(), ^(xpc_object_t event) {
+                
+                if (xpc_dictionary_get_value(event, "patch_asl") != NULL)
+                {
+                    weakSelf.isASLPatched = xpc_dictionary_get_bool(event, "patch_asl");
+                }
+                
+                doneProcess();
+            });
+        }
+    }
+    else
+    {
+        doneProcess();
+        
+        DBNSLog(@"Error: %@", [error localizedDescription]);
+    }
 }
 
 #pragma mark - Preferences
@@ -382,6 +515,38 @@ BOOL doNothingAtStart = NO;
     BOOL result = [ImageSnap saveSnapshotFrom:[ImageSnap defaultVideoDevice] toFile:picturePath];
     
     return result ? picturePath : nil;
+}
+
+- (BOOL)autorizateForService:(NSString *)aService
+                       error:(NSError **)error {
+    
+    BOOL result = NO;
+    
+    AuthorizationItem authItem		= { kSMRightBlessPrivilegedHelper, 0, NULL, 0 };
+    AuthorizationRights authRights	= { 1, &authItem };
+    AuthorizationFlags flags		=	kAuthorizationFlagDefaults				|
+    kAuthorizationFlagInteractionAllowed	|
+    kAuthorizationFlagPreAuthorize			|
+    kAuthorizationFlagExtendRights;
+    
+    AuthorizationRef authRef = NULL;
+    
+    /* Obtain the right to install privileged helper tools (kSMRightBlessPrivilegedHelper). */
+    OSStatus status = AuthorizationCreate(&authRights, kAuthorizationEmptyEnvironment, flags, &authRef);
+    if (status != errAuthorizationSuccess) {
+        
+    } else {
+        /* This does all the work of verifying the helper tool against the application
+         * and vice-versa. Once verification has passed, the embedded launchd.plist
+         * is extracted and placed in /Library/LaunchDaemons and then loaded. The
+         * executable is placed in /Library/PrivilegedHelperTools.
+         */
+        CFErrorRef cfError = nil;
+        result = SMJobBless(kSMDomainSystemLaunchd, (__bridge CFStringRef)aService, authRef, &cfError);
+        *error = (__bridge NSError *)cfError;
+    }
+    
+    return result;
 }
 
 #pragma mark - Bluetooth

@@ -13,6 +13,8 @@
 #endif
 
 #define LOG_PATH @"/private/var/log/lockmenow.log"
-#define ASL_PATH @"/private/etc/asl.conf"
 
 #define APP_SITE @"http://www.IGRSoft.com"
+#define TWITTER_SITE @"http://twitter.com/#!/iKorich"
+
+#define HELPER_ID "com.igrsoft.ASLHelper"

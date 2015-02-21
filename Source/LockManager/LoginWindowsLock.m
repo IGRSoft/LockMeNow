@@ -7,6 +7,7 @@
 //
 
 #import "LoginWindowsLock.h"
+#import "IGRUserDefaults.h"
 
 @implementation LoginWindowsLock
 

@@ -10,7 +10,6 @@
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
 		8D11072F0486CEB800E47090 /* Cocoa.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1058C7A1FEA54F0111CA2CBB /* Cocoa.framework */; };
-		A5086B301A93EB2100787358 /* ASLHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A5086B2F1A93EB2100787358 /* ASLHelper.m */; };
 		A5086B351A948A1A00787358 /* SecurityInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5086B341A948A1A00787358 /* SecurityInterface.framework */; };
 		A5086B511A94A02900787358 /* iTunes.app in Resources */ = {isa = PBXBuildFile; fileRef = A5086B4F1A94A02900787358 /* iTunes.app */; };
 		A5086B521A94A02900787358 /* Mail.app in Resources */ = {isa = PBXBuildFile; fileRef = A5086B501A94A02900787358 /* Mail.app */; };
@@ -22,9 +21,14 @@
 		A52A9F6016A8365300EA4B17 /* TextFieldBG.png in Resources */ = {isa = PBXBuildFile; fileRef = A52A9F5F16A8365200EA4B17 /* TextFieldBG.png */; };
 		A5489BAE15D401710072E5D2 /* IOBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5489BAC15D401710072E5D2 /* IOBluetooth.framework */; };
 		A5489BAF15D401710072E5D2 /* IOBluetoothUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5489BAD15D401710072E5D2 /* IOBluetoothUI.framework */; };
+		A55A46F11A97DFEC00EB904D /* reactivate_asl_service.sh in Resources */ = {isa = PBXBuildFile; fileRef = A53FFA041A97B5DE002E8B0E /* reactivate_asl_service.sh */; };
+		A55A46F81A97E3E000EB904D /* CoreFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A55A46F71A97E3E000EB904D /* CoreFoundation.framework */; };
 		A55F89581A76DB5A00C3F837 /* ScreenSaver.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A55F89551A76DB4D00C3F837 /* ScreenSaver.framework */; };
 		A56235231A817FBC002B86A5 /* LaunchHelper.app in Copy LoginItems */ = {isa = PBXBuildFile; fileRef = A562351F1A817F6E002B86A5 /* LaunchHelper.app */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A568E700142F5F8B0028D621 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A568E6FF142F5F8B0028D621 /* IOKit.framework */; };
+		A573C57A1A97BF4B0029D4C3 /* filevault_2_encryption_check_extension_attribute.sh in Resources */ = {isa = PBXBuildFile; fileRef = A53FFA021A97B5DE002E8B0E /* filevault_2_encryption_check_extension_attribute.sh */; };
+		A573C59D1A97C2950029D4C3 /* ASLHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = A573C59C1A97C2950029D4C3 /* ASLHelper.c */; };
+		A573C5A71A97C73C0029D4C3 /* com.igrsoft.ASLHelper in Copy LaunchServices */ = {isa = PBXBuildFile; fileRef = A573C59A1A97C2950029D4C3 /* com.igrsoft.ASLHelper */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
 		A589299616A5DE9400063E09 /* PTUSBHub.m in Sources */ = {isa = PBXBuildFile; fileRef = A589299516A5DE9400063E09 /* PTUSBHub.m */; };
 		A58A9E36142F5D3600D99E79 /* Security.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A58A9E35142F5D3600D99E79 /* Security.framework */; };
 		A59F335516C125E600A43F7C /* ServiceManagement.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A59F335416C125E600A43F7C /* ServiceManagement.framework */; };
@@ -44,7 +48,6 @@
 		A5D94E8B16FB1DF50054BC6C /* script_service-Entitlements.plist in Resources */ = {isa = PBXBuildFile; fileRef = A5046E3F16FAFB6D00323A23 /* script_service-Entitlements.plist */; };
 		A5F066F11A8142DE005A571D /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F066F01A8142DE005A571D /* AppKit.framework */; };
 		A5F19B40171A98C900C8EE09 /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5094B9816CBF33200A3C877 /* Foundation.framework */; };
-		A5F19B44171AA9F000C8EE09 /* filevault_2_encryption_check_extension_attribute.sh in Resources */ = {isa = PBXBuildFile; fileRef = A5F19B43171AA9F000C8EE09 /* filevault_2_encryption_check_extension_attribute.sh */; };
 		A5F19B46171AABAD00C8EE09 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F19B45171AABAD00C8EE09 /* IOKit.framework */; };
 		A5F451CB1A9288C7009FD03E /* IGRUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451AE1A9288C7009FD03E /* IGRUserDefaults.m */; };
 		A5F451CC1A9288C7009FD03E /* iTunesHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451B11A9288C7009FD03E /* iTunesHelper.m */; };
@@ -96,6 +99,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = A56234DF1A817E04002B86A5;
 			remoteInfo = LaunchHelper;
+		};
+		A573C5A51A97C6E50029D4C3 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A573C5991A97C2950029D4C3;
+			remoteInfo = com.igrsoft.ASLHelper;
 		};
 		A5C0BBEC16A6D078008072DE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
@@ -163,6 +173,17 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
+		A573C5951A97C1B00029D4C3 /* Copy LaunchServices */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = Contents/Library/LaunchServices;
+			dstSubfolderSpec = 1;
+			files = (
+				A573C5A71A97C73C0029D4C3 /* com.igrsoft.ASLHelper in Copy LaunchServices */,
+			);
+			name = "Copy LaunchServices";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A589294B16A5AFC600063E09 /* Copy Frameworks */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
@@ -189,8 +210,8 @@
 		A5D94E8916FB1D3F0054BC6C /* Copy XPC Service */ = {
 			isa = PBXCopyFilesBuildPhase;
 			buildActionMask = 2147483647;
-			dstPath = Contents/XPCServices;
-			dstSubfolderSpec = 1;
+			dstPath = "$(CONTENTS_FOLDER_PATH)/XPCServices";
+			dstSubfolderSpec = 16;
 			files = (
 				A5D94E8A16FB1D550054BC6C /* script_service.xpc in Copy XPC Service */,
 			);
@@ -208,8 +229,6 @@
 		29B97325FDCFA39411CA2CEA /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = /System/Library/Frameworks/Foundation.framework; sourceTree = "<absolute>"; };
 		8D1107320486CEB800E47090 /* LockMeNow.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LockMeNow.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5046E3F16FAFB6D00323A23 /* script_service-Entitlements.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = "script_service-Entitlements.plist"; sourceTree = "<group>"; };
-		A5086B2E1A93EB2100787358 /* ASLHelper.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ASLHelper.h; sourceTree = "<group>"; };
-		A5086B2F1A93EB2100787358 /* ASLHelper.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ASLHelper.m; sourceTree = "<group>"; };
 		A5086B341A948A1A00787358 /* SecurityInterface.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SecurityInterface.framework; path = System/Library/Frameworks/SecurityInterface.framework; sourceTree = SDKROOT; };
 		A5086B4F1A94A02900787358 /* iTunes.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = iTunes.app; path = ../../../../../Applications/iTunes.app; sourceTree = "<group>"; };
 		A5086B501A94A02900787358 /* Mail.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = Mail.app; path = ../../../../../Applications/Mail.app; sourceTree = "<group>"; };
@@ -221,13 +240,20 @@
 		A52843B91948547B00040243 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = LockMeNow/Images.xcassets; sourceTree = "<group>"; };
 		A52A534A1A94D97800EB9AA6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		A52A9F5F16A8365200EA4B17 /* TextFieldBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TextFieldBG.png; path = Resources/TextFieldBG.png; sourceTree = "<group>"; };
+		A53FFA021A97B5DE002E8B0E /* filevault_2_encryption_check_extension_attribute.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = filevault_2_encryption_check_extension_attribute.sh; sourceTree = "<group>"; };
+		A53FFA041A97B5DE002E8B0E /* reactivate_asl_service.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = reactivate_asl_service.sh; sourceTree = "<group>"; };
 		A5489BAA15D3F1820072E5D2 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		A5489BAC15D401710072E5D2 /* IOBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOBluetooth.framework; path = System/Library/Frameworks/IOBluetooth.framework; sourceTree = SDKROOT; };
 		A5489BAD15D401710072E5D2 /* IOBluetoothUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOBluetoothUI.framework; path = System/Library/Frameworks/IOBluetoothUI.framework; sourceTree = SDKROOT; };
 		A559117516B3D69C008A7BF9 /* lockmenow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = lockmenow.entitlements; sourceTree = "<group>"; };
+		A55A46F71A97E3E000EB904D /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		A55F89551A76DB4D00C3F837 /* ScreenSaver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScreenSaver.framework; path = System/Library/Frameworks/ScreenSaver.framework; sourceTree = SDKROOT; };
 		A562350E1A817F6E002B86A5 /* LaunchHelper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = LaunchHelper.xcodeproj; sourceTree = "<group>"; };
 		A568E6FF142F5F8B0028D621 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = /System/Library/Frameworks/IOKit.framework; sourceTree = "<absolute>"; };
+		A573C59A1A97C2950029D4C3 /* com.igrsoft.ASLHelper */ = {isa = PBXFileReference; explicitFileType = "compiled.mach-o.executable"; includeInIndex = 0; path = com.igrsoft.ASLHelper; sourceTree = BUILT_PRODUCTS_DIR; };
+		A573C59C1A97C2950029D4C3 /* ASLHelper.c */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.c; path = ASLHelper.c; sourceTree = "<group>"; };
+		A573C5A11A97C3A00029D4C3 /* ASLHelper-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ASLHelper-Info.plist"; sourceTree = "<group>"; };
+		A573C5A21A97C3A00029D4C3 /* ASLHelper-Launchd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ASLHelper-Launchd.plist"; sourceTree = "<group>"; };
 		A589299416A5DE9400063E09 /* PTUSBHub.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = PTUSBHub.h; path = peertalk/peertalk/PTUSBHub.h; sourceTree = "<group>"; };
 		A589299516A5DE9400063E09 /* PTUSBHub.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = PTUSBHub.m; path = peertalk/peertalk/PTUSBHub.m; sourceTree = "<group>"; };
 		A58A9E35142F5D3600D99E79 /* Security.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Security.framework; path = System/Library/Frameworks/Security.framework; sourceTree = SDKROOT; };
@@ -247,7 +273,6 @@
 		A5D2819D16E7E394006405E0 /* script_service.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = script_service.m; sourceTree = "<group>"; };
 		A5D2819F16E7E394006405E0 /* script_service-Prefix.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = "script_service-Prefix.pch"; sourceTree = "<group>"; };
 		A5F066F01A8142DE005A571D /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
-		A5F19B43171AA9F000C8EE09 /* filevault_2_encryption_check_extension_attribute.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; name = filevault_2_encryption_check_extension_attribute.sh; path = Resources/filevault_2_encryption_check_extension_attribute.sh; sourceTree = "<group>"; };
 		A5F19B45171AABAD00C8EE09 /* IOKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOKit.framework; path = System/Library/Frameworks/IOKit.framework; sourceTree = SDKROOT; };
 		A5F451AD1A9288C7009FD03E /* IGRUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGRUserDefaults.h; sourceTree = "<group>"; };
 		A5F451AE1A9288C7009FD03E /* IGRUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IGRUserDefaults.m; sourceTree = "<group>"; };
@@ -302,6 +327,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A573C5971A97C2950029D4C3 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A55A46F81A97E3E000EB904D /* CoreFoundation.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		A5D2819216E7E394006405E0 /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -320,7 +353,6 @@
 		080E96DDFE201D6D7F000001 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				A5086B281A93EA2700787358 /* asl */,
 				A5F451AD1A9288C7009FD03E /* IGRUserDefaults.h */,
 				A5F451AE1A9288C7009FD03E /* IGRUserDefaults.m */,
 				A5F451D81A9288DC009FD03E /* iTunes */,
@@ -366,6 +398,7 @@
 			children = (
 				8D1107320486CEB800E47090 /* LockMeNow.app */,
 				A5D2819516E7E394006405E0 /* script_service.xpc */,
+				A573C59A1A97C2950029D4C3 /* com.igrsoft.ASLHelper */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -381,6 +414,7 @@
 				29B97317FDCFA39411CA2CEA /* Resources */,
 				A5D2819716E7E394006405E0 /* script_service */,
 				A5086B4E1A94A01600787358 /* Applications */,
+				A573C59B1A97C2950029D4C3 /* ASLHelper */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
 			);
@@ -399,8 +433,8 @@
 		29B97317FDCFA39411CA2CEA /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				A53FFA011A97B5DE002E8B0E /* Scripts */,
 				A52843B91948547B00040243 /* Images.xcassets */,
-				A5F19B43171AA9F000C8EE09 /* filevault_2_encryption_check_extension_attribute.sh */,
 				A559117516B3D69C008A7BF9 /* lockmenow.entitlements */,
 				A52A9F5F16A8365200EA4B17 /* TextFieldBG.png */,
 				A517CFA2142FD73E00632668 /* Credits.rtf */,
@@ -414,6 +448,7 @@
 		29B97323FDCFA39411CA2CEA /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				A55A46F71A97E3E000EB904D /* CoreFoundation.framework */,
 				A59FACF91A95288C006083A1 /* QuartzCore.framework */,
 				A59FACF61A952847006083A1 /* CoreVideo.framework */,
 				A52A534A1A94D97800EB9AA6 /* CoreLocation.framework */,
@@ -428,15 +463,6 @@
 				1058C7A2FEA54F0111CA2CBB /* Other Frameworks */,
 			);
 			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		A5086B281A93EA2700787358 /* asl */ = {
-			isa = PBXGroup;
-			children = (
-				A5086B2E1A93EB2100787358 /* ASLHelper.h */,
-				A5086B2F1A93EB2100787358 /* ASLHelper.m */,
-			);
-			path = asl;
 			sourceTree = "<group>";
 		};
 		A5086B4E1A94A01600787358 /* Applications */ = {
@@ -455,6 +481,16 @@
 				A5086B5A1A94A5F600787358 /* MailHelper.m */,
 			);
 			path = Mail;
+			sourceTree = "<group>";
+		};
+		A53FFA011A97B5DE002E8B0E /* Scripts */ = {
+			isa = PBXGroup;
+			children = (
+				A53FFA021A97B5DE002E8B0E /* filevault_2_encryption_check_extension_attribute.sh */,
+				A53FFA041A97B5DE002E8B0E /* reactivate_asl_service.sh */,
+			);
+			name = Scripts;
+			path = Resources/Scripts;
 			sourceTree = "<group>";
 		};
 		A5489B8215D3E5A90072E5D2 /* External */ = {
@@ -490,6 +526,16 @@
 				A56235211A817F6E002B86A5 /* LaunchHelperTests.xctest */,
 			);
 			name = Products;
+			sourceTree = "<group>";
+		};
+		A573C59B1A97C2950029D4C3 /* ASLHelper */ = {
+			isa = PBXGroup;
+			children = (
+				A573C5A11A97C3A00029D4C3 /* ASLHelper-Info.plist */,
+				A573C5A21A97C3A00029D4C3 /* ASLHelper-Launchd.plist */,
+				A573C59C1A97C2950029D4C3 /* ASLHelper.c */,
+			);
+			path = ASLHelper;
 			sourceTree = "<group>";
 		};
 		A589299716A5DEBB00063E09 /* peertalk */ = {
@@ -594,11 +640,13 @@
 				A589294B16A5AFC600063E09 /* Copy Frameworks */,
 				A5D94E8916FB1D3F0054BC6C /* Copy XPC Service */,
 				A5D7DE4D171AC291008A8FA4 /* Copy LoginItems */,
+				A573C5951A97C1B00029D4C3 /* Copy LaunchServices */,
 			);
 			buildRules = (
 				A5086B571A94A37500787358 /* PBXBuildRule */,
 			);
 			dependencies = (
+				A573C5A61A97C6E50029D4C3 /* PBXTargetDependency */,
 				A56235251A817FCE002B86A5 /* PBXTargetDependency */,
 				A5D94E8816FB1D000054BC6C /* PBXTargetDependency */,
 				A5C0BBF316A6D083008072DE /* PBXTargetDependency */,
@@ -609,6 +657,22 @@
 			productName = SGHotKeyCenter;
 			productReference = 8D1107320486CEB800E47090 /* LockMeNow.app */;
 			productType = "com.apple.product-type.application";
+		};
+		A573C5991A97C2950029D4C3 /* com.igrsoft.ASLHelper */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A573C59E1A97C2950029D4C3 /* Build configuration list for PBXNativeTarget "com.igrsoft.ASLHelper" */;
+			buildPhases = (
+				A573C5961A97C2950029D4C3 /* Sources */,
+				A573C5971A97C2950029D4C3 /* Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = com.igrsoft.ASLHelper;
+			productName = ASLHelper;
+			productReference = A573C59A1A97C2950029D4C3 /* com.igrsoft.ASLHelper */;
+			productType = "com.apple.product-type.tool";
 		};
 		A5D2819416E7E394006405E0 /* script_service */ = {
 			isa = PBXNativeTarget;
@@ -646,6 +710,9 @@
 							};
 						};
 					};
+					A573C5991A97C2950029D4C3 = {
+						CreatedOnToolsVersion = 6.1.1;
+					};
 				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "LockMeNow" */;
@@ -677,6 +744,7 @@
 			targets = (
 				8D1107260486CEB800E47090 /* LockMeNow */,
 				A5D2819416E7E394006405E0 /* script_service */,
+				A573C5991A97C2950029D4C3 /* com.igrsoft.ASLHelper */,
 			);
 		};
 /* End PBXProject section */
@@ -746,6 +814,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
+				A55A46F11A97DFEC00EB904D /* reactivate_asl_service.sh in Resources */,
 				A5086B511A94A02900787358 /* iTunes.app in Resources */,
 				A5086B521A94A02900787358 /* Mail.app in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
@@ -761,7 +830,7 @@
 			files = (
 				A5D94E8B16FB1DF50054BC6C /* script_service-Entitlements.plist in Resources */,
 				A5D2819C16E7E394006405E0 /* InfoPlist.strings in Resources */,
-				A5F19B44171AA9F000C8EE09 /* filevault_2_encryption_check_extension_attribute.sh in Resources */,
+				A573C57A1A97BF4B0029D4C3 /* filevault_2_encryption_check_extension_attribute.sh in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -783,10 +852,17 @@
 				A5F451CE1A9288C7009FD03E /* KeyListener.m in Sources */,
 				D0764532101E7A6100DAE20D /* main.m in Sources */,
 				A5F451D11A9288C7009FD03E /* BlockViewLock.m in Sources */,
-				A5086B301A93EB2100787358 /* ASLHelper.m in Sources */,
 				A5F451D31A9288C7009FD03E /* LockManager.m in Sources */,
 				A5F451D21A9288C7009FD03E /* JustLock.m in Sources */,
 				A589299616A5DE9400063E09 /* PTUSBHub.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A573C5961A97C2950029D4C3 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A573C59D1A97C2950029D4C3 /* ASLHelper.c in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -805,6 +881,11 @@
 			isa = PBXTargetDependency;
 			name = LaunchHelper;
 			targetProxy = A56235241A817FCE002B86A5 /* PBXContainerItemProxy */;
+		};
+		A573C5A61A97C6E50029D4C3 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A573C5991A97C2950029D4C3 /* com.igrsoft.ASLHelper */;
+			targetProxy = A573C5A51A97C6E50029D4C3 /* PBXContainerItemProxy */;
 		};
 		A5C0BBF316A6D083008072DE /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
@@ -859,6 +940,88 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		A573C59F1A97C2950029D4C3 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "IGR Software";
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "ASLHelper/ASLHelper-Info.plist";
+				INFOPLIST_PREPROCESS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_LDFLAGS = (
+					"-sectcreate",
+					__TEXT,
+					__info_plist,
+					"ASLHelper/ASLHelper-Info.plist",
+					"-sectcreate",
+					__TEXT,
+					__launchd_plist,
+					"ASLHelper/ASLHelper-Launchd.plist",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A573C5A01A97C2950029D4C3 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "IGR Software";
+				COPY_PHASE_STRIP = YES;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "ASLHelper/ASLHelper-Info.plist";
+				INFOPLIST_PREPROCESS = YES;
+				MACOSX_DEPLOYMENT_TARGET = 10.10;
+				OTHER_LDFLAGS = (
+					"-sectcreate",
+					__TEXT,
+					__info_plist,
+					"ASLHelper/ASLHelper-Info.plist",
+					"-sectcreate",
+					__TEXT,
+					__launchd_plist,
+					"ASLHelper/ASLHelper-Launchd.plist",
+				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		A5D281AA16E7E394006405E0 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1006,6 +1169,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		A573C59E1A97C2950029D4C3 /* Build configuration list for PBXNativeTarget "com.igrsoft.ASLHelper" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A573C59F1A97C2950029D4C3 /* Debug */,
+				A573C5A01A97C2950029D4C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		A5D281A916E7E394006405E0 /* Build configuration list for PBXNativeTarget "script_service" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (

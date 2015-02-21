@@ -32,5 +32,10 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>SMPrivilegedExecutables</key>
+	<dict>
+		<key>com.igrsoft.ASLHelper</key>
+		<string>identifier com.igrsoft.ASLHelper and certificate leaf[subject.CN] = "$(CODE_SIGN_IDENTITY)"</string>
+	</dict>
 </dict>
 </plist>
