@@ -43,6 +43,9 @@
 
 @property (nonatomic) CLLocationManager *locationManager;
 
+- (BOOL)autorizateForService:(NSString *)aService
+                       error:(NSError **)error;
+
 @end
 
 @implementation LockMeNowAppDelegate
@@ -518,24 +521,23 @@ BOOL doNothingAtStart = NO;
 }
 
 - (BOOL)autorizateForService:(NSString *)aService
-                       error:(NSError **)error {
-    
+                       error:(NSError **)error
+{
     BOOL result = NO;
     
     AuthorizationItem authItem		= { kSMRightBlessPrivilegedHelper, 0, NULL, 0 };
     AuthorizationRights authRights	= { 1, &authItem };
     AuthorizationFlags flags		=	kAuthorizationFlagDefaults				|
-    kAuthorizationFlagInteractionAllowed	|
-    kAuthorizationFlagPreAuthorize			|
-    kAuthorizationFlagExtendRights;
+                                        kAuthorizationFlagInteractionAllowed	|
+                                        kAuthorizationFlagPreAuthorize			|
+                                        kAuthorizationFlagExtendRights;
     
     AuthorizationRef authRef = NULL;
     
     /* Obtain the right to install privileged helper tools (kSMRightBlessPrivilegedHelper). */
     OSStatus status = AuthorizationCreate(&authRights, kAuthorizationEmptyEnvironment, flags, &authRef);
-    if (status != errAuthorizationSuccess) {
-        
-    } else {
+    if (status == errAuthorizationSuccess)
+    {
         /* This does all the work of verifying the helper tool against the application
          * and vice-versa. Once verification has passed, the embedded launchd.plist
          * is extracted and placed in /Library/LaunchDaemons and then loaded. The
@@ -543,7 +545,11 @@ BOOL doNothingAtStart = NO;
          */
         CFErrorRef cfError = nil;
         result = SMJobBless(kSMDomainSystemLaunchd, (__bridge CFStringRef)aService, authRef, &cfError);
-        *error = (__bridge NSError *)cfError;
+        
+        if (!result)
+        {
+            *error = CFBridgingRelease(cfError);
+        }
     }
     
     return result;
