@@ -981,6 +981,7 @@
 					"ASLHelper/ASLHelper-Launchd.plist",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 			};
 			name = Debug;
 		};
@@ -1019,6 +1020,7 @@
 					"ASLHelper/ASLHelper-Launchd.plist",
 				);
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
 			};
 			name = Release;
 		};
