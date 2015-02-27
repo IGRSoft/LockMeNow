@@ -16,7 +16,7 @@
 
 @implementation BlockViewLock
 
-- (instancetype)initWithConnection:(xpc_connection_t)aConnection settings:(IGRUserDefaults *)aSettings
+- (instancetype)initWithConnection:(NSXPCConnection *)aConnection settings:(IGRUserDefaults *)aSettings
 {
 	if (self = [super initWithConnection:aConnection settings:aSettings])
 	{

@@ -19,12 +19,12 @@
 
 @interface LockManager : NSObject
 
-- (instancetype)initWithConnection:(xpc_connection_t)aConnection settings:(IGRUserDefaults *)aSettings NS_DESIGNATED_INITIALIZER;
+- (instancetype)initWithConnection:(NSXPCConnection *)aConnection settings:(IGRUserDefaults *)aSettings NS_DESIGNATED_INITIALIZER;
 
 - (void)lock;
 - (void)unlock;
 
-@property (nonatomic, weak  ) xpc_connection_t scriptServiceConnection;
+@property (nonatomic, weak  ) NSXPCConnection *scriptServiceConnection;
 @property (nonatomic, weak  ) IGRUserDefaults *userSettings;
 @property (nonatomic, assign) BOOL useSecurity;
 @property (nonatomic, assign) BOOL allowTerminate;

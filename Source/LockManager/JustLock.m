@@ -8,10 +8,11 @@
 
 #import "JustLock.h"
 #import "IGRUserDefaults.h"
+#import "XPCSriptingProtocol.h"
 
 @implementation JustLock
 
-- (instancetype)initWithConnection:(xpc_connection_t)aConnection settings:(IGRUserDefaults *)aSettings
+- (instancetype)initWithConnection:(NSXPCConnection *)aConnection settings:(IGRUserDefaults *)aSettings
 {
 	if (self = [super initWithConnection:aConnection settings:aSettings])
 	{
@@ -46,16 +47,7 @@
 					   name:@"com.apple.screensaver.didstop"
 					 object:NULL];
 	
-	xpc_object_t message = xpc_dictionary_create(NULL, NULL, 0);
-	assert(message != NULL);
-	
-	xpc_dictionary_set_uint64(message, "locktype", LOCK_SCREEN);
-	xpc_dictionary_set_bool(message, "usecurrentscreensaver", self.userSettings.bUseCurrentScreenSaver);
-	
-	xpc_connection_send_message_with_reply(self.scriptServiceConnection, message,
-										   dispatch_get_main_queue(), ^(xpc_object_t event) {
-											   
-										   });
+    [[self.scriptServiceConnection remoteObjectProxy] makeJustLock:self.userSettings.bUseCurrentScreenSaver];
 }
 
 - (void)unlock

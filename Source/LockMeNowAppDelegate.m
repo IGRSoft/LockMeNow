@@ -23,6 +23,7 @@
 
 #import <CoreLocation/CoreLocation.h>
 
+#import "XPCSriptingProtocol.h"
 #import <ServiceManagement/ServiceManagement.h>
 #import <xpc/xpc.h>
 
@@ -32,7 +33,7 @@
     MailHelper *mailHelper;
 }
 
-@property (nonatomic) xpc_connection_t scriptServiceConnection;
+@property (nonatomic) NSXPCConnection *scriptServiceConnection;
 @property (nonatomic) IGRUserDefaults *userSettings;
 
 @property (nonatomic) LockManager *lockManager;
@@ -618,35 +619,19 @@ BOOL doNothingAtStart = NO;
 
 - (void)registeryXPC
 {
-    self.scriptServiceConnection = [self connectionForServiceNamed:"com.igrsoft.lockmenow.script-service"
-                                          connectionInvalidHandler:^{
-                                              self.scriptServiceConnection = NULL;
-                                          }];
-    
-    assert(self.scriptServiceConnection != NULL);
-    
-    xpc_object_t message = xpc_dictionary_create(NULL, NULL, 0);
-    assert(message != NULL);
-    
-    xpc_dictionary_set_uint64(message, "encription", 1);
+    _scriptServiceConnection = [[NSXPCConnection alloc] initWithServiceName:@"com.igrsoft.XPCSripting"];
+    _scriptServiceConnection.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(XPCSriptingProtocol)];
+    [_scriptServiceConnection resume];
     
     __weak typeof(self) weakSelf = self;
-    
-    xpc_connection_send_message_with_reply(self.scriptServiceConnection, message,
-                                           dispatch_get_main_queue(), ^(xpc_object_t event) {
-                                               
-                                               if (xpc_dictionary_get_value(event, "encription") != NULL)
-                                               {
-                                                   BOOL encription = xpc_dictionary_get_bool(event, "encription");
-                                                   weakSelf.userSettings.bEncription = encription;
-                                                   if (weakSelf.userSettings.bEncription)
-                                                   {
-                                                       weakSelf.userSettings.bAutoPrefs = NO;
-                                                   }
-                                                   
-                                                   DBNSLog(@"Encription: %d", encription);
-                                               }
-                                           });
+    [[_scriptServiceConnection remoteObjectProxy] checkEncriptionWithReply:^(BOOL encription) {
+        
+        weakSelf.userSettings.bEncription = encription;
+        if (weakSelf.userSettings.bEncription)
+        {
+            weakSelf.userSettings.bAutoPrefs = NO;
+        }
+    }];
 }
 
 - (xpc_connection_t)connectionForServiceNamed:(const char *)serviceName

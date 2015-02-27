@@ -18,3 +18,5 @@
 #define TWITTER_SITE @"http://twitter.com/#!/iKorich"
 
 #define HELPER_ID "com.igrsoft.ASLHelper"
+
+#define AND_APPLE_CODE_SIGNED and ${IS_APPLE_CODE_SIGNED}

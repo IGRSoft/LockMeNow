@@ -8,10 +8,11 @@
 
 #import "LoginWindowsLock.h"
 #import "IGRUserDefaults.h"
+#import "XPCSriptingProtocol.h"
 
 @implementation LoginWindowsLock
 
-- (instancetype)initWithConnection:(xpc_connection_t)aConnection settings:(IGRUserDefaults *)aSettings
+- (instancetype)initWithConnection:(NSXPCConnection *)aConnection settings:(IGRUserDefaults *)aSettings
 {
 	if (self = [super initWithConnection:aConnection settings:aSettings])
 	{
@@ -39,16 +40,7 @@
 							  arguments:@[@"-c", @"exec \"/System/Library/CoreServices/Menu Extras/user.menu/Contents/Resources/CGSession\" -suspend"]]
 	 waitUntilExit];
 #else
-	xpc_object_t message = xpc_dictionary_create(NULL, NULL, 0);
-	assert(message != NULL);
-	
-	xpc_dictionary_set_uint64(message, "locktype", LOCK_LOGIN_WINDOW);
-	
-	xpc_connection_send_message_with_reply(self.scriptServiceConnection, message,
-										   dispatch_get_main_queue(), ^(xpc_object_t event) {
-											   
-											   DBNSLog(@"LOCK_LOGIN_WINDOW");
-										   });
+	[[self.scriptServiceConnection remoteObjectProxy] makeLoginWindowLock];
 #endif
 }
 
