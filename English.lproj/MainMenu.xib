@@ -258,6 +258,8 @@
                                             </buttonCell>
                                             <connections>
                                                 <action selector="setTakePhotoOnIncorrectPassword:" target="494" id="yWr-0U-ABR"/>
+                                                <binding destination="494" name="enabled" keyPath="self.isASLPatched" id="fX6-dl-qoc"/>
+                                                <binding destination="494" name="value" keyPath="self.userSettings.bMakePhotoOnIncorrectPasword" id="rMB-ym-NJA"/>
                                                 <binding destination="494" name="enabled2" keyPath="self.userSettings.iLockType" previousBinding="fX6-dl-qoc" id="U8Y-M8-kej">
                                                     <dictionary key="options">
                                                         <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -266,8 +268,6 @@
                                                         <integer key="NSNullPlaceholder" value="-1"/>
                                                     </dictionary>
                                                 </binding>
-                                                <binding destination="494" name="enabled" keyPath="self.isASLPatched" id="fX6-dl-qoc"/>
-                                                <binding destination="494" name="value" keyPath="self.userSettings.bMakePhotoOnIncorrectPasword" id="rMB-ym-NJA"/>
                                             </connections>
                                         </button>
                                         <button id="aj1-9s-ApJ">
@@ -279,6 +279,8 @@
                                             </buttonCell>
                                             <connections>
                                                 <action selector="updateUserSettings:" target="494" id="uWX-4a-YCl"/>
+                                                <binding destination="494" name="enabled" keyPath="self.isASLPatched" id="lPz-19-JVc"/>
+                                                <binding destination="494" name="value" keyPath="self.userSettings.bSendMailOnIncorrectPasword" id="hhC-cK-GOY"/>
                                                 <binding destination="494" name="enabled2" keyPath="self.userSettings.iLockType" previousBinding="lPz-19-JVc" id="Nm8-Rm-q6C">
                                                     <dictionary key="options">
                                                         <integer key="NSMultipleValuesPlaceholder" value="-1"/>
@@ -287,8 +289,6 @@
                                                         <integer key="NSNullPlaceholder" value="-1"/>
                                                     </dictionary>
                                                 </binding>
-                                                <binding destination="494" name="enabled" keyPath="self.isASLPatched" id="lPz-19-JVc"/>
-                                                <binding destination="494" name="value" keyPath="self.userSettings.bSendMailOnIncorrectPasword" id="hhC-cK-GOY"/>
                                             </connections>
                                         </button>
                                         <textField focusRingType="none" verticalHuggingPriority="750" id="E9x-dm-9td">
@@ -301,7 +301,8 @@
                                             </textFieldCell>
                                             <connections>
                                                 <action selector="updateUserSettings:" target="494" id="R2a-RU-fvi"/>
-                                                <binding destination="494" name="enabled3" keyPath="self.userSettings.iLockType" previousBinding="6yb-j5-SP5" id="Onc-91-0ar">
+                                                <binding destination="494" name="enabled" keyPath="self.isASLPatched" id="64W-zx-W07"/>
+                                                <binding destination="494" name="enabled2" keyPath="self.userSettings.bSendMailOnIncorrectPasword" previousBinding="64W-zx-W07" id="6yb-j5-SP5">
                                                     <dictionary key="options">
                                                         <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="-1"/>
@@ -309,8 +310,7 @@
                                                         <integer key="NSNullPlaceholder" value="-1"/>
                                                     </dictionary>
                                                 </binding>
-                                                <binding destination="494" name="enabled" keyPath="self.isASLPatched" id="64W-zx-W07"/>
-                                                <binding destination="494" name="enabled2" keyPath="self.userSettings.bSendMailOnIncorrectPasword" previousBinding="64W-zx-W07" id="6yb-j5-SP5">
+                                                <binding destination="494" name="enabled3" keyPath="self.userSettings.iLockType" previousBinding="6yb-j5-SP5" id="Onc-91-0ar">
                                                     <dictionary key="options">
                                                         <integer key="NSMultipleValuesPlaceholder" value="-1"/>
                                                         <integer key="NSNoSelectionPlaceholder" value="-1"/>
@@ -360,14 +360,6 @@
                                             </buttonCell>
                                             <connections>
                                                 <action selector="setSendLocation:" target="494" id="4PV-kf-98i"/>
-                                                <binding destination="494" name="enabled3" keyPath="self.userSettings.iLockType" previousBinding="1a4-3z-oPb" id="jM3-5c-2sg">
-                                                    <dictionary key="options">
-                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
-                                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
-                                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
-                                                        <integer key="NSNullPlaceholder" value="-1"/>
-                                                    </dictionary>
-                                                </binding>
                                                 <binding destination="494" name="enabled" keyPath="self.isASLPatched" id="Azb-UE-3cB"/>
                                                 <binding destination="494" name="value" keyPath="self.userSettings.bSendLocationOnIncorrectPasword" id="sAG-87-6cm"/>
                                                 <binding destination="494" name="enabled2" keyPath="self.userSettings.bSendMailOnIncorrectPasword" previousBinding="Azb-UE-3cB" id="1a4-3z-oPb">
@@ -378,9 +370,17 @@
                                                         <integer key="NSNullPlaceholder" value="-1"/>
                                                     </dictionary>
                                                 </binding>
+                                                <binding destination="494" name="enabled3" keyPath="self.userSettings.iLockType" previousBinding="1a4-3z-oPb" id="jM3-5c-2sg">
+                                                    <dictionary key="options">
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                                    </dictionary>
+                                                </binding>
                                             </connections>
                                         </button>
-                                        <progressIndicator horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" id="b6C-7z-1x4">
+                                        <progressIndicator hidden="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" id="b6C-7z-1x4">
                                             <rect key="frame" x="230" y="19" width="16" height="16"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         </progressIndicator>
@@ -392,6 +392,18 @@
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
+                                        </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Gj7-jh-9kr">
+                                            <rect key="frame" x="15" y="-1" width="269" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="Hg1-XZ-60t">
+                                                <font key="font" metaFont="smallSystem"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                            <connections>
+                                                <binding destination="494" name="hidden" keyPath="self.patchASLProgress.hidden" id="qna-gf-LgM"/>
+                                            </connections>
                                         </textField>
                                     </subviews>
                                 </view>
@@ -595,7 +607,7 @@ Big Thanks:
                     </tabView>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="330.5" y="264.5"/>
+            <point key="canvasLocation" x="-146.5" y="264.5"/>
         </window>
         <customObject id="494" customClass="LockMeNowAppDelegate">
             <connections>
@@ -605,6 +617,7 @@ Big Thanks:
                 <outlet property="keyListener" destination="420" id="nlr-Fe-E7k"/>
                 <outlet property="lockBlockView" destination="848" id="858"/>
                 <outlet property="patchASLProgress" destination="b6C-7z-1x4" id="BpY-Vq-5Ng"/>
+                <outlet property="patchStatus" destination="Gj7-jh-9kr" id="Xrw-Ny-L5y"/>
                 <outlet property="sendMailCheckbox" destination="aj1-9s-ApJ" id="tdq-hs-YZm"/>
                 <outlet property="statusMenu" destination="560" id="571"/>
                 <outlet property="tabView" destination="774" id="913"/>

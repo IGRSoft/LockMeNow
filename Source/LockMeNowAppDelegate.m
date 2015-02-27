@@ -313,9 +313,12 @@ BOOL doNothingAtStart = NO;
 
 - (IBAction)applyASLPatch:(id)sender
 {
+    self.patchStatus.stringValue = @"Applying patch...";
+    
     __weak NSButton *weakButton = sender;
     weakButton.enabled = NO;
     [self.patchASLProgress startAnimation:self];
+    self.patchASLProgress.hidden = NO;
     
     __weak typeof(self) weakSelf = self;
     void(^doneProcess)(void) = ^(void)
@@ -323,6 +326,7 @@ BOOL doNothingAtStart = NO;
         dispatch_async(dispatch_get_main_queue(), ^{
             
             [weakSelf.patchASLProgress stopAnimation:self];
+            weakSelf.patchASLProgress.hidden = YES;
             weakButton.enabled = YES;
         });
     };
@@ -355,6 +359,8 @@ BOOL doNothingAtStart = NO;
             
             NSString *scriptPath = [[NSBundle mainBundle] pathForResource:@"reactivate_asl_service" ofType:@"sh"];
             xpc_dictionary_set_string(message, "script_path", [scriptPath UTF8String]);
+            
+            weakSelf.patchStatus.stringValue = @"Reapiring Disk Permissions...";
             
             xpc_connection_send_message_with_reply(connection, message, dispatch_get_main_queue(), ^(xpc_object_t event) {
                 
