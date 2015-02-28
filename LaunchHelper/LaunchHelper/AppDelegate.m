@@ -18,7 +18,7 @@
 {
 	// Insert code here to initialize your application
 	
-    NSString *launchAppId = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"LaunchAppId"];
+    NSString *launchAppId = [[NSBundle mainBundle] infoDictionary][@"LaunchAppId"];
     
     NSWorkspace *ws = [NSWorkspace sharedWorkspace];
     NSArray *runningApplications = [[ws runningApplications] valueForKey:@"bundleIdentifier"];
@@ -28,7 +28,7 @@
     
     if (![runningApplications containsObject:launchAppId])
     {
-        NSString *launchAppName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"LaunchAppName"];
+        NSString *launchAppName = [[NSBundle mainBundle] infoDictionary][@"LaunchAppName"];
         [ws launchApplication:launchAppName];
     }
 }

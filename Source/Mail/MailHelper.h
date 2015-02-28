@@ -10,7 +10,7 @@
 
 @interface MailHelper : NSObject
 
-- (id)initWithMailAddres:(NSString *)aMail userPhoto:(NSString *)photoPath;
+- (instancetype)initWithMailAddres:(NSString *)aMail userPhoto:(NSString *)photoPath;
 
 - (void)sendDefaultMessageAddLocation:(BOOL)anAddLocation;
 

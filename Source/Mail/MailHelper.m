@@ -24,7 +24,7 @@
 
 @implementation MailHelper
 
-- (id)initWithMailAddres:(NSString *)aMail userPhoto:(NSString *)photoPath
+- (instancetype)initWithMailAddres:(NSString *)aMail userPhoto:(NSString *)photoPath
 {
     if (self = [super init])
     {
@@ -74,10 +74,8 @@
     
     /* create a new outgoing message object */
     MailOutgoingMessage *emailMessage = [[[mail classForScriptingClass:@"outgoing message"] alloc] initWithProperties:
-                                         [NSDictionary dictionaryWithObjectsAndKeys:
-                                          @"Lock Me Now Security Warning", @"subject",
-                                          _messageContent, @"content",
-                                          nil]];
+                                         @{@"subject": @"Lock Me Now Security Warning",
+                                          @"content" : _messageContent}];
 				
     /* add the object to the mail app  */
     [[mail outgoingMessages] addObject: emailMessage];
@@ -91,9 +89,7 @@
 				
     /* create a new recipient and add it to the recipients list */
     MailToRecipient *theRecipient = [[[mail classForScriptingClass:@"to recipient"] alloc] initWithProperties:
-                                     [NSDictionary dictionaryWithObjectsAndKeys:
-                                      _mailAddres, @"address",
-                                      nil]];
+                                     @{@"address": _mailAddres}];
     [emailMessage.toRecipients addObject: theRecipient];
     
     /* Test for errors */
@@ -104,9 +100,7 @@
     for (NSString *attachmentFilePath in _photoPaths)
     {
         MailAttachment *theAttachment = [[[mail classForScriptingClass:@"attachment"] alloc] initWithProperties:
-                                         [NSDictionary dictionaryWithObjectsAndKeys:
-                                          [NSURL URLWithString:attachmentFilePath], @"fileName",
-                                          nil]];
+                                         @{@"fileName": [NSURL URLWithString:attachmentFilePath]}];
         
         /* add it to the list of attachments */
         [[emailMessage.content attachments] addObject: theAttachment];
