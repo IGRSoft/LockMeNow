@@ -17,7 +17,7 @@
 @property (nonatomic, assign) BOOL userUsePassword;
 @property (nonatomic, assign) NSNumber *passwordDelay;
 
-- (void)setSecuritySetings:(BOOL)seter;
+- (void)setSecuritySetings:(BOOL)aLock;
 
 @end
 
@@ -88,12 +88,12 @@
     return passwordDelay;
 }
 
-- (void)setSecuritySetings:(BOOL)askPassword
+- (void)setSecuritySetings:(BOOL)aLock
 {
     NSNumber *askPasswordVal = @YES;
     NSNumber *passwordDelayVal = @0;
     
-	if (askPassword)
+	if (aLock)
 	{
         DBNSLog(@"Set Security Lock");
         
