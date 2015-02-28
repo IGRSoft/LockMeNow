@@ -18,12 +18,19 @@
 {
 	// Insert code here to initialize your application
 	
-	NSString *path = [[[NSBundle mainBundle] bundlePath] stringByDeletingLastPathComponent]; //Library
-	path = [[path stringByDeletingLastPathComponent] stringByDeletingLastPathComponent]; //Contents
-	path = [path stringByDeletingLastPathComponent]; //App
-	
-	[[NSWorkspace sharedWorkspace] launchApplication:path];
-	[NSApp terminate:nil];
+    NSString *launchAppId = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"LaunchAppId"];
+    
+    NSWorkspace *ws = [NSWorkspace sharedWorkspace];
+    NSArray *runningApplications = [[ws runningApplications] valueForKey:@"bundleIdentifier"];
+    
+    NSLog(@"launchAppName - %@", launchAppId);
+    NSLog(@"runningApplications: %@", runningApplications);
+    
+    if (![runningApplications containsObject:launchAppId])
+    {
+        NSString *launchAppName = [[[NSBundle mainBundle] infoDictionary] objectForKey:@"LaunchAppName"];
+        [ws launchApplication:launchAppName];
+    }
 }
 
 - (void)applicationWillTerminate:(NSNotification *)aNotification

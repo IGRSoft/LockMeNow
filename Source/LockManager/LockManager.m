@@ -13,6 +13,12 @@
 
 @property (nonatomic, strong) NSFileHandle *fileHandle;
 @property (nonatomic, strong) NSString *lastLine;
+
+@property (nonatomic, assign) BOOL userUsePassword;
+@property (nonatomic, assign) NSNumber *passwordDelay;
+
+- (void)setSecuritySetings:(BOOL)seter;
+
 @end
 
 @implementation LockManager
@@ -25,6 +31,9 @@
 		_userSettings = aSettings;
 		_useSecurity = NO;
 		_allowTerminate = YES;
+        
+        _userUsePassword = NO;
+        _passwordDelay = @0;
 	}
 	
 	return self;
@@ -38,15 +47,8 @@
 	{
 		return;
 	}
-	
-	BOOL m_bNeedBlock = ![self askPassword];
-	
-	if (m_bNeedBlock)
-	{
-		DBNSLog(@"Set Security Lock");
-		[self setSecuritySetings:YES withSkip:m_bNeedBlock];
-	}
     
+    [self setSecuritySetings:YES];
     [self startCheckIncorrectPassword];
 }
 
@@ -58,72 +60,87 @@
 	{
 		[self.delegate unLockSuccess];
 	}
-	
-	BOOL m_bNeedBlock = ![self askPassword];
-	
-	if (m_bNeedBlock)
-	{
-		DBNSLog(@"Remove Security Lock");
-		[self setSecuritySetings:NO withSkip:m_bNeedBlock];
-	}
     
+    if (!_useSecurity)
+    {
+        return;
+    }
+    
+	[self setSecuritySetings:NO];
     [self stopCheckIncorrectPassword];
 }
 
 - (BOOL)askPassword
 {
-	BOOL isPassword = NO;
-	
-	if (!_userSettings.bEncription)
-	{
-		isPassword = (BOOL)CFPreferencesGetAppBooleanValue(CFSTR("askForPassword"), CFSTR("com.apple.screensaver"), nil);
-	}
+	BOOL isPassword = (BOOL)CFPreferencesGetAppBooleanValue(CFSTR("askForPassword"),
+                                                            CFSTR("com.apple.screensaver"),
+                                                            nil);
 	
 	return isPassword;
 }
 
-- (void)setSecuritySetings:(BOOL)seter withSkip:(BOOL)skip
+- (NSNumber *)passwordDelay
 {
-	if (!_userSettings.bAutoPrefs)
+    NSNumber *passwordDelay = @(CFPreferencesGetAppIntegerValue(CFSTR("askForPasswordDelay"),
+                                                                CFSTR("com.apple.screensaver"),
+                                                                nil));
+    
+    return passwordDelay;
+}
+
+- (void)setSecuritySetings:(BOOL)askPassword
+{
+    NSNumber *askPasswordVal = @YES;
+    NSNumber *passwordDelayVal = @0;
+    
+	if (askPassword)
 	{
-		return;
+        DBNSLog(@"Set Security Lock");
+        
+        _userUsePassword = [self askPassword];
+        _passwordDelay = [self passwordDelay];
 	}
+    else
+    {
+        DBNSLog(@"Remove Security Lock");
+        
+        askPasswordVal = @(_userUsePassword);
+        passwordDelayVal = _passwordDelay;
+    }
 	
-	BOOL success = YES;
-	
-	if (!skip)
-	{
-		NSNumber *val = @(seter);
-		CFPreferencesSetValue(CFSTR("askForPassword"), (__bridge CFPropertyListRef) val,
-							  CFSTR("com.apple.screensaver"),
-							  kCFPreferencesCurrentUser, kCFPreferencesCurrentHost);
-		success = CFPreferencesSynchronize(CFSTR("com.apple.screensaver"),
-										   kCFPreferencesCurrentUser, kCFPreferencesCurrentHost);
-		
-		if (success)
-		{
-			DBNSLog(@"Can't sync Prefs");
-		}
-		
-		CFPreferencesSetValue(CFSTR("askForPasswordDelay"), (__bridge CFPropertyListRef) @0,
-							  CFSTR("com.apple.screensaver"),
-							  kCFPreferencesCurrentUser, kCFPreferencesCurrentHost);
-		success = CFPreferencesSynchronize(CFSTR("com.apple.screensaver"),
-										   kCFPreferencesCurrentUser, kCFPreferencesCurrentHost);
-		
-		// Notify login process
-		// not sure this does or why it must be called...anyone? (DBR)
-		if (success)
-		{
-			CFMessagePortRef port = CFMessagePortCreateRemote(NULL, CFSTR("com.apple.loginwindow.notify"));
-			success = (CFMessagePortSendRequest(port, 500, 0, 0, 0, 0, 0) == kCFMessagePortSuccess);
-			CFRelease(port);
-			if (success)
-			{
-				DBNSLog(@"Can't start screensaver");
-			}
-		}
-	}
+    if (!_userUsePassword)
+    {
+        CFPreferencesSetValue(CFSTR("askForPassword"), (__bridge CFPropertyListRef) askPasswordVal,
+                              CFSTR("com.apple.screensaver"),
+                              kCFPreferencesCurrentUser, kCFPreferencesCurrentHost);
+    }
+    
+    if (![_passwordDelay isEqualToNumber:@0])
+    {
+        CFPreferencesSetValue(CFSTR("askForPasswordDelay"), (__bridge CFPropertyListRef) passwordDelayVal,
+                              CFSTR("com.apple.screensaver"),
+                              kCFPreferencesCurrentUser, kCFPreferencesCurrentHost);
+    }
+    
+    BOOL success = CFPreferencesSynchronize(CFSTR("com.apple.screensaver"),
+                                            kCFPreferencesCurrentUser, kCFPreferencesCurrentHost);
+    
+    if (!success)
+    {
+        DBNSLog(@"Can't sync Prefs");
+    }
+    else
+    {
+        // Notify login process
+        // not sure this does or why it must be called...anyone? (DBR)
+        CFMessagePortRef port = CFMessagePortCreateRemote(NULL, CFSTR("com.apple.loginwindow.notify"));
+        success = (CFMessagePortSendRequest(port, 500, 0, 0, 0, 0, 0) == kCFMessagePortSuccess);
+        CFRelease(port);
+        if (success)
+        {
+            DBNSLog(@"Can't start screensaver");
+        }
+    }
 }
 
 - (void)startCheckIncorrectPassword

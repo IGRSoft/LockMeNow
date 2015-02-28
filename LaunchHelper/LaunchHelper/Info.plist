@@ -32,5 +32,9 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>LaunchAppId</key>
+	<string>com.igrsoft.LockMeNow</string>
+	<key>LaunchAppName</key>
+	<string>LockMeNow</string>
 </dict>
 </plist>

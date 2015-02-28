@@ -623,7 +623,7 @@ BOOL doNothingAtStart = NO;
     _scriptServiceConnection.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(XPCSriptingProtocol)];
     [_scriptServiceConnection resume];
     
-    __weak typeof(self) weakSelf = self;
+    /*__weak typeof(self) weakSelf = self;
     [[_scriptServiceConnection remoteObjectProxy] checkEncriptionWithReply:^(BOOL encription) {
         
         weakSelf.userSettings.bEncription = encription;
@@ -631,7 +631,7 @@ BOOL doNothingAtStart = NO;
         {
             weakSelf.userSettings.bAutoPrefs = NO;
         }
-    }];
+    }];*/
 }
 
 - (xpc_connection_t)connectionForServiceNamed:(const char *)serviceName

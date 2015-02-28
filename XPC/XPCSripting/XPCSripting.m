@@ -10,7 +10,7 @@
 
 @implementation XPCSripting
 
-- (NSString *)doShell:(NSString *)file
+/*- (NSString *)doShell:(NSString *)file
 {
     NSString *scriptPath = [[NSBundle mainBundle] pathForResource:file ofType:@"sh"];
     
@@ -54,7 +54,7 @@
     }
     
     reply(encription);
-}
+}*/
 
 - (void)makeLoginWindowLock
 {

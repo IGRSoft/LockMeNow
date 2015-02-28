@@ -344,14 +344,14 @@
 		080E96DDFE201D6D7F000001 /* LockMeNow */ = {
 			isa = PBXGroup;
 			children = (
-				A5F451AD1A9288C7009FD03E /* IGRUserDefaults.h */,
-				A5F451AE1A9288C7009FD03E /* IGRUserDefaults.m */,
 				A5F451D81A9288DC009FD03E /* iTunes */,
 				A5F451B21A9288C7009FD03E /* Listeners */,
 				A5F451BB1A9288C7009FD03E /* LockManager */,
 				A5086B581A94A3CA00787358 /* Mail */,
 				A5F451C41A9288C7009FD03E /* LockMeNowAppDelegate.h */,
 				A5F451C51A9288C7009FD03E /* LockMeNowAppDelegate.m */,
+				A5F451AD1A9288C7009FD03E /* IGRUserDefaults.h */,
+				A5F451AE1A9288C7009FD03E /* IGRUserDefaults.m */,
 			);
 			name = LockMeNow;
 			path = Source;
@@ -397,7 +397,6 @@
 		29B97314FDCFA39411CA2CEA /* SGHotKeyCenter */ = {
 			isa = PBXGroup;
 			children = (
-				A5BD7F6C18B0F0F30038B280 /* README.md */,
 				080E96DDFE201D6D7F000001 /* LockMeNow */,
 				A56235041A817F6E002B86A5 /* LaunchHelper */,
 				A527B8901AA0BB2F002E92C0 /* LaunchServices */,
@@ -408,6 +407,7 @@
 				A5086B4E1A94A01600787358 /* Applications */,
 				29B97323FDCFA39411CA2CEA /* Frameworks */,
 				19C28FACFE9D520D11CA2CBB /* Products */,
+				A5BD7F6C18B0F0F30038B280 /* README.md */,
 			);
 			name = SGHotKeyCenter;
 			sourceTree = "<group>";

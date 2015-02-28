@@ -36,6 +36,7 @@ ScreenShots
 -------------
 
 <img src="https://github.com/iKorich/LockMeNow/blob/master/img/prefs_main.png?raw=true">
+<img src="https://github.com/iKorich/LockMeNow/blob/master/img/prefs_security?raw=true">
 <img src="https://github.com/iKorich/LockMeNow/blob/master/img/prefs_bluetooth.png?raw=true">
 <img src="https://github.com/iKorich/LockMeNow/blob/master/img/prefs_usb.png?raw=true">
 

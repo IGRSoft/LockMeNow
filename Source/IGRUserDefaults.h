@@ -34,14 +34,12 @@ typedef void (^IGRUserDefaultsBluetoothData)(NSData *bluetoothData);
 @property (nonatomic, assign) BOOL bUseCurrentScreenSaver;
 @property (nonatomic, assign) BOOL bResumeiTunes;
 @property (nonatomic, assign) BOOL bNeedResumeiTunes;
-@property (nonatomic, assign) BOOL bAutoPrefs;
 @property (nonatomic, assign) NSNumber *iLockType;
 @property (nonatomic, assign) BOOL bMonitoringUSB;
 @property (nonatomic, assign) NSNumber *iUSBDeviceType;
 @property (nonatomic, assign) BOOL bMonitoringBluetooth;
 @property (nonatomic, strong) id keyCombo;
 @property (nonatomic, strong) NSData *bluetoothData;
-@property (nonatomic, assign) BOOL bEncription;
 
 @property (nonatomic, assign) BOOL bMakePhotoOnIncorrectPasword;
 @property (nonatomic, assign) BOOL bSendMailOnIncorrectPasword;
