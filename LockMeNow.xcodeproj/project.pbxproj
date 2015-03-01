@@ -43,6 +43,9 @@
 		A5CB1AF01A840849005AAB21 /* AVFoundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5CB1AEF1A840849005AAB21 /* AVFoundation.framework */; };
 		A5CB1AF21A840878005AAB21 /* CoreMedia.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5CB1AF11A840878005AAB21 /* CoreMedia.framework */; };
 		A5CE4D0315062BFB001C22D2 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5CE4D0215062BFB001C22D2 /* ScriptingBridge.framework */; };
+		A5E89ED81AA2713E0007BA5B /* XPCLoger.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E89ED71AA2713E0007BA5B /* XPCLoger.m */; };
+		A5E89EDA1AA2713E0007BA5B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E89ED91AA2713E0007BA5B /* main.m */; };
+		A5E89EDD1AA2713E0007BA5B /* XPCLoger.xpc in Copy XPC Service */ = {isa = PBXBuildFile; fileRef = A5E89ED11AA2713E0007BA5B /* XPCLoger.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A5F066F11A8142DE005A571D /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F066F01A8142DE005A571D /* AppKit.framework */; };
 		A5F451CB1A9288C7009FD03E /* IGRUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451AE1A9288C7009FD03E /* IGRUserDefaults.m */; };
 		A5F451CC1A9288C7009FD03E /* iTunesHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451B11A9288C7009FD03E /* iTunesHelper.m */; };
@@ -165,6 +168,13 @@
 			remoteGlobalIDString = A54A9CDB1A83F8F2004D82DB;
 			remoteInfo = Example;
 		};
+		A5E89EDB1AA2713E0007BA5B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A5E89ED01AA2713E0007BA5B;
+			remoteInfo = XPCLoger;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -209,6 +219,7 @@
 			dstSubfolderSpec = 16;
 			files = (
 				A527B8751AA0A9CF002E92C0 /* XPCSripting.xpc in Copy XPC Service */,
+				A5E89EDD1AA2713E0007BA5B /* XPCLoger.xpc in Copy XPC Service */,
 			);
 			name = "Copy XPC Service";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -268,6 +279,12 @@
 		A5CB1AEF1A840849005AAB21 /* AVFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AVFoundation.framework; path = System/Library/Frameworks/AVFoundation.framework; sourceTree = SDKROOT; };
 		A5CB1AF11A840878005AAB21 /* CoreMedia.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreMedia.framework; path = System/Library/Frameworks/CoreMedia.framework; sourceTree = SDKROOT; };
 		A5CE4D0215062BFB001C22D2 /* ScriptingBridge.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScriptingBridge.framework; path = /System/Library/Frameworks/ScriptingBridge.framework; sourceTree = "<absolute>"; };
+		A5E89ED11AA2713E0007BA5B /* XPCLoger.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = XPCLoger.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5E89ED41AA2713E0007BA5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5E89ED51AA2713E0007BA5B /* XPCLogerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XPCLogerProtocol.h; sourceTree = "<group>"; };
+		A5E89ED61AA2713E0007BA5B /* XPCLoger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XPCLoger.h; sourceTree = "<group>"; };
+		A5E89ED71AA2713E0007BA5B /* XPCLoger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XPCLoger.m; sourceTree = "<group>"; };
+		A5E89ED91AA2713E0007BA5B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A5F066F01A8142DE005A571D /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		A5F451AD1A9288C7009FD03E /* IGRUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGRUserDefaults.h; sourceTree = "<group>"; };
 		A5F451AE1A9288C7009FD03E /* IGRUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IGRUserDefaults.m; sourceTree = "<group>"; };
@@ -338,6 +355,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A5E89ECE1AA2713E0007BA5B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -390,6 +414,7 @@
 				8D1107320486CEB800E47090 /* LockMeNow.app */,
 				A573C59A1A97C2950029D4C3 /* com.igrsoft.ASLHelper */,
 				A527B8691AA0A9CF002E92C0 /* XPCSripting.xpc */,
+				A5E89ED11AA2713E0007BA5B /* XPCLoger.xpc */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -478,6 +503,7 @@
 		A527B85F1AA0A999002E92C0 /* XPC */ = {
 			isa = PBXGroup;
 			children = (
+				A5E89ED21AA2713E0007BA5B /* XPCLoger */,
 				A527B86A1AA0A9CF002E92C0 /* XPCSripting */,
 			);
 			path = XPC;
@@ -604,6 +630,27 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
+		A5E89ED21AA2713E0007BA5B /* XPCLoger */ = {
+			isa = PBXGroup;
+			children = (
+				A5E89ED51AA2713E0007BA5B /* XPCLogerProtocol.h */,
+				A5E89ED61AA2713E0007BA5B /* XPCLoger.h */,
+				A5E89ED71AA2713E0007BA5B /* XPCLoger.m */,
+				A5E89ED91AA2713E0007BA5B /* main.m */,
+				A5E89ED31AA2713E0007BA5B /* Supporting Files */,
+			);
+			name = XPCLoger;
+			path = XPC/XPCLoger;
+			sourceTree = SOURCE_ROOT;
+		};
+		A5E89ED31AA2713E0007BA5B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A5E89ED41AA2713E0007BA5B /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		A5F451B21A9288C7009FD03E /* Listeners */ = {
 			isa = PBXGroup;
 			children = (
@@ -667,6 +714,7 @@
 				A5C0BBF316A6D083008072DE /* PBXTargetDependency */,
 				A5C0BBF516A6D083008072DE /* PBXTargetDependency */,
 				A527B8741AA0A9CF002E92C0 /* PBXTargetDependency */,
+				A5E89EDC1AA2713E0007BA5B /* PBXTargetDependency */,
 			);
 			name = LockMeNow;
 			productInstallPath = "$(HOME)/Applications";
@@ -707,6 +755,23 @@
 			productReference = A573C59A1A97C2950029D4C3 /* com.igrsoft.ASLHelper */;
 			productType = "com.apple.product-type.tool";
 		};
+		A5E89ED01AA2713E0007BA5B /* XPCLoger */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A5E89EE51AA2713E0007BA5B /* Build configuration list for PBXNativeTarget "XPCLoger" */;
+			buildPhases = (
+				A5E89ECD1AA2713E0007BA5B /* Sources */,
+				A5E89ECE1AA2713E0007BA5B /* Frameworks */,
+				A5E89ECF1AA2713E0007BA5B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XPCLoger;
+			productName = XPCLoger;
+			productReference = A5E89ED11AA2713E0007BA5B /* XPCLoger.xpc */;
+			productType = "com.apple.product-type.xpc-service";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -732,6 +797,10 @@
 					};
 					A573C5991A97C2950029D4C3 = {
 						CreatedOnToolsVersion = 6.1.1;
+					};
+					A5E89ED01AA2713E0007BA5B = {
+						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = DMP42GVPJ3;
 					};
 				};
 			};
@@ -765,6 +834,7 @@
 				8D1107260486CEB800E47090 /* LockMeNow */,
 				A573C5991A97C2950029D4C3 /* com.igrsoft.ASLHelper */,
 				A527B8681AA0A9CF002E92C0 /* XPCSripting */,
+				A5E89ED01AA2713E0007BA5B /* XPCLoger */,
 			);
 		};
 /* End PBXProject section */
@@ -852,6 +922,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A5E89ECF1AA2713E0007BA5B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -893,6 +970,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A5E89ECD1AA2713E0007BA5B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5E89EDA1AA2713E0007BA5B /* main.m in Sources */,
+				A5E89ED81AA2713E0007BA5B /* XPCLoger.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -920,6 +1006,11 @@
 			isa = PBXTargetDependency;
 			name = ShortcutRecorder;
 			targetProxy = A5C0BBF416A6D083008072DE /* PBXContainerItemProxy */;
+		};
+		A5E89EDC1AA2713E0007BA5B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A5E89ED01AA2713E0007BA5B /* XPCLoger */;
+			targetProxy = A5E89EDB1AA2713E0007BA5B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -984,7 +1075,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = XPC/XPCSripting/Info.plist;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1019,7 +1109,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = XPC/XPCSripting/Info.plist;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
@@ -1055,7 +1144,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "ASLHelper/ASLHelper-Info.plist";
 				INFOPLIST_PREPROCESS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_LDFLAGS = (
 					"-sectcreate",
 					__TEXT,
@@ -1094,7 +1182,6 @@
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = "ASLHelper/ASLHelper-Info.plist";
 				INFOPLIST_PREPROCESS = YES;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				OTHER_LDFLAGS = (
 					"-sectcreate",
 					__TEXT,
@@ -1105,6 +1192,79 @@
 					__launchd_plist,
 					"LaunchServices/ASLHelper/ASLHelper-Launchd.plist",
 				);
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
+		A5E89EDE1AA2713E0007BA5B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "IGR Software";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = XPC/XPCLoger/Info.plist;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		A5E89EDF1AA2713E0007BA5B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "IGR Software";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = XPC/XPCLoger/Info.plist;
+				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SKIP_INSTALL = YES;
 			};
@@ -1129,7 +1289,6 @@
 				INSTALL_PATH = /Applications;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CFLAGS = "-DDEBUG";
 				PRODUCT_NAME = LockMeNow;
 			};
@@ -1154,7 +1313,6 @@
 				INSTALL_PATH = /Applications;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				OTHER_CFLAGS = "";
 				PRODUCT_NAME = LockMeNow;
 			};
@@ -1169,7 +1327,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IS_APPLE_CODE_SIGNED = "(anchor apple or (anchor apple generic and certificate leaf[field.1.2.840.113635.100.6.1.9]) or (anchor apple generic and certificate leaf[field.1.2.840.113635.100.6.1.9.1]))";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				ONLY_ACTIVE_ARCH = YES;
 				SDKROOT = macosx;
 			};
@@ -1183,7 +1341,7 @@
 				GCC_WARN_ABOUT_RETURN_TYPE = YES;
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IS_APPLE_CODE_SIGNED = "(anchor apple or (anchor apple generic and certificate leaf[field.1.2.840.113635.100.6.1.9]) or (anchor apple generic and certificate leaf[field.1.2.840.113635.100.6.1.9.1]))";
-				MACOSX_DEPLOYMENT_TARGET = 10.7;
+				MACOSX_DEPLOYMENT_TARGET = 10.9;
 				SDKROOT = macosx;
 			};
 			name = Release;
@@ -1205,6 +1363,15 @@
 			buildConfigurations = (
 				A573C59F1A97C2950029D4C3 /* Debug */,
 				A573C5A01A97C2950029D4C3 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A5E89EE51AA2713E0007BA5B /* Build configuration list for PBXNativeTarget "XPCLoger" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5E89EDE1AA2713E0007BA5B /* Debug */,
+				A5E89EDF1AA2713E0007BA5B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

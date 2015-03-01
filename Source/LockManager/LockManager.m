@@ -8,11 +8,12 @@
 
 #import "LockManager.h"
 #import "IGRUserDefaults.h"
+#import "XPCLogerProtocol.h"
 
 @interface LockManager ()
 
-@property (nonatomic, strong) NSFileHandle *fileHandle;
-@property (nonatomic, strong) NSString *lastLine;
+@property (nonatomic, strong) NSXPCConnection *connectionToService;
+@property (nonatomic, strong) FoudWrongPasswordBlock foudWrongPasswordBlock;
 
 @property (nonatomic, assign) BOOL userUsePassword;
 @property (nonatomic, assign) NSNumber *passwordDelay;
@@ -147,22 +148,27 @@
 {
     if (_userSettings.bMakePhotoOnIncorrectPasword || _userSettings.bSendMailOnIncorrectPasword)
     {
-        self.lastLine = nil;
+        _connectionToService = [[NSXPCConnection alloc] initWithServiceName:XPC_LOGER];
+        _connectionToService.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(XPCLogerProtocol)];
+        [_connectionToService resume];
         
-        NSURL *filePath = [NSURL URLWithString:LOG_PATH];
-        NSError *error = nil;
+        __weak typeof(self) weakSelf = self;
         
-        self.fileHandle = [NSFileHandle fileHandleForReadingFromURL:filePath error:&error];
-        
-        if (!error)
-        {
-            [[NSNotificationCenter defaultCenter] addObserver:self
-                                                     selector:@selector(handleChannelDataAvailable:)
-                                                         name:NSFileHandleDataAvailableNotification
-                                                       object:self.fileHandle];
+        self.foudWrongPasswordBlock = ^{
             
-            [self.fileHandle waitForDataInBackgroundAndNotify];
-        }
+            if ([weakSelf.delegate respondsToSelector:@selector(detectedWrongPassword)])
+            {
+                dispatch_async(dispatch_get_main_queue(), ^{
+                    
+                    [weakSelf.delegate detectedWrongPassword];
+                });
+            }
+            
+            //Need update replay block, it called one times
+            [[weakSelf.connectionToService remoteObjectProxy] updateReplayBlock:weakSelf.foudWrongPasswordBlock];
+        };
+        
+        [[_connectionToService remoteObjectProxy] startCheckIncorrectPassword:self.foudWrongPasswordBlock];
     }
 }
 
@@ -170,62 +176,11 @@
 {
     if (_userSettings.bMakePhotoOnIncorrectPasword || _userSettings.bSendMailOnIncorrectPasword)
     {
-        [[NSNotificationCenter defaultCenter] removeObserver:self
-                                                        name:NSFileHandleDataAvailableNotification
-                                                      object:self.fileHandle];
-        
-        self.fileHandle = nil;
-        self.lastLine = nil;
+        self.foudWrongPasswordBlock = nil;
+        [[_connectionToService remoteObjectProxy] stopCheckIncorrectPassword];
+        [_connectionToService invalidate];
+        _connectionToService = nil;
     }
-}
-
-- (void)handleChannelDataAvailable:(NSNotification*)notification
-{
-    NSFileHandle *fileHandle = notification.object;
-    
-    NSString *str = [[NSString alloc] initWithData:fileHandle.availableData
-                                          encoding:NSUTF8StringEncoding];
-    
-    NSString *contentForSearch = @"";
-    
-    BOOL skipCheck = NO;
-    if (!self.lastLine)
-    {
-        self.lastLine = [str copy];
-        skipCheck = YES;
-    }
-    
-    NSRange newChunkRange = [str rangeOfString:self.lastLine];
-    
-    if (newChunkRange.location != NSNotFound)
-    {
-        contentForSearch = [str substringFromIndex:newChunkRange.location + newChunkRange.length - 1];
-    }
-    else
-    {
-        contentForSearch = [str copy];
-    }
-    
-    if (!skipCheck)
-    {
-        NSRange range = [contentForSearch rangeOfString:@"OpenDirectory - The authtok is incorrect."];
-        if (range.location != NSNotFound)
-        {
-            if ([self.delegate respondsToSelector:@selector(detectedWrongPassword)])
-            {
-                [self.delegate detectedWrongPassword];
-            }
-        }
-    }
-    
-    NSArray *components = [str componentsSeparatedByString: @"\n"];
-    
-    if (components.count)
-    {
-        self.lastLine = components[components.count - 2];
-    }
-    
-    [fileHandle waitForDataInBackgroundAndNotify];
 }
 
 @end

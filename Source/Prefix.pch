@@ -12,11 +12,10 @@
 #define DBNSLog( s, ... )
 #endif
 
-#define LOG_PATH @"/private/var/log/lockmenow.log"
-
 #define APP_SITE @"http://www.IGRSoft.com"
 #define TWITTER_SITE @"http://twitter.com/#!/iKorich"
 
 #define HELPER_ID "com.igrsoft.ASLHelper"
 
-#define AND_APPLE_CODE_SIGNED and ${IS_APPLE_CODE_SIGNED}
+#define XPC_LOGER @"com.igrsoft.XPCLoger"
+#define XPC_SCRIPTING @"com.igrsoft.XPCSripting"

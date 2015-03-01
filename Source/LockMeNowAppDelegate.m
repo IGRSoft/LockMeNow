@@ -619,7 +619,7 @@ BOOL doNothingAtStart = NO;
 
 - (void)registeryXPC
 {
-    _scriptServiceConnection = [[NSXPCConnection alloc] initWithServiceName:@"com.igrsoft.XPCSripting"];
+    _scriptServiceConnection = [[NSXPCConnection alloc] initWithServiceName:XPC_SCRIPTING];
     _scriptServiceConnection.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(XPCSriptingProtocol)];
     [_scriptServiceConnection resume];
     
