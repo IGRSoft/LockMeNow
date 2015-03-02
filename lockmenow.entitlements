@@ -6,7 +6,7 @@
 	<true/>
 	<key>com.apple.security.temporary-exception.apple-events</key>
 	<array>
-		<string>com.apple.itunes</string>
+		<string>com.apple.iTunes</string>
 		<string>com.apple.systemevents</string>
 		<string>com.apple.Mail</string>
 	</array>
@@ -19,10 +19,6 @@
 	<array>
 		<string>(allow mach-lookup (global-name #"com.apple.coresymbolicationd"))</string>
 		<string>(allow mach-lookup (global-name #"com.apple.loginwindow.notify"))</string>
-		<string>(allow mach-lookup (global-name #"com.apple.screenIsUnlocked"))</string>
-		<string>(allow mach-lookup (global-name #"com.apple.screenIsLocked"))</string>
-		<string>(allow mach-lookup (global-name #"com.apple.screensaver.didstart"))</string>
-		<string>(allow mach-lookup (global-name #"com.apple.screensaver.didstop"))</string>
 		<string>(allow mach-lookup (global-name-regex "com.apple.logind"))</string>
 		<string>(allow network-outbound (literal "/private/var/run/usbmuxd"))</string>
 	</array>

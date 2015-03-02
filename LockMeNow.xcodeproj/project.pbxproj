@@ -46,6 +46,9 @@
 		A5E89ED81AA2713E0007BA5B /* XPCLoger.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E89ED71AA2713E0007BA5B /* XPCLoger.m */; };
 		A5E89EDA1AA2713E0007BA5B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E89ED91AA2713E0007BA5B /* main.m */; };
 		A5E89EDD1AA2713E0007BA5B /* XPCLoger.xpc in Copy XPC Service */ = {isa = PBXBuildFile; fileRef = A5E89ED11AA2713E0007BA5B /* XPCLoger.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A5E89F111AA3752F0007BA5B /* XPCScreen.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E89F101AA3752F0007BA5B /* XPCScreen.m */; };
+		A5E89F131AA3752F0007BA5B /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5E89F121AA3752F0007BA5B /* main.m */; };
+		A5E89F161AA3752F0007BA5B /* XPCScreen.xpc in Copy XPC Service */ = {isa = PBXBuildFile; fileRef = A5E89F0A1AA3752F0007BA5B /* XPCScreen.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A5F066F11A8142DE005A571D /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F066F01A8142DE005A571D /* AppKit.framework */; };
 		A5F451CB1A9288C7009FD03E /* IGRUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451AE1A9288C7009FD03E /* IGRUserDefaults.m */; };
 		A5F451CC1A9288C7009FD03E /* iTunesHelper.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451B11A9288C7009FD03E /* iTunesHelper.m */; };
@@ -175,6 +178,13 @@
 			remoteGlobalIDString = A5E89ED01AA2713E0007BA5B;
 			remoteInfo = XPCLoger;
 		};
+		A5E89F141AA3752F0007BA5B /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A5E89F091AA3752F0007BA5B;
+			remoteInfo = XPCScreen;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -219,6 +229,7 @@
 			dstSubfolderSpec = 16;
 			files = (
 				A527B8751AA0A9CF002E92C0 /* XPCSripting.xpc in Copy XPC Service */,
+				A5E89F161AA3752F0007BA5B /* XPCScreen.xpc in Copy XPC Service */,
 				A5E89EDD1AA2713E0007BA5B /* XPCLoger.xpc in Copy XPC Service */,
 			);
 			name = "Copy XPC Service";
@@ -285,6 +296,12 @@
 		A5E89ED61AA2713E0007BA5B /* XPCLoger.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XPCLoger.h; sourceTree = "<group>"; };
 		A5E89ED71AA2713E0007BA5B /* XPCLoger.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XPCLoger.m; sourceTree = "<group>"; };
 		A5E89ED91AA2713E0007BA5B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A5E89F0A1AA3752F0007BA5B /* XPCScreen.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = XPCScreen.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5E89F0D1AA3752F0007BA5B /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A5E89F0E1AA3752F0007BA5B /* XPCScreenProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XPCScreenProtocol.h; sourceTree = "<group>"; };
+		A5E89F0F1AA3752F0007BA5B /* XPCScreen.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XPCScreen.h; sourceTree = "<group>"; };
+		A5E89F101AA3752F0007BA5B /* XPCScreen.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XPCScreen.m; sourceTree = "<group>"; };
+		A5E89F121AA3752F0007BA5B /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A5F066F01A8142DE005A571D /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		A5F451AD1A9288C7009FD03E /* IGRUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGRUserDefaults.h; sourceTree = "<group>"; };
 		A5F451AE1A9288C7009FD03E /* IGRUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IGRUserDefaults.m; sourceTree = "<group>"; };
@@ -362,6 +379,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A5E89F071AA3752F0007BA5B /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -415,6 +439,7 @@
 				A573C59A1A97C2950029D4C3 /* com.igrsoft.ASLHelper */,
 				A527B8691AA0A9CF002E92C0 /* XPCSripting.xpc */,
 				A5E89ED11AA2713E0007BA5B /* XPCLoger.xpc */,
+				A5E89F0A1AA3752F0007BA5B /* XPCScreen.xpc */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -503,6 +528,7 @@
 		A527B85F1AA0A999002E92C0 /* XPC */ = {
 			isa = PBXGroup;
 			children = (
+				A5E89F0B1AA3752F0007BA5B /* XPCScreen */,
 				A5E89ED21AA2713E0007BA5B /* XPCLoger */,
 				A527B86A1AA0A9CF002E92C0 /* XPCSripting */,
 			);
@@ -651,6 +677,27 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
+		A5E89F0B1AA3752F0007BA5B /* XPCScreen */ = {
+			isa = PBXGroup;
+			children = (
+				A5E89F0E1AA3752F0007BA5B /* XPCScreenProtocol.h */,
+				A5E89F0F1AA3752F0007BA5B /* XPCScreen.h */,
+				A5E89F101AA3752F0007BA5B /* XPCScreen.m */,
+				A5E89F121AA3752F0007BA5B /* main.m */,
+				A5E89F0C1AA3752F0007BA5B /* Supporting Files */,
+			);
+			name = XPCScreen;
+			path = XPC/XPCScreen;
+			sourceTree = SOURCE_ROOT;
+		};
+		A5E89F0C1AA3752F0007BA5B /* Supporting Files */ = {
+			isa = PBXGroup;
+			children = (
+				A5E89F0D1AA3752F0007BA5B /* Info.plist */,
+			);
+			name = "Supporting Files";
+			sourceTree = "<group>";
+		};
 		A5F451B21A9288C7009FD03E /* Listeners */ = {
 			isa = PBXGroup;
 			children = (
@@ -715,6 +762,7 @@
 				A5C0BBF516A6D083008072DE /* PBXTargetDependency */,
 				A527B8741AA0A9CF002E92C0 /* PBXTargetDependency */,
 				A5E89EDC1AA2713E0007BA5B /* PBXTargetDependency */,
+				A5E89F151AA3752F0007BA5B /* PBXTargetDependency */,
 			);
 			name = LockMeNow;
 			productInstallPath = "$(HOME)/Applications";
@@ -772,6 +820,23 @@
 			productReference = A5E89ED11AA2713E0007BA5B /* XPCLoger.xpc */;
 			productType = "com.apple.product-type.xpc-service";
 		};
+		A5E89F091AA3752F0007BA5B /* XPCScreen */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A5E89F1E1AA3752F0007BA5B /* Build configuration list for PBXNativeTarget "XPCScreen" */;
+			buildPhases = (
+				A5E89F061AA3752F0007BA5B /* Sources */,
+				A5E89F071AA3752F0007BA5B /* Frameworks */,
+				A5E89F081AA3752F0007BA5B /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XPCScreen;
+			productName = XPCScreen;
+			productReference = A5E89F0A1AA3752F0007BA5B /* XPCScreen.xpc */;
+			productType = "com.apple.product-type.xpc-service";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -801,6 +866,15 @@
 					A5E89ED01AA2713E0007BA5B = {
 						CreatedOnToolsVersion = 6.1.1;
 						DevelopmentTeam = DMP42GVPJ3;
+					};
+					A5E89F091AA3752F0007BA5B = {
+						CreatedOnToolsVersion = 6.1.1;
+						DevelopmentTeam = DMP42GVPJ3;
+						SystemCapabilities = {
+							com.apple.Sandbox = {
+								enabled = 0;
+							};
+						};
 					};
 				};
 			};
@@ -835,6 +909,7 @@
 				A573C5991A97C2950029D4C3 /* com.igrsoft.ASLHelper */,
 				A527B8681AA0A9CF002E92C0 /* XPCSripting */,
 				A5E89ED01AA2713E0007BA5B /* XPCLoger */,
+				A5E89F091AA3752F0007BA5B /* XPCScreen */,
 			);
 		};
 /* End PBXProject section */
@@ -929,6 +1004,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A5E89F081AA3752F0007BA5B /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -979,6 +1061,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A5E89F061AA3752F0007BA5B /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5E89F131AA3752F0007BA5B /* main.m in Sources */,
+				A5E89F111AA3752F0007BA5B /* XPCScreen.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1011,6 +1102,11 @@
 			isa = PBXTargetDependency;
 			target = A5E89ED01AA2713E0007BA5B /* XPCLoger */;
 			targetProxy = A5E89EDB1AA2713E0007BA5B /* PBXContainerItemProxy */;
+		};
+		A5E89F151AA3752F0007BA5B /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A5E89F091AA3752F0007BA5B /* XPCScreen */;
+			targetProxy = A5E89F141AA3752F0007BA5B /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1270,6 +1366,79 @@
 			};
 			name = Release;
 		};
+		A5E89F171AA3752F0007BA5B /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "IGR Software";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_SYMBOLS_PRIVATE_EXTERN = NO;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = XPC/XPCScreen/Info.plist;
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		A5E89F181AA3752F0007BA5B /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "IGR Software";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = YES;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = XPC/XPCScreen/Info.plist;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1372,6 +1541,15 @@
 			buildConfigurations = (
 				A5E89EDE1AA2713E0007BA5B /* Debug */,
 				A5E89EDF1AA2713E0007BA5B /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		A5E89F1E1AA3752F0007BA5B /* Build configuration list for PBXNativeTarget "XPCScreen" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5E89F171AA3752F0007BA5B /* Debug */,
+				A5E89F181AA3752F0007BA5B /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;

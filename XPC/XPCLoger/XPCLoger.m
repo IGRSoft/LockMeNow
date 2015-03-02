@@ -48,20 +48,6 @@
     }
 }
 
-- (void)runCustomLoop
-{
-    NSRunLoop *currentRunLoop = [NSRunLoop currentRunLoop];
-    [currentRunLoop runMode:[self.modes firstObject] beforeDate:[NSDate distantFuture]];
-    
-    if (_taskRuning)
-    {
-        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
-            
-            [self runCustomLoop];
-        });
-    }
-}
-
 - (void)stopCheckIncorrectPassword
 {
     [[NSNotificationCenter defaultCenter] removeObserver:self
@@ -126,6 +112,20 @@
     }
     
     [self.fileHandle waitForDataInBackgroundAndNotifyForModes:self.modes];
+}
+
+- (void)runCustomLoop
+{
+    NSRunLoop *currentRunLoop = [NSRunLoop currentRunLoop];
+    [currentRunLoop runMode:[self.modes firstObject] beforeDate:[NSDate distantFuture]];
+    
+    if (_taskRuning)
+    {
+        dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
+            
+            [self runCustomLoop];
+        });
+    }
 }
 
 @end

@@ -138,25 +138,55 @@
     [self setupLock];
 }
 
-- (void)setupLock
+- (void)applicationDidChangeOcclusionState:(NSNotification *)notification
 {
-    Class lockClass = NULL;
-    switch ([self.userSettings lockingType])
+    NSString *state = IGRNotificationScreenLocked;
+    if ([NSApp occlusionState] & NSApplicationOcclusionStateVisible)
     {
-        case LOCK_SCREEN:
-            lockClass = [JustLock class];
-            break;
-        case LOCK_BLOCK:
-            //[self makeBlockLock];
-            break;
-        case LOCK_LOGIN_WINDOW:
-        default:
-            lockClass = [LoginWindowsLock class];
-            break;
+        state = IGRNotificationScreenUnLocked;
     }
     
-    self.lockManager = [[lockClass alloc] initWithConnection:self.scriptServiceConnection settings:self.userSettings];
-    self.lockManager.delegate = self;
+    DBNSLog(@"Post Notification: %@", state);
+    
+    NSUInteger options = NSNotificationDeliverImmediately | NSNotificationPostToAllSessions;
+    NSDistributedNotificationCenter* distCenter = [NSDistributedNotificationCenter defaultCenter];
+    
+    [distCenter postNotificationName:state
+                              object:nil
+                            userInfo:nil
+                             options:options];
+}
+
+BOOL doNothingAtStart = NO;
+
+- (void)applicationDidBecomeActive:(NSNotification *)notification
+{
+    if (doNothingAtStart)
+    {
+        doNothingAtStart = NO;
+    }
+    else
+    {
+        [self.window makeKeyAndOrderFront:self];
+        [self.window center];
+    }
+}
+
+- (void)applicationWillTerminate:(NSNotification *)theNotification
+{
+    [self.keyListener stopListen];
+    [self.usbListener stopListen];
+    [self.bluetoothListener stopListen];
+}
+
+- (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
+{
+    if (_lockManager.allowTerminate)
+    {
+        return NSTerminateNow;
+    }
+    
+    return NSTerminateCancel;
 }
 
 - (void)awakeFromNib
@@ -231,39 +261,29 @@
     [self.aboutText setAttributedStringValue:attrString];
 }
 
-BOOL doNothingAtStart = NO;
+#pragma mark - Actions
 
-- (void)applicationDidBecomeActive:(NSNotification *)notification
+- (void)setupLock
 {
-    if (doNothingAtStart)
+    Class lockClass = NULL;
+    switch ([self.userSettings lockingType])
     {
-        doNothingAtStart = NO;
-    }
-    else
-    {
-        [self.window makeKeyAndOrderFront:self];
-        [self.window center];
-    }
-}
-
-- (void)applicationWillTerminate:(NSNotification *)theNotification
-{
-    [self.keyListener stopListen];
-    [self.usbListener stopListen];
-    [self.bluetoothListener stopListen];
-}
-
-- (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
-{
-    if (_lockManager.allowTerminate)
-    {
-        return NSTerminateNow;
+        case LOCK_SCREEN:
+            lockClass = [JustLock class];
+            break;
+        case LOCK_BLOCK:
+            //[self makeBlockLock];
+            break;
+        case LOCK_LOGIN_WINDOW:
+        default:
+            lockClass = [LoginWindowsLock class];
+            break;
     }
     
-    return NSTerminateCancel;
+    self.lockManager = [[lockClass alloc] initWithConnection:self.scriptServiceConnection
+                                                    settings:self.userSettings];
+    self.lockManager.delegate = self;
 }
-
-#pragma mark - Actions
 
 - (IBAction)goToURL:(id)sender
 {

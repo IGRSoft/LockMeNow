@@ -17,5 +17,9 @@
 
 #define HELPER_ID "com.igrsoft.ASLHelper"
 
-#define XPC_LOGER @"com.igrsoft.XPCLoger"
-#define XPC_SCRIPTING @"com.igrsoft.XPCSripting"
+#define XPC_LOGER       @"com.igrsoft.XPCLoger"
+#define XPC_SCRIPTING   @"com.igrsoft.XPCSripting"
+#define XPC_SCREEN      @"com.igrsoft.XPCScreen"
+
+#define IGRNotificationScreenLocked     @"IGRNotificationScreenLocked"
+#define IGRNotificationScreenUnLocked   @"IGRNotificationScreenUnLocked"
