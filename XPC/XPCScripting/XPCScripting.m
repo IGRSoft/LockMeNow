@@ -1,14 +1,14 @@
 //
-//  XPCSripting.m
-//  XPCSripting
+//  XPCScripting.m
+//  XPCScripting
 //
 //  Created by Vitalii Parovishnyk on 2/27/15.
 //
 //
 
-#import "XPCSripting.h"
+#import "XPCScripting.h"
 
-@implementation XPCSripting
+@implementation XPCScripting
 
 /*- (NSString *)doShell:(NSString *)file
 {

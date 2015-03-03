@@ -47,6 +47,11 @@
 	return self;
 }
 
+- (void)dealloc
+{
+    [_screenServiceConnection invalidate];
+}
+
 - (void)lock
 {
     DBNSLog(@"%s Lock", __func__);
@@ -78,8 +83,6 @@
         [self setSecuritySetings:NO];
         [self stopCheckIncorrectPassword];
     }
-
-    [_screenServiceConnection invalidate];
 }
 
 - (BOOL)askPassword

@@ -1,13 +1,13 @@
 //
 //  main.m
-//  XPCSripting
+//  XPCScripting
 //
 //  Created by Vitalii Parovishnyk on 2/27/15.
 //
 //
 
 #import <Foundation/Foundation.h>
-#import "XPCSripting.h"
+#import "XPCScripting.h"
 
 @interface ServiceDelegate : NSObject <NSXPCListenerDelegate>
 @end
@@ -19,10 +19,10 @@
     
     // Configure the connection.
     // First, set the interface that the exported object implements.
-    newConnection.exportedInterface = [NSXPCInterface interfaceWithProtocol:@protocol(XPCSriptingProtocol)];
+    newConnection.exportedInterface = [NSXPCInterface interfaceWithProtocol:@protocol(XPCScriptingProtocol)];
     
     // Next, set the object that the connection exports. All messages sent on the connection to this service will be sent to the exported object to handle. The connection retains the exported object.
-    XPCSripting *exportedObject = [XPCSripting new];
+    XPCScripting *exportedObject = [XPCScripting new];
     newConnection.exportedObject = exportedObject;
     
     // Resuming the connection allows the system to deliver more incoming messages.

@@ -8,7 +8,7 @@
 
 #import "LoginWindowsLock.h"
 #import "IGRUserDefaults.h"
-#import "XPCSriptingProtocol.h"
+#import "XPCScriptingProtocol.h"
 
 @implementation LoginWindowsLock
 

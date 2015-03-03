@@ -17,23 +17,25 @@
 #import "USBListener.h"
 #import "BluetoothListener.h"
 
-#import "iTunesHelper.h"
-#import "MailHelper.h"
 #import "ImageSnap.h"
 
 #import <CoreLocation/CoreLocation.h>
 
-#import "XPCSriptingProtocol.h"
+#import "XPCScriptingProtocol.h"
+#import "XPCScriptingBridgeProtocol.h"
+
 #import <ServiceManagement/ServiceManagement.h>
 #import <xpc/xpc.h>
 
 @interface LockMeNowAppDelegate() <LockManagerDelegate, ListenerManagerDelegate,
                                     NSUserNotificationCenterDelegate, CLLocationManagerDelegate>
 {
-    MailHelper *mailHelper;
+    
 }
 
 @property (nonatomic) NSXPCConnection *scriptServiceConnection;
+@property (nonatomic) NSXPCConnection *scriptingBridgeServiceConnection;
+
 @property (nonatomic) IGRUserDefaults *userSettings;
 
 @property (nonatomic) LockManager *lockManager;
@@ -177,6 +179,9 @@ BOOL doNothingAtStart = NO;
     [self.keyListener stopListen];
     [self.usbListener stopListen];
     [self.bluetoothListener stopListen];
+    
+    [_scriptingBridgeServiceConnection invalidate];
+    [_scriptServiceConnection invalidate];
 }
 
 - (NSApplicationTerminateReply)applicationShouldTerminate:(NSApplication *)sender
@@ -496,21 +501,26 @@ BOOL doNothingAtStart = NO;
 {
     if (self.userSettings.bPauseiTunes)
     {
+        __weak typeof(self) weakSelf = self;
         if (!self.userSettings.bNeedResumeiTunes)
         {
-            if ([iTunesHelper isItunesRuning] && [iTunesHelper isMusicPlaing])
-            {
-                [iTunesHelper playpause];
-                self.userSettings.bNeedResumeiTunes = YES;
-            }
+            [[_scriptingBridgeServiceConnection remoteObjectProxy] isMusicPlaingWithReply:^(BOOL isMusicPlaing) {
+                if (isMusicPlaing)
+                {
+                    [[weakSelf.scriptingBridgeServiceConnection remoteObjectProxy] playPauseMusic];
+                    weakSelf.userSettings.bNeedResumeiTunes = YES;
+                }
+            }];
         }
         else if (self.userSettings.bNeedResumeiTunes && self.userSettings.bResumeiTunes)
         {
-            if ([iTunesHelper isItunesRuning] && [iTunesHelper isMusicPaused])
-            {
-                [iTunesHelper playpause];
-                self.userSettings.bNeedResumeiTunes = NO;
-            }
+            [[_scriptingBridgeServiceConnection remoteObjectProxy] isMusicPausedWithReply:^(BOOL isMusicPaused) {
+                if (isMusicPaused)
+                {
+                    [[weakSelf.scriptingBridgeServiceConnection remoteObjectProxy] playPauseMusic];
+                    weakSelf.userSettings.bNeedResumeiTunes = NO;
+                }
+            }];
         }
     }
 }
@@ -639,19 +649,14 @@ BOOL doNothingAtStart = NO;
 
 - (void)registeryXPC
 {
+    // XPC Script
     _scriptServiceConnection = [[NSXPCConnection alloc] initWithServiceName:XPC_SCRIPTING];
-    _scriptServiceConnection.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(XPCSriptingProtocol)];
+    _scriptServiceConnection.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(XPCScriptingProtocol)];
     [_scriptServiceConnection resume];
     
-    /*__weak typeof(self) weakSelf = self;
-    [[_scriptServiceConnection remoteObjectProxy] checkEncriptionWithReply:^(BOOL encription) {
-        
-        weakSelf.userSettings.bEncription = encription;
-        if (weakSelf.userSettings.bEncription)
-        {
-            weakSelf.userSettings.bAutoPrefs = NO;
-        }
-    }];*/
+    _scriptingBridgeServiceConnection = [[NSXPCConnection alloc] initWithServiceName:XPC_SCRIPTING_BRIDGE];
+    _scriptingBridgeServiceConnection.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(XPCScriptingBridgeProtocol)];
+    [_scriptingBridgeServiceConnection resume];
 }
 
 - (xpc_connection_t)connectionForServiceNamed:(const char *)serviceName
@@ -729,10 +734,10 @@ BOOL doNothingAtStart = NO;
     
     if (self.userSettings.bSendMailOnIncorrectPasword && self.userSettings.sIncorrectPaswordMail.length)
     {
-        self->mailHelper = [[MailHelper alloc] initWithMailAddres:self.userSettings.sIncorrectPaswordMail
-                                                        userPhoto:photoPath];
+        [[_scriptingBridgeServiceConnection remoteObjectProxy] setupMailAddres:self.userSettings.sIncorrectPaswordMail
+                                                                     userPhoto:photoPath];
         
-        [self->mailHelper sendDefaultMessageAddLocation:self.userSettings.bSendLocationOnIncorrectPasword];
+        [[_scriptingBridgeServiceConnection remoteObjectProxy] sendDefaultMessageAddLocation:self.userSettings.bSendLocationOnIncorrectPasword];
     }
     
     if (NSClassFromString(@"NSUserNotificationCenter"))

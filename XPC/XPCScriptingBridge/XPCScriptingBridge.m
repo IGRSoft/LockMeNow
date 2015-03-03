@@ -1,18 +1,19 @@
 //
-//  MailHelper.m
-//  LockMeNow
+//  XPCScriptingBridge.m
+//  XPCScriptingBridge
 //
-//  Created by Vitalii Parovishnyk on 2/18/15.
+//  Created by Vitalii Parovishnyk on 3/3/15.
 //
 //
 
-#import "MailHelper.h"
+#import "XPCScriptingBridge.h"
+#import <ScriptingBridge/ScriptingBridge.h>
+#import "iTunes.h"
+
 #import "Mail.h"
 #import <CoreLocation/CoreLocation.h>
 
-#define DEFAULT_TEXT @"Someone has entered an incorrect password!\n\n"
-
-@interface MailHelper () <CLLocationManagerDelegate>
+@interface XPCScriptingBridge () <CLLocationManagerDelegate>
 
 @property (nonatomic, copy) NSMutableArray *photoPaths;
 @property (nonatomic, copy) NSString *mailAddres;
@@ -22,18 +23,62 @@
 
 @end
 
-@implementation MailHelper
+@implementation XPCScriptingBridge
 
-- (instancetype)initWithMailAddres:(NSString *)aMail userPhoto:(NSString *)photoPath
+static NSString *iTunesID = @"com.apple.iTunes";
+static NSString *defaultText = @"Someone has entered an incorrect password!\n\n";
+
+#pragma mark - iTunes
+
+- (BOOL)isItunesRuning
 {
-    if (self = [super init])
+    iTunesApplication *iTunes = [SBApplication applicationWithBundleIdentifier:iTunesID];
+    
+    return iTunes.isRunning;
+}
+
+- (void)isMusicPlaingWithReply:(void (^)(BOOL))reply
+{
+    if (![self isItunesRuning])
     {
-        _mailAddres = aMail;
-        _photoPaths = photoPath ? [NSMutableArray arrayWithObject:photoPath] : nil;
-        _messageContent = DEFAULT_TEXT;
+        reply(NO);
     }
     
-    return self;
+    iTunesApplication *iTunes = [SBApplication applicationWithBundleIdentifier:iTunesID];
+    
+    reply([iTunes playerState] == iTunesEPlSPlaying);
+}
+
+- (void)isMusicPausedWithReply:(void (^)(BOOL))reply
+{
+    if (![self isItunesRuning])
+    {
+        reply(NO);
+    }
+    
+    iTunesApplication *iTunes = [SBApplication applicationWithBundleIdentifier:iTunesID];
+    
+    reply([iTunes playerState] == iTunesEPlSPaused || [iTunes playerState] == iTunesEPlSStopped);
+}
+
+- (void)playPauseMusic
+{
+    if (![self isItunesRuning])
+    {
+        return;
+    }
+    
+    iTunesApplication *iTunes = [SBApplication applicationWithBundleIdentifier:iTunesID];
+    [iTunes playpause];
+}
+
+#pragma mark - Mail
+
+- (void)setupMailAddres:(NSString *)aMail userPhoto:(NSString *)photoPath
+{
+    _mailAddres = aMail;
+    _photoPaths = photoPath ? [NSMutableArray arrayWithObject:photoPath] : nil;
+    _messageContent = defaultText;
 }
 
 - (void)sendDefaultMessageAddLocation:(BOOL)anAddLocation
@@ -70,12 +115,12 @@
     
     _messageContent = [_messageContent stringByAppendingString:@"--\n"];
     _messageContent = [_messageContent stringByAppendingString:@"Lock Me Now\n"];
-    _messageContent = [_messageContent stringByAppendingFormat:@"%@\n\n", APP_SITE];
+    _messageContent = [_messageContent stringByAppendingFormat:@"%@\n\n", @"http://www.IGRSoft.com"];
     
     /* create a new outgoing message object */
     MailOutgoingMessage *emailMessage = [[[mail classForScriptingClass:@"outgoing message"] alloc] initWithProperties:
                                          @{@"subject": @"Lock Me Now Security Warning",
-                                          @"content" : _messageContent}];
+                                           @"content" : _messageContent}];
 				
     /* add the object to the mail app  */
     [[mail outgoingMessages] addObject: emailMessage];
