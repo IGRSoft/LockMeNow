@@ -11,15 +11,13 @@
 #import "XPCLogerProtocol.h"
 #import "XPCScreenProtocol.h"
 
-#define USE_XPC_SCREEN 0
-
 @interface LockManager ()
 
 @property (nonatomic, strong) NSXPCConnection *logerServiceConnection;
 @property (nonatomic, strong) FoudWrongPasswordBlock foudWrongPasswordBlock;
-#if (USE_XPC_SCREEN)
+
 @property (nonatomic, strong) NSXPCConnection *screenServiceConnection;
-#endif
+
 @property (nonatomic, assign) BOOL userUsePassword;
 @property (nonatomic, assign) NSNumber *passwordDelay;
 
@@ -41,11 +39,9 @@
         _userUsePassword = NO;
         _passwordDelay = @0;
 
-#if (USE_XPC_SCREEN)
         self.screenServiceConnection = [[NSXPCConnection alloc] initWithServiceName:XPC_SCREEN];
         _screenServiceConnection.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(XPCScreenProtocol)];
         [_screenServiceConnection resume];
-#endif
 	}
 	
 	return self;
@@ -60,19 +56,12 @@
         [self setSecuritySetings:YES];
         [self startCheckIncorrectPassword];
 	}
-#if (USE_XPC_SCREEN)
+
     __weak typeof(self) weakSelf = self;
     [[self.screenServiceConnection remoteObjectProxy] startListenScreenUnlock:^{
         
         [weakSelf unlock];
     }];
-#else
-    NSDistributedNotificationCenter* distCenter = [NSDistributedNotificationCenter defaultCenter];
-    [distCenter addObserver:self
-                   selector:@selector(unlock)
-                       name:IGRNotificationScreenUnLocked
-                     object:nil];
-#endif
 }
 
 - (void)unlock
@@ -89,12 +78,8 @@
         [self setSecuritySetings:NO];
         [self stopCheckIncorrectPassword];
     }
-#if (USE_XPC_SCREEN)
+
     [_screenServiceConnection invalidate];
-#else
-    NSDistributedNotificationCenter* distCenter = [NSDistributedNotificationCenter defaultCenter];
-    [distCenter removeObserver:self name:IGRNotificationScreenUnLocked object:nil];
-#endif
 }
 
 - (BOOL)askPassword

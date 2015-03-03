@@ -24,6 +24,8 @@
 	<string>1</string>
 	<key>XPCService</key>
 	<dict>
+		<key>RunLoopType</key>
+		<string>NSRunLoop</string>
 		<key>ServiceType</key>
 		<string>Application</string>
 	</dict>
