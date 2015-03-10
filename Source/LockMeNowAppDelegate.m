@@ -159,10 +159,9 @@
                              options:options];
 }
 
-BOOL doNothingAtStart = NO;
-
 - (void)applicationDidBecomeActive:(NSNotification *)notification
 {
+    static BOOL doNothingAtStart = NO;
     if (doNothingAtStart)
     {
         doNothingAtStart = NO;
@@ -170,7 +169,6 @@ BOOL doNothingAtStart = NO;
     else
     {
         [self.window makeKeyAndOrderFront:self];
-        [self.window center];
     }
 }
 
@@ -319,7 +317,6 @@ BOOL doNothingAtStart = NO;
     [[NSApplication sharedApplication] activateIgnoringOtherApps:YES];
     [self.window makeKeyAndOrderFront: self];
     [self.window makeMainWindow];
-    [self.window center];
 }
 
 #pragma mark - Lock
