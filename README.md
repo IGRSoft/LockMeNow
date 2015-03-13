@@ -31,6 +31,7 @@ Download
 -------------
 
 Also there [latest build][lockmenow].
+or [nightly build] [lockmenow_beta]
 
 ScreenShots
 -------------
@@ -58,3 +59,4 @@ This application is free open source software and licensed under the LGPL 2.1.
 
 
 [lockmenow]: http://downloads.igrsoft.com/lockmenow/lockmenow_latest.zip "latest build"
+[lockmenow_beta]: http://downloads.igrsoft.com/beta/LockMeNow_beta.zip "nightly build"
