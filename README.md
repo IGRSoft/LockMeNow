@@ -30,7 +30,8 @@ With this app you can lock your Mac OS in short time and protect your personal d
 Download
 -------------
 
-Also there [latest build][lockmenow].
+Also there [latest build][lockmenow],
+
 or [nightly build] [lockmenow_beta]
 
 ScreenShots
