@@ -38,6 +38,7 @@
         
         _userUsePassword = NO;
         _passwordDelay = @0;
+        _isLocked = NO;
 
         self.screenServiceConnection = [[NSXPCConnection alloc] initWithServiceName:XPC_SCREEN];
         _screenServiceConnection.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(XPCScreenProtocol)];
@@ -56,6 +57,8 @@
 {
     DBNSLog(@"%s Lock", __func__);
     
+    _isLocked = YES;
+    
 	if (_useSecurity)
 	{
         [self setSecuritySetings:YES];
@@ -73,6 +76,8 @@
 {
 	DBNSLog(@"%s UnLock", __func__);
 	
+    _isLocked = NO;
+    
 	if ([self.delegate respondsToSelector:@selector(unLockSuccess)])
 	{
 		[self.delegate unLockSuccess];

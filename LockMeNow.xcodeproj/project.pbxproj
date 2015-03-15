@@ -30,7 +30,6 @@
 		A572A4511AA5A98D00661E3E /* XPCScriptingBridge.xpc in Copy XPC Service */ = {isa = PBXBuildFile; fileRef = A572A4451AA5A98D00661E3E /* XPCScriptingBridge.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A572A4551AA5AED600661E3E /* iTunes.app in Resources */ = {isa = PBXBuildFile; fileRef = A5086B4F1A94A02900787358 /* iTunes.app */; };
 		A573C5A71A97C73C0029D4C3 /* com.igrsoft.ASLHelper in Copy LaunchServices */ = {isa = PBXBuildFile; fileRef = A573C59A1A97C2950029D4C3 /* com.igrsoft.ASLHelper */; settings = {ATTRIBUTES = (CodeSignOnCopy, ); }; };
-		A586FD301AA5B89C00D48D08 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A52A534A1A94D97800EB9AA6 /* CoreLocation.framework */; };
 		A586FD311AA5B8A500D48D08 /* ScriptingBridge.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5CE4D0215062BFB001C22D2 /* ScriptingBridge.framework */; };
 		A586FD321AA5B90700D48D08 /* Mail.app in Resources */ = {isa = PBXBuildFile; fileRef = A5086B501A94A02900787358 /* Mail.app */; };
 		A586FD331AA5B9D400D48D08 /* CoreLocation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A52A534A1A94D97800EB9AA6 /* CoreLocation.framework */; };
@@ -388,7 +387,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A586FD301AA5B89C00D48D08 /* CoreLocation.framework in Frameworks */,
 				A586FD311AA5B8A500D48D08 /* ScriptingBridge.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

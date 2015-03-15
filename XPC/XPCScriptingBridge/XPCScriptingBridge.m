@@ -11,15 +11,12 @@
 #import "iTunes.h"
 
 #import "Mail.h"
-#import <CoreLocation/CoreLocation.h>
 
-@interface XPCScriptingBridge () <CLLocationManagerDelegate>
+@interface XPCScriptingBridge ()
 
 @property (nonatomic, copy) NSMutableArray *photoPaths;
 @property (nonatomic, copy) NSString *mailAddres;
 @property (nonatomic) NSString *messageContent;
-
-@property (nonatomic) CLLocationManager *locationManager;
 
 @end
 
@@ -81,20 +78,14 @@ static NSString *defaultText = @"Someone has entered an incorrect password!\n\n"
     _messageContent = defaultText;
 }
 
-- (void)sendDefaultMessageAddLocation:(BOOL)anAddLocation
+- (void)sendDefaultMessageAddLocation:(NSString *)aLocation
 {
-    if (anAddLocation)
+    if (aLocation)
     {
-        self.locationManager = [[CLLocationManager alloc] init];
-        _locationManager.distanceFilter = kCLDistanceFilterNone;
-        _locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-        [_locationManager startUpdatingLocation];
-        _locationManager.delegate = self;
+        self.messageContent = [self.messageContent stringByAppendingFormat:@"Location: %@\n\n", aLocation];
     }
-    else
-    {
-        [self sendMail];
-    }
+    
+    [self sendMail];
 }
 
 - (void)sendMail
@@ -157,23 +148,6 @@ static NSString *defaultText = @"Someone has entered an incorrect password!\n\n"
     
     /* send the message */
     [emailMessage send];
-}
-
-- (void)locationManager:(CLLocationManager *)manager
-     didUpdateLocations:(NSArray *)locations
-{
-    [_locationManager stopUpdatingLocation];
-    _locationManager.delegate = nil;
-    
-    CLLocation *location = [locations lastObject];
-    
-    NSString *theLocation = [NSString stringWithFormat:@"https://maps.google.com/maps?q=%f,%f&num=1&vpsrc=0&ie=UTF8&t=m",
-                             location.coordinate.latitude,
-                             location.coordinate.longitude];
-    
-    self.messageContent = [self.messageContent stringByAppendingFormat:@"Location: %@\n\n", theLocation];
-    
-    [self sendMail];
 }
 
 @end

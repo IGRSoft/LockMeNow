@@ -29,6 +29,8 @@
 @property (nonatomic, assign) BOOL useSecurity;
 @property (nonatomic, assign) BOOL allowTerminate;
 
+@property (nonatomic, assign) BOOL isLocked;
+
 @property (nonatomic, weak) id<LockManagerDelegate> delegate;
 
 @end

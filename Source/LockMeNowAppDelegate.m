@@ -733,8 +733,19 @@
     {
         [[_scriptingBridgeServiceConnection remoteObjectProxy] setupMailAddres:self.userSettings.sIncorrectPaswordMail
                                                                      userPhoto:photoPath];
-        
-        [[_scriptingBridgeServiceConnection remoteObjectProxy] sendDefaultMessageAddLocation:self.userSettings.bSendLocationOnIncorrectPasword];
+    }
+    
+    if (self.userSettings.bSendLocationOnIncorrectPasword)
+    {
+        self.locationManager = [[CLLocationManager alloc] init];
+        _locationManager.distanceFilter = kCLDistanceFilterNone;
+        _locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
+        [_locationManager startUpdatingLocation];
+        _locationManager.delegate = self;
+    }
+    else
+    {
+        [[_scriptingBridgeServiceConnection remoteObjectProxy] sendDefaultMessageAddLocation:nil];
     }
     
     if (NSClassFromString(@"NSUserNotificationCenter"))
@@ -809,6 +820,23 @@
     }
     
     self.userSettings.bSendLocationOnIncorrectPasword = (status == kCLAuthorizationStatusAuthorized);
+}
+
+- (void)locationManager:(CLLocationManager *)manager didUpdateLocations:(NSArray *)locations
+{
+    if (self.lockManager.isLocked)
+    {
+        [_locationManager stopUpdatingLocation];
+        _locationManager.delegate = nil;
+        
+        CLLocation *location = [locations lastObject];
+        
+        NSString *theLocation = [NSString stringWithFormat:@"https://maps.google.com/maps?q=%f,%f&num=1&vpsrc=0&ie=UTF8&t=m",
+                                 location.coordinate.latitude,
+                                 location.coordinate.longitude];
+        
+        [[_scriptingBridgeServiceConnection remoteObjectProxy] sendDefaultMessageAddLocation:theLocation];
+    }
 }
 
 @end
