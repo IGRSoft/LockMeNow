@@ -580,7 +580,7 @@
         CFErrorRef cfError = nil;
         result = SMJobBless(kSMDomainSystemLaunchd, (__bridge CFStringRef)aService, authRef, &cfError);
         
-        if (cfError)
+        if (!result && cfError)
         {
             *error = CFBridgingRelease(cfError);
         }
