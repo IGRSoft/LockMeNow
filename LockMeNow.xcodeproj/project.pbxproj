@@ -18,7 +18,6 @@
 		A527B87D1AA0AF5B002E92C0 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A527B87C1AA0AF5B002E92C0 /* IOKit.framework */; };
 		A527B8951AA0BB2F002E92C0 /* ASLHelper.c in Sources */ = {isa = PBXBuildFile; fileRef = A527B8941AA0BB2F002E92C0 /* ASLHelper.c */; };
 		A52843BA1948547B00040243 /* Images.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = A52843B91948547B00040243 /* Images.xcassets */; };
-		A52A9F6016A8365300EA4B17 /* TextFieldBG.png in Resources */ = {isa = PBXBuildFile; fileRef = A52A9F5F16A8365200EA4B17 /* TextFieldBG.png */; };
 		A5489BAE15D401710072E5D2 /* IOBluetooth.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5489BAC15D401710072E5D2 /* IOBluetooth.framework */; };
 		A5489BAF15D401710072E5D2 /* IOBluetoothUI.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5489BAD15D401710072E5D2 /* IOBluetoothUI.framework */; };
 		A55A46F11A97DFEC00EB904D /* reactivate_asl_service.sh in Resources */ = {isa = PBXBuildFile; fileRef = A53FFA041A97B5DE002E8B0E /* reactivate_asl_service.sh */; };
@@ -1028,7 +1027,6 @@
 				A55A46F11A97DFEC00EB904D /* reactivate_asl_service.sh in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				A517CFA4142FD73E00632668 /* Credits.rtf in Resources */,
-				A52A9F6016A8365300EA4B17 /* TextFieldBG.png in Resources */,
 				A52843BA1948547B00040243 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
