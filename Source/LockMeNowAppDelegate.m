@@ -44,6 +44,8 @@
 
 @property (nonatomic) BOOL isASLPatched;
 
+@property (nonatomic) NSString *thiefPhotoPath;
+
 @property (nonatomic) CLLocationManager *locationManager;
 
 - (BOOL)autorizateForService:(NSString *)aService
@@ -324,6 +326,8 @@
 - (IBAction)doLock:(id)sender
 {
     self.userSettings.bNeedResumeiTunes = NO;
+    self.thiefPhotoPath = nil;
+    
     [self pauseResumeMusic];
     
     [self.lockManager lock];
@@ -610,7 +614,7 @@
     });
 }
 
-- (void) makeMenu
+- (void)makeMenu
 {
     if (self.userSettings.bUseIconOnMainMenu && self.statusItem == nil)
     {
@@ -718,21 +722,35 @@
 - (void)unLockSuccess
 {
     [self pauseResumeMusic];
+    
+    if (self.thiefPhotoPath)
+    {
+        NSUserNotification *notification = [[NSUserNotification alloc] init];
+        [notification setTitle:@"Security Warning!"];
+        [notification setSubtitle:@"Someone has entered an incorrect password!"];
+        [notification setInformativeText:@"You can check his/her photo"];
+        
+        
+        [notification setUserInfo:@{@"filePath": self.thiefPhotoPath}];
+        
+        NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
+        [center setDelegate:self];
+        [center scheduleNotification:notification];
+        
+    }
 }
 
 - (void)detectedWrongPassword
 {
-    NSString *photoPath = nil;
-    
     if (self.userSettings.bMakePhotoOnIncorrectPasword)
     {
-        photoPath = [self takePhoto];
+        self.thiefPhotoPath = [self takePhoto];
     }
     
     if (self.userSettings.bSendMailOnIncorrectPasword && self.userSettings.sIncorrectPaswordMail.length)
     {
         [[_scriptingBridgeServiceConnection remoteObjectProxy] setupMailAddres:self.userSettings.sIncorrectPaswordMail
-                                                                     userPhoto:photoPath];
+                                                                     userPhoto:self.thiefPhotoPath];
     }
     
     if (self.userSettings.bSendLocationOnIncorrectPasword)
@@ -746,23 +764,6 @@
     else
     {
         [[_scriptingBridgeServiceConnection remoteObjectProxy] sendDefaultMessageAddLocation:nil];
-    }
-    
-    if (NSClassFromString(@"NSUserNotificationCenter"))
-    {
-        NSUserNotification *notification = [[NSUserNotification alloc] init];
-        [notification setTitle:@"Security Warning!"];
-        [notification setSubtitle:@"Someone has entered an incorrect password!"];
-        [notification setInformativeText:@"You can check his/her photo"];
-        
-        if (photoPath)
-        {
-            [notification setUserInfo:@{@"filePath": photoPath}];
-        }
-        
-        NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
-        [center setDelegate:self];
-        [center scheduleNotification:notification];
     }
 }
 
