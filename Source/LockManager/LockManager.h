@@ -14,6 +14,7 @@
 
 - (void)unLockSuccess;
 - (void)detectedWrongPassword;
+- (void)userTryEnterPassword;
 
 @end
 

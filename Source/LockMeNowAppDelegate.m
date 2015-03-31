@@ -45,6 +45,7 @@
 @property (nonatomic) BOOL isASLPatched;
 
 @property (nonatomic) NSString *thiefPhotoPath;
+@property (nonatomic) CLLocation *location;
 
 @property (nonatomic) CLLocationManager *locationManager;
 
@@ -331,6 +332,15 @@
     [self pauseResumeMusic];
     
     [self.lockManager lock];
+    
+    if (self.userSettings.bSendLocationOnIncorrectPasword)
+    {
+        self.locationManager = [[CLLocationManager alloc] init];
+        _locationManager.distanceFilter = kCLDistanceFilterNone;
+        _locationManager.desiredAccuracy = kCLLocationAccuracyBest;
+        [_locationManager startUpdatingLocation];
+        _locationManager.delegate = self;
+    }
 }
 
 - (IBAction)doUnLock:(id)sender
@@ -723,6 +733,9 @@
 {
     [self pauseResumeMusic];
     
+    [_locationManager stopUpdatingLocation];
+    _locationManager.delegate = nil;
+    
     if (self.thiefPhotoPath)
     {
         NSUserNotification *notification = [[NSUserNotification alloc] init];
@@ -736,34 +749,61 @@
         NSUserNotificationCenter *center = [NSUserNotificationCenter defaultUserNotificationCenter];
         [center setDelegate:self];
         [center scheduleNotification:notification];
-        
     }
 }
 
 - (void)detectedWrongPassword
 {
+    [self userTryEnterPassword];
+
     if (self.userSettings.bMakePhotoOnIncorrectPasword)
     {
         self.thiefPhotoPath = [self takePhoto];
     }
-    
+
     if (self.userSettings.bSendMailOnIncorrectPasword && self.userSettings.sIncorrectPaswordMail.length)
     {
         [[_scriptingBridgeServiceConnection remoteObjectProxy] setupMailAddres:self.userSettings.sIncorrectPaswordMail
                                                                      userPhoto:self.thiefPhotoPath];
     }
     
+    __weak typeof(self) weakSelf = self;
+    void (^SendLocation)(void) = ^{
+        
+        if (self.location)
+        {
+            NSString *theLocation = [NSString stringWithFormat:@"https://maps.google.com/maps?q=%f,%f&num=1&vpsrc=0&ie=UTF8&t=m",
+                                     weakSelf.location.coordinate.latitude,
+                                     weakSelf.location.coordinate.longitude];
+            
+            [[weakSelf.scriptingBridgeServiceConnection remoteObjectProxy] sendDefaultMessageAddLocation:theLocation];
+        }
+        else
+        {
+            [[weakSelf.scriptingBridgeServiceConnection remoteObjectProxy] sendDefaultMessageAddLocation:nil];
+        }
+    };
+    
     if (self.userSettings.bSendLocationOnIncorrectPasword)
     {
-        self.locationManager = [[CLLocationManager alloc] init];
-        _locationManager.distanceFilter = kCLDistanceFilterNone;
-        _locationManager.desiredAccuracy = kCLLocationAccuracyNearestTenMeters;
-        [_locationManager startUpdatingLocation];
-        _locationManager.delegate = self;
+        //wait one sec to detect better position
+        dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+            
+            SendLocation();
+        });
     }
     else
     {
-        [[_scriptingBridgeServiceConnection remoteObjectProxy] sendDefaultMessageAddLocation:nil];
+        SendLocation();
+    }
+}
+
+- (void)userTryEnterPassword
+{
+    if (self.userSettings.bSendLocationOnIncorrectPasword)
+    {
+        [_locationManager stopUpdatingLocation];
+        [_locationManager startUpdatingLocation];
     }
 }
 
@@ -827,16 +867,9 @@
 {
     if (self.lockManager.isLocked)
     {
-        [_locationManager stopUpdatingLocation];
-        _locationManager.delegate = nil;
+        self.location = [locations lastObject];
         
-        CLLocation *location = [locations lastObject];
-        
-        NSString *theLocation = [NSString stringWithFormat:@"https://maps.google.com/maps?q=%f,%f&num=1&vpsrc=0&ie=UTF8&t=m",
-                                 location.coordinate.latitude,
-                                 location.coordinate.longitude];
-        
-        [[_scriptingBridgeServiceConnection remoteObjectProxy] sendDefaultMessageAddLocation:theLocation];
+        DBNSLog(@"Location: %@", self.location);
     }
 }
 

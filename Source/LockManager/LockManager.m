@@ -78,10 +78,7 @@
 	
     _isLocked = NO;
     
-	if ([self.delegate respondsToSelector:@selector(unLockSuccess)])
-	{
-		[self.delegate unLockSuccess];
-	}
+	[self.delegate unLockSuccess];
     
     if (_useSecurity)
     {
@@ -149,18 +146,6 @@
     {
         DBNSLog(@"Can't sync Prefs");
     }
-    else
-    {
-        // Notify login process
-        // not sure this does or why it must be called...anyone? (DBR)
-        CFMessagePortRef port = CFMessagePortCreateRemote(NULL, CFSTR("com.apple.loginwindow.notify"));
-        success = (CFMessagePortSendRequest(port, 500, 0, 0, 0, 0, 0) == kCFMessagePortSuccess);
-        CFRelease(port);
-        if (success)
-        {
-            DBNSLog(@"Can't start screensaver");
-        }
-    }
 }
 
 - (void)startCheckIncorrectPassword
@@ -175,13 +160,10 @@
         
         self.foudWrongPasswordBlock = ^{
             
-            if ([weakSelf.delegate respondsToSelector:@selector(detectedWrongPassword)])
-            {
-                dispatch_async(dispatch_get_main_queue(), ^{
-                    
-                    [weakSelf.delegate detectedWrongPassword];
-                });
-            }
+            dispatch_async(dispatch_get_main_queue(), ^{
+                
+                [weakSelf.delegate detectedWrongPassword];
+            });
             
             //Need update replay block, it called one times
             [[weakSelf.logerServiceConnection remoteObjectProxy] updateReplayBlock:weakSelf.foudWrongPasswordBlock];

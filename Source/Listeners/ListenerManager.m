@@ -41,10 +41,7 @@
 
 - (void)makeAction:(id)sender
 {
-    if ([self.delegate respondsToSelector:@selector(makeAction:)])
-    {
-        [self.delegate makeAction:sender];
-    }
+    [self.delegate makeAction:sender];
 }
 
 @end

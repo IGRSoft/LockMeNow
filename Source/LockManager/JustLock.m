@@ -27,11 +27,36 @@
 	[super lock];
 	
     [[self.scriptServiceConnection remoteObjectProxy] makeJustLock:self.userSettings.bUseCurrentScreenSaver];
+    
+    NSDistributedNotificationCenter* distCenter = [NSDistributedNotificationCenter defaultCenter];
+    [distCenter addObserver:self
+                   selector:@selector(screensaverStart:)
+                       name:@"com.apple.screensaver.didstart"
+                     object:nil];
+    
+    [distCenter addObserver:self
+                   selector:@selector(screensaverStop:)
+                       name:@"com.apple.screensaver.didstop"
+                     object:nil];
 }
 
 - (void)unlock
 {
 	[super unlock];
+    
+    [[NSDistributedNotificationCenter defaultCenter] removeObserver:self];
+}
+
+- (void)screensaverStart:(NSNotification *)aNotification
+{
+    DBNSLog(@"Screensaver Start");
+}
+
+- (void)screensaverStop:(NSNotification *)aNotification
+{
+    DBNSLog(@"Screensaver Stop");
+    
+    [self.delegate userTryEnterPassword];
 }
 
 @end
