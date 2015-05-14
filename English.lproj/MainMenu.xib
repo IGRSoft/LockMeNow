@@ -238,7 +238,7 @@
                                         <button id="EvU-07-j1X">
                                             <rect key="frame" x="15" y="204" width="269" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="check" title="Make photo on incorrect password" bezelStyle="regularSquare" imagePosition="left" inset="2" id="BGq-Ae-OL1">
+                                            <buttonCell key="cell" type="check" title="Take a photo when someone enters an incorrect password" bezelStyle="regularSquare" imagePosition="left" inset="2" id="BGq-Ae-OL1">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
@@ -259,7 +259,7 @@
                                         <button id="aj1-9s-ApJ">
                                             <rect key="frame" x="15" y="184" width="269" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="check" title="Send warning on email:" bezelStyle="regularSquare" imagePosition="left" inset="2" id="DI6-LO-guB">
+                                            <buttonCell key="cell" type="check" title="Send an email warning to:" bezelStyle="regularSquare" imagePosition="left" inset="2" id="DI6-LO-guB">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
@@ -322,7 +322,7 @@
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" id="Eml-hT-JeR">
                                             <rect key="frame" x="15" y="92" width="269" height="34"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" enabled="NO" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="Wiil be send from your default mail account in Mail Application." id="ayj-Lb-IKf">
+                                            <textFieldCell key="cell" enabled="NO" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="Will be sent from your default mail account in the Mail application." id="ayj-Lb-IKf">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -520,7 +520,7 @@
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="841">
                                             <rect key="frame" x="14" y="3" width="271" height="34"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Automatically locks your OS X when you dictonnect iDevice from USB." id="842">
+                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Automatically locks your OS X when you disconnect iDevice from USB." id="842">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
