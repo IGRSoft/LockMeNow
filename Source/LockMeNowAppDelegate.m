@@ -51,6 +51,7 @@
 
 - (BOOL)autorizateForService:(NSString *)aService
                        error:(NSError **)error;
+- (IBAction)selectPhotoQuality:(NSComboBox *)sender;
 
 @end
 
@@ -138,6 +139,7 @@
     }
 
     [self setTakePhotoOnIncorrectPassword:nil];
+    [self.thiefPhotoQuality selectItemAtIndex:self.userSettings.iPhotoQualityType.integerValue];
     
     //Setup lock Type
     [self setupLock];
@@ -326,6 +328,9 @@
 
 - (IBAction)doLock:(id)sender
 {
+#if 1
+    [self detectedWrongPassword];
+#else
     self.userSettings.bNeedResumeiTunes = NO;
     self.thiefPhotoPath = nil;
     
@@ -341,11 +346,12 @@
         [_locationManager startUpdatingLocation];
         _locationManager.delegate = self;
     }
+#endif
 }
 
 - (IBAction)doUnLock:(id)sender
 {
-    //[self removeSecurityLock];
+    
 }
 
 - (IBAction)applyASLPatch:(id)sender
@@ -563,7 +569,10 @@
     
     picturePath = [picturePath stringByAppendingPathComponent:dateString];
     
-    BOOL result = [ImageSnap saveSnapshotFrom:[ImageSnap defaultVideoDevice] toFile:picturePath];
+    AVCaptureDevice *defaultVideoDevice = [ImageSnap defaultVideoDevice];
+    BOOL result = [ImageSnap saveSnapshotFrom:defaultVideoDevice
+                                       toFile:picturePath
+                                   withWarmup:@(self.userSettings.iPhotoQualityType.integerValue)];
     
     return result ? picturePath : nil;
 }
@@ -601,6 +610,13 @@
     }
     
     return result;
+}
+
+- (IBAction)selectPhotoQuality:(NSComboBox *)sender
+{
+    self.userSettings.iPhotoQualityType = @(sender.indexOfSelectedItem);
+    
+    [self updateUserSettings:sender];
 }
 
 #pragma mark - Bluetooth
@@ -765,6 +781,10 @@
     {
         [[_scriptingBridgeServiceConnection remoteObjectProxy] setupMailAddres:self.userSettings.sIncorrectPaswordMail
                                                                      userPhoto:self.thiefPhotoPath];
+    }
+    else
+    {
+        return;
     }
     
     __weak typeof(self) weakSelf = self;

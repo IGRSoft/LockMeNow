@@ -24,6 +24,13 @@ typedef NS_ENUM(NSUInteger, DeviceType)
 	USB_IPAD
 };
 
+typedef NS_ENUM(NSUInteger, PhotoQualityType)
+{
+    PHOTO_QUALITY_TYPE_NORMAL = 0,
+    PHOTO_QUALITY_TYPE_GOOD,
+    PHOTO_QUALITY_TYPE_BEST,
+};
+
 typedef void (^IGRUserDefaultsBluetoothData)(NSData *bluetoothData);
 
 @interface IGRUserDefaults : NSObject
@@ -40,6 +47,7 @@ typedef void (^IGRUserDefaultsBluetoothData)(NSData *bluetoothData);
 @property (nonatomic, assign) BOOL bMonitoringBluetooth;
 @property (nonatomic, strong) id keyCombo;
 @property (nonatomic, strong) NSData *bluetoothData;
+@property (nonatomic, assign) NSNumber *iPhotoQualityType;
 
 @property (nonatomic, assign) BOOL bMakePhotoOnIncorrectPasword;
 @property (nonatomic, assign) BOOL bSendMailOnIncorrectPasword;
@@ -51,5 +59,6 @@ typedef void (^IGRUserDefaultsBluetoothData)(NSData *bluetoothData);
 
 @property (nonatomic, readonly) LockingType lockingType;
 @property (nonatomic, readonly) DeviceType deviceType;
+@property (nonatomic, readonly) PhotoQualityType photoQualityType;
 
 @end

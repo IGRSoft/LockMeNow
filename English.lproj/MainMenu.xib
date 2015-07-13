@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="6751" systemVersion="14D87h" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="7706" systemVersion="14E46" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="6751"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="7706"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -79,10 +79,10 @@
         </menu>
         <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="371">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
-            <rect key="contentRect" x="729" y="417" width="345" height="335"/>
+            <rect key="contentRect" x="729" y="417" width="354" height="335"/>
             <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1178"/>
             <view key="contentView" id="372">
-                <rect key="frame" x="0.0" y="0.0" width="345" height="335"/>
+                <rect key="frame" x="0.0" y="0.0" width="354" height="335"/>
                 <autoresizingMask key="autoresizingMask"/>
                 <subviews>
                     <button verticalHuggingPriority="750" id="822">
@@ -97,23 +97,23 @@
                         </connections>
                     </button>
                     <tabView controlSize="small" initialItem="775" id="774">
-                        <rect key="frame" x="13" y="36" width="319" height="293"/>
+                        <rect key="frame" x="13" y="36" width="328" height="293"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <tabViewItems>
                             <tabViewItem label="General" identifier="general" id="775">
                                 <view key="view" id="778">
-                                    <rect key="frame" x="10" y="25" width="299" height="255"/>
+                                    <rect key="frame" x="10" y="25" width="308" height="255"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="539">
-                                            <rect key="frame" x="20" y="118" width="262" height="5"/>
+                                            <rect key="frame" x="20" y="118" width="271" height="5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                             <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
                                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                             <font key="titleFont" metaFont="system"/>
                                         </box>
                                         <customView id="557" customClass="SRRecorderControl">
-                                            <rect key="frame" x="20" y="223" width="262" height="22"/>
+                                            <rect key="frame" x="20" y="223" width="271" height="22"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="style">
@@ -140,10 +140,10 @@
                                             </connections>
                                         </button>
                                         <box autoresizesSubviews="NO" title="Lock Type:" borderType="line" id="581">
-                                            <rect key="frame" x="17" y="137" width="268" height="78"/>
+                                            <rect key="frame" x="17" y="137" width="277" height="78"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <view key="contentView">
-                                                <rect key="frame" x="1" y="1" width="266" height="62"/>
+                                                <rect key="frame" x="1" y="1" width="275" height="62"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" id="577">
@@ -232,14 +232,16 @@
                             </tabViewItem>
                             <tabViewItem label="Security" identifier="" id="sLb-jR-0ch">
                                 <view key="view" id="cEe-ip-oQ9">
-                                    <rect key="frame" x="10" y="29" width="299" height="251"/>
+                                    <rect key="frame" x="10" y="25" width="308" height="255"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button id="EvU-07-j1X">
-                                            <rect key="frame" x="15" y="204" width="269" height="18"/>
+                                            <rect key="frame" x="15" y="192" width="269" height="34"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="check" title="Take a photo when someone enters an incorrect password" bezelStyle="regularSquare" imagePosition="left" inset="2" id="BGq-Ae-OL1">
+                                            <buttonCell key="cell" type="check" bezelStyle="regularSquare" imagePosition="left" inset="2" id="BGq-Ae-OL1">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
+                                                <string key="title">Take a photo when someone enters 
+an incorrect password</string>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
                                             <connections>
@@ -256,10 +258,10 @@
                                                 </binding>
                                             </connections>
                                         </button>
-                                        <button id="aj1-9s-ApJ">
-                                            <rect key="frame" x="15" y="184" width="269" height="18"/>
+                                        <button allowsExpansionToolTips="YES" id="aj1-9s-ApJ">
+                                            <rect key="frame" x="15" y="142" width="278" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <buttonCell key="cell" type="check" title="Send an email warning to:" bezelStyle="regularSquare" imagePosition="left" inset="2" id="DI6-LO-guB">
+                                            <buttonCell key="cell" type="check" title="Send an email warning to:" alternateTitle="Will be sent from your default Mail acc to:" bezelStyle="regularSquare" imagePosition="left" inset="2" id="DI6-LO-guB">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                 <font key="font" metaFont="system"/>
                                             </buttonCell>
@@ -278,7 +280,7 @@
                                             </connections>
                                         </button>
                                         <textField focusRingType="none" verticalHuggingPriority="750" id="E9x-dm-9td">
-                                            <rect key="frame" x="17" y="156" width="265" height="22"/>
+                                            <rect key="frame" x="17" y="114" width="274" height="22"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" focusRingType="none" drawsBackground="YES" id="Hlw-jG-k8A">
                                                 <font key="font" metaFont="system"/>
@@ -308,7 +310,7 @@
                                             </connections>
                                         </textField>
                                         <button verticalHuggingPriority="750" id="uLe-bQ-mqG">
-                                            <rect key="frame" x="70" y="6" width="158" height="32"/>
+                                            <rect key="frame" x="70" y="10" width="158" height="32"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="push" title="Apply Path for ASL" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="He9-WF-yFx">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -319,26 +321,17 @@
                                                 <binding destination="494" name="hidden" keyPath="self.isASLPatched" id="z86-41-XGW"/>
                                             </connections>
                                         </button>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" id="Eml-hT-JeR">
-                                            <rect key="frame" x="15" y="92" width="269" height="34"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" enabled="NO" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="Will be sent from your default mail account in the Mail application." id="ayj-Lb-IKf">
-                                                <font key="font" metaFont="system"/>
-                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                            </textFieldCell>
-                                        </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" id="ixo-MD-sRO">
-                                            <rect key="frame" x="15" y="42" width="269" height="34"/>
+                                            <rect key="frame" x="15" y="42" width="278" height="34"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" enabled="NO" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="left" title="Application doesn't send your data to 3rd party servers!" id="fND-Yw-FUL">
+                                            <textFieldCell key="cell" enabled="NO" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="Application doesn't send your data to 3rd party servers!" id="fND-Yw-FUL">
                                                 <font key="font" metaFont="systemBold"/>
                                                 <color key="textColor" red="1" green="0.5" blue="0.0" alpha="1" colorSpace="calibratedRGB"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
                                         <button id="LXz-1Y-SPj">
-                                            <rect key="frame" x="15" y="132" width="269" height="18"/>
+                                            <rect key="frame" x="15" y="90" width="269" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Add current location" bezelStyle="regularSquare" imagePosition="left" inset="2" id="EHR-cD-dah">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -367,11 +360,11 @@
                                             </connections>
                                         </button>
                                         <progressIndicator hidden="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" id="b6C-7z-1x4">
-                                            <rect key="frame" x="230" y="15" width="16" height="16"/>
+                                            <rect key="frame" x="230" y="19" width="16" height="16"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         </progressIndicator>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="cbP-rv-bkE">
-                                            <rect key="frame" x="15" y="228" width="269" height="17"/>
+                                            <rect key="frame" x="15" y="232" width="269" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="Settings for Just Lock type only" id="lUT-Gk-u7i">
                                                 <font key="font" metaFont="systemBold"/>
@@ -380,7 +373,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="Gj7-jh-9kr">
-                                            <rect key="frame" x="15" y="-5" width="269" height="17"/>
+                                            <rect key="frame" x="15" y="-1" width="269" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="Label" id="Hg1-XZ-60t">
                                                 <font key="font" metaFont="smallSystem"/>
@@ -391,16 +384,43 @@
                                                 <binding destination="494" name="hidden" keyPath="self.patchASLProgress.hidden" id="qna-gf-LgM"/>
                                             </connections>
                                         </textField>
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" id="EES-0U-rCM">
+                                            <rect key="frame" x="119" y="168" width="85" height="17"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="photo quality" id="aY2-Y3-UcX">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                            </textFieldCell>
+                                        </textField>
+                                        <comboBox focusRingType="none" verticalHuggingPriority="750" id="ptx-DF-vGn">
+                                            <rect key="frame" x="17" y="162" width="99" height="26"/>
+                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                            <comboBoxCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" focusRingType="none" title="Normal" drawsBackground="YES" completes="NO" numberOfVisibleItems="5" id="psJ-Cy-P3H">
+                                                <font key="font" metaFont="system"/>
+                                                <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                                <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                                <objectValues>
+                                                    <string>Normal</string>
+                                                    <string>Good</string>
+                                                    <string>The Best</string>
+                                                </objectValues>
+                                            </comboBoxCell>
+                                            <connections>
+                                                <action selector="selectPhotoQuality:" target="494" id="2hx-ce-PPP"/>
+                                                <binding destination="494" name="enabled" keyPath="self.userSettings.bMakePhotoOnIncorrectPasword" id="out-C2-lgp"/>
+                                            </connections>
+                                        </comboBox>
                                     </subviews>
                                 </view>
                             </tabViewItem>
                             <tabViewItem label="Bluetooth" identifier="bluetooth" id="776">
                                 <view key="view" id="777">
-                                    <rect key="frame" x="10" y="29" width="299" height="251"/>
+                                    <rect key="frame" x="10" y="25" width="308" height="255"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button id="675">
-                                            <rect key="frame" x="15" y="226" width="188" height="18"/>
+                                            <rect key="frame" x="15" y="230" width="188" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Check device by Bluetooth" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="680">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -412,7 +432,7 @@
                                             </connections>
                                         </button>
                                         <button verticalHuggingPriority="750" id="691">
-                                            <rect key="frame" x="17" y="201" width="53" height="19"/>
+                                            <rect key="frame" x="17" y="205" width="53" height="19"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="roundRect" title="Device" bezelStyle="roundedRect" alignment="center" borderStyle="border" inset="2" id="698">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -424,7 +444,7 @@
                                             </connections>
                                         </button>
                                         <textField verticalHuggingPriority="750" id="701">
-                                            <rect key="frame" x="98" y="202" width="159" height="19"/>
+                                            <rect key="frame" x="98" y="206" width="159" height="19"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="none" id="702">
                                                 <font key="font" metaFont="system"/>
@@ -436,16 +456,16 @@
                                             </connections>
                                         </textField>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="863">
-                                            <rect key="frame" x="14" y="3" width="270" height="34"/>
+                                            <rect key="frame" x="14" y="7" width="279" height="34"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Automatically locks OS X when you walk away with a paired Bluetooth device." id="864">
+                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Automatically locks OS X when you walk away with a paired Bluetooth device." id="864">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
                                         </textField>
                                         <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" id="ttB-wd-UIc">
-                                            <rect key="frame" x="74" y="201" width="19" height="19"/>
+                                            <rect key="frame" x="74" y="205" width="19" height="19"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="off" id="EIh-Vc-xMz"/>
                                         </imageView>
@@ -454,11 +474,11 @@
                             </tabViewItem>
                             <tabViewItem label="USB" identifier="usb" id="779">
                                 <view key="view" id="780">
-                                    <rect key="frame" x="10" y="29" width="299" height="251"/>
+                                    <rect key="frame" x="10" y="25" width="308" height="255"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <button id="783">
-                                            <rect key="frame" x="15" y="223" width="269" height="24"/>
+                                            <rect key="frame" x="15" y="227" width="269" height="24"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Check device by USB" bezelStyle="regularSquare" imagePosition="left" alignment="left" inset="2" id="789">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -470,10 +490,10 @@
                                             </connections>
                                         </button>
                                         <box autoresizesSubviews="NO" title="Lock for:" borderType="line" id="795">
-                                            <rect key="frame" x="14" y="104" width="271" height="118"/>
+                                            <rect key="frame" x="14" y="108" width="280" height="118"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <view key="contentView">
-                                                <rect key="frame" x="1" y="1" width="269" height="102"/>
+                                                <rect key="frame" x="1" y="1" width="278" height="102"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
                                                     <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" autosizesCells="NO" id="796">
@@ -518,9 +538,9 @@
                                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </box>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="841">
-                                            <rect key="frame" x="14" y="3" width="271" height="34"/>
+                                            <rect key="frame" x="14" y="7" width="279" height="34"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
-                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Automatically locks your OS X when you disconnect iDevice from USB." id="842">
+                                            <textFieldCell key="cell" sendsActionOnEndEditing="YES" alignment="center" title="Automatically locks your OS X when you disconnect iDevice from USB." id="842">
                                                 <font key="font" metaFont="system"/>
                                                 <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
@@ -531,11 +551,11 @@
                             </tabViewItem>
                             <tabViewItem label="About" identifier="about" id="781">
                                 <view key="view" id="782">
-                                    <rect key="frame" x="10" y="29" width="299" height="251"/>
+                                    <rect key="frame" x="10" y="25" width="308" height="255"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <textField verticalHuggingPriority="750" id="812">
-                                            <rect key="frame" x="42" y="62" width="37" height="17"/>
+                                            <rect key="frame" x="42" y="66" width="37" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="and" id="821">
                                                 <font key="font" metaFont="system"/>
@@ -544,7 +564,7 @@
                                             </textFieldCell>
                                         </textField>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="814">
-                                            <rect key="frame" x="14" y="95" width="271" height="153"/>
+                                            <rect key="frame" x="14" y="99" width="279" height="153"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="mini" allowsUndo="NO" sendsActionOnEndEditing="YES" id="819">
                                                 <font key="font" metaFont="system"/>
@@ -562,7 +582,7 @@ Big Thanks:
                                             </textFieldCell>
                                         </textField>
                                         <button focusRingType="none" tag="1" id="815">
-                                            <rect key="frame" x="138" y="48" width="144" height="44"/>
+                                            <rect key="frame" x="138" y="52" width="144" height="44"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="squareTextured" bezelStyle="texturedSquare" image="russianapple" imagePosition="overlaps" alignment="center" focusRingType="none" imageScaling="proportionallyDown" inset="2" id="818">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -573,7 +593,7 @@ Big Thanks:
                                             </connections>
                                         </button>
                                         <button id="xpe-32-alY">
-                                            <rect key="frame" x="14" y="5" width="271" height="29"/>
+                                            <rect key="frame" x="14" y="9" width="279" height="29"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                             <buttonCell key="cell" type="bevel" title="Donate" bezelStyle="regularSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Agt-9j-udW">
                                                 <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
@@ -593,7 +613,7 @@ Big Thanks:
                     </tabView>
                 </subviews>
             </view>
-            <point key="canvasLocation" x="-146.5" y="264.5"/>
+            <point key="canvasLocation" x="-142" y="264.5"/>
         </window>
         <customObject id="494" customClass="LockMeNowAppDelegate">
             <connections>
@@ -607,6 +627,7 @@ Big Thanks:
                 <outlet property="sendMailCheckbox" destination="aj1-9s-ApJ" id="tdq-hs-YZm"/>
                 <outlet property="statusMenu" destination="560" id="571"/>
                 <outlet property="tabView" destination="774" id="913"/>
+                <outlet property="thiefPhotoQuality" destination="ptx-DF-vGn" id="4hL-tg-WWV"/>
                 <outlet property="window" destination="371" id="532"/>
             </connections>
         </customObject>

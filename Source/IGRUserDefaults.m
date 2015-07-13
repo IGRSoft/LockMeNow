@@ -24,6 +24,7 @@ NSString *kMakePhotoOnIncorrectPasword      = @"MakePhotoOnIncorrectPasword";
 NSString *kSendPhotoOnIncorrectPasword      = @"SendPhotoOnIncorrectPasword";
 NSString *kIncorrectPaswordMail             = @"IncorrectPaswordMail";
 NSString *kSendLocationOnIncorrectPasword   = @"SendLocationOnIncorrectPasword";
+NSString *kPhotoQualityType                 = @"PhotoQualityType";
 
 @interface IGRUserDefaults ()
 
@@ -53,6 +54,7 @@ NSString *kSendLocationOnIncorrectPasword   = @"SendLocationOnIncorrectPasword";
     defaultValues[kSendPhotoOnIncorrectPasword] = @NO;
     defaultValues[kIncorrectPaswordMail] = @"";
 	defaultValues[kSendLocationOnIncorrectPasword] = @NO;
+    defaultValues[kPhotoQualityType] = @(PHOTO_QUALITY_TYPE_GOOD);
     
 	// Register the dictionary of defaults
 	[self.defaults registerDefaults: defaultValues];
@@ -88,6 +90,7 @@ NSString *kSendLocationOnIncorrectPasword   = @"SendLocationOnIncorrectPasword";
     _bSendMailOnIncorrectPasword        = [self.defaults boolForKey:kSendPhotoOnIncorrectPasword];
     _sIncorrectPaswordMail              = [self.defaults objectForKey:kIncorrectPaswordMail];
     _bSendLocationOnIncorrectPasword    = [self.defaults boolForKey:kSendLocationOnIncorrectPasword];
+    _iPhotoQualityType                  = [self.defaults objectForKey:kPhotoQualityType];
     
 	NSData *deviceAsData = [self.defaults objectForKey:kBluetoothDevice];
 	if( [deviceAsData length] > 0 )
@@ -113,6 +116,7 @@ NSString *kSendLocationOnIncorrectPasword   = @"SendLocationOnIncorrectPasword";
     [self.defaults setBool:_bSendMailOnIncorrectPasword forKey:kSendPhotoOnIncorrectPasword];
     [self.defaults setObject:_sIncorrectPaswordMail forKey:kIncorrectPaswordMail];
     [self.defaults setBool:_bSendLocationOnIncorrectPasword forKey:kSendLocationOnIncorrectPasword];
+    [self.defaults setObject:_iPhotoQualityType forKey:kPhotoQualityType];
     
 	// Monitoring enabled
 	[self.defaults setBool:_bMonitoringBluetooth forKey:kBluetoothMonitoring];
@@ -142,6 +146,11 @@ NSString *kSendLocationOnIncorrectPasword   = @"SendLocationOnIncorrectPasword";
 - (DeviceType)deviceType
 {
 	return [_iUSBDeviceType integerValue];
+}
+
+- (PhotoQualityType)photoQualityType
+{
+    return [_iPhotoQualityType integerValue];
 }
 
 @end

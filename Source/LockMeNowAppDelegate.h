@@ -29,6 +29,7 @@
 @property (weak) IBOutlet NSButton              *sendMailCheckbox;
 @property (weak) IBOutlet NSProgressIndicator   *patchASLProgress;
 @property (weak) IBOutlet NSTextField           *patchStatus;
+@property (weak) IBOutlet NSComboBox            *thiefPhotoQuality;
 
 @property (weak) IBOutlet NSTextField   *aboutText;
 
