@@ -328,7 +328,7 @@
 
 - (IBAction)doLock:(id)sender
 {
-#if 1
+#if 0
     [self detectedWrongPassword];
 #else
     self.userSettings.bNeedResumeiTunes = NO;
