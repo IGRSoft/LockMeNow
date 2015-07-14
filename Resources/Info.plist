@@ -17,11 +17,11 @@
 	<key>CFBundlePackageType</key>
 	<string>APPL</string>
 	<key>CFBundleShortVersionString</key>
-	<string>1.2.2</string>
+	<string>1.2.1</string>
 	<key>CFBundleSignature</key>
 	<string>????</string>
 	<key>CFBundleVersion</key>
-	<string>117</string>
+	<string>121</string>
 	<key>LSApplicationCategoryType</key>
 	<string>public.app-category.utilities</string>
 	<key>LSMinimumSystemVersion</key>
@@ -37,5 +37,9 @@
 		<key>com.igrsoft.ASLHelper</key>
 		<string>identifier com.igrsoft.ASLHelper and certificate leaf[subject.CN] = "$(CODE_SIGN_IDENTITY)"</string>
 	</dict>
+	<key>SUFeedURL</key>
+	<string>http://igrsoft.com/wp-content/lockmenow/update.xml</string>
+	<key>SUPublicDSAKeyFile</key>
+	<string>dsa_pub.pem</string>
 </dict>
 </plist>

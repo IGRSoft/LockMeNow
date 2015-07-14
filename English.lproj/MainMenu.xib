@@ -655,6 +655,7 @@ Big Thanks:
                 <outlet property="hotKeyControl" destination="557" id="wn0-Ea-k1a"/>
             </connections>
         </customObject>
+        <customObject id="fcV-V6-07S" userLabel="SUUpdater" customClass="SUUpdater"/>
         <menu id="560">
             <items>
                 <menuItem title="Lock" id="566">
@@ -690,6 +691,12 @@ Big Thanks:
                         </items>
                     </menu>
                 </menuItem>
+                <menuItem title="Check for Updates..." id="r87-Df-sbp">
+                    <modifierMask key="keyEquivalentModifierMask"/>
+                    <connections>
+                        <action selector="checkForUpdates:" target="fcV-V6-07S" id="URm-ds-3ch"/>
+                    </connections>
+                </menuItem>
                 <menuItem isSeparatorItem="YES" id="562"/>
                 <menuItem title="Quit" id="565">
                     <modifierMask key="keyEquivalentModifierMask"/>
@@ -701,6 +708,7 @@ Big Thanks:
             <connections>
                 <outlet property="delegate" destination="494" id="658"/>
             </connections>
+            <point key="canvasLocation" x="-48" y="520.5"/>
         </menu>
         <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hasShadow="NO" hidesOnDeactivate="YES" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="847" customClass="NSPanel">
             <windowStyleMask key="styleMask" utility="YES"/>

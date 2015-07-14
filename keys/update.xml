@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rss version="2.0" xmlns:sparkle="http://www.andymatuschak.org/xml-namespaces/sparkle">
+	<channel>
+		<title>Lock Me Now Changelog</title>
+		<language>en</language>
+        <item>
+			<title>Version 1.2.2, Build e96094a0085517b98e54661437cc4c7da47ee03c</title>
+			<sparkle:shortVersionString>1.2.2</sparkle:shortVersionString>
+			<sparkle:releaseNotesLink>http://igrsoft.com/wp-content/lockmenow/info_122.html</sparkle:releaseNotesLink>
+			<pubDate>Tue, 14 Jul 2015 14:41:45 +0300</pubDate>
+			<enclosure url="http://downloads.igrsoft.com/lockmenow/LockMeNow_122.zip" sparkle:version="122" length="2836939" type="application/octet-stream" sparkle:dsaSignature="MCwCFDz82NQGdZXDMmmUFF8qSILqXS1UAhQSruRE3HfkowPX2CQPXmxpTkCV0w==" />
+		</item>
+	</channel>
+</rss>
