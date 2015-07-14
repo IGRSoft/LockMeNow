@@ -179,7 +179,7 @@
                                             <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </box>
                                         <button id="582">
-                                            <rect key="frame" x="18" y="69" width="142" height="18"/>
+                                            <rect key="frame" x="18" y="65" width="275" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Icon on Main Menu" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="583">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -191,7 +191,7 @@
                                             </connections>
                                         </button>
                                         <button id="8Uo-Yr-gEo">
-                                            <rect key="frame" x="18" y="49" width="180" height="18"/>
+                                            <rect key="frame" x="18" y="45" width="275" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Use Current Screen Saver" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="8fR-RJ-7Xi">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -204,7 +204,7 @@
                                             </connections>
                                         </button>
                                         <button id="646">
-                                            <rect key="frame" x="18" y="29" width="145" height="18"/>
+                                            <rect key="frame" x="18" y="25" width="275" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Pause iTunes Music" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="647">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -216,7 +216,7 @@
                                             </connections>
                                         </button>
                                         <button id="828">
-                                            <rect key="frame" x="42" y="9" width="158" height="18"/>
+                                            <rect key="frame" x="42" y="5" width="158" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Resume iTunes Music" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="829">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -392,6 +392,17 @@ an incorrect password</string>
                                                 <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                                 <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                             </textFieldCell>
+                                            <connections>
+                                                <binding destination="494" name="enabled" keyPath="self.isASLPatched" id="mfh-01-k48"/>
+                                                <binding destination="494" name="enabled2" keyPath="self.userSettings.bMakePhotoOnIncorrectPasword" previousBinding="mfh-01-k48" id="B7Q-Fk-gA8">
+                                                    <dictionary key="options">
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                                    </dictionary>
+                                                </binding>
+                                            </connections>
                                         </textField>
                                         <comboBox focusRingType="none" verticalHuggingPriority="750" id="ptx-DF-vGn">
                                             <rect key="frame" x="17" y="162" width="99" height="26"/>
@@ -408,7 +419,15 @@ an incorrect password</string>
                                             </comboBoxCell>
                                             <connections>
                                                 <action selector="selectPhotoQuality:" target="494" id="2hx-ce-PPP"/>
-                                                <binding destination="494" name="enabled" keyPath="self.userSettings.bMakePhotoOnIncorrectPasword" id="out-C2-lgp"/>
+                                                <binding destination="494" name="enabled2" keyPath="self.isASLPatched" previousBinding="GK7-h8-mtb" id="L1h-th-hrC">
+                                                    <dictionary key="options">
+                                                        <integer key="NSMultipleValuesPlaceholder" value="-1"/>
+                                                        <integer key="NSNoSelectionPlaceholder" value="-1"/>
+                                                        <integer key="NSNotApplicablePlaceholder" value="-1"/>
+                                                        <integer key="NSNullPlaceholder" value="-1"/>
+                                                    </dictionary>
+                                                </binding>
+                                                <binding destination="494" name="enabled" keyPath="self.userSettings.bMakePhotoOnIncorrectPasword" id="GK7-h8-mtb"/>
                                             </connections>
                                         </comboBox>
                                     </subviews>

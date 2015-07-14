@@ -10,52 +10,6 @@
 
 @implementation XPCScripting
 
-/*- (NSString *)doShell:(NSString *)file
-{
-    NSString *scriptPath = [[NSBundle mainBundle] pathForResource:file ofType:@"sh"];
-    
-    NSTask *scriptTask = [NSTask new];
-    NSPipe *outputPipe = [NSPipe pipe];
-    
-    if ([[NSFileManager defaultManager] isExecutableFileAtPath:scriptPath] == NO) {
-        NSArray *chmodArguments = @[@"+x", scriptPath];
-        
-        NSTask *chmod = [NSTask launchedTaskWithLaunchPath:@"/bin/chmod" arguments:chmodArguments];
-        
-        [chmod waitUntilExit];
-    }
-    
-    [scriptTask setStandardOutput:outputPipe];
-    [scriptTask setLaunchPath:scriptPath];
-    
-    NSFileHandle *filehandle = [outputPipe fileHandleForReading];
-    
-    [scriptTask launch];
-    [scriptTask waitUntilExit];
-    
-    NSData *outputData    = [filehandle readDataToEndOfFile];
-    
-    NSString *outputString  = [[NSString alloc] initWithData:outputData encoding:NSUTF8StringEncoding];
-    
-    return outputString;
-}
-
-- (void)checkEncriptionWithReply:(void (^)(BOOL))reply
-{
-    BOOL encription = NO;
-    
-    NSString *outputString = [self doShell:@"filevault_2_encryption_check_extension_attribute"];
-    
-    NSRange textRange;
-    textRange =[outputString rangeOfString:@"FileVault 2 Encryption Complete"];
-    if(textRange.location != NSNotFound)
-    {
-        encription = YES;
-    }
-    
-    reply(encription);
-}*/
-
 - (void)makeLoginWindowLock
 {
     NSTask *task;
