@@ -35,7 +35,11 @@
     {
         _checkingInProgress = NO;
         self.bluetoothDevicePriorStatus = OutOfRange;
-        _bluetoothDevice = [NSKeyedUnarchiver unarchiveObjectWithData:self.userSettings.bluetoothData];
+        _bluetoothDevice = nil;
+        if (self.userSettings.bluetoothData)
+        {
+            _bluetoothDevice = [NSKeyedUnarchiver unarchiveObjectWithData:self.userSettings.bluetoothData];
+        }
         [self updateDeviceName];
         
         _bluetoothTimerInterval = 2;
