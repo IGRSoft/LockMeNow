@@ -18,7 +18,8 @@
 
 @interface ListenerManager : NSObject
 
-- (instancetype)initWithSettings:(IGRUserDefaults *)aSettings NS_DESIGNATED_INITIALIZER;
+- (instancetype)init NS_UNAVAILABLE;
+- (instancetype)initWithSettings:(IGRUserDefaults *)aSettings;
 
 - (void)startListen;
 - (void)stopListen;

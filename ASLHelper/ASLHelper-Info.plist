@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>CFBundleIdentifier</key>
-	<string>com.igrsoft.ASLHelper</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -12,7 +12,7 @@
 	<string>1.0</string>
 	<key>SMAuthorizedClients</key>
 	<array>
-		<string>identifier com.igrsoft.LockMeNow and certificate leaf[subject.CN] = &quot;IGR Software&quot;</string>
+		<string>identifier com.igrsoft.LockMeNow and certificate leaf[subject.CN] = "IGR Software"</string>
 	</array>
 </dict>
 </plist>

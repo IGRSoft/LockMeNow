@@ -50,7 +50,7 @@
 @property (nonatomic) CLLocationManager *locationManager;
 
 - (BOOL)autorizateForService:(NSString *)aService
-                       error:(NSError **)error;
+                       error:(NSError * __autoreleasing *)error;
 - (IBAction)selectPhotoQuality:(NSComboBox *)sender;
 
 @end
@@ -73,7 +73,7 @@
     if (filePath)
     {
         DBNSLog(@"%@", theNotification);
-        [[NSWorkspace sharedWorkspace] selectFile: filePath inFileViewerRootedAtPath: nil];
+        [[NSWorkspace sharedWorkspace] selectFile:filePath inFileViewerRootedAtPath:@""];
     }
     
     // Prep XPC services.
@@ -578,7 +578,7 @@
 }
 
 - (BOOL)autorizateForService:(NSString *)aService
-                       error:(NSError **)error
+                       error:(NSError * __autoreleasing *)error
 {
     BOOL result = NO;
     
@@ -603,7 +603,7 @@
         CFErrorRef cfError = nil;
         result = SMJobBless(kSMDomainSystemLaunchd, (__bridge CFStringRef)aService, authRef, &cfError);
         
-        if (!result && cfError)
+        if (error != nil && !result && cfError)
         {
             *error = CFBridgingRelease(cfError);
         }
@@ -841,7 +841,7 @@
     NSString *filePath = [notification userInfo][@"filePath"];
     if (filePath)
     {
-        [[NSWorkspace sharedWorkspace] selectFile: filePath inFileViewerRootedAtPath: nil];
+        [[NSWorkspace sharedWorkspace] selectFile:filePath inFileViewerRootedAtPath:@""];
     }
     [center removeDeliveredNotification:notification];
 }

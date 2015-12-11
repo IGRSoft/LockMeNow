@@ -9,7 +9,7 @@
 	<key>CFBundleIconFile</key>
 	<string></string>
 	<key>CFBundleIdentifier</key>
-	<string>com.igrsoft.$(PRODUCT_NAME:rfc1034identifier)</string>
+	<string>$(PRODUCT_BUNDLE_IDENTIFIER)</string>
 	<key>CFBundleInfoDictionaryVersion</key>
 	<string>6.0</string>
 	<key>CFBundleName</key>
@@ -26,15 +26,15 @@
 	<true/>
 	<key>LSMinimumSystemVersion</key>
 	<string>$(MACOSX_DEPLOYMENT_TARGET)</string>
+	<key>LaunchAppId</key>
+	<string>com.igrsoft.LockMeNow</string>
+	<key>LaunchAppName</key>
+	<string>LockMeNow</string>
 	<key>NSHumanReadableCopyright</key>
 	<string>Copyright © 2015 IGR Software. All rights reserved.</string>
 	<key>NSMainNibFile</key>
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>LaunchAppId</key>
-	<string>com.igrsoft.LockMeNow</string>
-	<key>LaunchAppName</key>
-	<string>LockMeNow</string>
 </dict>
 </plist>
