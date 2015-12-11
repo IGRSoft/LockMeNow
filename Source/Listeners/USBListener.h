@@ -8,11 +8,11 @@
 
 #import "ListenerManager.h"
 
-#define NUM_APPLE_MOBILE_DEVICES	30
+#define NUM_APPLE_MOBILE_DEVICES	22
 
 #define NUM_IPHONE_POS	0
-#define NUM_IPOD_POS	11
-#define NUM_IPAD_POS	16
+#define NUM_IPOD_POS	8
+#define NUM_IPAD_POS	13
 
 #define VENDOR_APPLE	0x05ac
 

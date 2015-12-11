@@ -47,16 +47,13 @@ static APPLE_MOBILE_DEVICE APPLE_MOBILE_DEVICES[NUM_APPLE_MOBILE_DEVICES] =
     { "iPhone 4(CDMA)",			0x129c },
     { "iPhone 4(R2)",			0x129c },
     { "iPhone 4S",				0x12a0 },
-    { "iPhone 5",               0x12a8 },
-    { "iPhone 5C",              0x12a8 },
-    { "iPhone 5S",              0x12a8 },
-    { "iPhone 6",               0x12a8 },
+    { "iPhone 5 and Newer",     0x12a8 },
     
     { "iPod touch 1G",			0x1291 },
     { "iPod touch 2G",			0x1293 },
     { "iPod touch 3G",			0x1299 },
     { "iPod touch 4G",			0x129e },
-    { "iPod touch 5G",			0x12aa },
+    { "iPod touch 5G and Newer",0x12aa },
     
     { "iPad",					0x129a },
     { "iPad 2(WiFi)",			0x129f },
@@ -66,12 +63,7 @@ static APPLE_MOBILE_DEVICE APPLE_MOBILE_DEVICES[NUM_APPLE_MOBILE_DEVICES] =
     { "iPad 3(WiFi)",			0x12a4 },
     { "iPad 3(CDMA)",			0x12a5 },
     { "iPad 3(4G)",				0x12a6 },
-    { "iPad 4",                 0x12ab },
-    { "iPad Air",               0x12ab },
-    { "iPad Air 2",             0x12ab },
-    { "iPad mini",              0x12ab },
-    { "iPad mini 2",            0x12ab },
-    { "iPad mini 3",            0x12ab }
+    { "iPad 4 and Newer",       0x12ab },
 };
 
 - (void)startListen

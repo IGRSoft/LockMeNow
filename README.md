@@ -51,7 +51,6 @@ Known Issues
 -------------
 
 * Not good work with Bluetooth
-* Not all Apple devices add to USB lock;
 
 Licence
 -------------
