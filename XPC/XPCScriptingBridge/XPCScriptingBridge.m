@@ -34,7 +34,7 @@ static NSString *defaultText = @"Someone has entered an incorrect password!\n\n"
     return iTunes.isRunning;
 }
 
-- (void)isMusicPlaingWithReply:(void (^)(BOOL))reply
+- (void)isMusicPlaingWithReply:(void (^ _Nonnull)(BOOL))reply
 {
     if (![self isItunesRuning])
     {
@@ -46,7 +46,7 @@ static NSString *defaultText = @"Someone has entered an incorrect password!\n\n"
     reply([iTunes playerState] == iTunesEPlSPlaying);
 }
 
-- (void)isMusicPausedWithReply:(void (^)(BOOL))reply
+- (void)isMusicPausedWithReply:(void (^ _Nonnull)(BOOL))reply
 {
     if (![self isItunesRuning])
     {
@@ -71,14 +71,14 @@ static NSString *defaultText = @"Someone has entered an incorrect password!\n\n"
 
 #pragma mark - Mail
 
-- (void)setupMailAddres:(NSString *)aMail userPhoto:(NSString *)photoPath
+- (void)setupMailAddres:(NSString * _Nonnull)aMail userPhoto:(NSString * _Nullable)photoPath
 {
     _mailAddres = aMail;
     _photoPaths = photoPath ? [NSMutableArray arrayWithObject:photoPath] : nil;
     _messageContent = defaultText;
 }
 
-- (void)sendDefaultMessageAddLocation:(NSString *)aLocation
+- (void)sendDefaultMessageAddLocation:(NSString * _Nullable)aLocation
 {
     if (aLocation)
     {
@@ -109,7 +109,7 @@ static NSString *defaultText = @"Someone has entered an incorrect password!\n\n"
     _messageContent = [_messageContent stringByAppendingFormat:@"%@\n\n", @"http://www.IGRSoft.com"];
     
     /* create a new outgoing message object */
-    MailOutgoingMessage *emailMessage = [[[mail classForScriptingClass:@"outgoing message"] alloc] initWithProperties:
+    MailOutgoingMessage *emailMessage = [[NSClassFromString(@"MailOutgoingMessage") alloc] initWithProperties:
                                          @{@"subject": @"Lock Me Now Security Warning",
                                            @"content" : _messageContent}];
 				
@@ -124,7 +124,7 @@ static NSString *defaultText = @"Someone has entered an incorrect password!\n\n"
         return;
 				
     /* create a new recipient and add it to the recipients list */
-    MailToRecipient *theRecipient = [[[mail classForScriptingClass:@"to recipient"] alloc] initWithProperties:
+    MailToRecipient *theRecipient = [[NSClassFromString(@"MailToRecipient") alloc] initWithProperties:
                                      @{@"address": _mailAddres}];
     [emailMessage.toRecipients addObject: theRecipient];
     
@@ -135,13 +135,15 @@ static NSString *defaultText = @"Someone has entered an incorrect password!\n\n"
     /* add an attachment, if one was specified */
     for (NSString *attachmentFilePath in _photoPaths)
     {
-        MailAttachment *theAttachment = [[[mail classForScriptingClass:@"attachment"] alloc] initWithProperties:
+        MailAttachment *theAttachment = [[NSClassFromString(@"MailAttachment") alloc] initWithProperties:
                                          @{@"fileName": [NSURL URLWithString:attachmentFilePath]}];
         
         /* add it to the list of attachments */
-        [[emailMessage.content attachments] addObject: theAttachment];
+        [[emailMessage.content attachments] addObject:theAttachment];
     }
-    
+	
+	sleep(1); //Need wait 1 sec for 10.11
+	
     /* Test for errors */
     if ( [mail lastError] != nil )
         return;

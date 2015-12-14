@@ -12,8 +12,8 @@ typedef void (^FoudWrongPasswordBlock)(void);
 
 @protocol XPCLogerProtocol
 
-- (void)startCheckIncorrectPassword:(FoudWrongPasswordBlock)replyBlock;
+- (void)startCheckIncorrectPassword:(FoudWrongPasswordBlock __nonnull)replyBlock;
 - (void)stopCheckIncorrectPassword;
-- (void)updateReplayBlock:(FoudWrongPasswordBlock)replyBlock;
+- (void)updateReplayBlock:(FoudWrongPasswordBlock __nonnull)replyBlock;
     
 @end

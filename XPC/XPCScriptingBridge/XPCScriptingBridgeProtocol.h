@@ -13,14 +13,14 @@
 
 #pragma mark - iTunes
 
-- (void)isMusicPlaingWithReply:(void (^)(BOOL))reply;
-- (void)isMusicPausedWithReply:(void (^)(BOOL))reply;
+- (void)isMusicPlaingWithReply:(void (^ _Nonnull)(BOOL))reply;
+- (void)isMusicPausedWithReply:(void (^ _Nonnull)(BOOL))reply;
 - (void)playPauseMusic;
 
 #pragma mark - Mail
 
-- (void)setupMailAddres:(NSString *)aMail userPhoto:(NSString *)photoPath;
-- (void)sendDefaultMessageAddLocation:(NSString *)aLocation;
+- (void)setupMailAddres:(NSString  * _Nonnull)aMail userPhoto:(NSString  * _Nullable)photoPath;
+- (void)sendDefaultMessageAddLocation:(NSString * _Nullable)aLocation;
 
 @end
 

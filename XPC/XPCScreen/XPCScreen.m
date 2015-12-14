@@ -10,15 +10,15 @@
 
 @interface XPCScreen ()
 
-@property (nonatomic, strong) DetectedUnlockBlock detectedUnlockBlock;
+@property (nonatomic, copy) DetectedUnlockBlock detectedUnlockBlock;
 
 @end
 
 @implementation XPCScreen
 
-- (void)startListenScreenUnlock:(DetectedUnlockBlock)replyBlock
+- (void)startListenScreenUnlock:(DetectedUnlockBlock __nonnull)replyBlock
 {
-    self.detectedUnlockBlock = replyBlock;
+    self.detectedUnlockBlock = [replyBlock copy];
     
     NSDistributedNotificationCenter* distCenter = [NSDistributedNotificationCenter defaultCenter];
     [distCenter addObserver:self

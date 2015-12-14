@@ -14,7 +14,7 @@
 
 @property (nonatomic, strong) NSFileHandle *fileHandle;
 @property (nonatomic, strong) NSString *lastLine;
-@property (nonatomic, strong) FoudWrongPasswordBlock foudWrongPasswordBlock;
+@property (nonatomic, copy) FoudWrongPasswordBlock foudWrongPasswordBlock;
 @property (nonatomic, strong) NSArray *modes;
 @property (nonatomic, assign) BOOL taskRuning;
 
@@ -22,9 +22,9 @@
 
 @implementation XPCLoger
 
-- (void)startCheckIncorrectPassword:(FoudWrongPasswordBlock)replyBlock
+- (void)startCheckIncorrectPassword:(FoudWrongPasswordBlock __nonnull)replyBlock
 {
-    self.foudWrongPasswordBlock = replyBlock;
+    self.foudWrongPasswordBlock = [replyBlock copy];
     self.lastLine = nil;
     
     NSURL *filePath = [NSURL URLWithString:LOG_PATH];
@@ -50,6 +50,8 @@
 
 - (void)stopCheckIncorrectPassword
 {
+	self.taskRuning = NO;
+	
     [[NSNotificationCenter defaultCenter] removeObserver:self
                                                     name:NSFileHandleDataAvailableNotification
                                                   object:self.fileHandle];
@@ -57,12 +59,11 @@
     self.fileHandle = nil;
     self.lastLine = nil;
     self.foudWrongPasswordBlock = nil;
-    self.taskRuning = NO;
 }
 
-- (void)updateReplayBlock:(FoudWrongPasswordBlock)replyBlock
+- (void)updateReplayBlock:(FoudWrongPasswordBlock __nonnull)replyBlock
 {
-    self.foudWrongPasswordBlock = replyBlock;
+    self.foudWrongPasswordBlock = [replyBlock copy];
 }
 
 - (void)handleChannelDataAvailable:(NSNotification*)notification
@@ -121,9 +122,10 @@
     
     if (_taskRuning)
     {
+		__weak typeof(self) weak = self;
         dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_DEFAULT, 0), ^{
             
-            [self runCustomLoop];
+            [weak runCustomLoop];
         });
     }
 }

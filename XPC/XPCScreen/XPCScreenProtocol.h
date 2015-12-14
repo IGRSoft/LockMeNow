@@ -12,7 +12,7 @@ typedef void (^DetectedUnlockBlock)(void);
 
 @protocol XPCScreenProtocol
 
-- (void)startListenScreenUnlock:(DetectedUnlockBlock)reply;
+- (void)startListenScreenUnlock:(DetectedUnlockBlock __nonnull)reply;
 - (void)stopListenScreenUnlock;
 
 @end
