@@ -329,7 +329,7 @@
 - (IBAction)doLock:(id)sender
 {
 #if 0
-    [self detectedWrongPassword];
+    [self detectedWrongLoginAction];
 #else
     self.userSettings.bNeedResumeiTunes = NO;
     self.thiefPhotoPath = nil;
@@ -768,7 +768,7 @@
     }
 }
 
-- (void)detectedWrongPassword
+- (void)detectedWrongLoginAction
 {
     [self userTryEnterPassword];
 

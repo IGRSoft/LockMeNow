@@ -63,6 +63,10 @@
 		A5F451D31A9288C7009FD03E /* LockManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451C11A9288C7009FD03E /* LockManager.m */; };
 		A5F451D41A9288C7009FD03E /* LoginWindowsLock.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451C31A9288C7009FD03E /* LoginWindowsLock.m */; };
 		A5F451D51A9288C7009FD03E /* LockMeNowAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451C51A9288C7009FD03E /* LockMeNowAppDelegate.m */; };
+		A5FC57B91C20053C0047C982 /* XPCPower.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FC57B81C20053C0047C982 /* XPCPower.m */; };
+		A5FC57BB1C20053C0047C982 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FC57BA1C20053C0047C982 /* main.m */; };
+		A5FC57BF1C20053C0047C982 /* XPCPower.xpc in Copy XPC Service */ = {isa = PBXBuildFile; fileRef = A5FC57B41C20053C0047C982 /* XPCPower.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		A5FC57CF1C2008770047C982 /* IOKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A527B87C1AA0AF5B002E92C0 /* IOKit.framework */; };
 		D0764532101E7A6100DAE20D /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = D0764530101E7A6100DAE20D /* main.m */; };
 		D0ABD262101D374900E5F733 /* Carbon.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D0ABD261101D374900E5F733 /* Carbon.framework */; };
 /* End PBXBuildFile section */
@@ -247,6 +251,13 @@
 			remoteGlobalIDString = A5E89F091AA3752F0007BA5B;
 			remoteInfo = XPCScreen;
 		};
+		A5FC57BD1C20053C0047C982 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = A5FC57B31C20053C0047C982;
+			remoteInfo = XPCPower;
+		};
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -294,6 +305,7 @@
 				A527B8751AA0A9CF002E92C0 /* XPCScripting.xpc in Copy XPC Service */,
 				A5E89F161AA3752F0007BA5B /* XPCScreen.xpc in Copy XPC Service */,
 				A572A4511AA5A98D00661E3E /* XPCScriptingBridge.xpc in Copy XPC Service */,
+				A5FC57BF1C20053C0047C982 /* XPCPower.xpc in Copy XPC Service */,
 				A5E89EDD1AA2713E0007BA5B /* XPCLoger.xpc in Copy XPC Service */,
 			);
 			name = "Copy XPC Service";
@@ -392,6 +404,12 @@
 		A5F451C31A9288C7009FD03E /* LoginWindowsLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginWindowsLock.m; sourceTree = "<group>"; };
 		A5F451C41A9288C7009FD03E /* LockMeNowAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LockMeNowAppDelegate.h; sourceTree = "<group>"; };
 		A5F451C51A9288C7009FD03E /* LockMeNowAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LockMeNowAppDelegate.m; sourceTree = "<group>"; };
+		A5FC57B41C20053C0047C982 /* XPCPower.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = XPCPower.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
+		A5FC57B61C20053C0047C982 /* XPCPowerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XPCPowerProtocol.h; sourceTree = "<group>"; };
+		A5FC57B71C20053C0047C982 /* XPCPower.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XPCPower.h; sourceTree = "<group>"; };
+		A5FC57B81C20053C0047C982 /* XPCPower.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XPCPower.m; sourceTree = "<group>"; };
+		A5FC57BA1C20053C0047C982 /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
+		A5FC57BC1C20053C0047C982 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		D0764520101E7A3300DAE20D /* Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = Info.plist; path = Resources/Info.plist; sourceTree = "<group>"; };
 		D0764530101E7A6100DAE20D /* main.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = main.m; path = Source/main.m; sourceTree = "<group>"; };
 		D0764531101E7A6100DAE20D /* Prefix.pch */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = Prefix.pch; path = Source/Prefix.pch; sourceTree = "<group>"; };
@@ -461,6 +479,14 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A5FC57B11C20053C0047C982 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5FC57CF1C2008770047C982 /* IOKit.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -514,6 +540,7 @@
 				A5E89ED11AA2713E0007BA5B /* XPCLoger.xpc */,
 				A5E89F0A1AA3752F0007BA5B /* XPCScreen.xpc */,
 				A572A4451AA5A98D00661E3E /* XPCScriptingBridge.xpc */,
+				A5FC57B41C20053C0047C982 /* XPCPower.xpc */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -606,6 +633,7 @@
 		A527B85F1AA0A999002E92C0 /* XPC */ = {
 			isa = PBXGroup;
 			children = (
+				A5FC57B51C20053C0047C982 /* XPCPower */,
 				A572A4461AA5A98D00661E3E /* XPCScriptingBridge */,
 				A5E89F0B1AA3752F0007BA5B /* XPCScreen */,
 				A5E89ED21AA2713E0007BA5B /* XPCLoger */,
@@ -821,6 +849,19 @@
 			path = LockManager;
 			sourceTree = "<group>";
 		};
+		A5FC57B51C20053C0047C982 /* XPCPower */ = {
+			isa = PBXGroup;
+			children = (
+				A5FC57B61C20053C0047C982 /* XPCPowerProtocol.h */,
+				A5FC57B71C20053C0047C982 /* XPCPower.h */,
+				A5FC57B81C20053C0047C982 /* XPCPower.m */,
+				A5FC57BA1C20053C0047C982 /* main.m */,
+				A5FC57BC1C20053C0047C982 /* Info.plist */,
+			);
+			name = XPCPower;
+			path = XPC/XPCPower;
+			sourceTree = SOURCE_ROOT;
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -849,6 +890,7 @@
 				A5E89EDC1AA2713E0007BA5B /* PBXTargetDependency */,
 				A5E89F151AA3752F0007BA5B /* PBXTargetDependency */,
 				A572A4501AA5A98D00661E3E /* PBXTargetDependency */,
+				A5FC57BE1C20053C0047C982 /* PBXTargetDependency */,
 			);
 			name = LockMeNow;
 			productInstallPath = "$(HOME)/Applications";
@@ -941,6 +983,23 @@
 			productReference = A5E89F0A1AA3752F0007BA5B /* XPCScreen.xpc */;
 			productType = "com.apple.product-type.xpc-service";
 		};
+		A5FC57B31C20053C0047C982 /* XPCPower */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = A5FC57CE1C20053C0047C982 /* Build configuration list for PBXNativeTarget "XPCPower" */;
+			buildPhases = (
+				A5FC57B01C20053C0047C982 /* Sources */,
+				A5FC57B11C20053C0047C982 /* Frameworks */,
+				A5FC57B21C20053C0047C982 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = XPCPower;
+			productName = XPCPower;
+			productReference = A5FC57B41C20053C0047C982 /* XPCPower.xpc */;
+			productType = "com.apple.product-type.xpc-service";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -985,6 +1044,10 @@
 							};
 						};
 					};
+					A5FC57B31C20053C0047C982 = {
+						CreatedOnToolsVersion = 7.2;
+						DevelopmentTeam = DMP42GVPJ3;
+					};
 				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "LockMeNow" */;
@@ -1024,6 +1087,7 @@
 				A527B8681AA0A9CF002E92C0 /* XPCScripting */,
 				A5E89F091AA3752F0007BA5B /* XPCScreen */,
 				A572A4441AA5A98D00661E3E /* XPCScriptingBridge */,
+				A5FC57B31C20053C0047C982 /* XPCPower */,
 			);
 		};
 /* End PBXProject section */
@@ -1166,6 +1230,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A5FC57B21C20053C0047C982 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
@@ -1232,6 +1303,15 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		A5FC57B01C20053C0047C982 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				A5FC57BB1C20053C0047C982 /* main.m in Sources */,
+				A5FC57B91C20053C0047C982 /* XPCPower.m in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
@@ -1279,6 +1359,11 @@
 			isa = PBXTargetDependency;
 			target = A5E89F091AA3752F0007BA5B /* XPCScreen */;
 			targetProxy = A5E89F141AA3752F0007BA5B /* PBXContainerItemProxy */;
+		};
+		A5FC57BE1C20053C0047C982 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = A5FC57B31C20053C0047C982 /* XPCPower */;
+			targetProxy = A5FC57BD1C20053C0047C982 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1418,7 +1503,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = XPC/XPCScriptingBridge/Info.plist;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.igrsoft.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1454,7 +1538,6 @@
 				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
 				GCC_WARN_UNUSED_FUNCTION = YES;
 				INFOPLIST_FILE = XPC/XPCScriptingBridge/Info.plist;
-				MACOSX_DEPLOYMENT_TARGET = 10.10;
 				MTL_ENABLE_DEBUG_INFO = NO;
 				PRODUCT_BUNDLE_IDENTIFIER = "com.igrsoft.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -1696,6 +1779,82 @@
 			};
 			name = Release;
 		};
+		A5FC57C01C20053C0047C982 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/XPC/XPCPower/Info.plist";
+				MTL_ENABLE_DEBUG_INFO = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = com.igrsoft.XPCPower;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Debug;
+		};
+		A5FC57C11C20053C0047C982 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_IDENTITY = "Mac Developer";
+				COMBINE_HIDPI_IMAGES = YES;
+				COPY_PHASE_STRIP = NO;
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu99;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				INFOPLIST_FILE = "$(SRCROOT)/XPC/XPCPower/Info.plist";
+				MTL_ENABLE_DEBUG_INFO = NO;
+				PRODUCT_BUNDLE_IDENTIFIER = com.igrsoft.XPCPower;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SKIP_INSTALL = YES;
+			};
+			name = Release;
+		};
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1824,6 +1983,14 @@
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
+		};
+		A5FC57CE1C20053C0047C982 /* Build configuration list for PBXNativeTarget "XPCPower" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5FC57C01C20053C0047C982 /* Debug */,
+				A5FC57C11C20053C0047C982 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
 		};
 		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "LockMeNow" */ = {
 			isa = XCConfigurationList;

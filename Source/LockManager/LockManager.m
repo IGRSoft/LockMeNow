@@ -10,6 +10,7 @@
 #import "IGRUserDefaults.h"
 #import "XPCLogerProtocol.h"
 #import "XPCScreenProtocol.h"
+#import "XPCPowerProtocol.h"
 
 @interface LockManager ()
 
@@ -17,6 +18,9 @@
 @property (nonatomic, strong) FoudWrongPasswordBlock foudWrongPasswordBlock;
 
 @property (nonatomic, strong) NSXPCConnection *screenServiceConnection;
+
+@property (nonatomic, strong) NSXPCConnection *powerServiceConnection;
+@property (nonatomic, strong) FoudChangesInPowerBlock foudChangesInPowerBlock;
 
 @property (nonatomic, assign) BOOL userUsePassword;
 @property (nonatomic, assign) NSNumber *passwordDelay;
@@ -63,6 +67,7 @@
 	{
         [self setSecuritySetings:YES];
         [self startCheckIncorrectPassword];
+		[self startCheckPowerMode];
 	}
 
     __weak typeof(self) weakSelf = self;
@@ -84,6 +89,7 @@
     {
         [self setSecuritySetings:NO];
         [self stopCheckIncorrectPassword];
+		[self stopCheckPowerMode];
     }
 }
 
@@ -162,7 +168,7 @@
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                [weakSelf.delegate detectedWrongPassword];
+                [weakSelf.delegate detectedWrongLoginAction];
             });
             
             //Need update replay block, it called one times
@@ -181,6 +187,41 @@
         [[_logerServiceConnection remoteObjectProxy] stopCheckIncorrectPassword];
         [_logerServiceConnection invalidate];
     }
+}
+
+- (void)startCheckPowerMode
+{
+	if (_userSettings.bControllMagSafe)
+	{
+		self.powerServiceConnection = [[NSXPCConnection alloc] initWithServiceName:XPC_POWER];
+		_powerServiceConnection.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(XPCPowerProtocol)];
+		[_powerServiceConnection resume];
+		
+		__weak typeof(self) weakSelf = self;
+		
+		self.foudChangesInPowerBlock = ^{
+			
+			dispatch_async(dispatch_get_main_queue(), ^{
+				
+				[weakSelf.delegate detectedWrongLoginAction];
+			});
+			
+			//Need update replay block, it called one times
+			[[weakSelf.powerServiceConnection remoteObjectProxy] updateReplayBlock:weakSelf.foudChangesInPowerBlock];
+		};
+		
+		[[_powerServiceConnection remoteObjectProxy] startCheckPower:self.foudChangesInPowerBlock];
+	}
+}
+
+- (void)stopCheckPowerMode
+{
+	if (_userSettings.bControllMagSafe)
+	{
+		self.foudWrongPasswordBlock = nil;
+		[[_powerServiceConnection remoteObjectProxy] stopCheckPower];
+		[_powerServiceConnection invalidate];
+	}
 }
 
 @end

@@ -21,6 +21,7 @@
 #define XPC_SCRIPTING           @"com.igrsoft.XPCScripting"
 #define XPC_SCRIPTING_BRIDGE    @"com.igrsoft.XPCScriptingBridge"
 #define XPC_SCREEN              @"com.igrsoft.XPCScreen"
+#define XPC_POWER               @"com.igrsoft.XPCPower"
 
 #define IGRNotificationScreenLocked     @"IGRNotificationScreenLocked"
 #define IGRNotificationScreenUnLocked   @"IGRNotificationScreenUnLocked"

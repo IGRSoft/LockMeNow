@@ -48,6 +48,7 @@ typedef void (^IGRUserDefaultsBluetoothData)(NSData *bluetoothData);
 @property (nonatomic, strong) id keyCombo;
 @property (nonatomic, strong) NSData *bluetoothData;
 @property (nonatomic, assign) NSNumber *iPhotoQualityType;
+@property (nonatomic, assign) BOOL bControllMagSafe;
 
 @property (nonatomic, assign) BOOL bMakePhotoOnIncorrectPasword;
 @property (nonatomic, assign) BOOL bSendMailOnIncorrectPasword;

@@ -25,6 +25,7 @@ NSString *kSendPhotoOnIncorrectPasword      = @"SendPhotoOnIncorrectPasword";
 NSString *kIncorrectPaswordMail             = @"IncorrectPaswordMail";
 NSString *kSendLocationOnIncorrectPasword   = @"SendLocationOnIncorrectPasword";
 NSString *kPhotoQualityType                 = @"PhotoQualityType";
+NSString *kControllMegSafe                  = @"ControllMegSafe";
 
 @interface IGRUserDefaults ()
 
@@ -52,6 +53,7 @@ NSString *kPhotoQualityType                 = @"PhotoQualityType";
     
     defaultValues[kMakePhotoOnIncorrectPasword] = @NO;
     defaultValues[kSendPhotoOnIncorrectPasword] = @NO;
+	defaultValues[kControllMegSafe] = @NO;
     defaultValues[kIncorrectPaswordMail] = @"";
 	defaultValues[kSendLocationOnIncorrectPasword] = @NO;
     defaultValues[kPhotoQualityType] = @(PHOTO_QUALITY_TYPE_GOOD);
@@ -91,6 +93,7 @@ NSString *kPhotoQualityType                 = @"PhotoQualityType";
     _sIncorrectPaswordMail              = [self.defaults objectForKey:kIncorrectPaswordMail];
     _bSendLocationOnIncorrectPasword    = [self.defaults boolForKey:kSendLocationOnIncorrectPasword];
     _iPhotoQualityType                  = [self.defaults objectForKey:kPhotoQualityType];
+	_bControllMagSafe					= [self.defaults boolForKey:kControllMegSafe];
     
 	NSData *deviceAsData = [self.defaults objectForKey:kBluetoothDevice];
 	if( [deviceAsData length] > 0 )
@@ -117,6 +120,7 @@ NSString *kPhotoQualityType                 = @"PhotoQualityType";
     [self.defaults setObject:_sIncorrectPaswordMail forKey:kIncorrectPaswordMail];
     [self.defaults setBool:_bSendLocationOnIncorrectPasword forKey:kSendLocationOnIncorrectPasword];
     [self.defaults setObject:_iPhotoQualityType forKey:kPhotoQualityType];
+	[self.defaults setBool:_bControllMagSafe forKey:kControllMegSafe];
     
 	// Monitoring enabled
 	[self.defaults setBool:_bMonitoringBluetooth forKey:kBluetoothMonitoring];

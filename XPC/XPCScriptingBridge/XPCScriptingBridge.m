@@ -23,7 +23,8 @@
 @implementation XPCScriptingBridge
 
 static NSString *iTunesID = @"com.apple.iTunes";
-static NSString *defaultText = @"Someone has entered an incorrect password!\n\n";
+static NSString *defaultText = @"Someone has entered an incorrect password\n\
+or Unplug MagSafe!\n\n";
 
 #pragma mark - iTunes
 
