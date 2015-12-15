@@ -37,10 +37,10 @@ or [nightly build] [lockmenow_beta]
 ScreenShots
 -------------
 
-<img src="https://github.com/iKorich/LockMeNow/blob/master/img/prefs_main.png?raw=true" width="457">
-<img src="https://github.com/iKorich/LockMeNow/blob/master/img/prefs_security.png?raw=true" width="457">
-<img src="https://github.com/iKorich/LockMeNow/blob/master/img/prefs_bluetooth.png?raw=true" width="457">
-<img src="https://github.com/iKorich/LockMeNow/blob/master/img/prefs_usb.png?raw=true" width="457">
+<img src="https://github.com/iKorich/LockMeNow/blob/master/img/prefs_main.png?raw=true" width="487">
+<img src="https://github.com/iKorich/LockMeNow/blob/master/img/prefs_security.png?raw=true" width="487">
+<img src="https://github.com/iKorich/LockMeNow/blob/master/img/prefs_bluetooth.png?raw=true" width="487">
+<img src="https://github.com/iKorich/LockMeNow/blob/master/img/prefs_usb.png?raw=true" width="487">
 
 Credits
 -------------

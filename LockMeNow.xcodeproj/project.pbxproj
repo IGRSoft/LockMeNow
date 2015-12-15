@@ -2068,6 +2068,7 @@
 				A5FC57C11C20053C0047C982 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A5FC57F31C201C6E0047C982 /* Build configuration list for PBXAggregateTarget "LockMeNow.dmg" */ = {
 			isa = XCConfigurationList;
@@ -2076,6 +2077,7 @@
 				A5FC57F51C201C6E0047C982 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		C01FCF4A08A954540054247B /* Build configuration list for PBXNativeTarget "LockMeNow" */ = {
 			isa = XCConfigurationList;
