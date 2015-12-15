@@ -6,6 +6,22 @@
 	objectVersion = 46;
 	objects = {
 
+/* Begin PBXAggregateTarget section */
+		A5FC57F21C201C6E0047C982 /* LockMeNow.dmg */ = {
+			isa = PBXAggregateTarget;
+			buildConfigurationList = A5FC57F31C201C6E0047C982 /* Build configuration list for PBXAggregateTarget "LockMeNow.dmg" */;
+			buildPhases = (
+				A5FC57F81C201CCE0047C982 /* Create DMG */,
+				A5FC57F91C201F7D0047C982 /* Customizate DMG */,
+			);
+			dependencies = (
+				A5FC57F71C201C7D0047C982 /* PBXTargetDependency */,
+			);
+			name = LockMeNow.dmg;
+			productName = LockMeNow.dmg;
+		};
+/* End PBXAggregateTarget section */
+
 /* Begin PBXBuildFile section */
 		1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */ = {isa = PBXBuildFile; fileRef = 1DDD58140DA1D0A300B32029 /* MainMenu.xib */; };
 		8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */ = {isa = PBXBuildFile; fileRef = 089C165CFE840E0CC02AAC07 /* InfoPlist.strings */; };
@@ -257,6 +273,13 @@
 			proxyType = 1;
 			remoteGlobalIDString = A5FC57B31C20053C0047C982;
 			remoteInfo = XPCPower;
+		};
+		A5FC57F61C201C7D0047C982 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 29B97313FDCFA39411CA2CEA /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 8D1107260486CEB800E47090;
+			remoteInfo = LockMeNow;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -1048,6 +1071,9 @@
 						CreatedOnToolsVersion = 7.2;
 						DevelopmentTeam = DMP42GVPJ3;
 					};
+					A5FC57F21C201C6E0047C982 = {
+						CreatedOnToolsVersion = 7.2;
+					};
 				};
 			};
 			buildConfigurationList = C01FCF4E08A954540054247B /* Build configuration list for PBXProject "LockMeNow" */;
@@ -1088,6 +1114,7 @@
 				A5E89F091AA3752F0007BA5B /* XPCScreen */,
 				A572A4441AA5A98D00661E3E /* XPCScriptingBridge */,
 				A5FC57B31C20053C0047C982 /* XPCPower */,
+				A5FC57F21C201C6E0047C982 /* LockMeNow.dmg */,
 			);
 		};
 /* End PBXProject section */
@@ -1239,6 +1266,37 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		A5FC57F81C201CCE0047C982 /* Create DMG */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Create DMG";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "set -ex\n\necho $ACTION\n\n\n[ \"$ACTION\" = \"build\" ] || exit 0\n[ \"$BUILD_VARIANTS\" = \"normal\" ] || exit 0\n\ndir=\"$TEMP_FILES_DIR/disk\"\ndmg=\"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.dmg\"\n\nrm -rf \"$dir\"\nmkdir \"$dir\"\ncp -R \"$BUILT_PRODUCTS_DIR/$PROJECT_NAME.app\" \"$dir\"\n\nmkdir \"$dir/.background\"\ncp \"$SRCROOT/Resources/DMG Artwork/dmgBackground.tiff\" \"$dir/.background\"\nln -s /Applications $dir\n\nrm -f \"$dmg\"\nhdiutil create  -verbose -srcfolder \"$dir\" -format UDRW -volname \"$PROJECT_NAME\" \"$dmg\"\nhdiutil internet-enable -yes \"$dmg\"\nrm -rf \"$dir\"\n";
+		};
+		A5FC57F91C201F7D0047C982 /* Customizate DMG */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "Customizate DMG";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /usr/bin/osascript;
+			shellScript = "\non run\nset diskname to system attribute \"PROJECT_NAME\"\nset build_dir to system attribute \"BUILT_PRODUCTS_DIR\"\nset diskpath to build_dir & \"/\" & diskname & \".dmg\"\nset source_root to system attribute \"SRCROOT\"\ntell application \"Finder\"\nif (exists the disk diskname) then\neject diskname\nend if\ndo shell script (\"hdiutil attach \" & diskpath & \" -readwrite -mount required\")\nrepeat until name of every disk contains diskname\ndelay 1\nend repeat\ntell disk diskname\nopen\nset theXOrigin to 10\nset theYOrigin to 60\nset theWidth to 610\nset theHeight to 400\nset theBottomRightX to (theXOrigin + theWidth)\nset theBottomRightY to (theYOrigin + theHeight)\nset dsStore to \"\\\"/Volumes/\" & diskname & \"/\" & \".DS_Store\\\"\"\ntell container window\nset current view to icon view\nset toolbar visible to false\nset statusbar visible to false\nset the bounds to {theXOrigin, theYOrigin, theBottomRightX, theBottomRightY}\nset statusbar visible to false\nend tell\nset opts to the icon view options of container window\ntell opts\nset icon size to 120\nset arrangement to not arranged\nend tell\nset background picture of opts to file \".background:dmgBackground.tiff\"\nset position of item \"LockMeNow.app\" to {180, 185}\nset position of item \"Applications\" to {420, 185}\ntell container window\nset statusbar visible to false\nset the bounds to {theXOrigin + 1, theYOrigin, theBottomRightX, theBottomRightY}\nset the bounds to {theXOrigin, theYOrigin, theBottomRightX, theBottomRightY}\nend tell\nupdate without registering applications\nend tell\n--give the finder some time to write the .DS_Store file\nset waitTime to 0\nset ejectMe to false\nrepeat while ejectMe is false\ndelay 1\nset waitTime to waitTime + 1\nif (do shell script \"[ -f \" & dsStore & \" ]; echo $?\") = \"0\" then set ejectMe to true\nend repeat\nlog \"waited \" & waitTime & \" seconds for .DS_STORE to be created.\"\neject diskname\ndo shell script \"mv \" & diskpath & \" \" & diskpath & \".old\"\ndo shell script \"hdiutil convert \" & diskpath & \".old -format UDZO -imagekey zlib-level=9 -o \" & diskpath\ndo shell script \"rm \" & diskpath & \".old\"\nend tell\nend run\n\n";
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		8D11072C0486CEB800E47090 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -1364,6 +1422,11 @@
 			isa = PBXTargetDependency;
 			target = A5FC57B31C20053C0047C982 /* XPCPower */;
 			targetProxy = A5FC57BD1C20053C0047C982 /* PBXContainerItemProxy */;
+		};
+		A5FC57F71C201C7D0047C982 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 8D1107260486CEB800E47090 /* LockMeNow */;
+			targetProxy = A5FC57F61C201C7D0047C982 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 
@@ -1855,6 +1918,20 @@
 			};
 			name = Release;
 		};
+		A5FC57F41C201C6E0047C982 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Debug;
+		};
+		A5FC57F51C201C6E0047C982 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				PRODUCT_NAME = "$(TARGET_NAME)";
+			};
+			name = Release;
+		};
 		C01FCF4B08A954540054247B /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -1989,6 +2066,14 @@
 			buildConfigurations = (
 				A5FC57C01C20053C0047C982 /* Debug */,
 				A5FC57C11C20053C0047C982 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+		};
+		A5FC57F31C201C6E0047C982 /* Build configuration list for PBXAggregateTarget "LockMeNow.dmg" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				A5FC57F41C201C6E0047C982 /* Debug */,
+				A5FC57F51C201C6E0047C982 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 		};
