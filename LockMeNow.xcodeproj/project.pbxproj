@@ -239,13 +239,6 @@
 			remoteGlobalIDString = A54A9CBE1A83F4B5004D82DB;
 			remoteInfo = ImageSnap;
 		};
-		A5CB1AE81A84062B005AAB21 /* PBXContainerItemProxy */ = {
-			isa = PBXContainerItemProxy;
-			containerPortal = A5CB1AE01A84062B005AAB21 /* ImageSnap.xcodeproj */;
-			proxyType = 2;
-			remoteGlobalIDString = A54A9CC81A83F4B6004D82DB;
-			remoteInfo = ImageSnapTests;
-		};
 		A5CB1AEA1A84062B005AAB21 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A5CB1AE01A84062B005AAB21 /* ImageSnap.xcodeproj */;
@@ -794,7 +787,6 @@
 			isa = PBXGroup;
 			children = (
 				A5CB1AE71A84062B005AAB21 /* libImageSnap.a */,
-				A5CB1AE91A84062B005AAB21 /* ImageSnapTests.xctest */,
 				A5CB1AEB1A84062B005AAB21 /* Example.app */,
 			);
 			name = Products;
@@ -1195,13 +1187,6 @@
 			fileType = archive.ar;
 			path = libImageSnap.a;
 			remoteRef = A5CB1AE61A84062B005AAB21 /* PBXContainerItemProxy */;
-			sourceTree = BUILT_PRODUCTS_DIR;
-		};
-		A5CB1AE91A84062B005AAB21 /* ImageSnapTests.xctest */ = {
-			isa = PBXReferenceProxy;
-			fileType = wrapper.cfbundle;
-			path = ImageSnapTests.xctest;
-			remoteRef = A5CB1AE81A84062B005AAB21 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		A5CB1AEB1A84062B005AAB21 /* Example.app */ = {
