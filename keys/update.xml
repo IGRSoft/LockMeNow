@@ -10,5 +10,12 @@
 			<pubDate>Fri, 11 Dec 2015 17:26:43 +0200</pubDate>
 			<enclosure url="http://downloads.igrsoft.com/lockmenow/LockMeNow_122.zip" sparkle:version="122" length="2986693" type="application/octet-stream" sparkle:dsaSignature="MC0CFQC4uZVc5iWPiDvFBuDMoJQza9KBEAIUASDLEjGGQ6J4lJLYTBFqkaohD/g=" />
 		</item>
+		<item>
+			<title>Version 1.3.0, Build 002ba6c85d75dc37ef9294c72bdfb5e8b5430086</title>
+			<sparkle:shortVersionString>1.3.0</sparkle:shortVersionString>
+			<sparkle:releaseNotesLink>http://igrsoft.com/wp-content/lockmenow/info_130.html</sparkle:releaseNotesLink>
+			<pubDate>Thu, 31 Dec 2015 10:53:30 +0200</pubDate>
+			<enclosure url="http://downloads.igrsoft.com/lockmenow/LockMeNow_130.zip" sparkle:version="130" length="3030195" type="application/octet-stream" sparkle:dsaSignature="MC0CFQCzUbDtG7GuTmxtSdmvCrub7QRNewIUTyjsmFtZwuF5ENqaGl4ZjeFluIU=" />
+		</item>
 	</channel>
 </rss>

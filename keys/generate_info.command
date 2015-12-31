@@ -27,11 +27,11 @@ SIGNATURE=$(ruby "$ABSOLUTE_PATH/sign_update.rb" "$ABSOLUTE_PATH/$ARCHIVE_FILENA
 clear
 
 cat <<EOF     
-				<item>
-					<title>Version $VERSION, Build $BUILD</title>
-					<sparkle:shortVersionString>$VERSION</sparkle:shortVersionString>
-					<sparkle:releaseNotesLink>$RELEASENOTES_URL</sparkle:releaseNotesLink>
-					<pubDate>$PUBDATE</pubDate>
-					<enclosure url="$DOWNLOAD_URL" sparkle:version="$VERSION_SHORT" length="$SIZE" type="application/octet-stream" sparkle:dsaSignature="$SIGNATURE" />
-				</item>
+		<item>
+			<title>Version $VERSION, Build $BUILD</title>
+			<sparkle:shortVersionString>$VERSION</sparkle:shortVersionString>
+			<sparkle:releaseNotesLink>$RELEASENOTES_URL</sparkle:releaseNotesLink>
+			<pubDate>$PUBDATE</pubDate>
+			<enclosure url="$DOWNLOAD_URL" sparkle:version="$VERSION_SHORT" length="$SIZE" type="application/octet-stream" sparkle:dsaSignature="$SIGNATURE" />
+		</item>
 EOF
