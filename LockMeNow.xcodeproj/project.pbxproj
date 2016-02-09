@@ -197,6 +197,13 @@
 			remoteGlobalIDString = A573C5991A97C2950029D4C3;
 			remoteInfo = com.igrsoft.ASLHelper;
 		};
+		A5BEA93A1C6A1545007EAF6A /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = A50668421B552721004BB949 /* Sparkle.xcodeproj */;
+			proxyType = 2;
+			remoteGlobalIDString = 726B2B5D1C645FC900388755;
+			remoteInfo = "UI Tests";
+		};
 		A5C0BBEC16A6D078008072DE /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = A5C0BBE216A6D077008072DE /* ShortcutRecorder.xcodeproj */;
@@ -355,7 +362,7 @@
 		A527B8921AA0BB2F002E92C0 /* ASLHelper-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ASLHelper-Info.plist"; sourceTree = "<group>"; };
 		A527B8931AA0BB2F002E92C0 /* ASLHelper-Launchd.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "ASLHelper-Launchd.plist"; sourceTree = "<group>"; };
 		A527B8941AA0BB2F002E92C0 /* ASLHelper.c */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.c; path = ASLHelper.c; sourceTree = "<group>"; };
-		A52843B91948547B00040243 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = LockMeNow/Images.xcassets; sourceTree = "<group>"; };
+		A52843B91948547B00040243 /* Images.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; name = Images.xcassets; path = Resources/Images.xcassets; sourceTree = "<group>"; };
 		A52A534A1A94D97800EB9AA6 /* CoreLocation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreLocation.framework; path = System/Library/Frameworks/CoreLocation.framework; sourceTree = SDKROOT; };
 		A52A9F5F16A8365200EA4B17 /* TextFieldBG.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; name = TextFieldBG.png; path = Resources/TextFieldBG.png; sourceTree = "<group>"; };
 		A53FFA041A97B5DE002E8B0E /* reactivate_asl_service.sh */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.script.sh; path = reactivate_asl_service.sh; sourceTree = "<group>"; };
@@ -632,6 +639,7 @@
 				A50668571B552721004BB949 /* Sparkle Unit Tests.xctest */,
 				A50668591B552721004BB949 /* BinaryDelta */,
 				A506685B1B552721004BB949 /* Autoupdate.app */,
+				A5BEA93B1C6A1545007EAF6A /* UI Tests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -1159,6 +1167,13 @@
 			fileType = wrapper.cfbundle;
 			path = LaunchHelperTests.xctest;
 			remoteRef = A56235201A817F6E002B86A5 /* PBXContainerItemProxy */;
+			sourceTree = BUILT_PRODUCTS_DIR;
+		};
+		A5BEA93B1C6A1545007EAF6A /* UI Tests.xctest */ = {
+			isa = PBXReferenceProxy;
+			fileType = wrapper.cfbundle;
+			path = "UI Tests.xctest";
+			remoteRef = A5BEA93A1C6A1545007EAF6A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 		A5C0BBED16A6D078008072DE /* PTHotKey.framework */ = {
