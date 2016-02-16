@@ -1,0 +1,72 @@
+v 1.3.1:
+- http -> https.
+
+v 1.3.0:
+- Added Alert on Unplug MagSafe;
+- Fixed send photo via Email;
+- Updated a list of USB devices.
+
+v 1.2.2:
+- Added photo quality option.
+- Added Updater.
+
+v 1.2.0:
+- Added Security actions on wrong password,
+- Make photo / Сделать фото,
+- Send photo via mail,
+- Send location via mail.
+- Minor fixes.
+
+v 1.1.4:
+- Fixed Auto start on login,
+- Fixed icon for Dark Theme,
+- Refactoring.
+
+v 1.1.3:
+- Recodesigned,
+- Optimised for OS X 10.10.
+
+v 1.1.2:
+- Minor fixes.
+
+v 1.1.1:
+- Fixed resources for Retina Display.
+
+v 1.1.0:
+- Added Lock via Bluetooth device,
+- Added Lock via USB connected device,
+- Added options to run default Screensaver for "Just Lock".
+
+v 1.0.0:
+- Add Retina Display support,
+- Now work in Sandbox mode,
+- Fix iTunes control,
+- Minor fixes.
+
+v 0.8.1:
+- Fixed iTunes launch if option "Pause iTunes Music" is turned on,
+- Added Screensaver settings,
+- Minor fixes.
+
+v 0.7:
+- Added a Simple lock,
+- Added option "Pause iTunes Music".
+
+v 0.5:
+- Improved HotKeys actions,
+- Adjusted app for 10.6, 10.7,
+- Added option "Icon on Main menu",
+- Set open app preferences on repeat launch.
+
+v 0.4:
+- Fixed autolaunch Mac OS.
+
+v 0.3:
+- Added HotKeys customization.
+
+v 0.2
+- Improved HotKeys actions,
+- Minor fixes
+
+v 0.1
+- First release
