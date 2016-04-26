@@ -1,21 +1,21 @@
 //
-//  LockMeNowAppDelegate.m
+//  LMNLockMeNowApp.m
 //  Lock Me Now
 //
 //  Created by Vitaly Parovishnik on 20.07.11.
 //  Copyright 2010 IGR Software. All rights reserved.
 //
 
-#import "LockMeNowAppDelegate.h"
+#import "LMNLockMeNowApp.h"
 
-#import "LockManager.h"
-#import "JustLock.h"
-#import "LoginWindowsLock.h"
+#import "LMNLockManager.h"
+#import "LMNJustLock.h"
+#import "LMNLoginWindowsLock.h"
 
-#import "ListenerManager.h"
-#import "KeyListener.h"
-#import "USBListener.h"
-#import "BluetoothListener.h"
+#import "LMNListenerManager.h"
+#import "LMNKeyListener.h"
+#import "LMNUSBListener.h"
+#import "LMNBluetoothListener.h"
 
 #import "ImageSnap.h"
 
@@ -27,7 +27,7 @@
 #import <ServiceManagement/ServiceManagement.h>
 #import <xpc/xpc.h>
 
-@interface LockMeNowAppDelegate() <LockManagerDelegate, ListenerManagerDelegate,
+@interface LMNLockMeNowApp() <LMNLockManagerDelegate, LMNListenerManagerDelegate,
                                     NSUserNotificationCenterDelegate, CLLocationManagerDelegate>
 {
     
@@ -38,9 +38,9 @@
 
 @property (nonatomic) IGRUserDefaults *userSettings;
 
-@property (nonatomic) LockManager *lockManager;
-@property (nonatomic) USBListener *usbListener;
-@property (nonatomic) BluetoothListener *bluetoothListener;
+@property (nonatomic) LMNLockManager *lockManager;
+@property (nonatomic) LMNUSBListener *usbListener;
+@property (nonatomic) LMNBluetoothListener *bluetoothListener;
 
 @property (nonatomic) BOOL isASLPatched;
 
@@ -55,16 +55,21 @@
 
 @end
 
-@implementation LockMeNowAppDelegate
+@implementation LMNLockMeNowApp
 
-- (instancetype) init
+- (instancetype)init
 {
-    if (self= [super init])
+    if (self = [super init])
     {
-        self.userSettings = [[IGRUserDefaults alloc] init];
+        _userSettings = [[IGRUserDefaults alloc] init];
     }
     
     return self;
+}
+
+- (void)dealloc
+{
+    self.locationManager.delegate = nil;
 }
 
 - (void)applicationDidFinishLaunching:(NSNotification *)theNotification
@@ -83,10 +88,10 @@
     self.keyListener.userSettings = self.userSettings;
     self.keyListener.delegate = self;
     
-    self.usbListener = [[USBListener alloc] initWithSettings:self.userSettings];
+    self.usbListener = [[LMNUSBListener alloc] initWithSettings:self.userSettings];
     self.usbListener.delegate = self;
     
-    self.bluetoothListener = [[BluetoothListener alloc] initWithSettings:self.userSettings];
+    self.bluetoothListener = [[LMNBluetoothListener alloc] initWithSettings:self.userSettings];
     self.bluetoothListener.delegate = self;
     
     __weak typeof(self) weakSelf = self;
@@ -166,7 +171,7 @@
 
 - (void)applicationDidBecomeActive:(NSNotification *)notification
 {
-    static BOOL doNothingAtStart = NO;
+    static BOOL doNothingAtStart = YES;
     if (doNothingAtStart)
     {
         doNothingAtStart = NO;
@@ -277,14 +282,14 @@
     switch ([self.userSettings lockingType])
     {
         case LOCK_SCREEN:
-            lockClass = [JustLock class];
+            lockClass = [LMNJustLock class];
             break;
         case LOCK_BLOCK:
             //[self makeBlockLock];
             break;
         case LOCK_LOGIN_WINDOW:
         default:
-            lockClass = [LoginWindowsLock class];
+            lockClass = [LMNLoginWindowsLock class];
             break;
     }
     
@@ -497,7 +502,7 @@
     if (self.userSettings.bSendLocationOnIncorrectPasword)
     {
         //need check acces to Location Service
-        _locationManager.delegate = self;
+        self.locationManager.delegate = self;
     }
     
     [self updateUserSettings:sender];
@@ -548,7 +553,8 @@
     NSString        *dateString;
     
     formatter = [[NSDateFormatter alloc] init];
-    [formatter setDateFormat:@"dd-MM-yyyy_HH-mm-ss"];
+    formatter.locale = [[NSLocale alloc] initWithLocaleIdentifier:@"en_US_POSIX"];
+    [formatter setDateFormat:@"yyyy-MM-dd_HH:mm:ss"];
     
     dateString = [formatter stringFromDate:[NSDate date]];
     dateString = [dateString stringByAppendingPathExtension:@"png"];
@@ -749,8 +755,8 @@
 {
     [self pauseResumeMusic];
     
-    [_locationManager stopUpdatingLocation];
-    _locationManager.delegate = nil;
+    [self.locationManager stopUpdatingLocation];
+    self.locationManager.delegate = nil;
     
     if (self.thiefPhotoPath)
     {

@@ -1,14 +1,14 @@
 //
-//  ListenerManager.m
+//  LMNListenerManager.m
 //  LockMeNow
 //
 //  Created by Vitalii Parovishnyk on 1/27/15.
 //
 //
 
-#import "ListenerManager.h"
+#import "LMNListenerManager.h"
 
-@implementation ListenerManager
+@implementation LMNListenerManager
 
 - (instancetype)initWithSettings:(IGRUserDefaults *)aSettings
 {

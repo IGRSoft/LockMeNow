@@ -1,19 +1,18 @@
 //
-//  USBListener.m
+//  LMNUSBListener.m
 //  LockMeNow
 //
 //  Created by Vitalii Parovishnyk on 1/27/15.
 //
 //
 
-#import "USBListener.h"
-#import "IGRUserDefaults.h"
+#import "LMNUSBListener.h"
 
 #import <IOKit/usb/IOUSBLib.h>
 #import <mach/mach_port.h>
 #import "PTUSBHub.h"
 
-@interface USBListener ()
+@interface LMNUSBListener ()
 
 @property (nonatomic) NSInteger     usbDeviceID;
 @property (nonatomic) DeviceType    currentUSBDeviceType;
@@ -21,7 +20,7 @@
 
 @end
 
-@implementation USBListener
+@implementation LMNUSBListener
 
 - (instancetype)initWithSettings:(IGRUserDefaults *)aSettings
 {

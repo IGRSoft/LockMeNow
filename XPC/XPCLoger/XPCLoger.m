@@ -14,7 +14,7 @@
 
 @property (nonatomic, strong) NSFileHandle *fileHandle;
 @property (nonatomic, strong) NSString *lastLine;
-@property (nonatomic, copy) FoudWrongPasswordBlock foudWrongPasswordBlock;
+@property (nonatomic, copy  ) FoudWrongPasswordBlock foudWrongPasswordBlock;
 @property (nonatomic, strong) NSArray *modes;
 @property (nonatomic, assign) BOOL taskRuning;
 

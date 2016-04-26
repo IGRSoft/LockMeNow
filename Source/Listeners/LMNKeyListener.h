@@ -1,16 +1,16 @@
 //
-//  KeyListener.h
+//  LMNKeyListener.h
 //  LockMeNow
 //
 //  Created by Vitalii Parovishnyk on 1/27/15.
 //
 //
 
-#import "ListenerManager.h"
+#import "LMNListenerManager.h"
 
 @class PTHotKey;
 @class SRRecorderControl;
 
-@interface KeyListener : ListenerManager
+@interface LMNKeyListener : LMNListenerManager
 
 @end

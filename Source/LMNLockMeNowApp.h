@@ -1,25 +1,23 @@
 //
-//  LockMeNowAppDelegate.m
+//  LMNLockMeNowApp.m
 //  Lock Me Now
 //
 //  Created by Vitaly Parovishnik on 20.07.11.
 //  Copyright 2010 IGR Software. All rights reserved.
 //
 
-#import "IGRUserDefaults.h"
-
 @class StartAtLoginController;
-@class KeyListener;
+@class LMNKeyListener;
 
-@interface LockMeNowAppDelegate : NSObject <NSApplicationDelegate>
+@interface LMNLockMeNowApp : NSObject <NSApplicationDelegate>
 {
 	StartAtLoginController *loginController;
 }
 
-@property (weak) IBOutlet NSWindow		*window;
-@property (weak) IBOutlet NSMenu		*statusMenu;
-@property (weak) IBOutlet NSTabView     *tabView;
-@property (weak) IBOutlet KeyListener   *keyListener;
+@property (weak) IBOutlet NSWindow       *window;
+@property (weak) IBOutlet NSMenu         *statusMenu;
+@property (weak) IBOutlet NSTabView      *tabView;
+@property (weak) IBOutlet LMNKeyListener *keyListener;
 
 @property (weak) IBOutlet NSImageView	*bluetoothStatus;
 

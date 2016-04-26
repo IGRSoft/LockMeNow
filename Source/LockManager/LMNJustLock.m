@@ -1,16 +1,18 @@
 //
-//  JustLock.m
+//  LMNJustLock.m
 //  LockMeNow
 //
 //  Created by Vitalii Parovishnyk on 1/22/15.
 //
 //
 
-#import "JustLock.h"
-#import "IGRUserDefaults.h"
+#import "LMNJustLock.h"
 #import "XPCScriptingProtocol.h"
 
-@implementation JustLock
+static NSString * const kScreensaverDidStart = @"com.apple.screensaver.didstart";
+static NSString * const kScreensaverDidStop = @"com.apple.screensaver.didstop";
+
+@implementation LMNJustLock
 
 - (instancetype)initWithConnection:(NSXPCConnection *)aConnection settings:(IGRUserDefaults *)aSettings
 {
@@ -31,12 +33,12 @@
     NSDistributedNotificationCenter* distCenter = [NSDistributedNotificationCenter defaultCenter];
     [distCenter addObserver:self
                    selector:@selector(screensaverStart:)
-                       name:@"com.apple.screensaver.didstart"
+                       name:kScreensaverDidStart
                      object:nil];
     
     [distCenter addObserver:self
                    selector:@selector(screensaverStop:)
-                       name:@"com.apple.screensaver.didstop"
+                       name:kScreensaverDidStop
                      object:nil];
 }
 
@@ -44,7 +46,13 @@
 {
 	[super unlock];
     
-    [[NSDistributedNotificationCenter defaultCenter] removeObserver:self];
+    [[NSDistributedNotificationCenter defaultCenter] removeObserver:self
+                                                               name:kScreensaverDidStart
+                                                             object:nil];
+    
+    [[NSDistributedNotificationCenter defaultCenter] removeObserver:self
+                                                               name:kScreensaverDidStop
+                                                             object:nil];
 }
 
 - (void)screensaverStart:(NSNotification *)aNotification

@@ -1,5 +1,5 @@
 //
-//  ListenerManager.h
+//  LMNListenerManager.h
 //  LockMeNow
 //
 //  Created by Vitalii Parovishnyk on 1/27/15.
@@ -10,13 +10,13 @@
 
 @class IGRUserDefaults;
 
-@protocol ListenerManagerDelegate <NSObject>
+@protocol LMNListenerManagerDelegate <NSObject>
 
 - (void)makeAction:(id)sender;
 
 @end
 
-@interface ListenerManager : NSObject
+@interface LMNListenerManager : NSObject
 
 - (instancetype)init NS_UNAVAILABLE;
 - (instancetype)initWithSettings:(IGRUserDefaults *)aSettings;
@@ -26,6 +26,6 @@
 - (void)makeAction:(id)sender;
 
 @property (nonatomic, weak  ) IGRUserDefaults *userSettings;
-@property (nonatomic, weak  ) id<ListenerManagerDelegate> delegate;
+@property (nonatomic, weak  ) id<LMNListenerManagerDelegate> delegate;
 
 @end

@@ -1,18 +1,17 @@
 //
-//  LockManager.m
+//  LMNLockManager.m
 //  LockMeNow
 //
 //  Created by Vitalii Parovishnyk on 1/22/15.
 //
 //
 
-#import "LockManager.h"
-#import "IGRUserDefaults.h"
+#import "LMNLockManager.h"
 #import "XPCLogerProtocol.h"
 #import "XPCScreenProtocol.h"
 #import "XPCPowerProtocol.h"
 
-@interface LockManager ()
+@interface LMNLockManager ()
 
 @property (nonatomic, strong) NSXPCConnection *logerServiceConnection;
 @property (nonatomic, strong) FoudWrongPasswordBlock foudWrongPasswordBlock;
@@ -29,7 +28,7 @@
 
 @end
 
-@implementation LockManager
+@implementation LMNLockManager
 
 - (instancetype)initWithConnection:(NSXPCConnection *)aConnection settings:(IGRUserDefaults *)aSettings
 {
@@ -44,7 +43,7 @@
         _passwordDelay = @0;
         _isLocked = NO;
 
-        self.screenServiceConnection = [[NSXPCConnection alloc] initWithServiceName:XPC_SCREEN];
+        _screenServiceConnection = [[NSXPCConnection alloc] initWithServiceName:XPC_SCREEN];
         _screenServiceConnection.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(XPCScreenProtocol)];
         [_screenServiceConnection resume];
 	}

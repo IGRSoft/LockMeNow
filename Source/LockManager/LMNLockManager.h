@@ -1,5 +1,5 @@
 //
-//  LockManager.h
+//  LMNLockManager.h
 //  LockMeNow
 //
 //  Created by Vitalii Parovishnyk on 1/22/15.
@@ -10,7 +10,7 @@
 
 @class IGRUserDefaults;
 
-@protocol LockManagerDelegate <NSObject>
+@protocol LMNLockManagerDelegate <NSObject>
 
 - (void)unLockSuccess;
 - (void)detectedWrongLoginAction;
@@ -18,7 +18,7 @@
 
 @end
 
-@interface LockManager : NSObject
+@interface LMNLockManager : NSObject
 
 - (instancetype)initWithConnection:(NSXPCConnection *)aConnection settings:(IGRUserDefaults *)aSettings;
 
@@ -32,6 +32,6 @@
 
 @property (nonatomic, assign) BOOL isLocked;
 
-@property (nonatomic, weak) id<LockManagerDelegate> delegate;
+@property (nonatomic, weak) id<LMNLockManagerDelegate> delegate;
 
 @end

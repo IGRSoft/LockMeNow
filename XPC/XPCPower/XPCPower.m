@@ -56,7 +56,8 @@ void IGRPowerMonitorCallback(void *context)
 {
 	XPCPower* xpcPower = (__bridge XPCPower *)(context);
 	
-	CFStringRef source = IOPSGetProvidingPowerSourceType(NULL);
+    CFTypeRef powerSource = IOPSCopyPowerSourcesInfo();
+	CFStringRef source = IOPSGetProvidingPowerSourceType(powerSource);
 	if (source)
 	{
 		NSString *sSource = (__bridge NSString *)(source);
@@ -80,9 +81,9 @@ void IGRPowerMonitorCallback(void *context)
 		{
 			xpcPower.powerMode = IGRPowerMode_ACPower;
 		}
-		
-		CFRelease(source);
 	}
+    
+    CFRelease(powerSource);
 }
 
 - (void)runCustomLoop

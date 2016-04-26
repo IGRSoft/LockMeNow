@@ -1,12 +1,12 @@
 //
-//  USBListener.h
+//  LMNUSBListener.h
 //  LockMeNow
 //
 //  Created by Vitalii Parovishnyk on 1/27/15.
 //
 //
 
-#import "ListenerManager.h"
+#import "LMNListenerManager.h"
 
 #define NUM_APPLE_MOBILE_DEVICES	22
 
@@ -21,6 +21,6 @@ typedef struct {
     uint16_t productID;
 } APPLE_MOBILE_DEVICE;
 
-@interface USBListener : ListenerManager
+@interface LMNUSBListener : LMNListenerManager
 
 @end

@@ -1,16 +1,15 @@
 //
-//  LoginWindowsLock.m
+//  LMNLoginWindowsLock.m
 //  LockMeNow
 //
 //  Created by Vitalii Parovishnyk on 1/22/15.
 //
 //
 
-#import "LoginWindowsLock.h"
-#import "IGRUserDefaults.h"
+#import "LMNLoginWindowsLock.h"
 #import "XPCScriptingProtocol.h"
 
-@implementation LoginWindowsLock
+@implementation LMNLoginWindowsLock
 
 - (instancetype)initWithConnection:(NSXPCConnection *)aConnection settings:(IGRUserDefaults *)aSettings
 {

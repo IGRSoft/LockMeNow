@@ -70,7 +70,7 @@ NSString *kControllMegSafe                  = @"ControllMegSafe";
 		NSString *bundleIdentifier = [[NSBundle mainBundle] infoDictionary][@"CFBundleIdentifier"];
 		bundleIdentifier = [@"sandbox." stringByAppendingString:bundleIdentifier];
 		
-		self.defaults = [[NSUserDefaults alloc] initWithSuiteName:bundleIdentifier];
+		_defaults = [[NSUserDefaults alloc] initWithSuiteName:bundleIdentifier];
 		[self initialize];
 		[self loadUserSettings];
 	}

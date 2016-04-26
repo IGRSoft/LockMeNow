@@ -70,15 +70,14 @@
 		A5E89F161AA3752F0007BA5B /* XPCScreen.xpc in Copy XPC Service */ = {isa = PBXBuildFile; fileRef = A5E89F0A1AA3752F0007BA5B /* XPCScreen.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		A5F066F11A8142DE005A571D /* AppKit.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5F066F01A8142DE005A571D /* AppKit.framework */; };
 		A5F451CB1A9288C7009FD03E /* IGRUserDefaults.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451AE1A9288C7009FD03E /* IGRUserDefaults.m */; };
-		A5F451CD1A9288C7009FD03E /* BluetoothListener.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451B41A9288C7009FD03E /* BluetoothListener.m */; };
-		A5F451CE1A9288C7009FD03E /* KeyListener.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451B61A9288C7009FD03E /* KeyListener.m */; };
-		A5F451CF1A9288C7009FD03E /* ListenerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451B81A9288C7009FD03E /* ListenerManager.m */; };
-		A5F451D01A9288C7009FD03E /* USBListener.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451BA1A9288C7009FD03E /* USBListener.m */; };
-		A5F451D11A9288C7009FD03E /* BlockViewLock.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451BD1A9288C7009FD03E /* BlockViewLock.m */; };
-		A5F451D21A9288C7009FD03E /* JustLock.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451BF1A9288C7009FD03E /* JustLock.m */; };
-		A5F451D31A9288C7009FD03E /* LockManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451C11A9288C7009FD03E /* LockManager.m */; };
-		A5F451D41A9288C7009FD03E /* LoginWindowsLock.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451C31A9288C7009FD03E /* LoginWindowsLock.m */; };
-		A5F451D51A9288C7009FD03E /* LockMeNowAppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451C51A9288C7009FD03E /* LockMeNowAppDelegate.m */; };
+		A5F451CD1A9288C7009FD03E /* LMNBluetoothListener.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451B41A9288C7009FD03E /* LMNBluetoothListener.m */; };
+		A5F451CE1A9288C7009FD03E /* LMNKeyListener.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451B61A9288C7009FD03E /* LMNKeyListener.m */; };
+		A5F451CF1A9288C7009FD03E /* LMNListenerManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451B81A9288C7009FD03E /* LMNListenerManager.m */; };
+		A5F451D01A9288C7009FD03E /* LMNUSBListener.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451BA1A9288C7009FD03E /* LMNUSBListener.m */; };
+		A5F451D21A9288C7009FD03E /* LMNJustLock.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451BF1A9288C7009FD03E /* LMNJustLock.m */; };
+		A5F451D31A9288C7009FD03E /* LMNLockManager.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451C11A9288C7009FD03E /* LMNLockManager.m */; };
+		A5F451D41A9288C7009FD03E /* LMNLoginWindowsLock.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451C31A9288C7009FD03E /* LMNLoginWindowsLock.m */; };
+		A5F451D51A9288C7009FD03E /* LMNLockMeNowApp.m in Sources */ = {isa = PBXBuildFile; fileRef = A5F451C51A9288C7009FD03E /* LMNLockMeNowApp.m */; };
 		A5FC57B91C20053C0047C982 /* XPCPower.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FC57B81C20053C0047C982 /* XPCPower.m */; };
 		A5FC57BB1C20053C0047C982 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A5FC57BA1C20053C0047C982 /* main.m */; };
 		A5FC57BF1C20053C0047C982 /* XPCPower.xpc in Copy XPC Service */ = {isa = PBXBuildFile; fileRef = A5FC57B41C20053C0047C982 /* XPCPower.xpc */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
@@ -409,24 +408,22 @@
 		A5F066F01A8142DE005A571D /* AppKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = AppKit.framework; path = System/Library/Frameworks/AppKit.framework; sourceTree = SDKROOT; };
 		A5F451AD1A9288C7009FD03E /* IGRUserDefaults.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGRUserDefaults.h; sourceTree = "<group>"; };
 		A5F451AE1A9288C7009FD03E /* IGRUserDefaults.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IGRUserDefaults.m; sourceTree = "<group>"; };
-		A5F451B31A9288C7009FD03E /* BluetoothListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BluetoothListener.h; sourceTree = "<group>"; };
-		A5F451B41A9288C7009FD03E /* BluetoothListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BluetoothListener.m; sourceTree = "<group>"; };
-		A5F451B51A9288C7009FD03E /* KeyListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = KeyListener.h; sourceTree = "<group>"; };
-		A5F451B61A9288C7009FD03E /* KeyListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = KeyListener.m; sourceTree = "<group>"; };
-		A5F451B71A9288C7009FD03E /* ListenerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListenerManager.h; sourceTree = "<group>"; };
-		A5F451B81A9288C7009FD03E /* ListenerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = ListenerManager.m; sourceTree = "<group>"; };
-		A5F451B91A9288C7009FD03E /* USBListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = USBListener.h; sourceTree = "<group>"; };
-		A5F451BA1A9288C7009FD03E /* USBListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = USBListener.m; sourceTree = "<group>"; };
-		A5F451BC1A9288C7009FD03E /* BlockViewLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = BlockViewLock.h; sourceTree = "<group>"; };
-		A5F451BD1A9288C7009FD03E /* BlockViewLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = BlockViewLock.m; sourceTree = "<group>"; };
-		A5F451BE1A9288C7009FD03E /* JustLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = JustLock.h; sourceTree = "<group>"; };
-		A5F451BF1A9288C7009FD03E /* JustLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = JustLock.m; sourceTree = "<group>"; };
-		A5F451C01A9288C7009FD03E /* LockManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LockManager.h; sourceTree = "<group>"; };
-		A5F451C11A9288C7009FD03E /* LockManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LockManager.m; sourceTree = "<group>"; };
-		A5F451C21A9288C7009FD03E /* LoginWindowsLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LoginWindowsLock.h; sourceTree = "<group>"; };
-		A5F451C31A9288C7009FD03E /* LoginWindowsLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LoginWindowsLock.m; sourceTree = "<group>"; };
-		A5F451C41A9288C7009FD03E /* LockMeNowAppDelegate.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LockMeNowAppDelegate.h; sourceTree = "<group>"; };
-		A5F451C51A9288C7009FD03E /* LockMeNowAppDelegate.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LockMeNowAppDelegate.m; sourceTree = "<group>"; };
+		A5F451B31A9288C7009FD03E /* LMNBluetoothListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMNBluetoothListener.h; sourceTree = "<group>"; };
+		A5F451B41A9288C7009FD03E /* LMNBluetoothListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMNBluetoothListener.m; sourceTree = "<group>"; };
+		A5F451B51A9288C7009FD03E /* LMNKeyListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMNKeyListener.h; sourceTree = "<group>"; };
+		A5F451B61A9288C7009FD03E /* LMNKeyListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMNKeyListener.m; sourceTree = "<group>"; };
+		A5F451B71A9288C7009FD03E /* LMNListenerManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMNListenerManager.h; sourceTree = "<group>"; };
+		A5F451B81A9288C7009FD03E /* LMNListenerManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMNListenerManager.m; sourceTree = "<group>"; };
+		A5F451B91A9288C7009FD03E /* LMNUSBListener.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMNUSBListener.h; sourceTree = "<group>"; };
+		A5F451BA1A9288C7009FD03E /* LMNUSBListener.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMNUSBListener.m; sourceTree = "<group>"; };
+		A5F451BE1A9288C7009FD03E /* LMNJustLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMNJustLock.h; sourceTree = "<group>"; };
+		A5F451BF1A9288C7009FD03E /* LMNJustLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMNJustLock.m; sourceTree = "<group>"; };
+		A5F451C01A9288C7009FD03E /* LMNLockManager.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMNLockManager.h; sourceTree = "<group>"; };
+		A5F451C11A9288C7009FD03E /* LMNLockManager.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMNLockManager.m; sourceTree = "<group>"; };
+		A5F451C21A9288C7009FD03E /* LMNLoginWindowsLock.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMNLoginWindowsLock.h; sourceTree = "<group>"; };
+		A5F451C31A9288C7009FD03E /* LMNLoginWindowsLock.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMNLoginWindowsLock.m; sourceTree = "<group>"; };
+		A5F451C41A9288C7009FD03E /* LMNLockMeNowApp.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = LMNLockMeNowApp.h; sourceTree = "<group>"; };
+		A5F451C51A9288C7009FD03E /* LMNLockMeNowApp.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = LMNLockMeNowApp.m; sourceTree = "<group>"; };
 		A5FC57B41C20053C0047C982 /* XPCPower.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = XPCPower.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
 		A5FC57B61C20053C0047C982 /* XPCPowerProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XPCPowerProtocol.h; sourceTree = "<group>"; };
 		A5FC57B71C20053C0047C982 /* XPCPower.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XPCPower.h; sourceTree = "<group>"; };
@@ -518,8 +515,8 @@
 			children = (
 				A5F451B21A9288C7009FD03E /* Listeners */,
 				A5F451BB1A9288C7009FD03E /* LockManager */,
-				A5F451C41A9288C7009FD03E /* LockMeNowAppDelegate.h */,
-				A5F451C51A9288C7009FD03E /* LockMeNowAppDelegate.m */,
+				A5F451C41A9288C7009FD03E /* LMNLockMeNowApp.h */,
+				A5F451C51A9288C7009FD03E /* LMNLockMeNowApp.m */,
 				A5F451AD1A9288C7009FD03E /* IGRUserDefaults.h */,
 				A5F451AE1A9288C7009FD03E /* IGRUserDefaults.m */,
 			);
@@ -845,14 +842,14 @@
 		A5F451B21A9288C7009FD03E /* Listeners */ = {
 			isa = PBXGroup;
 			children = (
-				A5F451B31A9288C7009FD03E /* BluetoothListener.h */,
-				A5F451B41A9288C7009FD03E /* BluetoothListener.m */,
-				A5F451B51A9288C7009FD03E /* KeyListener.h */,
-				A5F451B61A9288C7009FD03E /* KeyListener.m */,
-				A5F451B71A9288C7009FD03E /* ListenerManager.h */,
-				A5F451B81A9288C7009FD03E /* ListenerManager.m */,
-				A5F451B91A9288C7009FD03E /* USBListener.h */,
-				A5F451BA1A9288C7009FD03E /* USBListener.m */,
+				A5F451B31A9288C7009FD03E /* LMNBluetoothListener.h */,
+				A5F451B41A9288C7009FD03E /* LMNBluetoothListener.m */,
+				A5F451B51A9288C7009FD03E /* LMNKeyListener.h */,
+				A5F451B61A9288C7009FD03E /* LMNKeyListener.m */,
+				A5F451B71A9288C7009FD03E /* LMNListenerManager.h */,
+				A5F451B81A9288C7009FD03E /* LMNListenerManager.m */,
+				A5F451B91A9288C7009FD03E /* LMNUSBListener.h */,
+				A5F451BA1A9288C7009FD03E /* LMNUSBListener.m */,
 			);
 			path = Listeners;
 			sourceTree = "<group>";
@@ -860,14 +857,12 @@
 		A5F451BB1A9288C7009FD03E /* LockManager */ = {
 			isa = PBXGroup;
 			children = (
-				A5F451BC1A9288C7009FD03E /* BlockViewLock.h */,
-				A5F451BD1A9288C7009FD03E /* BlockViewLock.m */,
-				A5F451BE1A9288C7009FD03E /* JustLock.h */,
-				A5F451BF1A9288C7009FD03E /* JustLock.m */,
-				A5F451C01A9288C7009FD03E /* LockManager.h */,
-				A5F451C11A9288C7009FD03E /* LockManager.m */,
-				A5F451C21A9288C7009FD03E /* LoginWindowsLock.h */,
-				A5F451C31A9288C7009FD03E /* LoginWindowsLock.m */,
+				A5F451BE1A9288C7009FD03E /* LMNJustLock.h */,
+				A5F451BF1A9288C7009FD03E /* LMNJustLock.m */,
+				A5F451C01A9288C7009FD03E /* LMNLockManager.h */,
+				A5F451C11A9288C7009FD03E /* LMNLockManager.m */,
+				A5F451C21A9288C7009FD03E /* LMNLoginWindowsLock.h */,
+				A5F451C31A9288C7009FD03E /* LMNLoginWindowsLock.m */,
 			);
 			path = LockManager;
 			sourceTree = "<group>";
@@ -1029,7 +1024,9 @@
 		29B97313FDCFA39411CA2CEA /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = LMN;
 				LastUpgradeCheck = 0720;
+				ORGANIZATIONNAME = "IGR Soft";
 				TargetAttributes = {
 					8D1107260486CEB800E47090 = {
 						DevelopmentTeam = DMP42GVPJ3;
@@ -1302,17 +1299,16 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				A5F451D51A9288C7009FD03E /* LockMeNowAppDelegate.m in Sources */,
-				A5F451D01A9288C7009FD03E /* USBListener.m in Sources */,
+				A5F451D51A9288C7009FD03E /* LMNLockMeNowApp.m in Sources */,
+				A5F451D01A9288C7009FD03E /* LMNUSBListener.m in Sources */,
 				A5F451CB1A9288C7009FD03E /* IGRUserDefaults.m in Sources */,
-				A5F451D41A9288C7009FD03E /* LoginWindowsLock.m in Sources */,
-				A5F451CD1A9288C7009FD03E /* BluetoothListener.m in Sources */,
-				A5F451CF1A9288C7009FD03E /* ListenerManager.m in Sources */,
-				A5F451CE1A9288C7009FD03E /* KeyListener.m in Sources */,
+				A5F451D41A9288C7009FD03E /* LMNLoginWindowsLock.m in Sources */,
+				A5F451CD1A9288C7009FD03E /* LMNBluetoothListener.m in Sources */,
+				A5F451CF1A9288C7009FD03E /* LMNListenerManager.m in Sources */,
+				A5F451CE1A9288C7009FD03E /* LMNKeyListener.m in Sources */,
 				D0764532101E7A6100DAE20D /* main.m in Sources */,
-				A5F451D11A9288C7009FD03E /* BlockViewLock.m in Sources */,
-				A5F451D31A9288C7009FD03E /* LockManager.m in Sources */,
-				A5F451D21A9288C7009FD03E /* JustLock.m in Sources */,
+				A5F451D31A9288C7009FD03E /* LMNLockManager.m in Sources */,
+				A5F451D21A9288C7009FD03E /* LMNJustLock.m in Sources */,
 				A589299616A5DE9400063E09 /* PTUSBHub.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -1976,7 +1972,10 @@
 				INSTALL_PATH = /Applications;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = "$(inherited)";
-				OTHER_CFLAGS = "";
+				OTHER_CFLAGS = (
+					"-DNDEBUG",
+					"-DNS_BLOCK_ASSERTIONS",
+				);
 				PRODUCT_BUNDLE_IDENTIFIER = "com.igrsoft.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = LockMeNow;
 			};

@@ -1,19 +1,18 @@
 //
-//  BluetoothListener.m
+//  LMNBluetoothListener.m
 //  LockMeNow
 //
 //  Created by Vitalii Parovishnyk on 1/27/15.
 //
 //
 
-#import "BluetoothListener.h"
-#import "IGRUserDefaults.h"
+#import "LMNBluetoothListener.h"
 
 #import <IOBluetooth/objc/IOBluetoothSDPServiceRecord.h>
 #import <IOBluetooth/objc/IOBluetoothRFCOMMChannel.h>
 #import <IOBluetoothUI/objc/IOBluetoothDeviceSelectorController.h>
 
-@interface BluetoothListener ()
+@interface LMNBluetoothListener ()
 
 @property (nonatomic) NSOperationQueue	*queue;
 @property (nonatomic) NSOperationQueue	*guiQueue;
@@ -27,14 +26,14 @@
 
 @end
 
-@implementation BluetoothListener
+@implementation LMNBluetoothListener
 
 - (instancetype)initWithSettings:(IGRUserDefaults *)aSettings
 {
     if (self = [super initWithSettings:aSettings])
     {
         _checkingInProgress = NO;
-        self.bluetoothDevicePriorStatus = OutOfRange;
+        _bluetoothDevicePriorStatus = OutOfRange;
         _bluetoothDevice = nil;
         if (self.userSettings.bluetoothData)
         {

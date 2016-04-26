@@ -1,29 +1,27 @@
 //
-//  KeyListener.m
+//  LMNKeyListener.m
 //  LockMeNow
 //
 //  Created by Vitalii Parovishnyk on 1/27/15.
 //
 //
 
-#import "KeyListener.h"
+#import "LMNKeyListener.h"
 
 #import <ShortcutRecorder/SRRecorderControl.h>
 #import <PTHotKey/PTHotKeyCenter.h>
 #import <PTHotKey/PTHotKey.h>
 
-#import "IGRUserDefaults.h"
-
 extern NSString *kGlobalHotKey;
 
-@interface KeyListener () <SRRecorderDelegate>
+@interface LMNKeyListener () <SRRecorderDelegate>
 
 @property (nonatomic, strong) IBOutlet SRRecorderControl	*hotKeyControl;
 @property (nonatomic, strong) PTHotKey						*hotKey;
 
 @end
 
-@implementation KeyListener
+@implementation LMNKeyListener
 
 - (instancetype)initWithSettings:(IGRUserDefaults *)aSettings
 {
