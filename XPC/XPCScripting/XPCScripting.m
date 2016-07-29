@@ -21,15 +21,24 @@
     [task launch];
 }
 
-- (void)makeJustLock:(BOOL)useCurrentScrrenSaver
+- (void)makeJustLock:(BOOL)useCurrentScrrenSaver scriptPath:(NSString *)scriptPath
 {
+	BOOL runnedCurrentScreenSaver = NO;
     if (useCurrentScrrenSaver)
     {
-        NSTask *task = [[NSTask alloc] init];
-        [task setLaunchPath: @"/System/Library/Frameworks/ScreenSaver.framework/Resources/ScreenSaverEngine.app/Contents/MacOS/ScreenSaverEngine"];
-        [task launch];
+		NSDictionary *error = nil;
+		NSURL *path = [NSURL fileURLWithPath:scriptPath];
+		NSAppleScript* appleScript = [[NSAppleScript alloc] initWithContentsOfURL:path
+																			error:&error];
+		if (!error.count)
+		{
+			[appleScript executeAndReturnError:&error];
+		}
+		
+		runnedCurrentScreenSaver = (error.count == 0);
     }
-    else
+	
+	if (!runnedCurrentScreenSaver)
     {
         io_registry_entry_t r =	IORegistryEntryFromPath(kIOMasterPortDefault, "IOService:/IOResources/IODisplayWrangler");
         if(!r) return;

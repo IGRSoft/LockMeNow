@@ -30,6 +30,7 @@
 		A50668701B55294E004BB949 /* dsa_pub.pem in Resources */ = {isa = PBXBuildFile; fileRef = A506686F1B55294E004BB949 /* dsa_pub.pem */; };
 		A50668801B552CC8004BB949 /* Sparkle.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A50668531B552721004BB949 /* Sparkle.framework */; };
 		A5086B351A948A1A00787358 /* SecurityInterface.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A5086B341A948A1A00787358 /* SecurityInterface.framework */; };
+		A5098BC51D4B557E00219CF6 /* startCurrentScreensaver.scpt in Resources */ = {isa = PBXBuildFile; fileRef = A5098BB51D4B551B00219CF6 /* startCurrentScreensaver.scpt */; };
 		A517CFA4142FD73E00632668 /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = A517CFA2142FD73E00632668 /* Credits.rtf */; };
 		A527B8701AA0A9CF002E92C0 /* XPCScripting.m in Sources */ = {isa = PBXBuildFile; fileRef = A527B86F1AA0A9CF002E92C0 /* XPCScripting.m */; };
 		A527B8721AA0A9CF002E92C0 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = A527B8711AA0A9CF002E92C0 /* main.m */; };
@@ -349,6 +350,7 @@
 		A5086B4F1A94A02900787358 /* iTunes.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = iTunes.app; path = ../../../../../Applications/iTunes.app; sourceTree = "<group>"; };
 		A5086B501A94A02900787358 /* Mail.app */ = {isa = PBXFileReference; lastKnownFileType = wrapper.application; name = Mail.app; path = ../../../../../Applications/Mail.app; sourceTree = "<group>"; };
 		A5094B9816CBF33200A3C877 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = System/Library/Frameworks/Foundation.framework; sourceTree = SDKROOT; };
+		A5098BB51D4B551B00219CF6 /* startCurrentScreensaver.scpt */ = {isa = PBXFileReference; lastKnownFileType = file; path = startCurrentScreensaver.scpt; sourceTree = "<group>"; };
 		A517CFA3142FD73E00632668 /* English */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; name = English; path = English.lproj/Credits.rtf; sourceTree = "<group>"; };
 		A51948CF18887ED6009D6A81 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		A527B8691AA0A9CF002E92C0 /* XPCScripting.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = XPCScripting.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -705,6 +707,7 @@
 		A53FFA011A97B5DE002E8B0E /* Scripts */ = {
 			isa = PBXGroup;
 			children = (
+				A5098BB51D4B551B00219CF6 /* startCurrentScreensaver.scpt */,
 				A53FFA041A97B5DE002E8B0E /* reactivate_asl_service.sh */,
 			);
 			name = Scripts;
@@ -1217,6 +1220,7 @@
 			files = (
 				8D11072B0486CEB800E47090 /* InfoPlist.strings in Resources */,
 				A50668701B55294E004BB949 /* dsa_pub.pem in Resources */,
+				A5098BC51D4B557E00219CF6 /* startCurrentScreensaver.scpt in Resources */,
 				A55A46F11A97DFEC00EB904D /* reactivate_asl_service.sh in Resources */,
 				1DDD58160DA1D0A300B32029 /* MainMenu.xib in Resources */,
 				A517CFA4142FD73E00632668 /* Credits.rtf in Resources */,

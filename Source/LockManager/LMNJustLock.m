@@ -28,7 +28,10 @@ static NSString * const kScreensaverDidStop = @"com.apple.screensaver.didstop";
 {
 	[super lock];
 	
-    [[self.scriptServiceConnection remoteObjectProxy] makeJustLock:self.userSettings.bUseCurrentScreenSaver];
+	NSString *scriptPath = [[NSBundle mainBundle] pathForResource:@"startCurrentScreensaver" ofType:@"scpt"];
+	
+    [[self.scriptServiceConnection remoteObjectProxy] makeJustLock:self.userSettings.bUseCurrentScreenSaver
+														scriptPath:scriptPath];
     
     NSDistributedNotificationCenter* distCenter = [NSDistributedNotificationCenter defaultCenter];
     [distCenter addObserver:self
