@@ -40,6 +40,8 @@ or Unplug MagSafe!\n\n";
     if (![self isItunesRuning])
     {
         reply(NO);
+		
+		return;
     }
     
     iTunesApplication *iTunes = [SBApplication applicationWithBundleIdentifier:iTunesID];
@@ -52,6 +54,8 @@ or Unplug MagSafe!\n\n";
     if (![self isItunesRuning])
     {
         reply(NO);
+		
+		return;
     }
     
     iTunesApplication *iTunes = [SBApplication applicationWithBundleIdentifier:iTunesID];
