@@ -12,7 +12,7 @@
 	<string>1.0</string>
 	<key>SMAuthorizedClients</key>
 	<array>
-		<string>identifier com.igrsoft.LockMeNow and certificate leaf[subject.CN] = &quot;IGR Software&quot;</string>
+		<string>identifier &quot;com.igrsoft.LockMeNow&quot; and anchor apple generic and certificate leaf[subject.CN] = &quot;Mac Developer: Vitalii Parovishnyk (6RW5R6WG96)&quot; and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
 	</array>
 </dict>
 </plist>

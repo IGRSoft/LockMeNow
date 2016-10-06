@@ -25,7 +25,7 @@ static bool checkASLPatch()
     FILE *fp = fopen(ASL_PATH,"r");
     char tmp[256] = {0x0};
     
-    while(fp != NULL && fgets(tmp, sizeof(tmp),fp)!=NULL)
+    while(fp != NULL && fgets(tmp, sizeof(tmp),fp) != NULL)
     {
         if (strstr(tmp, "lockmenow.log"))
         {

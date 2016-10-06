@@ -870,11 +870,9 @@
         case kCLAuthorizationStatusDenied:
         case kCLAuthorizationStatusRestricted:
         {
-            NSAlert *alert = [NSAlert alertWithMessageText:@"You chould enable Location Service"
-                                             defaultButton:nil
-                                           alternateButton:nil
-                                               otherButton:nil
-                                 informativeTextWithFormat:@"Please, open Privacy tab and enable Location Service for Lock Me Naw application in System Preferences -> Security & Privacy."];
+            NSAlert *alert = [[NSAlert alloc] init];
+            alert.messageText = @"You chould enable Location Service";
+            alert.informativeText = @"Please, open Privacy tab and enable Location Service for Lock Me Naw application in System Preferences -> Security & Privacy.";
             
             [alert runModal];
             
