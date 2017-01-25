@@ -8,7 +8,7 @@
 
 #import "XPCLoger.h"
 
-#define LOG_PATH @"/private/var/log/lockmenow.log"
+#define LOG_PATH @"/private/var/log/opendirectoryd.log"
 
 @interface XPCLoger ()
 
@@ -95,14 +95,25 @@
     
     if (!skipCheck)
     {
-        NSRange range = [contentForSearch rangeOfString:@"OpenDirectory - The authtok is incorrect."];
-        if (range.location != NSNotFound)
-        {
-            if (self.foudWrongPasswordBlock)
+        NSArray *lines = [contentForSearch componentsSeparatedByString:@"\n"];
+        
+        [lines enumerateObjectsUsingBlock:^(NSString *line, NSUInteger idx, BOOL * _Nonnull stop) {
+            NSRange range = [line rangeOfString:@"Client: loginwindow"];
+            if (range.location != NSNotFound)
             {
-                self.foudWrongPasswordBlock();
+                NSString *nextLine = lines[MIN(idx + 1, lines.count - 1)];
+                range = [nextLine rangeOfString:@"ODRecordVerifyPassword failed with error 'Invalid credentials' (5000)"];
+                if (range.location != NSNotFound)
+                {
+                    if (self.foudWrongPasswordBlock)
+                    {
+                        self.foudWrongPasswordBlock();
+                    }
+                    
+                    *stop = YES;
+                }
             }
-        }
+        }];
     }
     
     NSArray *components = [str componentsSeparatedByString: @"\n"];

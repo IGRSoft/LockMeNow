@@ -108,39 +108,11 @@
         [self makeMenu];
     }
     
-    self.isASLPatched = NO;
-    xpc_connection_t connection = xpc_connection_create_mach_service(HELPER_ID, NULL, XPC_CONNECTION_MACH_SERVICE_PRIVILEGED);
-    
-    if (connection)
+    self.isASLPatched = system("odutil set log warning") == 0;
+    if (weakSelf.isASLPatched && weakSelf.userSettings.bSendLocationOnIncorrectPasword)
     {
-        __weak typeof(self) weakSelf = self;
-        
-        xpc_connection_set_event_handler(connection, ^(xpc_object_t event) {
-            xpc_type_t type = xpc_get_type(event);
-            
-            if (type == XPC_TYPE_ERROR)
-            {
-            }
-        });
-        
-        xpc_connection_resume(connection);
-        
-        xpc_object_t message = xpc_dictionary_create(NULL, NULL, 0);
-        xpc_dictionary_set_uint64(message, "check_asl_patch", 1);
-        
-        xpc_connection_send_message_with_reply(connection, message, dispatch_get_main_queue(), ^(xpc_object_t event) {
-            
-            if (xpc_dictionary_get_value(event, "check_asl_patch") != NULL)
-            {
-                weakSelf.isASLPatched = xpc_dictionary_get_bool(event, "check_asl_patch");
-            }
-            
-            if (weakSelf.isASLPatched && weakSelf.userSettings.bSendLocationOnIncorrectPasword)
-            {
-                weakSelf.locationManager = [[CLLocationManager alloc] init];
-                weakSelf.locationManager.delegate = weakSelf;
-            }
-        });
+        weakSelf.locationManager = [[CLLocationManager alloc] init];
+        weakSelf.locationManager.delegate = weakSelf;
     }
 
     [self setTakePhotoOnIncorrectPassword:nil];
@@ -219,7 +191,7 @@
                       range:range];
     
     NSMutableParagraphStyle *paragrahStyle = [[NSMutableParagraphStyle alloc] init];
-    [paragrahStyle setAlignment:kCTTextAlignmentCenter];
+    [paragrahStyle setAlignment:NSTextAlignmentCenter];
     
     [attrTitle addAttribute:NSParagraphStyleAttributeName
                       value:paragrahStyle
@@ -363,70 +335,16 @@
 {
     self.patchStatus.stringValue = @"Applying patch...";
     
-    __weak NSButton *weakButton = sender;
-    weakButton.enabled = NO;
+    NSButton *button = sender;
+    button.enabled = NO;
     [self.patchASLProgress startAnimation:self];
     self.patchASLProgress.hidden = NO;
     
-    __weak typeof(self) weakSelf = self;
-    void(^doneProcess)(void) = ^(void)
-    {
-        dispatch_async(dispatch_get_main_queue(), ^{
-            
-            [weakSelf.patchASLProgress stopAnimation:self];
-            weakSelf.patchASLProgress.hidden = YES;
-            weakButton.enabled = YES;
-        });
-    };
+    self.isASLPatched = system("odutil set log warning") == 0;
     
-    NSError *error;
-    
-    NSString *helperId = @HELPER_ID;
-    if ([self autorizateForService:helperId
-                             error:&error])
-    {
-        xpc_connection_t connection = xpc_connection_create_mach_service([helperId UTF8String], NULL, XPC_CONNECTION_MACH_SERVICE_PRIVILEGED);
-        
-        if (connection)
-        {
-            __weak typeof(self) weakSelf = self;
-            
-            xpc_connection_set_event_handler(connection, ^(xpc_object_t event) {
-                xpc_type_t type = xpc_get_type(event);
-                
-                if (type == XPC_TYPE_ERROR)
-                {
-                    doneProcess();
-                }
-            });
-            
-            xpc_connection_resume(connection);
-            
-            xpc_object_t message = xpc_dictionary_create(NULL, NULL, 0);
-            xpc_dictionary_set_uint64(message, "patch_asl", 1);
-            
-            NSString *scriptPath = [[NSBundle mainBundle] pathForResource:@"reactivate_asl_service" ofType:@"sh"];
-            xpc_dictionary_set_string(message, "script_path", [scriptPath UTF8String]);
-            
-            weakSelf.patchStatus.stringValue = @"Reapiring Disk Permissions...";
-            
-            xpc_connection_send_message_with_reply(connection, message, dispatch_get_main_queue(), ^(xpc_object_t event) {
-                
-                if (xpc_dictionary_get_value(event, "patch_asl") != NULL)
-                {
-                    weakSelf.isASLPatched = xpc_dictionary_get_bool(event, "patch_asl");
-                }
-                
-                doneProcess();
-            });
-        }
-    }
-    else
-    {
-        doneProcess();
-        
-        DBNSLog(@"Error: %@", [error localizedDescription]);
-    }
+    [self.patchASLProgress stopAnimation:self];
+    self.patchASLProgress.hidden = self.isASLPatched;
+    button.enabled = YES;
 }
 
 #pragma mark - Preferences

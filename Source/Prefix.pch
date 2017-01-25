@@ -17,8 +17,6 @@
 #define APP_SITE @"http://www.IGRSoft.com"
 #define TWITTER_SITE @"http://twitter.com/#!/iKorich"
 
-#define HELPER_ID "com.igrsoft.ASLHelper"
-
 #define XPC_LOGER               @"com.igrsoft.XPCLoger"
 #define XPC_SCRIPTING           @"com.igrsoft.XPCScripting"
 #define XPC_SCRIPTING_BRIDGE    @"com.igrsoft.XPCScriptingBridge"

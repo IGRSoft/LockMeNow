@@ -17,3 +17,4 @@ DerivedData
 .idea/
 dsa_priv.pem
 *.swp
+*.xcscmblueprint
