@@ -43,8 +43,8 @@ NSString *kControllMegSafe                  = @"ControllMegSafe";
 	defaultValues[kIconOnMainMenu] = @YES;
 	defaultValues[kLockType] = @(LOCK_SCREEN);
 	defaultValues[kUseCurrentScreenSaver] = @NO;
-	defaultValues[kPauseiTunes] = @YES;
-	defaultValues[kResumeiTunes] = @YES;
+	defaultValues[kPauseiTunes] = @NO;
+	defaultValues[kResumeiTunes] = @NO;
 	
 	defaultValues[kBluetoothCheckInterval] = @60;
 	defaultValues[kBluetoothMonitoring] = @NO;

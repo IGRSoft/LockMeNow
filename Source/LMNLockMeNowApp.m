@@ -178,28 +178,6 @@
 {
     [super awakeFromNib];
     
-    // Donate button
-    NSMutableAttributedString *attrTitle = [[NSMutableAttributedString alloc] initWithString:self.donateButton.title];
-    NSUInteger len = [attrTitle length];
-    NSRange range = NSMakeRange(0, len);
-    
-    [attrTitle addAttribute:NSForegroundColorAttributeName
-                      value:[NSColor orangeColor]
-                      range:range];
-    [attrTitle addAttribute:NSFontAttributeName
-                      value:[NSFont fontWithName:@"Helvetica Bold Oblique" size:12.0]
-                      range:range];
-    
-    NSMutableParagraphStyle *paragrahStyle = [[NSMutableParagraphStyle alloc] init];
-    [paragrahStyle setAlignment:NSTextAlignmentCenter];
-    
-    [attrTitle addAttribute:NSParagraphStyleAttributeName
-                      value:paragrahStyle
-                      range:range];
-    
-    [attrTitle fixAttributesInRange:range];
-    [self.donateButton setAttributedTitle:attrTitle];
-    
     //About
     NSString *text = [self.aboutText stringValue];
     
@@ -215,7 +193,7 @@
     [attrString beginEditing];
     
     NSColor *color = [NSColor colorWithCalibratedRed:0.058 green:0.385 blue:0.784 alpha:1.000];
-    range = [text rangeOfString:@"Vitalii Parovishnyk"];
+    NSRange range = [text rangeOfString:@"Vitalii Parovishnyk"];
     NSURL *url = [NSURL URLWithString:@"https://github.com/IGRSoft/LockMeNow"];
     
     if (range.location != NSNotFound)
@@ -305,9 +283,6 @@
 
 - (IBAction)doLock:(id)sender
 {
-#if 0
-    [self detectedWrongLoginAction];
-#else
     self.userSettings.bNeedResumeiTunes = NO;
     self.thiefPhotoPath = nil;
     
@@ -323,7 +298,6 @@
         [_locationManager startUpdatingLocation];
         _locationManager.delegate = self;
     }
-#endif
 }
 
 - (IBAction)doUnLock:(id)sender
@@ -790,11 +764,12 @@
         {
             NSAlert *alert = [[NSAlert alloc] init];
             alert.messageText = @"You chould enable Location Service";
-            alert.informativeText = @"Please, open Privacy tab and enable Location Service for Lock Me Naw application in System Preferences -> Security & Privacy.";
+            alert.informativeText = @"Please, open Privacy tab\nand enable Location Service\nfor Lock Me Naw application\nin System Preferences -> Security & Privacy.";
             
             [alert runModal];
             
-            [[NSWorkspace sharedWorkspace] openFile:@"/System/Library/PreferencePanes/Security.prefPane"];
+            NSURL *url = [NSURL URLWithString:@"x-apple.systempreferences:com.apple.preference.security?Privacy_LocationServices"];
+            [[NSWorkspace sharedWorkspace] openURL:url];
         }
             break;
             

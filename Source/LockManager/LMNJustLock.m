@@ -28,21 +28,24 @@ static NSString * const kScreensaverDidStop = @"com.apple.screensaver.didstop";
 {
 	[super lock];
 	
-	NSString *scriptPath = [[NSBundle mainBundle] pathForResource:@"startCurrentScreensaver" ofType:@"scpt"];
-	
-    [[self.scriptServiceConnection remoteObjectProxy] makeJustLock:self.userSettings.bUseCurrentScreenSaver
-														scriptPath:scriptPath];
-    
-    NSDistributedNotificationCenter* distCenter = [NSDistributedNotificationCenter defaultCenter];
-    [distCenter addObserver:self
-                   selector:@selector(screensaverStart:)
-                       name:kScreensaverDidStart
-                     object:nil];
-    
-    [distCenter addObserver:self
-                   selector:@selector(screensaverStop:)
-                       name:kScreensaverDidStop
-                     object:nil];
+    if (self.isLocked)
+    {
+        NSString *scriptPath = [[NSBundle mainBundle] pathForResource:@"startCurrentScreensaver" ofType:@"scpt"];
+        
+        [[self.scriptServiceConnection remoteObjectProxy] makeJustLock:self.userSettings.bUseCurrentScreenSaver
+                                                            scriptPath:scriptPath];
+        
+        NSDistributedNotificationCenter* distCenter = [NSDistributedNotificationCenter defaultCenter];
+        [distCenter addObserver:self
+                       selector:@selector(screensaverStart:)
+                           name:kScreensaverDidStart
+                         object:nil];
+        
+        [distCenter addObserver:self
+                       selector:@selector(screensaverStop:)
+                           name:kScreensaverDidStop
+                         object:nil];
+    }
 }
 
 - (void)unlock

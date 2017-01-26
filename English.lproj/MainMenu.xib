@@ -81,7 +81,7 @@
         <window title="Preferences" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" oneShot="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="371">
             <windowStyleMask key="styleMask" titled="YES" closable="YES"/>
             <rect key="contentRect" x="729" y="417" width="370" height="353"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1178"/>
+            <rect key="screenRect" x="0.0" y="0.0" width="1440" height="878"/>
             <view key="contentView" id="372">
                 <rect key="frame" x="0.0" y="0.0" width="370" height="353"/>
                 <autoresizingMask key="autoresizingMask"/>
@@ -92,15 +92,15 @@
                         <tabViewItems>
                             <tabViewItem label="General" identifier="general" id="775">
                                 <view key="view" id="778">
-                                    <rect key="frame" x="10" y="29" width="324" height="281"/>
+                                    <rect key="frame" x="10" y="25" width="324" height="285"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <box verticalHuggingPriority="750" boxType="separator" id="539">
-                                            <rect key="frame" x="20" y="144" width="287" height="5"/>
+                                            <rect key="frame" x="20" y="148" width="287" height="5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
                                         </box>
                                         <customView id="557" customClass="SRRecorderControl">
-                                            <rect key="frame" x="20" y="249" width="287" height="22"/>
+                                            <rect key="frame" x="20" y="253" width="287" height="22"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="style">
@@ -115,7 +115,7 @@
                                             </connections>
                                         </customView>
                                         <button id="568">
-                                            <rect key="frame" x="18" y="115" width="291" height="18"/>
+                                            <rect key="frame" x="18" y="119" width="291" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Launch at Login" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="569">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -127,17 +127,17 @@
                                             </connections>
                                         </button>
                                         <box autoresizesSubviews="NO" borderType="line" title="Lock Type:" id="581">
-                                            <rect key="frame" x="17" y="163" width="293" height="78"/>
+                                            <rect key="frame" x="17" y="167" width="293" height="78"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <view key="contentView" id="5tQ-63-RtI">
                                                 <rect key="frame" x="1" y="1" width="291" height="62"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <matrix verticalHuggingPriority="750" misplaced="YES" allowsEmptySelection="NO" id="577">
-                                                        <rect key="frame" x="20" y="24" width="191" height="18"/>
+                                                    <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" id="577">
+                                                        <rect key="frame" x="20" y="0.0" width="167" height="62"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                                        <size key="cellSize" width="191" height="18"/>
+                                                        <size key="cellSize" width="167" height="62"/>
                                                         <size key="intercellSpacing" width="4" height="2"/>
                                                         <buttonCell key="prototype" type="radio" title="Radio" imagePosition="left" alignment="left" inset="2" id="578">
                                                             <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -156,7 +156,7 @@
                                             </view>
                                         </box>
                                         <button id="582">
-                                            <rect key="frame" x="18" y="95" width="291" height="18"/>
+                                            <rect key="frame" x="18" y="99" width="291" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Icon on Main Menu" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="583">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -168,7 +168,7 @@
                                             </connections>
                                         </button>
                                         <button id="8Uo-Yr-gEo">
-                                            <rect key="frame" x="18" y="75" width="291" height="18"/>
+                                            <rect key="frame" x="18" y="79" width="291" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Use Current Screen Saver" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="8fR-RJ-7Xi">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -181,7 +181,7 @@
                                             </connections>
                                         </button>
                                         <button id="646">
-                                            <rect key="frame" x="18" y="55" width="291" height="18"/>
+                                            <rect key="frame" x="18" y="59" width="291" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Pause iTunes Music" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="647">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -193,7 +193,7 @@
                                             </connections>
                                         </button>
                                         <button id="828">
-                                            <rect key="frame" x="42" y="35" width="267" height="18"/>
+                                            <rect key="frame" x="42" y="39" width="267" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Resume iTunes Music" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="829">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -298,7 +298,7 @@ an incorrect password</string>
                                                 <binding destination="494" name="hidden" keyPath="self.isASLPatched" id="z86-41-XGW"/>
                                             </connections>
                                         </button>
-                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" setsMaxLayoutWidthAtFirstLayout="YES" id="ixo-MD-sRO">
+                                        <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" setsMaxLayoutWidthAtFirstLayout="YES" id="ixo-MD-sRO">
                                             <rect key="frame" x="15" y="5" width="294" height="38"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" enabled="NO" allowsUndo="NO" sendsActionOnEndEditing="YES" alignment="center" title="Application doesn't send your data to 3rd party servers!" id="fND-Yw-FUL">
@@ -576,7 +576,7 @@ an incorrect password</string>
                                     <rect key="frame" x="10" y="25" width="324" height="285"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <textField verticalHuggingPriority="750" id="812">
+                                        <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="812">
                                             <rect key="frame" x="42" y="96" width="37" height="17"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <textFieldCell key="cell" controlSize="mini" sendsActionOnEndEditing="YES" title="and" id="821">
@@ -614,17 +614,6 @@ Big Thanks:
                                                 <action selector="goToURL:" target="494" id="884"/>
                                             </connections>
                                         </button>
-                                        <button id="xpe-32-alY">
-                                            <rect key="frame" x="14" y="14" width="295" height="29"/>
-                                            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                                            <buttonCell key="cell" type="bevel" title="Donate" bezelStyle="regularSquare" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="Agt-9j-udW">
-                                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                                <font key="font" size="13" name="HelveticaNeue-BoldItalic"/>
-                                            </buttonCell>
-                                            <connections>
-                                                <action selector="goToURL:" target="494" id="TBs-1q-kqD"/>
-                                            </connections>
-                                        </button>
                                     </subviews>
                                 </view>
                             </tabViewItem>
@@ -652,9 +641,7 @@ Big Thanks:
             <connections>
                 <outlet property="aboutText" destination="814" id="jQU-Fc-J2r"/>
                 <outlet property="bluetoothStatus" destination="ttB-wd-UIc" id="xnf-E0-PKh"/>
-                <outlet property="donateButton" destination="xpe-32-alY" id="E3m-Ua-AZk"/>
                 <outlet property="keyListener" destination="420" id="nlr-Fe-E7k"/>
-                <outlet property="lockBlockView" destination="848" id="858"/>
                 <outlet property="patchASLProgress" destination="b6C-7z-1x4" id="BpY-Vq-5Ng"/>
                 <outlet property="patchStatus" destination="Gj7-jh-9kr" id="Xrw-Ny-L5y"/>
                 <outlet property="sendMailCheckbox" destination="aj1-9s-ApJ" id="tdq-hs-YZm"/>
@@ -717,40 +704,6 @@ Big Thanks:
             </connections>
             <point key="canvasLocation" x="-48" y="520.5"/>
         </menu>
-        <window title="Window" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" hasShadow="NO" hidesOnDeactivate="YES" oneShot="NO" showsToolbarButton="NO" visibleAtLaunch="NO" animationBehavior="default" id="847" customClass="NSPanel">
-            <windowStyleMask key="styleMask" utility="YES"/>
-            <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
-            <rect key="contentRect" x="424" y="158" width="393" height="378"/>
-            <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1178"/>
-            <value key="minSize" type="size" width="393" height="378"/>
-            <value key="maxSize" type="size" width="393" height="378"/>
-            <view key="contentView" id="848">
-                <rect key="frame" x="0.0" y="0.0" width="393" height="378"/>
-                <autoresizingMask key="autoresizingMask"/>
-                <subviews>
-                    <button verticalHuggingPriority="750" id="854">
-                        <rect key="frame" x="127" y="75" width="138" height="32"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMaxY="YES"/>
-                        <buttonCell key="cell" type="push" title="Unlock Me :)" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" id="855">
-                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                            <font key="font" metaFont="system"/>
-                        </buttonCell>
-                        <connections>
-                            <action selector="doUnLock:" target="494" id="860"/>
-                        </connections>
-                    </button>
-                    <textField verticalHuggingPriority="750" id="849">
-                        <rect key="frame" x="31" y="240" width="331" height="48"/>
-                        <autoresizingMask key="autoresizingMask" flexibleMinX="YES" flexibleMaxX="YES" flexibleMinY="YES"/>
-                        <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" alignment="center" title="You are locked ;)" id="857">
-                            <font key="font" size="38" name="HelveticaNeue-Medium"/>
-                            <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="calibratedWhite"/>
-                            <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                        </textFieldCell>
-                    </textField>
-                </subviews>
-            </view>
-        </window>
     </objects>
     <resources>
         <image name="off" width="16" height="16"/>

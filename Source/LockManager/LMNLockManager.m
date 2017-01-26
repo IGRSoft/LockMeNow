@@ -26,7 +26,7 @@
 @property (nonatomic, assign) BOOL userUsePassword;
 @property (nonatomic, assign) NSNumber *passwordDelay;
 
-- (void)setSecuritySetings:(BOOL)aLock;
+- (BOOL)setSecuritySetings:(BOOL)aLock;
 
 @end
 
@@ -66,20 +66,23 @@
 {
     DBNSLog(@"%s Lock", __func__);
     
-    _isLocked = YES;
+    BOOL correctSettings = [self setSecuritySetings:YES];
     
-	if (_useSecurity)
-	{
-        [self setSecuritySetings:YES];
-        [self startCheckIncorrectPassword];
-		[self startCheckPowerMode];
-	}
-
-    __weak typeof(self) weakSelf = self;
-    [[self.screenServiceConnection remoteObjectProxy] startListenScreenUnlock:^{
+    if (correctSettings) {
+        if (_useSecurity)
+        {
+            [self startCheckIncorrectPassword];
+            [self startCheckPowerMode];
+        }
         
-        [weakSelf unlock];
-    }];
+        __weak typeof(self) weakSelf = self;
+        [[self.screenServiceConnection remoteObjectProxy] startListenScreenUnlock:^{
+            
+            [weakSelf unlock];
+        }];
+    }
+    
+    _isLocked = correctSettings;
 }
 
 - (void)unlock
@@ -90,9 +93,10 @@
     
 	[self.delegate unLockSuccess];
     
+    [self setSecuritySetings:NO];
+    
     if (_useSecurity)
     {
-        [self setSecuritySetings:NO];
         [self stopCheckIncorrectPassword];
 		[self stopCheckPowerMode];
     }
@@ -130,56 +134,33 @@
     return passwordDelay;
 }
 
-- (void)setSecuritySetings:(BOOL)aLock
+- (BOOL)setSecuritySetings:(BOOL)aLock
 {
-    BOOL askPasswordVal = YES;
-    NSNumber *passwordDelayVal = @0;
-    
 	if (aLock)
 	{
         DBNSLog(@"Set Security Lock");
         
         _userUsePassword = [self askPassword];
         _passwordDelay = [self passwordDelay];
+        
+        if (!_userUsePassword || ![_passwordDelay isEqualToNumber:@0])
+        {
+            NSAlert *alert = [[NSAlert alloc] init];
+            alert.messageText = @"You chould enable a Require Password";
+            alert.informativeText = @"Please, open General tab\nand enable \"Require Password\" (immediately) \nin System Preferences -> Security & Privacy.";
+            
+            [alert runModal];
+            
+            NSURL *url = [NSURL URLWithString:@"x-apple.systempreferences:com.apple.preference.security?General"];
+            [[NSWorkspace sharedWorkspace] openURL:url];
+        }
 	}
     else
     {
         DBNSLog(@"Remove Security Lock");
-        
-        askPasswordVal = _userUsePassword;
-        passwordDelayVal = _passwordDelay;
-    }
-	
-    if (!_userUsePassword)
-    {
-        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-        [[self.preferencesServiceConnection remoteObjectProxy] setPreferencesAskPassword:askPasswordVal replyBlock:^(BOOL success) {
-            if (!success)
-            {
-                NSLog(@"Can't sync Prefs");
-            }
-            
-            dispatch_semaphore_signal(semaphore);
-        }];
-        
-        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
     }
     
-    if (![_passwordDelay isEqualToNumber:@0])
-    {
-        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-        
-        [[self.preferencesServiceConnection remoteObjectProxy] setPreferencesPasswordDelay:passwordDelayVal replyBlock:^(BOOL success) {
-            if (!success)
-            {
-                NSLog(@"Can't sync Prefs");
-            }
-            
-            dispatch_semaphore_signal(semaphore);
-        }];
-        
-        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
-    }
+    return (_userUsePassword && [_passwordDelay isEqualToNumber:@0]);
 }
 
 - (void)startCheckIncorrectPassword

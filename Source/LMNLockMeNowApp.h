@@ -22,7 +22,6 @@
 @property (weak) IBOutlet NSImageView	*bluetoothStatus;
 
 @property (weak) IBOutlet NSView        *lockBlockView;
-@property (weak) IBOutlet NSButton      *donateButton;
 
 @property (weak) IBOutlet NSButton              *sendMailCheckbox;
 @property (weak) IBOutlet NSProgressIndicator   *patchASLProgress;
