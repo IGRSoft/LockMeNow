@@ -1,8 +1,9 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="10116" systemVersion="15E65" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="11762" systemVersion="16D32" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none">
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="10116"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="11762"/>
         <capability name="box content view" minToolsVersion="7.0"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
         <customObject id="-2" userLabel="File's Owner" customClass="NSApplication">
@@ -91,18 +92,15 @@
                         <tabViewItems>
                             <tabViewItem label="General" identifier="general" id="775">
                                 <view key="view" id="778">
-                                    <rect key="frame" x="10" y="25" width="324" height="285"/>
+                                    <rect key="frame" x="10" y="29" width="324" height="281"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <box verticalHuggingPriority="750" title="Box" boxType="separator" titlePosition="noTitle" id="539">
-                                            <rect key="frame" x="20" y="148" width="287" height="5"/>
+                                        <box verticalHuggingPriority="750" boxType="separator" id="539">
+                                            <rect key="frame" x="20" y="144" width="287" height="5"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMinY="YES"/>
-                                            <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                            <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
-                                            <font key="titleFont" metaFont="system"/>
                                         </box>
                                         <customView id="557" customClass="SRRecorderControl">
-                                            <rect key="frame" x="20" y="253" width="287" height="22"/>
+                                            <rect key="frame" x="20" y="249" width="287" height="22"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMinY="YES"/>
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="number" keyPath="style">
@@ -117,7 +115,7 @@
                                             </connections>
                                         </customView>
                                         <button id="568">
-                                            <rect key="frame" x="18" y="119" width="291" height="18"/>
+                                            <rect key="frame" x="18" y="115" width="291" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Launch at Login" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="569">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -128,15 +126,15 @@
                                                 <binding destination="494" name="value" keyPath="self.userSettings.bEnableStartup" id="Jjn-T3-y5n"/>
                                             </connections>
                                         </button>
-                                        <box autoresizesSubviews="NO" title="Lock Type:" borderType="line" id="581">
-                                            <rect key="frame" x="17" y="167" width="293" height="78"/>
+                                        <box autoresizesSubviews="NO" borderType="line" title="Lock Type:" id="581">
+                                            <rect key="frame" x="17" y="163" width="293" height="78"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <view key="contentView" id="5tQ-63-RtI">
                                                 <rect key="frame" x="1" y="1" width="291" height="62"/>
                                                 <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                                 <subviews>
-                                                    <matrix verticalHuggingPriority="750" allowsEmptySelection="NO" id="577">
-                                                        <rect key="frame" x="18" y="14" width="191" height="38"/>
+                                                    <matrix verticalHuggingPriority="750" misplaced="YES" allowsEmptySelection="NO" id="577">
+                                                        <rect key="frame" x="20" y="24" width="191" height="18"/>
                                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
                                                         <size key="cellSize" width="191" height="18"/>
@@ -147,28 +145,18 @@
                                                         </buttonCell>
                                                         <cells>
                                                             <column>
-                                                                <buttonCell type="radio" title="Login Window" imagePosition="left" alignment="left" state="on" tag="1" inset="2" id="579">
-                                                                    <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
-                                                                    <font key="font" metaFont="system"/>
-                                                                </buttonCell>
-                                                                <buttonCell type="radio" title="Just Lock" imagePosition="left" alignment="left" inset="2" id="636">
+                                                                <buttonCell type="radio" title="Just Lock" imagePosition="left" alignment="left" state="on" tag="1" inset="2" id="579">
                                                                     <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
                                                                     <font key="font" metaFont="system"/>
                                                                 </buttonCell>
                                                             </column>
                                                         </cells>
-                                                        <connections>
-                                                            <action selector="setLockType:" target="494" id="mwp-8A-L6n"/>
-                                                            <binding destination="494" name="selectedIndex" keyPath="self.userSettings.iLockType" id="boD-aG-Jc7"/>
-                                                        </connections>
                                                     </matrix>
                                                 </subviews>
                                             </view>
-                                            <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                            <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </box>
                                         <button id="582">
-                                            <rect key="frame" x="18" y="99" width="291" height="18"/>
+                                            <rect key="frame" x="18" y="95" width="291" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Icon on Main Menu" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="583">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -180,7 +168,7 @@
                                             </connections>
                                         </button>
                                         <button id="8Uo-Yr-gEo">
-                                            <rect key="frame" x="18" y="79" width="291" height="18"/>
+                                            <rect key="frame" x="18" y="75" width="291" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Use Current Screen Saver" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="8fR-RJ-7Xi">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -193,7 +181,7 @@
                                             </connections>
                                         </button>
                                         <button id="646">
-                                            <rect key="frame" x="18" y="59" width="291" height="18"/>
+                                            <rect key="frame" x="18" y="55" width="291" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Pause iTunes Music" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="647">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -205,7 +193,7 @@
                                             </connections>
                                         </button>
                                         <button id="828">
-                                            <rect key="frame" x="42" y="39" width="267" height="18"/>
+                                            <rect key="frame" x="42" y="35" width="267" height="18"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <buttonCell key="cell" type="check" title="Resume iTunes Music" bezelStyle="regularSquare" imagePosition="left" alignment="left" state="on" inset="2" id="829">
                                                 <behavior key="behavior" changeContents="YES" doesNotDimImage="YES" lightByContents="YES"/>
@@ -525,7 +513,7 @@ an incorrect password</string>
                                                 <binding destination="494" name="value" keyPath="self.userSettings.bMonitoringUSB" id="L4T-5u-PtZ"/>
                                             </connections>
                                         </button>
-                                        <box autoresizesSubviews="NO" title="Lock for:" borderType="line" id="795">
+                                        <box autoresizesSubviews="NO" borderType="line" title="Lock for:" id="795">
                                             <rect key="frame" x="14" y="138" width="296" height="118"/>
                                             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                             <view key="contentView" id="uNU-3M-xmb">
@@ -570,8 +558,6 @@ an incorrect password</string>
                                                     </matrix>
                                                 </subviews>
                                             </view>
-                                            <color key="borderColor" white="0.0" alpha="0.41999999999999998" colorSpace="calibratedWhite"/>
-                                            <color key="fillColor" white="0.0" alpha="0.0" colorSpace="calibratedWhite"/>
                                         </box>
                                         <textField verticalHuggingPriority="750" horizontalCompressionResistancePriority="250" id="841">
                                             <rect key="frame" x="15" y="17" width="294" height="34"/>
@@ -683,7 +669,6 @@ Big Thanks:
                 <outlet property="hotKeyControl" destination="557" id="wn0-Ea-k1a"/>
             </connections>
         </customObject>
-        <customObject id="fcV-V6-07S" userLabel="SUUpdater" customClass="SUUpdater"/>
         <menu id="560">
             <items>
                 <menuItem title="Lock" id="566">
@@ -718,12 +703,6 @@ Big Thanks:
                             </menuItem>
                         </items>
                     </menu>
-                </menuItem>
-                <menuItem title="Check for Updates..." id="r87-Df-sbp">
-                    <modifierMask key="keyEquivalentModifierMask"/>
-                    <connections>
-                        <action selector="checkForUpdates:" target="fcV-V6-07S" id="URm-ds-3ch"/>
-                    </connections>
                 </menuItem>
                 <menuItem isSeparatorItem="YES" id="562"/>
                 <menuItem title="Quit" id="565">

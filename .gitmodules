@@ -7,6 +7,3 @@
 [submodule "External/ImageSnap"]
 	path = External/ImageSnap
 	url = https://github.com/IGRSoft/ImageSnap.git
-[submodule "External/Sparkle"]
-	path = External/Sparkle
-	url = https://github.com/sparkle-project/Sparkle.git

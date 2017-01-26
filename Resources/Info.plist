@@ -37,14 +37,5 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
-	<key>SMPrivilegedExecutables</key>
-	<dict>
-		<key>com.igrsoft.ASLHelper</key>
-		<string>identifier "com.igrsoft.ASLHelper" and anchor apple generic and certificate leaf[subject.CN] = "Mac Developer: Vitalii Parovishnyk (6RW5R6WG96)" and certificate 1[field.1.2.840.113635.100.6.2.1] /* exists */</string>
-	</dict>
-	<key>SUFeedURL</key>
-	<string>http://igrsoft.com/wp-content/lockmenow/update.xml</string>
-	<key>SUPublicDSAKeyFile</key>
-	<string>dsa_pub.pem</string>
 </dict>
 </plist>
