@@ -10,6 +10,7 @@
 #import "XPCLogerProtocol.h"
 #import "XPCScreenProtocol.h"
 #import "XPCPowerProtocol.h"
+#import "XPCPreferences.h"
 
 @interface LMNLockManager ()
 
@@ -17,6 +18,7 @@
 @property (nonatomic, strong) FoudWrongPasswordBlock foudWrongPasswordBlock;
 
 @property (nonatomic, strong) NSXPCConnection *screenServiceConnection;
+@property (nonatomic, strong) NSXPCConnection *preferencesServiceConnection;
 
 @property (nonatomic, strong) NSXPCConnection *powerServiceConnection;
 @property (nonatomic, strong) FoudChangesInPowerBlock foudChangesInPowerBlock;
@@ -46,6 +48,10 @@
         _screenServiceConnection = [[NSXPCConnection alloc] initWithServiceName:XPC_SCREEN];
         _screenServiceConnection.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(XPCScreenProtocol)];
         [_screenServiceConnection resume];
+        
+        _preferencesServiceConnection = [[NSXPCConnection alloc] initWithServiceName:XPC_PREFERENCES];
+        _preferencesServiceConnection.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(XPCPreferencesProtocol)];
+        [_preferencesServiceConnection resume];
 	}
 	
 	return self;
@@ -94,25 +100,39 @@
 
 - (BOOL)askPassword
 {
-	BOOL isPassword = (BOOL)CFPreferencesGetAppBooleanValue(CFSTR("askForPassword"),
-                                                            CFSTR("com.apple.screensaver"),
-                                                            nil);
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    __block BOOL isPassword = NO;
+    [[self.preferencesServiceConnection remoteObjectProxy] preferencesAskPassword:^(BOOL replay) {
+        isPassword = replay;
+        
+        dispatch_semaphore_signal(semaphore);
+    }];
 	
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    
 	return isPassword;
 }
 
 - (NSNumber *)passwordDelay
 {
-    NSNumber *passwordDelay = @(CFPreferencesGetAppIntegerValue(CFSTR("askForPasswordDelay"),
-                                                                CFSTR("com.apple.screensaver"),
-                                                                nil));
+    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+    
+    __block NSNumber *passwordDelay = @0;
+    [[self.preferencesServiceConnection remoteObjectProxy] preferencesPasswordDelay:^(NSNumber * replay) {
+        passwordDelay = replay;
+        
+        dispatch_semaphore_signal(semaphore);
+    }];
+    
+    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
     
     return passwordDelay;
 }
 
 - (void)setSecuritySetings:(BOOL)aLock
 {
-    NSNumber *askPasswordVal = @YES;
+    BOOL askPasswordVal = YES;
     NSNumber *passwordDelayVal = @0;
     
 	if (aLock)
@@ -126,30 +146,39 @@
     {
         DBNSLog(@"Remove Security Lock");
         
-        askPasswordVal = @(_userUsePassword);
+        askPasswordVal = _userUsePassword;
         passwordDelayVal = _passwordDelay;
     }
 	
     if (!_userUsePassword)
     {
-        CFPreferencesSetValue(CFSTR("askForPassword"), (__bridge CFPropertyListRef) askPasswordVal,
-                              CFSTR("com.apple.screensaver"),
-                              kCFPreferencesCurrentUser, kCFPreferencesCurrentHost);
+        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+        [[self.preferencesServiceConnection remoteObjectProxy] setPreferencesAskPassword:askPasswordVal replyBlock:^(BOOL success) {
+            if (!success)
+            {
+                NSLog(@"Can't sync Prefs");
+            }
+            
+            dispatch_semaphore_signal(semaphore);
+        }];
+        
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
     }
     
     if (![_passwordDelay isEqualToNumber:@0])
     {
-        CFPreferencesSetValue(CFSTR("askForPasswordDelay"), (__bridge CFPropertyListRef) passwordDelayVal,
-                              CFSTR("com.apple.screensaver"),
-                              kCFPreferencesCurrentUser, kCFPreferencesCurrentHost);
-    }
-    
-    BOOL success = CFPreferencesSynchronize(CFSTR("com.apple.screensaver"),
-                                            kCFPreferencesCurrentUser, kCFPreferencesCurrentHost);
-    
-    if (!success)
-    {
-        DBNSLog(@"Can't sync Prefs");
+        dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
+        
+        [[self.preferencesServiceConnection remoteObjectProxy] setPreferencesPasswordDelay:passwordDelayVal replyBlock:^(BOOL success) {
+            if (!success)
+            {
+                NSLog(@"Can't sync Prefs");
+            }
+            
+            dispatch_semaphore_signal(semaphore);
+        }];
+        
+        dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
     }
 }
 
