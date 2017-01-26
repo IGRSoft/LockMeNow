@@ -283,6 +283,9 @@
 
 - (IBAction)doLock:(id)sender
 {
+#if 0
+    [self detectedWrongLoginAction];
+#else
     self.userSettings.bNeedResumeiTunes = NO;
     self.thiefPhotoPath = nil;
     
@@ -298,6 +301,7 @@
         [_locationManager startUpdatingLocation];
         _locationManager.delegate = self;
     }
+#endif
 }
 
 - (IBAction)doUnLock:(id)sender

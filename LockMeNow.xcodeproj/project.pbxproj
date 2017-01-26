@@ -307,6 +307,13 @@
 		A52185541E39A2E600B8DA9C /* XPCPreferences.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = XPCPreferences.m; sourceTree = "<group>"; };
 		A52185561E39A2E600B8DA9C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		A52185581E39A2E600B8DA9C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		A521856C1E39E08300B8DA9C /* lockmenow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = lockmenow.entitlements; sourceTree = "<group>"; };
+		A521856D1E39E08300B8DA9C /* XPCLoger.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XPCLoger.entitlements; sourceTree = "<group>"; };
+		A521856E1E39E08300B8DA9C /* XPCPower.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XPCPower.entitlements; sourceTree = "<group>"; };
+		A521856F1E39E08300B8DA9C /* XPCPreferences.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XPCPreferences.entitlements; sourceTree = "<group>"; };
+		A52185701E39E08300B8DA9C /* XPCScreen.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XPCScreen.entitlements; sourceTree = "<group>"; };
+		A52185711E39E08300B8DA9C /* XPCScripting.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XPCScripting.entitlements; sourceTree = "<group>"; };
+		A52185721E39E08300B8DA9C /* XPCScriptingBridge.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = XPCScriptingBridge.entitlements; sourceTree = "<group>"; };
 		A527B8691AA0A9CF002E92C0 /* XPCScripting.xpc */ = {isa = PBXFileReference; explicitFileType = "wrapper.xpc-service"; includeInIndex = 0; path = XPCScripting.xpc; sourceTree = BUILT_PRODUCTS_DIR; };
 		A527B86C1AA0A9CF002E92C0 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		A527B86D1AA0A9CF002E92C0 /* XPCScriptingProtocol.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = XPCScriptingProtocol.h; sourceTree = "<group>"; };
@@ -321,7 +328,6 @@
 		A5489BAA15D3F1820072E5D2 /* Quartz.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Quartz.framework; path = System/Library/Frameworks/Quartz.framework; sourceTree = SDKROOT; };
 		A5489BAC15D401710072E5D2 /* IOBluetooth.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOBluetooth.framework; path = System/Library/Frameworks/IOBluetooth.framework; sourceTree = SDKROOT; };
 		A5489BAD15D401710072E5D2 /* IOBluetoothUI.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = IOBluetoothUI.framework; path = System/Library/Frameworks/IOBluetoothUI.framework; sourceTree = SDKROOT; };
-		A559117516B3D69C008A7BF9 /* lockmenow.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.xml; path = lockmenow.entitlements; sourceTree = "<group>"; };
 		A55A46F71A97E3E000EB904D /* CoreFoundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreFoundation.framework; path = System/Library/Frameworks/CoreFoundation.framework; sourceTree = SDKROOT; };
 		A55F89551A76DB4D00C3F837 /* ScreenSaver.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = ScreenSaver.framework; path = System/Library/Frameworks/ScreenSaver.framework; sourceTree = SDKROOT; };
 		A562350E1A817F6E002B86A5 /* LaunchHelper.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; path = LaunchHelper.xcodeproj; sourceTree = "<group>"; };
@@ -522,6 +528,7 @@
 				080E96DDFE201D6D7F000001 /* LockMeNow */,
 				A56235041A817F6E002B86A5 /* LaunchHelper */,
 				A527B85F1AA0A999002E92C0 /* XPC */,
+				A521856B1E39E08300B8DA9C /* Sandbox */,
 				A5489B8215D3E5A90072E5D2 /* External */,
 				29B97315FDCFA39411CA2CEA /* Other Sources */,
 				29B97317FDCFA39411CA2CEA /* Resources */,
@@ -547,7 +554,6 @@
 				A506686F1B55294E004BB949 /* dsa_pub.pem */,
 				A53FFA011A97B5DE002E8B0E /* Scripts */,
 				A52843B91948547B00040243 /* Images.xcassets */,
-				A559117516B3D69C008A7BF9 /* lockmenow.entitlements */,
 				A52A9F5F16A8365200EA4B17 /* TextFieldBG.png */,
 				A517CFA2142FD73E00632668 /* Credits.rtf */,
 				D0764520101E7A3300DAE20D /* Info.plist */,
@@ -598,6 +604,20 @@
 				A52185581E39A2E600B8DA9C /* Info.plist */,
 			);
 			path = XPCPreferences;
+			sourceTree = "<group>";
+		};
+		A521856B1E39E08300B8DA9C /* Sandbox */ = {
+			isa = PBXGroup;
+			children = (
+				A521856C1E39E08300B8DA9C /* lockmenow.entitlements */,
+				A521856D1E39E08300B8DA9C /* XPCLoger.entitlements */,
+				A521856E1E39E08300B8DA9C /* XPCPower.entitlements */,
+				A521856F1E39E08300B8DA9C /* XPCPreferences.entitlements */,
+				A52185701E39E08300B8DA9C /* XPCScreen.entitlements */,
+				A52185711E39E08300B8DA9C /* XPCScripting.entitlements */,
+				A52185721E39E08300B8DA9C /* XPCScriptingBridge.entitlements */,
+			);
+			path = Sandbox;
 			sourceTree = "<group>";
 		};
 		A527B85F1AA0A999002E92C0 /* XPC */ = {
@@ -977,7 +997,7 @@
 						ProvisioningStyle = Automatic;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -986,7 +1006,7 @@
 						DevelopmentTeam = DMP42GVPJ3;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -995,7 +1015,7 @@
 						DevelopmentTeam = DMP42GVPJ3;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -1004,7 +1024,7 @@
 						DevelopmentTeam = DMP42GVPJ3;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -1013,7 +1033,7 @@
 						DevelopmentTeam = DMP42GVPJ3;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -1022,7 +1042,7 @@
 						DevelopmentTeam = DMP42GVPJ3;
 						SystemCapabilities = {
 							com.apple.Sandbox = {
-								enabled = 0;
+								enabled = 1;
 							};
 						};
 					};
@@ -1382,7 +1402,7 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_ENTITLEMENTS = Sandbox/XPCPreferences.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
@@ -1412,7 +1432,7 @@
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
-				CODE_SIGN_IDENTITY = "Mac Developer";
+				CODE_SIGN_ENTITLEMENTS = Sandbox/XPCPreferences.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1443,6 +1463,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = Sandbox/XPCScripting.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1482,6 +1503,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = Sandbox/XPCScripting.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1516,6 +1538,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = Sandbox/XPCScriptingBridge.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1555,6 +1578,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = Sandbox/XPCScriptingBridge.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1589,6 +1613,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = Sandbox/XPCLoger.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1628,6 +1653,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = Sandbox/XPCLoger.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1662,6 +1688,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = Sandbox/XPCScreen.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1701,6 +1728,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = Sandbox/XPCScreen.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = YES;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1733,6 +1761,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = Sandbox/XPCPower.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
@@ -1769,6 +1798,7 @@
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				CODE_SIGN_ENTITLEMENTS = Sandbox/XPCPower.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				ENABLE_NS_ASSERTIONS = NO;
@@ -1805,7 +1835,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = lockmenow.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Sandbox/lockmenow.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
@@ -1829,7 +1859,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				CODE_SIGN_ENTITLEMENTS = lockmenow.entitlements;
+				CODE_SIGN_ENTITLEMENTS = Sandbox/lockmenow.entitlements;
 				COMBINE_HIDPI_IMAGES = YES;
 				COPY_PHASE_STRIP = NO;
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
