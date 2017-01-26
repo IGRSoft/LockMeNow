@@ -1957,6 +1957,7 @@
 				A521855E1E39A2E600B8DA9C /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
 		};
 		A527B8761AA0A9CF002E92C0 /* Build configuration list for PBXNativeTarget "XPCScripting" */ = {
 			isa = XCConfigurationList;

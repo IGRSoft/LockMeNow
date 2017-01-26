@@ -4,6 +4,10 @@
 <dict>
 	<key>com.apple.security.app-sandbox</key>
 	<true/>
+	<key>com.apple.security.temporary-exception.apple-events</key>
+	<array>
+		<string>com.apple.systemevents</string>
+	</array>
 	<key>com.apple.security.temporary-exception.sbpl</key>
 	<array>
 		<string>(allow iokit-set-properties)</string>
