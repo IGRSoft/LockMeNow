@@ -27,6 +27,9 @@
 #import <ServiceManagement/ServiceManagement.h>
 #import <xpc/xpc.h>
 
+#include <pwd.h>
+#include <grp.h>
+
 @interface LMNLockMeNowApp() <LMNLockManagerDelegate, LMNListenerManagerDelegate,
                                     NSUserNotificationCenterDelegate, CLLocationManagerDelegate>
 {
@@ -379,8 +382,37 @@
     [self updateUserSettings:sender];
 }
 
-- (IBAction)setTakePhotoOnIncorrectPassword:(id)sender
+- (IBAction)setTakePhotoOnIncorrectPassword:(NSButton *)sender
 {
+    if (sender.state == NSOnState) {
+        uid_t current_user_id = getuid();
+        
+        struct passwd *pwentry = getpwuid(current_user_id);
+        struct group *admin_group = getgrnam("admin");
+        
+        BOOL isAdmin = NO;
+        while(*admin_group->gr_mem != NULL) {
+            if (strcmp(pwentry->pw_name, *admin_group->gr_mem) == 0) {
+                isAdmin = YES;
+                break;
+            }
+            admin_group->gr_mem++;
+        }
+        
+        if (!isAdmin)
+        {
+            NSAlert *alert = [[NSAlert alloc] init];
+            alert.messageText = @"Security Check";
+            alert.informativeText = @"To enable this option, you must be in Administration group!";
+            
+            [alert runModal];
+            
+            self.userSettings.bMakePhotoOnIncorrectPasword = NO;
+            
+            return;
+        }
+    }
+    
     self.sendMailCheckbox.title = self.userSettings.bMakePhotoOnIncorrectPasword ?
     @"Send photo and warning on email:" :
     @"Send warning on email:";
