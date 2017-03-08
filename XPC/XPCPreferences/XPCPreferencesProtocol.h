@@ -8,6 +8,11 @@
 
 #import <Foundation/Foundation.h>
 
+#define kSeviceName             "com.apple.screensaver"
+
+#define kAskForPassword         "askForPassword"
+#define kAskForPasswordDelay    "askForPasswordDelay"
+
 typedef void (^XPCPreferencesReplayBlock)(BOOL);
 typedef void (^XPCPreferencesAskPasswordBlock)(BOOL);
 typedef void (^XPCPreferencesPasswordDelayBlock)(NSNumber * __nonnull);

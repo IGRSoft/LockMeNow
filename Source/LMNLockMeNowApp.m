@@ -30,11 +30,10 @@
 #include <pwd.h>
 #include <grp.h>
 
+
+
 @interface LMNLockMeNowApp() <LMNLockManagerDelegate, LMNListenerManagerDelegate,
                                     NSUserNotificationCenterDelegate, CLLocationManagerDelegate>
-{
-    
-}
 
 @property (nonatomic) NSXPCConnection *scriptServiceConnection;
 @property (nonatomic) NSXPCConnection *scriptingBridgeServiceConnection;
@@ -287,7 +286,7 @@
 - (IBAction)doLock:(id)sender
 {
 #if 0
-    [self detectedWrongLoginAction];
+    [self detectedEnterPassword];
 #else
     self.userSettings.bNeedResumeiTunes = NO;
     self.thiefPhotoPath = nil;
@@ -309,7 +308,7 @@
 
 - (IBAction)doUnLock:(id)sender
 {
-    
+    [self.lockManager unlockByLockManager:YES];
 }
 
 - (IBAction)applyASLPatch:(id)sender
@@ -700,11 +699,24 @@
         [center setDelegate:self];
         [center scheduleNotification:notification];
     }
+    
+    [self.usbListener reset];
+    [self.bluetoothListener reset];
 }
 
-- (void)detectedWrongLoginAction
+- (void)detectedUnplygMagSafeAction
 {
-    [self userTryEnterPassword];
+    [self detectedWrongLoginAction:UNPLUG_MAGSAFE_ACTION];
+}
+
+- (void)detectedEnterPassword
+{
+    [self detectedWrongLoginAction:WRONG_PASSWORD_ACTION];
+}
+
+- (void)detectedWrongLoginAction:(WrongUserActionType)type
+{
+    [self updateLocationManager];
 
     if (self.userSettings.bMakePhotoOnIncorrectPasword)
     {
@@ -714,7 +726,8 @@
     if (self.userSettings.bSendMailOnIncorrectPasword && self.userSettings.sIncorrectPaswordMail.length)
     {
         [[_scriptingBridgeServiceConnection remoteObjectProxy] setupMailAddres:self.userSettings.sIncorrectPaswordMail
-                                                                     userPhoto:self.thiefPhotoPath];
+                                                                     userPhoto:self.thiefPhotoPath
+                                                                          type:type];
     }
     else
     {
@@ -752,7 +765,7 @@
     }
 }
 
-- (void)userTryEnterPassword
+- (void)updateLocationManager
 {
     if (self.userSettings.bSendLocationOnIncorrectPasword)
     {
@@ -763,9 +776,14 @@
 
 #pragma mark - ListenerManagerDelegate
 
-- (void)makeAction:(id)sender
+- (void)makeLockAction:(id)sender
 {
     [self doLock:sender];
+}
+
+- (void)makeUnlockAction:(id)sender
+{
+    [self doUnLock:sender];
 }
 
 #pragma mark - UserNotificationCenter

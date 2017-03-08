@@ -48,9 +48,11 @@ static NSString * const kScreensaverDidStop = @"com.apple.screensaver.didstop";
     }
 }
 
-- (void)unlock
+- (void)unlockByLockManager:(BOOL)byManager
 {
-	[super unlock];
+    [super unlockByLockManager:byManager];
+    
+    [[self.scriptServiceConnection remoteObjectProxy] makeJustUnLock];
     
     [[NSDistributedNotificationCenter defaultCenter] removeObserver:self
                                                                name:kScreensaverDidStart
@@ -69,8 +71,6 @@ static NSString * const kScreensaverDidStop = @"com.apple.screensaver.didstop";
 - (void)screensaverStop:(NSNotification *)aNotification
 {
     DBNSLog(@"Screensaver Stop");
-    
-    [self.delegate userTryEnterPassword];
 }
 
 @end

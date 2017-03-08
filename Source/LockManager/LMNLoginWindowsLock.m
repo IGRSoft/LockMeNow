@@ -33,9 +33,9 @@
 #endif
 }
 
-- (void)unlock
+- (void)unlockByLockManager:(BOOL)byManager
 {
-	[super unlock];
+	[super unlockByLockManager:byManager];
 }
 
 @end

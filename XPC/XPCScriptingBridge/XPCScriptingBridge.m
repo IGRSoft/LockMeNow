@@ -17,20 +17,21 @@
 @property (nonatomic, copy) NSMutableArray *photoPaths;
 @property (nonatomic, copy) NSString *mailAddres;
 @property (nonatomic) NSString *messageContent;
+@property (nonatomic) NSUInteger actionType;
 
 @end
 
 @implementation XPCScriptingBridge
 
-static NSString *iTunesID = @"com.apple.iTunes";
-static NSString *defaultText = @"Someone has entered an incorrect password\n\
-or Unplug MagSafe!\n\n";
+static NSString * const kiTunesID = @"com.apple.iTunes";
+static NSString * const kPasswordDefaultText = @"Someone has entered an incorrect password\n\n";
+static NSString * const kMagSafeDefaultText = @"Someone has unpluged MagSafe!\n\n";
 
 #pragma mark - iTunes
 
 - (BOOL)isItunesRuning
 {
-    iTunesApplication *iTunes = [SBApplication applicationWithBundleIdentifier:iTunesID];
+    iTunesApplication *iTunes = [SBApplication applicationWithBundleIdentifier:kiTunesID];
     
     return iTunes.isRunning;
 }
@@ -44,7 +45,7 @@ or Unplug MagSafe!\n\n";
 		return;
     }
     
-    iTunesApplication *iTunes = [SBApplication applicationWithBundleIdentifier:iTunesID];
+    iTunesApplication *iTunes = [SBApplication applicationWithBundleIdentifier:kiTunesID];
     
     reply([iTunes playerState] == iTunesEPlSPlaying);
 }
@@ -58,7 +59,7 @@ or Unplug MagSafe!\n\n";
 		return;
     }
     
-    iTunesApplication *iTunes = [SBApplication applicationWithBundleIdentifier:iTunesID];
+    iTunesApplication *iTunes = [SBApplication applicationWithBundleIdentifier:kiTunesID];
     
     reply([iTunes playerState] == iTunesEPlSPaused || [iTunes playerState] == iTunesEPlSStopped);
 }
@@ -70,21 +71,22 @@ or Unplug MagSafe!\n\n";
         return;
     }
     
-    iTunesApplication *iTunes = [SBApplication applicationWithBundleIdentifier:iTunesID];
+    iTunesApplication *iTunes = [SBApplication applicationWithBundleIdentifier:kiTunesID];
     [iTunes playpause];
 }
 
 #pragma mark - Mail
 
-- (void)setupMailAddres:(NSString * _Nonnull)aMail userPhoto:(NSString * _Nullable)photoPath
+- (void)setupMailAddres:(NSString * _Nonnull)aMail userPhoto:(NSString * _Nullable)photoPath type:(NSUInteger)type
 {
     _mailAddres = aMail;
     _photoPaths = photoPath ? [NSMutableArray arrayWithObject:photoPath] : nil;
-    _messageContent = defaultText;
+    _actionType = type;
 }
 
 - (void)sendDefaultMessageAddLocation:(NSString * _Nullable)aLocation
 {
+    self.messageContent = self.actionType == 0 ? kPasswordDefaultText : kMagSafeDefaultText;
     if (aLocation)
     {
         self.messageContent = [self.messageContent stringByAppendingFormat:@"Location: %@\n\n", aLocation];

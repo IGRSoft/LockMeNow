@@ -12,7 +12,8 @@
 
 @protocol LMNListenerManagerDelegate <NSObject>
 
-- (void)makeAction:(id)sender;
+- (void)makeLockAction:(id)sender;
+- (void)makeUnlockAction:(id)sender;
 
 @end
 
@@ -23,7 +24,11 @@
 
 - (void)startListen;
 - (void)stopListen;
-- (void)makeAction:(id)sender;
+
+- (void)makeLockAction:(id)sender;
+- (void)makeUnlockAction:(id)sender;
+
+- (void)reset;
 
 @property (nonatomic, weak  ) IGRUserDefaults *userSettings;
 @property (nonatomic, weak  ) id<LMNListenerManagerDelegate> delegate;

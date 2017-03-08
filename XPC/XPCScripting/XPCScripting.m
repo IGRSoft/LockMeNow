@@ -47,4 +47,12 @@
     }
 }
 
+- (void)makeJustUnLock
+{
+    io_registry_entry_t r =	IORegistryEntryFromPath(kIOMasterPortDefault, "IOService:/IOResources/IODisplayWrangler");
+    if(!r) return;
+    IORegistryEntrySetCFProperty(r, CFSTR("IORequestIdle"), kCFBooleanFalse);
+    IOObjectRelease(r);
+}
+
 @end

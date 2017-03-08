@@ -18,7 +18,6 @@
 @property (nonatomic, strong) FoudWrongPasswordBlock foudWrongPasswordBlock;
 
 @property (nonatomic, strong) NSXPCConnection *screenServiceConnection;
-@property (nonatomic, strong) NSXPCConnection *preferencesServiceConnection;
 
 @property (nonatomic, strong) NSXPCConnection *powerServiceConnection;
 @property (nonatomic, strong) FoudChangesInPowerBlock foudChangesInPowerBlock;
@@ -48,10 +47,6 @@
         _screenServiceConnection = [[NSXPCConnection alloc] initWithServiceName:XPC_SCREEN];
         _screenServiceConnection.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(XPCScreenProtocol)];
         [_screenServiceConnection resume];
-        
-        _preferencesServiceConnection = [[NSXPCConnection alloc] initWithServiceName:XPC_PREFERENCES];
-        _preferencesServiceConnection.remoteObjectInterface = [NSXPCInterface interfaceWithProtocol:@protocol(XPCPreferencesProtocol)];
-        [_preferencesServiceConnection resume];
 	}
 	
 	return self;
@@ -78,14 +73,14 @@
         __weak typeof(self) weakSelf = self;
         [[self.screenServiceConnection remoteObjectProxy] startListenScreenUnlock:^{
             
-            [weakSelf unlock];
+            [weakSelf unlockByLockManager:NO];
         }];
     }
     
     _isLocked = correctSettings;
 }
 
-- (void)unlock
+- (void)unlockByLockManager:(BOOL)byManager
 {
 	DBNSLog(@"%s UnLock", __func__);
 	
@@ -93,7 +88,13 @@
     
 	[self.delegate unLockSuccess];
     
-    [self setSecuritySetings:NO];
+    if (byManager) {
+        [self unlockSecuritySetings];
+    }
+    else
+    {
+        [self setSecuritySetings:NO];
+    }
     
     if (_useSecurity)
     {
@@ -104,63 +105,88 @@
 
 - (BOOL)askPassword
 {
-    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-    
-    __block BOOL isPassword = NO;
-    [[self.preferencesServiceConnection remoteObjectProxy] preferencesAskPassword:^(BOOL replay) {
-        isPassword = replay;
-        
-        dispatch_semaphore_signal(semaphore);
-    }];
-	
-    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    BOOL isPassword = (BOOL)CFPreferencesGetAppBooleanValue(CFSTR(kAskForPassword),
+                                                            CFSTR(kSeviceName),
+                                                            nil);
     
 	return isPassword;
 }
 
 - (NSNumber *)passwordDelay
 {
-    dispatch_semaphore_t semaphore = dispatch_semaphore_create(0);
-    
-    __block NSNumber *passwordDelay = @0;
-    [[self.preferencesServiceConnection remoteObjectProxy] preferencesPasswordDelay:^(NSNumber * replay) {
-        passwordDelay = replay;
-        
-        dispatch_semaphore_signal(semaphore);
-    }];
-    
-    dispatch_semaphore_wait(semaphore, DISPATCH_TIME_FOREVER);
+    NSNumber *passwordDelay = @(CFPreferencesGetAppIntegerValue(CFSTR(kAskForPasswordDelay),
+                                                                CFSTR(kSeviceName),
+                                                                nil));
     
     return passwordDelay;
 }
 
+- (BOOL)unlockSecuritySetings
+{
+    DBNSLog(@"Remove Security Lock by Lock Manager");
+    
+    NSNumber *askPasswordVal = @NO;
+    NSNumber *passwordDelayVal = @0;
+    
+    CFPreferencesSetValue(CFSTR(kAskForPassword), (__bridge CFPropertyListRef) askPasswordVal,
+                          CFSTR(kSeviceName),
+                          kCFPreferencesCurrentUser, kCFPreferencesCurrentHost);
+    
+    CFPreferencesSetValue(CFSTR(kSeviceName), (__bridge CFPropertyListRef) passwordDelayVal,
+                          CFSTR(kAskForPasswordDelay),
+                          kCFPreferencesCurrentUser, kCFPreferencesCurrentHost);
+    
+    BOOL success = CFPreferencesSynchronize(CFSTR(kSeviceName),
+                                            kCFPreferencesCurrentUser, kCFPreferencesCurrentHost);
+    
+    if (!success)
+    {
+        DBNSLog(@"Can't sync Prefs");
+    }
+    
+    sleep(1); //Need wait 1
+    
+    return success;
+}
+
 - (BOOL)setSecuritySetings:(BOOL)aLock
 {
-	if (aLock)
-	{
+    NSNumber *askPasswordVal = @YES;
+    NSNumber *passwordDelayVal = @0;
+    
+    if (aLock)
+    {
         DBNSLog(@"Set Security Lock");
         
         _userUsePassword = [self askPassword];
         _passwordDelay = [self passwordDelay];
-        
-        if (!_userUsePassword || ![_passwordDelay isEqualToNumber:@0])
-        {
-            NSAlert *alert = [[NSAlert alloc] init];
-            alert.messageText = @"You chould enable a Require Password";
-            alert.informativeText = @"Please, open General tab\nand enable \"Require Password\" (immediately) \nin System Preferences -> Security & Privacy.";
-            
-            [alert runModal];
-            
-            NSURL *url = [NSURL URLWithString:@"x-apple.systempreferences:com.apple.preference.security?General"];
-            [[NSWorkspace sharedWorkspace] openURL:url];
-        }
-	}
+    }
     else
     {
-        DBNSLog(@"Remove Security Lock");
+        sleep(1); //Need wait 1
+        DBNSLog(@"Remove Security Lock by Listener");
+        
+        askPasswordVal = @(_userUsePassword);
+        passwordDelayVal = _passwordDelay;
     }
     
-    return (_userUsePassword && [_passwordDelay isEqualToNumber:@0]);
+    CFPreferencesSetValue(CFSTR(kAskForPassword), (__bridge CFPropertyListRef) askPasswordVal,
+                          CFSTR(kSeviceName),
+                          kCFPreferencesCurrentUser, kCFPreferencesCurrentHost);
+    
+    CFPreferencesSetValue(CFSTR(kAskForPasswordDelay), (__bridge CFPropertyListRef) passwordDelayVal,
+                          CFSTR(kSeviceName),
+                          kCFPreferencesCurrentUser, kCFPreferencesCurrentHost);
+    
+    BOOL success = CFPreferencesSynchronize(CFSTR(kSeviceName),
+                                            kCFPreferencesCurrentUser, kCFPreferencesCurrentHost);
+    
+    if (!success)
+    {
+        DBNSLog(@"Can't sync Prefs");
+    }
+    
+    return success;
 }
 
 - (void)startCheckIncorrectPassword
@@ -177,7 +203,7 @@
             
             dispatch_async(dispatch_get_main_queue(), ^{
                 
-                [weakSelf.delegate detectedWrongLoginAction];
+                [weakSelf.delegate detectedEnterPassword];
             });
             
             //Need update replay block, it called one times
@@ -212,7 +238,7 @@
 			
 			dispatch_async(dispatch_get_main_queue(), ^{
 				
-				[weakSelf.delegate detectedWrongLoginAction];
+				[weakSelf.delegate detectedUnplygMagSafeAction];
 			});
 			
 			//Need update replay block, it called one times

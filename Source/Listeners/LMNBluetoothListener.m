@@ -21,6 +21,7 @@
 @property (nonatomic) NSInteger	bluetoothTimerInterval;
 @property (nonatomic) BluetoothStatus	bluetoothDevicePriorStatus;
 @property (nonatomic) NSTimer			*bluetoothTimer;
+@property (nonatomic, copy  ) NSString *bluetoothName;
 
 @property (nonatomic) IOBluetoothDevice	*bluetoothDevice;
 
@@ -32,8 +33,7 @@
 {
     if (self = [super initWithSettings:aSettings])
     {
-        _checkingInProgress = NO;
-        _bluetoothDevicePriorStatus = OutOfRange;
+        _bluetoothDevicePriorStatus = NoneRange;
         _bluetoothDevice = nil;
         if (self.userSettings.bluetoothData)
         {
@@ -60,7 +60,7 @@
     if (![_bluetoothDevice isConnected])
     {
         IOReturn rt = [_bluetoothDevice openConnection:self];
-        self.bluetoothDevicePriorStatus = OutOfRange;
+        [self reset];
         if (rt != kIOReturnSuccess)
         {
             DBNSLog(@"Can't connect bluetoth device");
@@ -76,7 +76,7 @@
 
 - (void)stopListen
 {
-    self.bluetoothDevicePriorStatus = OutOfRange;
+    [self reset];
     
     [_bluetoothDevice closeConnection];
     [_bluetoothTimer invalidate];
@@ -85,6 +85,11 @@
     [_guiQueue cancelAllOperations];
     
     [[NSOperationQueue mainQueue] cancelAllOperations];
+}
+
+- (void)reset
+{
+    self.bluetoothDevicePriorStatus = NoneRange;
 }
 
 - (void)changeDevice
@@ -100,6 +105,7 @@
     }
     
     _bluetoothDevice = [results firstObject];
+    _bluetoothDevicePriorStatus = NoneRange;
     
     NSData *deviceAsData = [NSKeyedArchiver archivedDataWithRootObject:_bluetoothDevice];
     [self.userSettings saveUserSettingsWithBluetoothData:deviceAsData];
@@ -111,7 +117,7 @@
 {
     if (_bluetoothDevice)
     {
-        self.bluetoothName  = [NSString stringWithFormat:@"%@", [_bluetoothDevice name]];
+        self.bluetoothName = [_bluetoothDevice name];
     }
 }
 
@@ -136,21 +142,27 @@
             
             BOOL result = [self isInRange];
             
-            if( result )
+            if (_bluetoothDevicePriorStatus == NoneRange && self.bluetoothDevice)
             {
-                if( _bluetoothDevicePriorStatus == OutOfRange )
+                self.bluetoothDevicePriorStatus = result ? InRange : OutOfRange;
+            }
+            
+            if (result)
+            {
+                if (_bluetoothDevicePriorStatus == OutOfRange)
                 {
-                    self.bluetoothDevicePriorStatus = InRange;
+                    [self makeUnlockAction:self];
                 }
+                self.bluetoothDevicePriorStatus = InRange;
             }
             else
             {
-                if( _bluetoothDevicePriorStatus == InRange )
+                if (_bluetoothDevicePriorStatus == InRange)
                 {
-                    self.bluetoothDevicePriorStatus = OutOfRange;
-                    
-                    [self makeAction:self];
+                    [self makeLockAction:self];
                 }
+                
+                self.bluetoothDevicePriorStatus = OutOfRange;
             }
         }];
     }

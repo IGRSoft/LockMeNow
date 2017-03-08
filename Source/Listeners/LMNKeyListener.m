@@ -44,7 +44,7 @@ extern NSString *kGlobalHotKey;
                                               keyCombo:keyCombo];
     
     [self.hotKey setTarget: self];
-    [self.hotKey setAction: @selector(makeAction:)];
+    [self.hotKey setAction: @selector(makeLockAction:)];
     
     [[PTHotKeyCenter sharedCenter] registerHotKey:self.hotKey];
     

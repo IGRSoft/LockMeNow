@@ -95,16 +95,16 @@ NSString *kControllMegSafe                  = @"ControllMegSafe";
     _iPhotoQualityType                  = [self.defaults objectForKey:kPhotoQualityType];
 	_bControllMagSafe					= [self.defaults boolForKey:kControllMegSafe];
     
-	NSData *deviceAsData = [self.defaults objectForKey:kBluetoothDevice];
+	NSData *deviceAsData                = [self.defaults objectForKey:kBluetoothDevice];
 	if( [deviceAsData length] > 0 )
 	{
 		_bluetoothData = deviceAsData;
 	}
 	
 	// Monitoring enabled
-	_bMonitoringBluetooth = [self.defaults boolForKey:kBluetoothMonitoring];
-	_bMonitoringUSB = [self.defaults boolForKey:kUSBMonitoring];
-	_iUSBDeviceType = [self.defaults objectForKey:kUSBDeviceType];
+	_bMonitoringBluetooth               = [self.defaults boolForKey:kBluetoothMonitoring];
+	_bMonitoringUSB                     = [self.defaults boolForKey:kUSBMonitoring];
+	_iUSBDeviceType                     = [self.defaults objectForKey:kUSBDeviceType];
 }
 
 - (void)saveUserSettingsWithBluetoothData:(NSData *)bluetoothData

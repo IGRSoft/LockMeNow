@@ -39,9 +39,19 @@
     [self startListen];
 }
 
-- (void)makeAction:(id)sender
+- (void)makeLockAction:(id)sender
 {
-    [self.delegate makeAction:sender];
+    [self.delegate makeLockAction:sender];
+}
+
+- (void)makeUnlockAction:(id)sender
+{
+    [self.delegate makeUnlockAction:sender];
+}
+
+- (void)reset
+{
+    DBNSLog(@"%s", __func__);
 }
 
 @end

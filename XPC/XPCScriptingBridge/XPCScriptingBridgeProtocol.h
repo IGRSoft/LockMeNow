@@ -19,7 +19,7 @@
 
 #pragma mark - Mail
 
-- (void)setupMailAddres:(NSString  * _Nonnull)aMail userPhoto:(NSString  * _Nullable)photoPath;
+- (void)setupMailAddres:(NSString  * _Nonnull)aMail userPhoto:(NSString  * _Nullable)photoPath type:(NSUInteger)type;
 - (void)sendDefaultMessageAddLocation:(NSString * _Nullable)aLocation;
 
 @end

@@ -13,8 +13,9 @@
 @protocol LMNLockManagerDelegate <NSObject>
 
 - (void)unLockSuccess;
-- (void)detectedWrongLoginAction;
-- (void)userTryEnterPassword;
+
+- (void)detectedEnterPassword;
+- (void)detectedUnplygMagSafeAction;
 
 @end
 
@@ -23,7 +24,7 @@
 - (instancetype)initWithConnection:(NSXPCConnection *)aConnection settings:(IGRUserDefaults *)aSettings;
 
 - (void)lock;
-- (void)unlock;
+- (void)unlockByLockManager:(BOOL)byManager;
 
 @property (nonatomic, weak  ) NSXPCConnection *scriptServiceConnection;
 @property (nonatomic, weak  ) IGRUserDefaults *userSettings;

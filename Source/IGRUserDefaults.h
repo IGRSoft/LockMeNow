@@ -31,6 +31,12 @@ typedef NS_ENUM(NSUInteger, PhotoQualityType)
     PHOTO_QUALITY_TYPE_BEST,
 };
 
+typedef NS_ENUM(NSUInteger, WrongUserActionType)
+{
+    WRONG_PASSWORD_ACTION = 0,
+    UNPLUG_MAGSAFE_ACTION,
+};
+
 typedef void (^IGRUserDefaultsBluetoothData)(NSData *bluetoothData);
 
 @interface IGRUserDefaults : NSObject

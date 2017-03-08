@@ -16,7 +16,9 @@
 
 @property (nonatomic) NSInteger     usbDeviceID;
 @property (nonatomic) DeviceType    currentUSBDeviceType;
-@property (nonatomic) NSString      *usbDeviceName;
+
+@property (nonatomic, copy) NSString      *usbDeviceName;
+@property (nonatomic, copy) NSString      *usbDeviceSerial;
 
 @end
 
@@ -93,6 +95,18 @@ static APPLE_MOBILE_DEVICE APPLE_MOBILE_DEVICES[NUM_APPLE_MOBILE_DEVICES] =
                 object:PTUSBHub.sharedHub];
 }
 
+- (void)reset
+{
+    _currentUSBDeviceType = USB_NONE;
+    _usbDeviceSerial = nil;
+    
+    if (self.userSettings.bMonitoringUSB)
+    {
+        [self stopListen];
+        [self startListen];
+    }
+}
+
 - (void)listeningDetachUSBDevice:(NSNotification *)note
 {
     NSInteger _deviceID = [(note.userInfo)[@"DeviceID"] intValue];
@@ -106,7 +120,7 @@ static APPLE_MOBILE_DEVICE APPLE_MOBILE_DEVICES[NUM_APPLE_MOBILE_DEVICES] =
             _usbDeviceID = 0;
             _usbDeviceName = nil;
             
-            [self makeAction:self];
+            [self makeLockAction:self];
         }
     }
 }
@@ -117,29 +131,39 @@ static APPLE_MOBILE_DEVICE APPLE_MOBILE_DEVICES[NUM_APPLE_MOBILE_DEVICES] =
     _currentUSBDeviceType = USB_NONE;
     
     uint16_t productID = [(note.userInfo)[@"Properties"][@"ProductID"] unsignedShortValue];
+    NSString *usbDeviceSerial = (note.userInfo)[@"Properties"][@"SerialNumber"];
     
-    for (NSInteger i = NUM_IPHONE_POS; i < NUM_APPLE_MOBILE_DEVICES; ++i)
+    if ([usbDeviceSerial isEqualToString:self.usbDeviceSerial]) {
+        [self makeUnlockAction:self];
+        self.usbDeviceSerial = nil;
+    }
+    
+    if (!self.usbDeviceSerial.length)
     {
-        APPLE_MOBILE_DEVICE iOSDevice = APPLE_MOBILE_DEVICES[i];
-        if (productID == iOSDevice.productID)
+        for (NSInteger i = NUM_IPHONE_POS; i < NUM_APPLE_MOBILE_DEVICES; ++i)
         {
-            DBNSLog(@"%s is connected by USB", iOSDevice.name);
-            _usbDeviceID = [(note.userInfo)[@"DeviceID"] intValue];
-            _usbDeviceName = [[NSString alloc] initWithCString:iOSDevice.name encoding:NSUTF8StringEncoding];
-            
-            if (i < NUM_IPOD_POS) {
-                _currentUSBDeviceType = USB_IPHONE;
-            }
-            else if (i < NUM_IPAD_POS)
+            APPLE_MOBILE_DEVICE iOSDevice = APPLE_MOBILE_DEVICES[i];
+            if (productID == iOSDevice.productID)
             {
-                _currentUSBDeviceType = USB_IPOD;
+                DBNSLog(@"%s is connected by USB", iOSDevice.name);
+                _usbDeviceID = [(note.userInfo)[@"DeviceID"] intValue];
+                _usbDeviceName = [[NSString alloc] initWithCString:iOSDevice.name encoding:NSUTF8StringEncoding];
+                _usbDeviceSerial = usbDeviceSerial;
+                
+                if (i < NUM_IPOD_POS) {
+                    _currentUSBDeviceType = USB_IPHONE;
+                }
+                else if (i < NUM_IPAD_POS)
+                {
+                    _currentUSBDeviceType = USB_IPOD;
+                }
+                else
+                {
+                    _currentUSBDeviceType = USB_IPAD;
+                }
+                
+                break;
             }
-            else
-            {
-                _currentUSBDeviceType = USB_IPAD;
-            }
-            
-            break;
         }
     }
 }

@@ -12,6 +12,8 @@
 @protocol XPCScriptingProtocol
 
 - (void)makeLoginWindowLock;
+
 - (void)makeJustLock:(BOOL)useCurrentScrrenSaver scriptPath:(NSString *)scriptPath;
-    
+- (void)makeJustUnLock;
+
 @end

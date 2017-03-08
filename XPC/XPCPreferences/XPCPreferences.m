@@ -9,11 +9,6 @@
 #import "XPCPreferences.h"
 #import <CoreFoundation/CoreFoundation.h>
 
-#define kSeviceName "com.apple.screensaver"
-
-#define kAskForPassword "askForPassword"
-#define kAskForPasswordDelay "askForPasswordDelay"
-
 @implementation XPCPreferences
 
 - (void)preferencesAskPassword:(XPCPreferencesAskPasswordBlock __nonnull)replyBlock
