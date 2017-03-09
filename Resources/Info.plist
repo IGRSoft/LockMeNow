@@ -37,5 +37,7 @@
 	<string>MainMenu</string>
 	<key>NSPrincipalClass</key>
 	<string>NSApplication</string>
+	<key>SUFeedURL</key>
+	<string>https://igrsoft.com/wp-content/lockmenow/update.xml</string>
 </dict>
 </plist>

@@ -45,5 +45,12 @@
             <pubDate>Thu, 06 Oct 2016 15:09:08 +0300</pubDate>
             <enclosure url="http://downloads.igrsoft.com/lockmenow/LockMeNow_134.zip" sparkle:version="134.1" length="3729530" type="application/octet-stream" sparkle:dsaSignature="MCwCFDmybz3/Tf6TXsMsSrq25GDaH8YdAhR0oHi7sC+K+kSf8FWRZDf1wl249g==" />
         </item>
+        <item>
+            <title>Version 1.4.0, Build 8cc5d54151c872e2768cf27b85dabad11cb3ad12</title>
+            <sparkle:shortVersionString>1.4.0</sparkle:shortVersionString>
+            <sparkle:releaseNotesLink>http://igrsoft.com/wp-content/lockmenow/info_140.html</sparkle:releaseNotesLink>
+            <pubDate>Thu, 09 Mar 2017 10:43:25 +0800</pubDate>
+            <enclosure url="http://downloads.igrsoft.com/lockmenow/LockMeNow_140.zip" sparkle:version="140.4" length="2954224" type="application/octet-stream" sparkle:dsaSignature="" />
+        </item>
 	</channel>
 </rss>
