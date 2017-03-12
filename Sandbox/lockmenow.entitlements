@@ -3,7 +3,7 @@
 <plist version="1.0">
 <dict>
 	<key>com.apple.security.app-sandbox</key>
-	<true/>
+	<false/>
 	<key>com.apple.security.assets.pictures.read-write</key>
 	<true/>
 	<key>com.apple.security.device.bluetooth</key>
@@ -20,7 +20,7 @@
 	<true/>
 	<key>com.apple.security.temporary-exception.sbpl</key>
 	<array>
-		<string>(allow network-outbound (literal "/private/var/run/usbmuxd"))</string>
+		<string>(allow network-outbound (literal &quot;/private/var/run/usbmuxd&quot;))</string>
 	</array>
 	<key>com.apple.security.temporary-exception.shared-preference.read-write</key>
 	<array>
