@@ -30,8 +30,6 @@
 #include <pwd.h>
 #include <grp.h>
 
-
-
 @interface LMNLockMeNowApp() <LMNLockManagerDelegate, LMNListenerManagerDelegate,
                                     NSUserNotificationCenterDelegate, CLLocationManagerDelegate>
 
@@ -59,10 +57,8 @@
 
 @implementation LMNLockMeNowApp
 
-- (instancetype)init
-{
-    if (self = [super init])
-    {
+- (instancetype)init {
+    if (self = [super init]) {
         _userSettings = [[IGRUserDefaults alloc] init];
     }
     
@@ -196,7 +192,7 @@
     
     NSColor *color = [NSColor colorWithCalibratedRed:0.058 green:0.385 blue:0.784 alpha:1.000];
     NSRange range = [text rangeOfString:@"Vitalii Parovishnyk"];
-    NSURL *url = [NSURL URLWithString:@"https://github.com/IGRSoft/LockMeNow"];
+    NSURL *url = [NSURL URLWithString:@"http://github.com/IGRSoft/LockMeNow"];
     
     if (range.location != NSNotFound)
     {
