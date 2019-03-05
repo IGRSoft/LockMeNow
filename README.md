@@ -27,33 +27,42 @@ With this app you can lock your Mac OS in short time and protect your personal d
 * Lock your computer with any bluetooth-device you have;
 * You can recommend the new locking types for us. We will add it to new releases and You will get a surprise from developers :)
 
-Download
--------------
+ ___
+### Download
 
 Also there [latest build][lockmenow],
 
 or [nightly build] [lockmenow_beta]
 
-ScreenShots
--------------
+ ___
+### Contribute to Development Goals Here: 
+
+BTC: 16tGJzt4gJJBhBetpV6BuaWuNfxvkdkbt4
+
+BCH: bitcoincash:qpcwefpxddjqzdpcrx6tek3uh6x9v7t8tugu30jvks
+
+LTC: litecoin:MLZxuAdJCaW7LdM4sQuRazgdNvd8G2bdyt
+
+ ___
+### ScreenShots
 
 <img src="https://github.com/iKorich/LockMeNow/blob/master/img/prefs_main.png?raw=true" width="487">
 <img src="https://github.com/iKorich/LockMeNow/blob/master/img/prefs_security.png?raw=true" width="487">
 <img src="https://github.com/iKorich/LockMeNow/blob/master/img/prefs_bluetooth.png?raw=true" width="487">
 <img src="https://github.com/iKorich/LockMeNow/blob/master/img/prefs_usb.png?raw=true" width="487">
 
-Credits
--------------
+ ___
+### Credits
 
 Developer: Vitalii (Korich) Parovishnyk 
 
-Known Issues
--------------
+ ___
+### Known Issues
 
 * Not good work with Bluetooth
 
-Licence
--------------
+ ___
+### Licence
 
 This application is free open source software and licensed under the LGPL 2.1.
 
